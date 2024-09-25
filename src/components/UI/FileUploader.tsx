@@ -17,7 +17,7 @@ const FileUploader: React.FC<{ onFilesSelected: (files: File[]) => void }> = ({ 
   return (
     <div
       {...getRootProps()}
-      className={`border-2 border-dashed rounded-lg p-6 text-center transition ${
+      className={`mt-10 h-[300px] w-full border-2 border-dashed rounded-lg p-6 text-center transition ${
         isDragActive ? 'border-blue-500 bg-blue-50' : 'border-gray-300'
       }`}
     >
