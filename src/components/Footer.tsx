@@ -16,14 +16,16 @@ export default function Footer(props: PropsFooter) {
       </p>
       <div className="mt-2">
         <Link
-          href="/terms-of-use"
+          href="https://www.frameworkteam.com/terms-of-use.html"
+          target="_blank"
           className="hover:text-black-800 active:text-black-800"
         >
           Terms of Use
         </Link>
         <span className="mx-2">|</span>
         <Link
-          href="/privacy-policy"
+          href="https://www.frameworkteam.com/privacy-policy.html"
+          target="_blank"
           className="hover:text-black-800 active:text-black-800"
         >
           Privacy Policy

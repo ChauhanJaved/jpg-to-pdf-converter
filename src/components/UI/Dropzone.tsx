@@ -31,11 +31,11 @@ const Dropzone: React.FC = () => {
     setFilePreviews(updatedPreviews);
   };
   return (
-    <div className="w-[90%] p-6">
+    <div className="mt-10 w-full">
       {/* Drag and drop area */}
       <div
         {...getRootProps()}
-        className={`flex h-[300px] w-full flex-col items-center justify-center rounded-lg border-2 border-dashed p-6 text-center transition ${
+        className={`flex h-[300px] w-full flex-col items-center justify-center rounded-lg border-2 border-dashed text-center transition ${
           isDragActive ? "border-blue-500 bg-blue-50" : "border-gray-300"
         }`}
       >

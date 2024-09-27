@@ -1,4 +1,5 @@
 //Internal imports
+import { roboto } from "@/components/font/font";
 import "./globals.css";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
@@ -17,7 +18,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body        
+      <body
+        className={`${roboto.className} bg-white text-base font-normal text-black-600`}
       >
         <Header />
         {children}

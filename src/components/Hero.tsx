@@ -4,7 +4,7 @@
 //Internal imports
 
 import { HeaderNavItems } from "@/data/website-data";
-import FileUploader from "./UI/Dropzone";
+import Dropzone from "./UI/Dropzone";
 import SectionHeader from "./UI/SectionHeader";
 
 const Hero = () => {
@@ -13,10 +13,11 @@ const Hero = () => {
       id={HeaderNavItems.Home}
       className="relative m-auto mt-[80px] flex w-full scroll-m-[80px] flex-col items-center justify-start px-3 py-10 xl:max-w-screen-xl"
     >
-      <SectionHeader caption="JPG to PDF Converter" />
-      <div className="mt-10 flex w-full items-center justify-center rounded border-2">
-        <FileUploader />
-      </div>
+      <SectionHeader
+        caption="JPG to PDF Converter"
+        desc="Convert JPG images to PDF in seconds. Easily adjust orientation and margins."
+      />
+      <Dropzone />
     </section>
   );
 };
