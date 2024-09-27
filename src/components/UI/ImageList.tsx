@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 interface FilePreview {
   file: File;
@@ -12,21 +12,23 @@ interface ImageListProps {
 
 const ImageList: React.FC<ImageListProps> = ({ filePreviews, onRemove }) => {
   return (
-    <div className="flex overflow-x-scroll space-x-4 p-2">
+    <div className="flex space-x-4 overflow-x-scroll p-2">
       {filePreviews.map((filePreview, index) => (
         <div key={index} className="relative flex-shrink-0">
           <img
             src={filePreview.preview}
             alt={`Thumbnail-${index}`}
-            className="w-24 h-24 object-cover rounded"
+            className="h-24 w-24 rounded object-cover"
           />
           <button
-            className="absolute top-1 right-1 bg-red-500 text-white text-xs px-2 py-1 rounded opacity-0 hover:opacity-100 transition"
+            className="absolute right-1 top-1 rounded bg-red-500 px-2 py-1 text-xs text-white opacity-0 transition hover:opacity-100"
             onClick={() => onRemove(filePreview.file.name)}
           >
             Remove
           </button>
-          <p className="text-xs text-gray-500 mt-2 text-center truncate">{filePreview.file.name}</p>
+          <p className="mt-2 truncate text-center text-xs text-gray-500">
+            {filePreview.file.name}
+          </p>
         </div>
       ))}
     </div>

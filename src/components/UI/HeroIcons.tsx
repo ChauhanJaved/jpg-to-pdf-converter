@@ -9,6 +9,7 @@ export enum IconNames {
   Clock = "clock",
   Link = "link",
   ArrowUp = "arrow-up",
+  Plus = "plus",
 }
 
 interface HeroIconsProps {
@@ -59,6 +60,9 @@ export default function HeroIcons({
       break;
     case IconNames.ArrowUp:
       pathData = "M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18";
+      break;
+    case IconNames.Plus:
+      pathData = "M12 4.5v15m7.5-7.5h-15";
       break;
     default:
       pathData =

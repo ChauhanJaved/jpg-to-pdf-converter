@@ -4,16 +4,10 @@
 //Internal imports
 
 import { HeaderNavItems } from "@/data/website-data";
-import FileUploader from "./UI/FileUploader";
-import { useState } from "react";
+import FileUploader from "./UI/Dropzone";
 import SectionHeader from "./UI/SectionHeader";
 
 const Hero = () => {
-  const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
-
-  const handleFilesSelected = (files: File[]) => {
-    setSelectedFiles(files);
-  };
   return (
     <section
       id={HeaderNavItems.Home}
@@ -21,18 +15,8 @@ const Hero = () => {
     >
       <SectionHeader caption="JPG to PDF Converter" />
       <div className="mt-10 flex w-full items-center justify-center rounded border-2">
-        <FileUploader onFilesSelected={handleFilesSelected} />
+        <FileUploader />
       </div>
-      {/* Display selected files */}
-      {selectedFiles.length > 0 && (
-        <ul className="mt-4">
-          {selectedFiles.map((file, idx) => (
-            <li key={idx} className="text-sm text-gray-700">
-              {file.name}
-            </li>
-          ))}
-        </ul>
-      )}
     </section>
   );
 };

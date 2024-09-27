@@ -1,45 +1,35 @@
-import React, { useCallback, useState } from "react";
+import React, { Fragment, useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
+import Button from "./Button";
 import ImageList from "./ImageList";
 
-interface FileUploaderProps {
-  onFilesSelected: (files: File[]) => void;
-}
-
-const FileUploader: React.FC<FileUploaderProps> = ({ onFilesSelected }) => {
+const Dropzone: React.FC = () => {
   const [filePreviews, setFilePreviews] = useState<
     { file: File; preview: string }[]
   >([]);
-
   // Handle file drop or selection
-  const onDrop = useCallback(
-    (acceptedFiles: File[]) => {
-      const newFiles = acceptedFiles.map((file) => ({
-        file,
-        preview: URL.createObjectURL(file),
-      }));
-      setFilePreviews((prev) => [...prev, ...newFiles]);
-      onFilesSelected([...filePreviews.map((f) => f.file), ...acceptedFiles]);
-    },
-    [filePreviews, onFilesSelected],
-  );
+  const onDrop = useCallback((acceptedFiles: File[]) => {
+    const newFiles = acceptedFiles.map((file) => ({
+      file,
+      preview: URL.createObjectURL(file),
+    }));
+    setFilePreviews((prev) => [...prev, ...newFiles]);
+  }, []);
 
   // Set up the dropzone, restricting to JPG files only
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+  const { getRootProps, getInputProps, isDragActive, open } = useDropzone({
     onDrop,
     noClick: true,
     noKeyboard: true,
     accept: { "image/jpeg": [".jpg", ".jpeg"] }, // Only allow JPG files
     multiple: true, // Allow multiple file selection
   });
-
   const handleRemoveFile = (fileName: string) => {
     const updatedPreviews = filePreviews.filter(
       (f) => f.file.name !== fileName,
     );
     setFilePreviews(updatedPreviews);
   };
-
   return (
     <div className="w-[90%] p-6">
       {/* Drag and drop area */}
@@ -50,14 +40,16 @@ const FileUploader: React.FC<FileUploaderProps> = ({ onFilesSelected }) => {
         }`}
       >
         <input {...getInputProps()} />
-        {filePreviews.length > 0 ? (
+        <Fragment>
+          <Button caption="Select JPG Images" handleClick={open} />
+          <p className="font-bold text-black-500">or drop JPG images here</p>
+        </Fragment>
+        {filePreviews.length > 0 && (
           <ImageList filePreviews={filePreviews} onRemove={handleRemoveFile} />
-        ) : (
-          <p className="font-bold text-black-500">Drop Your Files Here</p>
         )}
       </div>
     </div>
   );
 };
 
-export default FileUploader;
+export default Dropzone;
