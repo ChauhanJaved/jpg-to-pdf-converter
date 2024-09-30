@@ -1,4 +1,5 @@
 import React from "react";
+import HeroIcons, { IconNames } from "./HeroIcons";
 
 interface FilePreview {
   file: File;
@@ -13,23 +14,33 @@ interface ImageListProps {
 const ImageList: React.FC<ImageListProps> = ({ filePreviews, onRemove }) => {
   console.log(filePreviews.length);
   return (
-    <div className="flex space-x-4 overflow-x-scroll p-2">
+    <div className="flex flex-wrap space-x-4 p-2">
       {filePreviews.map((filePreview, index) => (
-        <div key={index} className="relative flex-shrink-0">
-          <img
-            src={filePreview.preview}
-            alt={`Thumbnail-${index}`}
-            className="h-24 w-24 rounded object-cover"
-          />
-          <button
-            className="absolute right-1 top-1 rounded bg-red-500 px-2 py-1 text-xs text-white opacity-0 transition hover:opacity-100"
-            onClick={() => onRemove(filePreview.file.name)}
-          >
-            Remove
-          </button>
-          <p className="mt-2 truncate text-center text-xs text-gray-500">
-            {filePreview.file.name}
-          </p>
+        <div key={index} className="flex h-[242px] w-[196px] p-4">
+          <figure className="rounded bg-white p-4 shadow-lg">
+            <div className="relative">
+              <img
+                src={filePreview.preview}
+                alt={`Thumbnail-${index}`}
+                className="object-scale-down"
+              />
+
+              <button
+                onClick={() => onRemove(filePreview.file.name)}
+                className={`absolute right-[calc(10px)] top-[calc(10px)] inline-flex items-center justify-center rounded bg-black-800 p-1 text-white opacity-80 transition-all duration-300 hover:bg-blue-ultramarine hover:opacity-100 active:bg-blue-ultramarine active:opacity-100`}
+              >
+                <HeroIcons
+                  iconName={IconNames.XMark}
+                  className="size-6 font-bold"
+                  strokeWidth={1.5}
+                />
+              </button>
+
+              <p className="mt-2 truncate text-center text-xs text-gray-500">
+                {filePreview.file.name}
+              </p>
+            </div>
+          </figure>
         </div>
       ))}
     </div>
