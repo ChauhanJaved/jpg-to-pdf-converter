@@ -7,7 +7,6 @@ import { HeaderNavItems } from "@/data/website-data";
 import Dropzone from "./UI/Dropzone";
 import SectionHeader from "./UI/SectionHeader";
 import { useState } from "react";
-import ImageList from "./UI/ImageList";
 import { PDFDocument } from "pdf-lib";
 import Button from "./UI/Button";
 
@@ -18,13 +17,7 @@ const Hero = () => {
   const [openFileDialog, setOpenFileDialog] = useState<(() => void) | null>(
     null,
   );
-  // Handle removing files in the parent component
-  const handleRemoveFile = (fileName: string) => {
-    const updatedPreviews = filePreviews.filter(
-      (f) => f.file.name !== fileName,
-    );
-    setFilePreviews(updatedPreviews);
-  };
+
   // Convert the JPG files to PDF
   const handleConvertToPdf = async () => {
     const pdfDoc = await PDFDocument.create();
@@ -81,12 +74,10 @@ const Hero = () => {
       />
 
       <Dropzone
+        filePreviews={filePreviews}
         setFilePreviews={setFilePreviews}
         setOpenFileDialog={setOpenFileDialog}
       />
-      {filePreviews.length > 0 && (
-        <ImageList filePreviews={filePreviews} onRemove={handleRemoveFile} />
-      )}
     </section>
   );
 };

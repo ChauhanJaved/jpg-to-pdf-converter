@@ -1,7 +1,9 @@
 import React, { useCallback, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
+import ImageList from "./ImageList";
 
 interface DropzoneProps {
+  filePreviews: { file: File; preview: string }[];
   setFilePreviews: React.Dispatch<
     React.SetStateAction<{ file: File; preview: string }[]>
   >;
@@ -9,6 +11,7 @@ interface DropzoneProps {
 }
 
 const Dropzone: React.FC<DropzoneProps> = ({
+  filePreviews,
   setFilePreviews,
   setOpenFileDialog,
 }) => {
@@ -38,17 +41,28 @@ const Dropzone: React.FC<DropzoneProps> = ({
     setOpenFileDialog(() => open); // Correctly set the open function
   }, [open, setOpenFileDialog]);
 
+  // Handle removing files in the parent component
+  const handleRemoveFile = (fileName: string) => {
+    const updatedPreviews = filePreviews.filter(
+      (f) => f.file.name !== fileName,
+    );
+    setFilePreviews(updatedPreviews);
+  };
   return (
     <div className="mt-10 w-full">
       {/* Drag and drop area */}
       <div
         {...getRootProps()}
-        className={`flex h-[300px] w-full flex-col items-center justify-center rounded-lg border-2 border-dashed text-center transition ${
+        className={`flex min-h-[300px] w-full items-center justify-center rounded-lg border-2 border-dashed text-center transition ${
           isDragActive ? "border-blue-500 bg-blue-50" : "border-gray-300"
         }`}
       >
         <input {...getInputProps()} />
-        <p className="font-bold text-black-500">Drop JPG images here</p>
+        {filePreviews.length > 0 ? (
+          <ImageList filePreviews={filePreviews} onRemove={handleRemoveFile} />
+        ) : (
+          <p className="font-bold text-black-500">Drop JPG images here</p>
+        )}
       </div>
     </div>
   );
