@@ -11,6 +11,7 @@ interface ImageListProps {
 }
 
 const ImageList: React.FC<ImageListProps> = ({ filePreviews, onRemove }) => {
+  console.log(filePreviews.length);
   return (
     <div className="flex space-x-4 overflow-x-scroll p-2">
       {filePreviews.map((filePreview, index) => (
