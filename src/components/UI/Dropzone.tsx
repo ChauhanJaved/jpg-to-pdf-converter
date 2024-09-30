@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
 import ImageList from "./ImageList";
+import Button from "./Button";
 
 interface DropzoneProps {
   filePreviews: { file: File; preview: string }[];
@@ -53,7 +54,7 @@ const Dropzone: React.FC<DropzoneProps> = ({
       {/* Drag and drop area */}
       <div
         {...getRootProps()}
-        className={`flex min-h-[300px] w-full items-center justify-center rounded-lg border-2 border-dashed text-center transition ${
+        className={`flex min-h-[300px] w-full flex-col items-center justify-center rounded-lg border-2 border-dashed text-center transition ${
           isDragActive ? "border-blue-500 bg-blue-50" : "border-gray-300"
         }`}
       >
@@ -61,7 +62,12 @@ const Dropzone: React.FC<DropzoneProps> = ({
         {filePreviews.length > 0 ? (
           <ImageList filePreviews={filePreviews} onRemove={handleRemoveFile} />
         ) : (
-          <p className="font-bold text-black-500">Drop JPG images here</p>
+          <div className="">
+            <Button caption="Select JPG Images" handleClick={open} />
+            <p className="mt-3 font-bold text-black-500">
+              or drop JPG images here
+            </p>
+          </div>
         )}
       </div>
     </div>
