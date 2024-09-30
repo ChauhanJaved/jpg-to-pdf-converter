@@ -15,6 +15,9 @@ const Hero = () => {
   const [filePreviews, setFilePreviews] = useState<
     { file: File; preview: string }[]
   >([]);
+  const [openFileDialog, setOpenFileDialog] = useState<(() => void) | null>(
+    null,
+  );
   // Handle removing files in the parent component
   const handleRemoveFile = (fileName: string) => {
     const updatedPreviews = filePreviews.filter(
@@ -63,13 +66,24 @@ const Hero = () => {
       />
 
       <Button
-        disabled={filePreviews.length > 0 ? false : true}
         className="mt-10"
-        caption="Convert"
+        caption="Select JPG Images"
+        handleClick={() => {
+          if (openFileDialog) openFileDialog(); // Call the open dialog function
+        }}
+      />
+
+      <Button
+        disabled={filePreviews.length > 0 ? false : true}
+        className="mt-5"
+        caption="Convert to PDF"
         handleClick={handleConvertToPdf}
       />
 
-      <Dropzone setFilePreviews={setFilePreviews} />
+      <Dropzone
+        setFilePreviews={setFilePreviews}
+        setOpenFileDialog={setOpenFileDialog}
+      />
       {filePreviews.length > 0 && (
         <ImageList filePreviews={filePreviews} onRemove={handleRemoveFile} />
       )}
