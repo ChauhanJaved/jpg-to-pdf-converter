@@ -20,7 +20,7 @@ const Hero = () => {
     >
       <SectionHeader
         caption="JPG to PDF Converter"
-        desc="Convert JPG images to PDF in seconds. Easily adjust orientation and margins."
+        className={`${filePreviews.length > 0 && "hidden"}`}
       />
       <Dropzone filePreviews={filePreviews} setFilePreviews={setFilePreviews} />
     </section>

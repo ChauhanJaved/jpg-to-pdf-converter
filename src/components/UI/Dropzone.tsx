@@ -74,11 +74,11 @@ const Dropzone: React.FC<DropzoneProps> = ({
     a.click();
   };
   return (
-    <div className="mt-10 w-full">
+    <div className={`${filePreviews.length === 0 && "mt-10"} w-full`}>
       {/* Drag and drop area */}
       <div
         {...getRootProps()}
-        className={`flex min-h-[300px] w-full flex-col items-center justify-center rounded-lg border-2 border-dashed text-center transition ${
+        className={`flex min-h-[150px] w-full flex-col items-center justify-center rounded-lg border-2 border-dashed text-center transition md:min-h-[300px] ${
           isDragActive ? "border-blue-500 bg-blue-50" : "border-gray-300"
         }`}
       >
@@ -90,7 +90,8 @@ const Dropzone: React.FC<DropzoneProps> = ({
               {/* Right box */}
               <div className="border border-r-red-900"></div>
               {/* Left box */}
-              <div className="flex border border-red-900">
+              <div className="flex flex-col items-end space-y-2 border border-red-900 md:flex-row">
+                {/* Item---1 */}
                 <div className="relative mr-3 border border-blue-900">
                   <p
                     className={`${filePreviews.length > 0 ? "visible opacity-100" : "invisible opacity-0"} absolute left-0 top-0 z-[1] flex h-[30px] w-[30px] items-center justify-center rounded-full border border-white bg-blue-ultramarine text-white`}
@@ -110,6 +111,7 @@ const Dropzone: React.FC<DropzoneProps> = ({
                     />
                   </button>
                 </div>
+                {/* Item---2 */}
                 <div className="relative mr-3 border border-blue-900">
                   <p
                     className={`${filePreviews.length > 0 ? "visible opacity-100" : "invisible opacity-0"} absolute left-0 top-0 z-[1] flex h-[30px] w-[30px] items-center justify-center rounded-full border border-white bg-blue-ultramarine text-white`}
@@ -127,10 +129,10 @@ const Dropzone: React.FC<DropzoneProps> = ({
                     />
                   </button>
                 </div>
-
+                {/* Item---3 */}
                 <Button
                   className={`${filePreviews.length > 0 ? "visible" : "invisible"} sticky top-[100px]`}
-                  caption="Convert to PDF"
+                  caption="Convert"
                   icon={IconNames.DownArrowCircle}
                   handleClick={handleConvertToPdf}
                 />
@@ -144,13 +146,11 @@ const Dropzone: React.FC<DropzoneProps> = ({
         ) : (
           <div className="">
             <Button
-              caption="Select JPG Images"
+              caption="Add Files"
               icon={IconNames.PlusCircle}
               handleClick={open}
             />
-            <p className="mt-3 font-bold text-black-500">
-              or drop JPG images here
-            </p>
+            <p className="mt-3 font-bold text-black-500">or drop files here</p>
           </div>
         )}
       </div>
