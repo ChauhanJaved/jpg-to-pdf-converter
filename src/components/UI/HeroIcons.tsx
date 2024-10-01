@@ -10,6 +10,9 @@ export enum IconNames {
   Link = "link",
   ArrowUp = "arrow-up",
   Plus = "plus",
+  Minus = "minus",
+  DownArrowCircle = "arrow-down-circle",
+  PlusCircle = "plus-circle",
 }
 
 interface HeroIconsProps {
@@ -63,6 +66,16 @@ export default function HeroIcons({
       break;
     case IconNames.Plus:
       pathData = "M12 4.5v15m7.5-7.5h-15";
+      break;
+    case IconNames.PlusCircle:
+      pathData = "M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z";
+      break;
+    case IconNames.Minus:
+      pathData = "M5 12h14";
+      break;
+    case IconNames.DownArrowCircle:
+      pathData =
+        "m9 12.75 3 3m0 0 3-3m-3 3v-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z";
       break;
     default:
       pathData =

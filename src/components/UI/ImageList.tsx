@@ -14,7 +14,7 @@ interface ImageListProps {
 const ImageList: React.FC<ImageListProps> = ({ filePreviews, onRemove }) => {
   console.log(filePreviews.length);
   return (
-    <div className="flex flex-wrap items-center justify-center">
+    <div className="flex flex-wrap items-center justify-center border border-red-900">
       {filePreviews.map((filePreview, index) => (
         <div key={index} className="flex h-[242px] w-[196px] p-4">
           <figure className="rounded bg-white p-4 shadow-lg">

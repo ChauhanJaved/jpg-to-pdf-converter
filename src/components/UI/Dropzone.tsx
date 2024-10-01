@@ -86,28 +86,54 @@ const Dropzone: React.FC<DropzoneProps> = ({
         {filePreviews.length > 0 ? (
           <Fragment>
             {/* z-index 996 */}
-            <div className="sticky top-[100px] z-[996] ml-auto flex flex-row items-center justify-center p-3">
-              <Button
-                className={`${filePreviews.length > 0 ? "visible" : "invisible"} sticky top-[100px] mr-3`}
-                caption="Convert to PDF"
-                handleClick={handleConvertToPdf}
-              />
-              <div className="relative">
-                <p
-                  className={`${filePreviews.length > 0 ? "visible opacity-100" : "invisible opacity-0"} absolute left-0 top-0 z-[1] flex h-[30px] w-[30px] items-center justify-center rounded-full border border-white bg-blue-ultramarine text-white`}
-                >
-                  {filePreviews.length}
-                </p>
-                <button
-                  onClick={open}
-                  className={`${filePreviews.length > 0 ? "visible opacity-100" : "invisible opacity-0"} z-[0] ml-[15px] mt-[15px] flex h-[40px] w-[40px] items-center justify-center rounded bg-blue-ultramarine text-white transition-all duration-300 hover:opacity-90 active:opacity-90`}
-                >
-                  <HeroIcons
-                    iconName={IconNames.Plus}
-                    className="size-6 font-bold"
-                    strokeWidth={1.5}
-                  />
-                </button>
+            <div className="sticky top-[100px] z-[996] ml-auto flex w-full flex-row items-end justify-between border border-red-900 p-3">
+              {/* Right box */}
+              <div className="border border-r-red-900"></div>
+              {/* Left box */}
+              <div className="flex border border-red-900">
+                <div className="relative mr-3 border border-blue-900">
+                  <p
+                    className={`${filePreviews.length > 0 ? "visible opacity-100" : "invisible opacity-0"} absolute left-0 top-0 z-[1] flex h-[30px] w-[30px] items-center justify-center rounded-full border border-white bg-blue-ultramarine text-white`}
+                  >
+                    {"All"}
+                  </p>
+                  <button
+                    onClick={() => {
+                      setFilePreviews([]);
+                    }}
+                    className={`${filePreviews.length > 0 ? "visible opacity-100" : "invisible opacity-0"} z-[0] ml-[15px] mt-[15px] flex h-[40px] w-[40px] items-center justify-center rounded bg-blue-ultramarine text-white transition-all duration-300 hover:opacity-90 active:opacity-90`}
+                  >
+                    <HeroIcons
+                      iconName={IconNames.XMark}
+                      className="size-6 font-bold"
+                      strokeWidth={1.5}
+                    />
+                  </button>
+                </div>
+                <div className="relative mr-3 border border-blue-900">
+                  <p
+                    className={`${filePreviews.length > 0 ? "visible opacity-100" : "invisible opacity-0"} absolute left-0 top-0 z-[1] flex h-[30px] w-[30px] items-center justify-center rounded-full border border-white bg-blue-ultramarine text-white`}
+                  >
+                    {filePreviews.length}
+                  </p>
+                  <button
+                    onClick={open}
+                    className={`${filePreviews.length > 0 ? "visible opacity-100" : "invisible opacity-0"} z-[0] ml-[15px] mt-[15px] flex h-[40px] w-[40px] items-center justify-center rounded bg-blue-ultramarine text-white transition-all duration-300 hover:opacity-90 active:opacity-90`}
+                  >
+                    <HeroIcons
+                      iconName={IconNames.Plus}
+                      className="size-6 font-bold"
+                      strokeWidth={1.5}
+                    />
+                  </button>
+                </div>
+
+                <Button
+                  className={`${filePreviews.length > 0 ? "visible" : "invisible"} sticky top-[100px]`}
+                  caption="Convert to PDF"
+                  icon={IconNames.DownArrowCircle}
+                  handleClick={handleConvertToPdf}
+                />
               </div>
             </div>
             <ImageList
@@ -117,7 +143,11 @@ const Dropzone: React.FC<DropzoneProps> = ({
           </Fragment>
         ) : (
           <div className="">
-            <Button caption="Select JPG Images" handleClick={open} />
+            <Button
+              caption="Select JPG Images"
+              icon={IconNames.PlusCircle}
+              handleClick={open}
+            />
             <p className="mt-3 font-bold text-black-500">
               or drop JPG images here
             </p>
