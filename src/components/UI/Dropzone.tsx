@@ -85,7 +85,8 @@ const Dropzone: React.FC<DropzoneProps> = ({
         <input {...getInputProps()} />
         {filePreviews.length > 0 ? (
           <Fragment>
-            <div className="sticky top-[100px] z-[999] ml-auto flex flex-row items-center justify-center p-3">
+            {/* z-index 996 */}
+            <div className="sticky top-[100px] z-[996] ml-auto flex flex-row items-center justify-center p-3">
               <Button
                 className={`${filePreviews.length > 0 ? "visible" : "invisible"} sticky top-[100px] mr-3`}
                 caption="Convert to PDF"
