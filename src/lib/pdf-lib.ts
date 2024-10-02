@@ -1,0 +1,40 @@
+import { PDFDocument } from "pdf-lib";
+
+// Convert the JPG files to PDF
+export const handleConvertToPdf = async (fileList: File[]) => {
+  // Create a new PDF document
+  const pdfDoc = await PDFDocument.create();
+
+  for (const file of fileList) {
+    const imageBytes = await file.arrayBuffer();
+    const image = await pdfDoc.embedJpg(imageBytes);
+
+    // Get the dimensions of the image
+    const imageWidth = image.width;
+    const imageHeight = image.height;
+
+    // Add a new page to the PDF for each image
+    const page = pdfDoc.addPage([imageWidth, imageHeight]);
+
+    // Draw the image on the page, scaling it to fit if necessary
+    page.drawImage(image, {
+      x: 0,
+      y: 0,
+      width: imageWidth,
+      height: imageHeight,
+    });
+  }
+
+  // Save the PDF and download it
+  const pdfBytes = await pdfDoc.save();
+  downloadPdf(pdfBytes);
+};
+// Helper function to download the PDF file
+const downloadPdf = (pdfBytes: Uint8Array) => {
+  const blob = new Blob([pdfBytes], { type: "application/pdf" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "converted.pdf";
+  a.click();
+};
