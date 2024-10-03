@@ -36,14 +36,9 @@ const Dropzone: React.FC<DropzoneProps> = ({
 
   return (
     <div className={`${fileList.length === 0 && "mt-10"} w-full`}>
-      {/* Drag and drop area */}
-      <div
-        {...getRootProps()}
-        className={`flex min-h-[150px] w-full flex-col items-center justify-center rounded-lg border-2 border-dashed text-center transition md:min-h-[300px] ${
-          isDragActive ? "border-blue-500 bg-blue-50" : "border-gray-300"
-        }`}
-      >
+      <div {...getRootProps()}>
         <input {...getInputProps()} />
+        {/* Tool bar */}
         <div
           className={`${fileList.length === 0 && "hidden"} sticky top-[100px] z-[996] ml-auto flex w-full flex-row items-end justify-between border border-red-900 p-3`}
         >
@@ -98,10 +93,14 @@ const Dropzone: React.FC<DropzoneProps> = ({
             />
           </div>
         </div>
-        {fileList.length > 0 ? (
+        {/* Drag and drop area */}
+        <div
+          className={`flex min-h-[150px] w-full flex-col items-center justify-center rounded-lg border-2 border-dashed text-center transition md:min-h-[300px] ${
+            isDragActive ? "border-blue-500 bg-blue-50" : "border-gray-300"
+          }`}
+        >
           <ImageList fileList={fileList} onRemoveFile={onRemoveFile} />
-        ) : (
-          <div className="">
+          <div className={`${fileList.length > 0 && "hidden"}`}>
             <Button
               caption="Add Files"
               icon={IconNames.PlusCircle}
@@ -109,7 +108,7 @@ const Dropzone: React.FC<DropzoneProps> = ({
             />
             <p className="mt-3 font-bold text-black-500">or drop files here</p>
           </div>
-        )}
+        </div>
       </div>
     </div>
   );
