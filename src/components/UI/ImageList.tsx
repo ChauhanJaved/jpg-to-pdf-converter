@@ -7,7 +7,6 @@ interface ImageListProps {
 }
 
 const ImageList: React.FC<ImageListProps> = ({ fileList, onRemoveFile }) => {
-  console.log(fileList.length);
   return (
     <div className="flex flex-wrap items-center justify-center border border-red-900">
       {fileList.map((file, index) => (
