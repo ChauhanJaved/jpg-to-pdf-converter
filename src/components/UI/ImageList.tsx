@@ -1,5 +1,8 @@
 import React from "react";
-import HeroIcons, { IconNames } from "./HeroIcons";
+import { Card } from "./card";
+import { Button } from "./Button";
+import { X } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 
 interface ImageListProps {
   fileList: File[];
@@ -8,34 +11,32 @@ interface ImageListProps {
 
 const ImageList: React.FC<ImageListProps> = ({ fileList, onRemoveFile }) => {
   return (
-    <div className="flex flex-wrap items-center justify-center border border-red-900">
+    <div className="flex flex-wrap items-center justify-center space-x-5 space-y-5 p-4">
       {fileList.map((file, index) => (
-        <div key={index} className="flex h-[242px] w-[196px] p-4">
-          <figure className="rounded bg-white p-4 shadow-lg">
-            <div className="relative">
-              <img
-                src={URL.createObjectURL(file)}
-                alt={`Thumbnail-${index}`}
-                className="object-scale-down"
-              />
-
-              <button
-                onClick={() => onRemoveFile(file)}
-                className={`absolute right-[calc(10px)] top-[calc(10px)] inline-flex items-center justify-center rounded bg-black-800 p-1 text-white opacity-80 transition-all duration-300 hover:bg-blue-ultramarine hover:opacity-100 active:bg-blue-ultramarine active:opacity-100`}
-              >
-                <HeroIcons
-                  iconName={IconNames.XMark}
-                  className="size-6 font-bold"
-                  strokeWidth={1.5}
-                />
-              </button>
-
-              <p className="mt-2 truncate text-center text-xs text-gray-500">
-                {file.name}
-              </p>
-            </div>
-          </figure>
-        </div>
+        <Card
+          key={index}
+          className="relative flex h-[242px] w-[196px] justify-center overflow-hidden p-4"
+        >
+          <img
+            src={URL.createObjectURL(file)}
+            alt={`Thumbnail-${index}`}
+            className="object-contain"
+          />
+          <Button
+            onClick={() => onRemoveFile(file)}
+            size="icon"
+            variant="outline"
+            className={`absolute right-[calc(10px)] top-[calc(10px)]`}
+          >
+            <X />
+          </Button>
+          <Badge
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform"
+            variant="secondary"
+          >
+            {file.name}
+          </Badge>
+        </Card>
       ))}
     </div>
   );

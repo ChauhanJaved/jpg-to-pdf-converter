@@ -4,8 +4,8 @@
 //Internal imports
 
 import { HeaderNavItems } from "@/data/website-data";
-import Dropzone from "./UI/Dropzone";
-import SectionHeader from "./UI/SectionHeader";
+import Dropzone from "./ui/Dropzone";
+import SectionHeader from "./ui/SectionHeader";
 import { useState } from "react";
 
 const Hero = () => {
