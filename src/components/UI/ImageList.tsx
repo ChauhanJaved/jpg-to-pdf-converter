@@ -1,8 +1,8 @@
 import React from "react";
-import { Card } from "./card";
-import { Button } from "./Button";
+import { Card } from "@/components/UI/card";
+import { Button } from "@/components/UI/Button";
 import { X } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
+import { Badge } from "@/components/UI/badge";
 
 interface ImageListProps {
   fileList: File[];
