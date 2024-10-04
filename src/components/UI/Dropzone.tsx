@@ -1,9 +1,10 @@
 import React, { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import ImageList from "./ImageList";
-import Button from "./Button";
 import HeroIcons, { IconNames } from "./HeroIcons";
 import { handleConvertToPdf } from "@/lib/pdf-lib";
+import { Button } from "./Button";
+import { ArrowRight, CirclePlus } from "lucide-react";
 
 interface DropzoneProps {
   fileList: File[];
@@ -87,10 +88,11 @@ const Dropzone: React.FC<DropzoneProps> = ({
             {/* Item---3 */}
             <Button
               className={`${fileList.length > 0 ? "visible" : "invisible"} sticky top-[100px]`}
-              caption="Convert"
-              icon={IconNames.DownArrowCircle}
-              handleClick={() => handleConvertToPdf(fileList)}
-            />
+              onClick={() => handleConvertToPdf(fileList)}
+            >
+              Convert
+              <ArrowRight className="mr-2 h-4 w-4" />
+            </Button>
           </div>
         </div>
         {/* Drag and drop area */}
@@ -101,11 +103,10 @@ const Dropzone: React.FC<DropzoneProps> = ({
         >
           <ImageList fileList={fileList} onRemoveFile={onRemoveFile} />
           <div className={`${fileList.length > 0 && "hidden"}`}>
-            <Button
-              caption="Add Files"
-              icon={IconNames.PlusCircle}
-              handleClick={open}
-            />
+            <Button onClick={open}>
+              Add Files
+              <CirclePlus className="ml-2 h-6 w-6" />
+            </Button>
             <p className="mt-3 font-bold text-black-500">or drop files here</p>
           </div>
         </div>
