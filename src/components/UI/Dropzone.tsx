@@ -1,10 +1,9 @@
 import React, { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import ImageList from "./ImageList";
-import HeroIcons, { IconNames } from "./HeroIcons";
 import { handleConvertToPdf } from "@/lib/pdf-lib";
 import { Button } from "./Button";
-import { ArrowRight, CirclePlus } from "lucide-react";
+import { ArrowRight, CirclePlus, Settings } from "lucide-react";
 
 interface DropzoneProps {
   fileList: File[];
@@ -41,59 +40,26 @@ const Dropzone: React.FC<DropzoneProps> = ({
         <input {...getInputProps()} />
         {/* Tool bar */}
         <div
-          className={`${fileList.length === 0 && "hidden"} sticky top-[100px] z-[996] ml-auto flex w-full flex-row items-end justify-between border border-red-900 p-3`}
+          className={`mb-2 ${fileList.length === 0 && "hidden"} sticky top-[100px] z-[996] flex w-full flex-row justify-end space-x-1 border border-red-900 bg-black-100 p-3`}
         >
-          {/* Right box */}
-          <div className="border border-r-red-900"></div>
-          {/* Left box */}
-          <div className="flex flex-col items-end space-y-2 border border-red-900 md:flex-row">
-            {/* Item---1 */}
-            <div className="relative mr-3 border border-blue-900">
-              <p
-                className={`${fileList.length > 0 ? "visible opacity-100" : "invisible opacity-0"} absolute left-0 top-0 z-[1] flex h-[30px] w-[30px] items-center justify-center rounded-full border border-white bg-blue-ultramarine text-white`}
-              >
-                {"All"}
-              </p>
-              <button
-                onClick={() => {
-                  setFileList([]);
-                }}
-                className={`${fileList.length > 0 ? "visible opacity-100" : "invisible opacity-0"} z-[0] ml-[15px] mt-[15px] flex h-[40px] w-[40px] items-center justify-center rounded bg-blue-ultramarine text-white transition-all duration-300 hover:opacity-90 active:opacity-90`}
-              >
-                <HeroIcons
-                  iconName={IconNames.XMark}
-                  className="size-6 font-bold"
-                  strokeWidth={1.5}
-                />
-              </button>
-            </div>
-            {/* Item---2 */}
-            <div className="relative mr-3 border border-blue-900">
-              <p
-                className={`${fileList.length > 0 ? "visible opacity-100" : "invisible opacity-0"} absolute left-0 top-0 z-[1] flex h-[30px] w-[30px] items-center justify-center rounded-full border border-white bg-blue-ultramarine text-white`}
-              >
-                {fileList.length}
-              </p>
-              <button
-                onClick={open}
-                className={`${fileList.length > 0 ? "visible opacity-100" : "invisible opacity-0"} z-[0] ml-[15px] mt-[15px] flex h-[40px] w-[40px] items-center justify-center rounded bg-blue-ultramarine text-white transition-all duration-300 hover:opacity-90 active:opacity-90`}
-              >
-                <HeroIcons
-                  iconName={IconNames.Plus}
-                  className="size-6 font-bold"
-                  strokeWidth={1.5}
-                />
-              </button>
-            </div>
-            {/* Item---3 */}
-            <Button
-              className={`${fileList.length > 0 ? "visible" : "invisible"} sticky top-[100px]`}
-              onClick={() => handleConvertToPdf(fileList)}
-            >
-              Convert
-              <ArrowRight className="mr-2 h-4 w-4" />
+          {/* Item---Fixed */}
+          <div className="fixed bottom-[50px] right-[24px]">
+            <Button onClick={open} size="icon">
+              <CirclePlus className="" />
             </Button>
           </div>
+
+          <Button size="icon">
+            <Settings />
+          </Button>
+          {/* Item---2 */}
+          <Button
+            className={`sticky top-[100px] text-lg`}
+            onClick={() => handleConvertToPdf(fileList)}
+          >
+            Convert
+            <ArrowRight className="ml-2" />
+          </Button>
         </div>
         {/* Drag and drop area */}
         <div
@@ -103,9 +69,9 @@ const Dropzone: React.FC<DropzoneProps> = ({
         >
           <ImageList fileList={fileList} onRemoveFile={onRemoveFile} />
           <div className={`${fileList.length > 0 && "hidden"}`}>
-            <Button onClick={open}>
+            <Button className="text-lg" onClick={open}>
               Add Files
-              <CirclePlus className="ml-2 h-6 w-6" />
+              <CirclePlus className="ml-2" />
             </Button>
             <p className="mt-3 font-bold text-black-500">or drop files here</p>
           </div>
