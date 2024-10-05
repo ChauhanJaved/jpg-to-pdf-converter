@@ -28,7 +28,7 @@ const ImageList: React.FC<ImageListProps> = ({ fileList, onRemoveFile }) => {
               <X />
             </Button>
             <figcaption className="absolute bottom-0 left-1/2 w-full -translate-x-1/2 transform bg-black p-2 text-sm text-white opacity-75">
-              {file.name}
+              {`(${index + 1}) ${file.name}`}
             </figcaption>
             {/* <Badge
               className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform"

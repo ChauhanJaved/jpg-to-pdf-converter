@@ -35,12 +35,13 @@ const Dropzone: React.FC<DropzoneProps> = ({
   });
 
   return (
-    <div className={`${fileList.length === 0 && "mt-10"} w-full`}>
+    <div className={`${fileList.length === 0 && "mt-10"} mb-10 w-full`}>
+      {/* z-index 996 */}
       <div {...getRootProps()}>
         <input {...getInputProps()} />
         {/* Item---Fixed */}
         <div
-          className={`${fileList.length === 0 && "hidden"} fixed bottom-[50px] right-[24px]`}
+          className={`${fileList.length === 0 && "hidden"} fixed bottom-[50px] right-[24px] z-[996]`}
         >
           <Button onClick={open} size="icon">
             <CirclePlus className="" />
@@ -48,7 +49,7 @@ const Dropzone: React.FC<DropzoneProps> = ({
         </div>
         {/* Tool bar */}
         <div
-          className={`mb-2 ${fileList.length === 0 && "hidden"} sticky top-[100px] z-[996] flex w-full flex-row justify-end space-x-1 border border-red-900 bg-black-100 p-3`}
+          className={`mb-2 ${fileList.length === 0 && "hidden"} sticky top-[90px] z-[996] mb-5 flex w-full flex-row justify-end space-x-1`}
         >
           <Button size="icon">
             <Settings />

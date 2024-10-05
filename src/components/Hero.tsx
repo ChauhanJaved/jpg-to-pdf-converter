@@ -23,12 +23,12 @@ const Hero = () => {
   return (
     <section
       id={HeaderNavItems.Home}
-      className="relative m-auto mt-[80px] flex w-full scroll-m-[80px] flex-col items-center justify-start px-3 py-10 xl:max-w-screen-xl"
+      className="relative m-auto mt-[80px] flex w-full scroll-m-[80px] flex-col items-center justify-start px-3 xl:max-w-screen-xl"
     >
       <SectionHeader
         caption="JPG to PDF Converter"
         desc="Convert JPG images to PDF in seconds. Easily adjust orientation and margins."
-        className={`${fileList.length > 0 && "hidden"}`}
+        className={`${fileList.length > 0 && "hidden"} pt-10`}
       />
 
       <Dropzone
