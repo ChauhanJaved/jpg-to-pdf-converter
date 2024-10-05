@@ -29,12 +29,16 @@ export const handleConvertToPdf = async (fileList: File[]) => {
   const pdfBytes = await pdfDoc.save();
   downloadPdf(pdfBytes);
 };
-// Helper function to download the PDF file
+// Helper function to download the PDF file with a unique name
 const downloadPdf = (pdfBytes: Uint8Array) => {
   const blob = new Blob([pdfBytes], { type: "application/pdf" });
+
+  // Generate a unique filename using a timestamp
+  const uniqueName = `converted_${new Date().toISOString().replace(/[:.]/g, "-")}.pdf`;
+
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
-  a.download = "converted.pdf";
+  a.download = uniqueName;
   a.click();
 };
