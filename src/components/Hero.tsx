@@ -26,6 +26,7 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { SortableItem } from "./UI/SortableItem";
+import SortableImageList from "./UI/SortableImageList";
 
 //testing
 
@@ -54,8 +55,8 @@ const Hero = () => {
 
     if (over && active.id !== over.id) {
       setItems((items) => {
-        const oldIndex = items.indexOf(Number(active.id)); // Convert id to number
-        const newIndex = items.indexOf(Number(over.id)); // Convert id to number
+        const oldIndex = items.indexOf(Number(active.id)); // ids are strings now
+        const newIndex = items.indexOf(Number(over.id)); // ids are strings now
 
         return arrayMove(items, oldIndex, newIndex);
       });
@@ -93,6 +94,7 @@ const Hero = () => {
         </SortableContext>
       </DndContext>
       {/* tsting */}
+      <SortableImageList fileList={fileList} onRemoveFile={removeFile} />
     </section>
   );
 };
