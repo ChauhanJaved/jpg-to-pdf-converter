@@ -25,7 +25,7 @@ import {
   sortableKeyboardCoordinates,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
-import { SortableItem } from "./UI/SortableItem";
+
 import SortableImageList from "./UI/SortableImageList";
 
 //testing
@@ -65,37 +65,43 @@ const Hero = () => {
   //testing
 
   return (
-    <section
-      id={HeaderNavItems.Home}
-      className="relative m-auto mt-[80px] flex w-full scroll-m-[80px] flex-col items-center justify-start px-3 xl:max-w-screen-xl"
+    <DndContext
+      sensors={sensors}
+      collisionDetection={closestCenter}
+      onDragEnd={handleDragEnd}
     >
-      <SectionHeader
-        caption="JPG to PDF Converter"
-        desc="Convert JPG images to PDF in seconds. Easily adjust orientation and margins."
-        className={`${fileList.length > 0 && "hidden"} pt-10`}
-      />
+      <SortableContext items={items} strategy={verticalListSortingStrategy}>
+        <section
+          id={HeaderNavItems.Home}
+          className="relative m-auto mt-[80px] flex w-full scroll-m-[80px] flex-col items-center justify-start px-3 xl:max-w-screen-xl"
+        >
+          <SectionHeader
+            caption="JPG to PDF Converter"
+            desc="Convert JPG images to PDF in seconds. Easily adjust orientation and margins."
+            className={`${fileList.length > 0 && "hidden"} pt-10`}
+          />
 
-      <Dropzone
-        fileList={fileList}
-        setFileList={setFileList}
-        onRemoveFile={removeFile}
-      />
+          <Dropzone
+            fileList={fileList}
+            setFileList={setFileList}
+            onRemoveFile={removeFile}
+          />
 
-      {/* tsting */}
-      <DndContext
-        sensors={sensors}
-        collisionDetection={closestCenter}
-        onDragEnd={handleDragEnd}
-      >
-        <SortableContext items={items} strategy={verticalListSortingStrategy}>
-          {items.map((id) => (
+          {/* tsting */}
+
+          {/* {items.map((id) => (
             <SortableItem key={id} id={id} />
-          ))}
-        </SortableContext>
-      </DndContext>
-      {/* tsting */}
-      <SortableImageList fileList={fileList} onRemoveFile={removeFile} />
-    </section>
+          ))} */}
+
+          {/* tsting */}
+          <SortableImageList
+            fileList={fileList}
+            onRemoveFile={removeFile}
+            setFileList={setFileList}
+          />
+        </section>
+      </SortableContext>
+    </DndContext>
   );
 };
 export default Hero;
