@@ -1,36 +1,13 @@
 "use client";
 //External  imports
-
+import { useState } from "react";
 //Internal imports
-
 import { HeaderNavItems } from "@/data/website-data";
 import Dropzone from "./UI/Dropzone";
 import SectionHeader from "./UI/SectionHeader";
-import { useState } from "react";
-
-//Testing
-
-import {
-  DndContext,
-  closestCenter,
-  KeyboardSensor,
-  PointerSensor,
-  useSensor,
-  useSensors,
-  DragEndEvent,
-} from "@dnd-kit/core";
-import {
-  arrayMove,
-  SortableContext,
-  sortableKeyboardCoordinates,
-  verticalListSortingStrategy,
-} from "@dnd-kit/sortable";
-
 import SortableImageList from "./UI/SortableImageList";
 
-//testing
-
-const Hero = () => {
+export default function Hero() {
   const [fileList, setFileList] = useState<File[]>([]);
   const removeFile = (fileToRemove: File) => {
     setFileList((prevFileList) =>
@@ -41,67 +18,27 @@ const Hero = () => {
       ),
     );
   };
-
-  //testing
-  const [items, setItems] = useState([1, 2, 3]);
-  const sensors = useSensors(
-    useSensor(PointerSensor),
-    useSensor(KeyboardSensor, {
-      coordinateGetter: sortableKeyboardCoordinates,
-    }),
-  );
-  const handleDragEnd = (event: DragEndEvent) => {
-    const { active, over } = event;
-
-    if (over && active.id !== over.id) {
-      setItems((items) => {
-        const oldIndex = items.indexOf(Number(active.id)); // ids are strings now
-        const newIndex = items.indexOf(Number(over.id)); // ids are strings now
-
-        return arrayMove(items, oldIndex, newIndex);
-      });
-    }
-  };
-  //testing
-
   return (
-    <DndContext
-      sensors={sensors}
-      collisionDetection={closestCenter}
-      onDragEnd={handleDragEnd}
+    <section
+      id={HeaderNavItems.Home}
+      className="relative m-auto mt-[80px] flex w-full scroll-m-[80px] flex-col items-center justify-start px-3 xl:max-w-screen-xl"
     >
-      <SortableContext items={items} strategy={verticalListSortingStrategy}>
-        <section
-          id={HeaderNavItems.Home}
-          className="relative m-auto mt-[80px] flex w-full scroll-m-[80px] flex-col items-center justify-start px-3 xl:max-w-screen-xl"
-        >
-          <SectionHeader
-            caption="JPG to PDF Converter"
-            desc="Convert JPG images to PDF in seconds. Easily adjust orientation and margins."
-            className={`${fileList.length > 0 && "hidden"} pt-10`}
-          />
+      <SectionHeader
+        caption="JPG to PDF Converter"
+        desc="Convert JPG images to PDF in seconds. Easily adjust orientation and margins."
+        className={`${fileList.length > 0 && "hidden"} pt-10`}
+      />
 
-          <Dropzone
-            fileList={fileList}
-            setFileList={setFileList}
-            onRemoveFile={removeFile}
-          />
-
-          {/* tsting */}
-
-          {/* {items.map((id) => (
-            <SortableItem key={id} id={id} />
-          ))} */}
-
-          {/* tsting */}
-          <SortableImageList
-            fileList={fileList}
-            onRemoveFile={removeFile}
-            setFileList={setFileList}
-          />
-        </section>
-      </SortableContext>
-    </DndContext>
+      <Dropzone
+        fileList={fileList}
+        setFileList={setFileList}
+        onRemoveFile={removeFile}
+      />
+      <SortableImageList
+        fileList={fileList}
+        onRemoveFile={removeFile}
+        setFileList={setFileList}
+      />
+    </section>
   );
-};
-export default Hero;
+}
