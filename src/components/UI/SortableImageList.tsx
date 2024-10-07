@@ -51,13 +51,15 @@ const SortableImageList = () => {
         items={fileList.map((fileObj) => fileObj.id)}
         strategy={verticalListSortingStrategy}
       >
-        {fileList.map((fileObj, index) => (
-          <SortableImageCard
-            key={fileObj.id}
-            fileObject={fileObj}
-            index={index}
-          />
-        ))}
+        <div className="p-5">
+          {fileList.map((fileObj, index) => (
+            <SortableImageCard
+              key={fileObj.id}
+              fileObject={fileObj}
+              index={index}
+            />
+          ))}
+        </div>
       </SortableContext>
     </DndContext>
   );

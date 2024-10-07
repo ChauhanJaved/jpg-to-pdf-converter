@@ -3,7 +3,7 @@
 import { HeaderNavItems } from "@/data/website-data";
 import Dropzone from "./UI/Dropzone";
 import SectionHeader from "./UI/SectionHeader";
-import { FileProvider } from "@/context/FileContext"; // Import the context provider
+import { FileProvider } from "@/context/FileContext";
 
 const Hero = () => {
   return (
@@ -15,7 +15,9 @@ const Hero = () => {
         <SectionHeader
           caption="JPG to PDF Converter"
           desc="Convert JPG images to PDF in seconds. Easily adjust orientation and margins."
+          className="mt-10"
         />
+
         <Dropzone />
       </section>
     </FileProvider>
