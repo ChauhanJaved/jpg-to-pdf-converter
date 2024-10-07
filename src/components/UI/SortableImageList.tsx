@@ -1,8 +1,9 @@
-import React from "react";
+"use client";
+//External  imports
+import { useFileContext } from "@/context/FileContext";
 import SortableImageCard from "./SortableImageCard";
 
-//testing
-
+//Internal imports
 import {
   DndContext,
   closestCenter,
@@ -19,42 +20,27 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 
-//testing
-
-interface SortableImageListProps {
-  fileList: File[];
-  setFileList: React.Dispatch<React.SetStateAction<File[]>>;
-  onRemoveFile: (file: File) => void;
-}
-
-const SortableImageList: React.FC<SortableImageListProps> = ({
-  fileList,
-  setFileList,
-  onRemoveFile,
-}) => {
+const SortableImageList = () => {
+  const { fileList, setFileList } = useFileContext();
   const sensors = useSensors(
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, {
       coordinateGetter: sortableKeyboardCoordinates,
     }),
   );
-  function handleDragEnd(event: DragEndEvent) {
+  const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
 
     if (over && active.id !== over.id) {
       setFileList((fileList) => {
-        const oldIndex = fileList.findIndex(
-          (file) =>
-            `${file.name}-${file.size}-${file.lastModified}` === active.id,
-        );
-        const newIndex = fileList.findIndex(
-          (file) =>
-            `${file.name}-${file.size}-${file.lastModified}` === over.id,
-        );
+        const oldIndex = fileList.findIndex((file) => file.id === active.id);
+        const newIndex = fileList.findIndex((file) => file.id === over.id);
+
         return arrayMove(fileList, oldIndex, newIndex);
       });
     }
-  }
+  };
+
   return (
     <DndContext
       sensors={sensors}
@@ -62,22 +48,16 @@ const SortableImageList: React.FC<SortableImageListProps> = ({
       onDragEnd={handleDragEnd}
     >
       <SortableContext
-        items={fileList.map(
-          (file) => `${file.name}-${file.size}-${file.lastModified}`,
-        )}
+        items={fileList.map((fileObj) => fileObj.id)}
         strategy={verticalListSortingStrategy}
       >
-        <div className="flex flex-wrap items-center justify-center space-x-5 space-y-5 p-4">
-          {fileList.map((file, index) => (
-            <SortableImageCard
-              id={`${file.name}-${file.size}-${file.lastModified}`}
-              key={`${file.name}-${file.size}-${file.lastModified}`}
-              file={file}
-              index={index}
-              onRemoveFile={onRemoveFile}
-            />
-          ))}
-        </div>
+        {fileList.map((fileObj, index) => (
+          <SortableImageCard
+            key={fileObj.id}
+            fileObject={fileObj}
+            index={index}
+          />
+        ))}
       </SortableContext>
     </DndContext>
   );

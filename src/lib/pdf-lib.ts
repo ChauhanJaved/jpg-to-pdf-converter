@@ -1,12 +1,16 @@
 import { PDFDocument } from "pdf-lib";
-
+// Define the type for a file object
+interface FileObject {
+  file: File;
+  id: string;
+}
 // Convert the JPG files to PDF
-export const handleConvertToPdf = async (fileList: File[]) => {
+export const handleConvertToPdf = async (fileList: FileObject[]) => {
   // Create a new PDF document
   const pdfDoc = await PDFDocument.create();
 
   for (const file of fileList) {
-    const imageBytes = await file.arrayBuffer();
+    const imageBytes = await file.file.arrayBuffer();
     const image = await pdfDoc.embedJpg(imageBytes);
 
     // Get the dimensions of the image

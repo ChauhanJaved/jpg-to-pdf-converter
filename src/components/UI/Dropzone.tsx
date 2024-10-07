@@ -1,29 +1,23 @@
-import React, { useCallback } from "react";
+"use client";
 import { useDropzone } from "react-dropzone";
-import ImageList from "./ImageList";
 import { handleConvertToPdf } from "@/lib/pdf-lib";
 import { Button } from "./Button";
 import { ArrowRight, CirclePlus, Settings } from "lucide-react";
+import SortableImageList from "./SortableImageList";
+import { useFileContext } from "@/context/FileContext";
 
-interface DropzoneProps {
-  fileList: File[];
-  setFileList: React.Dispatch<React.SetStateAction<File[]>>;
-  onRemoveFile: (file: File) => void;
-}
+const Dropzone = () => {
+  const { fileList, setFileList } = useFileContext();
 
-const Dropzone: React.FC<DropzoneProps> = ({
-  fileList,
-  setFileList,
-  onRemoveFile,
-}) => {
-  // Handle file drop or selection
-  const onDrop = useCallback(
-    (acceptedFiles: File[]) => {
-      const newFiles = acceptedFiles.map((file) => file);
-      setFileList((prev) => [...prev, ...newFiles]);
-    },
-    [setFileList],
-  );
+  const onDrop = (acceptedFiles: File[]) => {
+    setFileList((prevFileList) => [
+      ...prevFileList,
+      ...acceptedFiles.map((file) => ({
+        file,
+        id: `${file.name}-${file.size}-${file.lastModified}`,
+      })),
+    ]);
+  };
 
   // Set up the dropzone, restricting to JPG files only
   const { getRootProps, getInputProps, isDragActive, open } = useDropzone({
@@ -69,7 +63,7 @@ const Dropzone: React.FC<DropzoneProps> = ({
             isDragActive ? "border-blue-500 bg-blue-50" : "border-gray-300"
           }`}
         >
-          <ImageList fileList={fileList} onRemoveFile={onRemoveFile} />
+          <SortableImageList />
           <div className={`${fileList.length > 0 && "hidden"}`}>
             <Button className="text-lg" onClick={open}>
               Add Files
