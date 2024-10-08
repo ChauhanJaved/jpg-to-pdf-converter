@@ -29,8 +29,8 @@ const Hero = () => {
           <ResizablePanel defaultSize={75}>
             <Dropzone />
           </ResizablePanel>
-          <ResizableHandle withHandle />
-          <ResizablePanel className="flex items-center justify-center">
+          <ResizableHandle withHandle className="invisible sm:visible" />
+          <ResizablePanel className="hidden items-center justify-center sm:flex">
             Settings
           </ResizablePanel>
         </ResizablePanelGroup>
