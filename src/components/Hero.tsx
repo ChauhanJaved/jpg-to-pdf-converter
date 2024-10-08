@@ -9,6 +9,7 @@ import {
   ResizablePanel,
   ResizablePanelGroup,
 } from "@/components/UI/resizable";
+import { ScrollArea } from "@/components/UI/scroll-area";
 
 const Hero = () => {
   return (
@@ -27,7 +28,9 @@ const Hero = () => {
           className="mb-10 mt-10 min-h-[200px] w-full rounded-lg border"
         >
           <ResizablePanel defaultSize={75}>
-            <Dropzone />
+            <ScrollArea className="flex h-[400px] items-center justify-center rounded-md border">
+              <Dropzone />
+            </ScrollArea>
           </ResizablePanel>
           <ResizableHandle withHandle className="invisible sm:visible" />
           <ResizablePanel className="hidden items-center justify-center sm:flex">
