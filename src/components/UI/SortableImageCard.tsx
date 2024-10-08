@@ -45,12 +45,17 @@ export default function SortableImageCard({
             alt={`Thumbnail-${index}`}
             className="object-contain"
           />
+          <p
+            className={`absolute left-1 top-1 flex h-[34px] w-[34px] touch-none items-center justify-center rounded-full bg-black text-sm text-white opacity-70`}
+          >
+            {index + 1}
+          </p>
           <Button
             {...listeners}
             {...attributes}
             variant="outline"
             size="icon"
-            className={`absolute right-1 top-1 touch-none bg-black text-white opacity-70 hover:bg-black hover:text-white hover:opacity-100`}
+            className={`absolute right-1 top-1 touch-none`}
           >
             <Grip className="h-4 w-4" />
           </Button>
@@ -58,12 +63,12 @@ export default function SortableImageCard({
             onClick={() => removeFile(fileObject.id)}
             size="icon"
             variant="outline"
-            className={`absolute right-[calc(45px)] top-1 bg-black text-white opacity-70 hover:bg-black hover:text-white hover:opacity-100`}
+            className={`b absolute right-[calc(45px)] top-1`}
           >
             <X className="h-4 w-4" />
           </Button>
           <figcaption className="absolute bottom-0 left-1/2 w-full -translate-x-1/2 transform bg-black p-2 text-sm text-white opacity-70">
-            {`(${index + 1}) ${fileObject.file.name}`}
+            {`${fileObject.file.name}`}
           </figcaption>
         </figure>
       </Card>
