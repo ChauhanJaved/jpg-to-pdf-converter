@@ -39,7 +39,7 @@ export default function SortableImageCard({
   return (
     <div ref={setNodeRef} style={style}>
       <Card key={index} className="mt-5 overflow-hidden">
-        <figure className="relative flex min-h-[300px] w-[196px] items-center justify-center overflow-hidden p-4">
+        <figure className="relative flex min-h-[300px] w-[200px] items-center justify-center overflow-hidden p-4">
           <img
             src={URL.createObjectURL(fileObject.file)}
             alt={`Thumbnail-${index}`}

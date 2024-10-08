@@ -29,7 +29,7 @@ const Dropzone = () => {
   });
 
   return (
-    <div className={`${fileList.length === 0 && "mt-10"} mb-10 w-full`}>
+    <div className={`w-full p-5`}>
       {/* z-index 996 */}
       <div {...getRootProps()}>
         <input {...getInputProps()} />

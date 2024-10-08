@@ -4,6 +4,11 @@ import { HeaderNavItems } from "@/data/website-data";
 import Dropzone from "./UI/Dropzone";
 import SectionHeader from "./UI/SectionHeader";
 import { FileProvider } from "@/context/FileContext";
+import {
+  ResizableHandle,
+  ResizablePanel,
+  ResizablePanelGroup,
+} from "@/components/UI/resizable";
 
 const Hero = () => {
   return (
@@ -17,8 +22,18 @@ const Hero = () => {
           desc="Convert JPG images to PDF in seconds. Easily adjust orientation and margins."
           className="mt-10"
         />
-
-        <Dropzone />
+        <ResizablePanelGroup
+          direction="horizontal"
+          className="mb-10 mt-10 min-h-[200px] w-full rounded-lg border"
+        >
+          <ResizablePanel defaultSize={75}>
+            <Dropzone />
+          </ResizablePanel>
+          <ResizableHandle withHandle />
+          <ResizablePanel className="flex items-center justify-center">
+            Settings
+          </ResizablePanel>
+        </ResizablePanelGroup>
       </section>
     </FileProvider>
   );
