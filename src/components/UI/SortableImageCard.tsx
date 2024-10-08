@@ -2,7 +2,7 @@
 import React from "react";
 import { Card } from "./card";
 import { Button } from "./Button";
-import { X } from "lucide-react";
+import { Grip, X } from "lucide-react";
 
 //testing
 import { useSortable } from "@dnd-kit/sortable";
@@ -23,14 +23,20 @@ export default function SortableImageCard({
   fileObject,
 }: SortableImageCardProps) {
   const { attributes, listeners, setNodeRef, transform, transition } =
-    useSortable({ id: fileObject.id });
+    useSortable({
+      id: fileObject.id,
+      transition: {
+        duration: 150, // milliseconds
+        easing: "cubic-bezier(0.25, 1, 0.5, 1)",
+      },
+    });
 
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
   };
   return (
-    <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
+    <div ref={setNodeRef} style={style}>
       <Card key={index} className="mt-5 overflow-hidden">
         <figure className="relative flex w-[196px] items-center justify-center overflow-hidden p-4">
           <img
@@ -39,13 +45,22 @@ export default function SortableImageCard({
             className="object-contain"
           />
           <Button
+            {...listeners}
+            {...attributes}
+            variant="outline"
+            size="icon"
+            className={`absolute right-0 top-0 touch-none`}
+          >
+            <Grip className="h-4 w-4" />
+          </Button>
+          <Button
             // onClick={() => onRemoveFile(file)}
             onClick={() => {
               console.log("click");
             }}
             size="icon"
             variant="outline"
-            className={`absolute right-[calc(10px)] top-[calc(10px)]`}
+            className={`absolute right-[calc(40px)] top-0`}
           >
             <X className="h-4 w-4" />
           </Button>
