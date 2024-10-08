@@ -1,12 +1,8 @@
 "use client";
 //External  imports
-import { useFileContext } from "@/context/FileContext";
-import SortableImageCard from "./SortableImageCard";
-
-//Internal imports
+import { useState } from "react";
 import {
   DndContext,
-  closestCenter,
   KeyboardSensor,
   PointerSensor,
   useSensor,
@@ -14,16 +10,25 @@ import {
   DragEndEvent,
   MouseSensor,
   TouchSensor,
+  DragStartEvent,
+  DragOverlay,
+  MeasuringConfiguration,
+  MeasuringStrategy,
 } from "@dnd-kit/core";
 import {
   arrayMove,
+  rectSwappingStrategy,
   SortableContext,
   sortableKeyboardCoordinates,
-  verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
+//Internal imports
+import { useFileContext } from "@/context/FileContext";
+import SortableImageCard from "./SortableImageCard";
 
 const SortableImageList = () => {
   const { fileList, setFileList } = useFileContext();
+  const [activeId, setActiveId] = useState<string | null>(null);
+
   const sensors = useSensors(
     useSensor(MouseSensor, { activationConstraint: { distance: 5 } }),
     useSensor(TouchSensor, {
@@ -46,26 +51,44 @@ const SortableImageList = () => {
       });
     }
   };
-
+  const handleDragStart = (event: DragStartEvent) => {
+    const { active } = event;
+    if (active) {
+      setActiveId(active.id as string);
+    }
+  };
+  const measuring: MeasuringConfiguration = {
+    droppable: {
+      strategy: MeasuringStrategy.Always,
+    },
+  };
   return (
     <DndContext
       sensors={sensors}
-      collisionDetection={closestCenter}
       onDragEnd={handleDragEnd}
+      onDragStart={handleDragStart}
+      measuring={measuring}
     >
-      <SortableContext
-        items={fileList.map((fileObj) => fileObj.id)}
-        strategy={verticalListSortingStrategy}
-      >
+      <SortableContext items={fileList} strategy={rectSwappingStrategy}>
         <div className="p-5">
-          {fileList.map((fileObj, index) => (
-            <SortableImageCard
-              key={fileObj.id}
-              fileObject={fileObj}
-              index={index}
-            />
+          {fileList.map((fileObj) => (
+            <SortableImageCard key={fileObj.id} fileObject={fileObj} />
           ))}
         </div>
+        <DragOverlay>
+          {activeId
+            ? // Safely find the fileObject and its index
+              (() => {
+                const fileObject = fileList.find(
+                  (file) => file.id === activeId,
+                );
+                // Only render SortableImageCard if fileObject is found
+                return fileObject ? (
+                  <SortableImageCard fileObject={fileObject} />
+                ) : null;
+              })()
+            : null}
+        </DragOverlay>
       </SortableContext>
     </DndContext>
   );
