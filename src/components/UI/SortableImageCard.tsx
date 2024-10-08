@@ -39,7 +39,7 @@ export default function SortableImageCard({
   return (
     <div ref={setNodeRef} style={style}>
       <Card key={index} className="mt-5 overflow-hidden">
-        <figure className="relative flex w-[196px] items-center justify-center overflow-hidden p-4">
+        <figure className="relative flex min-h-[300px] w-[196px] items-center justify-center overflow-hidden p-4">
           <img
             src={URL.createObjectURL(fileObject.file)}
             alt={`Thumbnail-${index}`}
@@ -50,7 +50,7 @@ export default function SortableImageCard({
             {...attributes}
             variant="outline"
             size="icon"
-            className={`absolute right-0 top-0 touch-none`}
+            className={`absolute right-1 top-1 touch-none bg-black text-white opacity-70 hover:bg-black hover:text-white hover:opacity-100`}
           >
             <Grip className="h-4 w-4" />
           </Button>
@@ -58,7 +58,7 @@ export default function SortableImageCard({
             onClick={() => removeFile(fileObject.id)}
             size="icon"
             variant="outline"
-            className={`absolute right-[calc(40px)] top-0`}
+            className={`absolute right-[calc(45px)] top-1 bg-black text-white opacity-70 hover:bg-black hover:text-white hover:opacity-100`}
           >
             <X className="h-4 w-4" />
           </Button>
