@@ -66,7 +66,15 @@ const Dropzone = () => {
                 <SortableImageList />
               ) : (
                 <div>
-                  <p className="text-base text-black-500">Drop files here</p>
+                  <p className="text-base text-black-500">
+                    Click &rdquo;Add Files&rdquo; or
+                  </p>
+                  <p className="text-base text-black-500">
+                    drop files here and
+                  </p>
+                  <p className="text-base text-black-500">
+                    Click &rdquo;Convert&rdquo;
+                  </p>
                 </div>
               )}
             </Card>
