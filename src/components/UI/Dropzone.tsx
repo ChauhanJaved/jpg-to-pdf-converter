@@ -58,6 +58,7 @@ const Dropzone = () => {
           </Button>
         </div>
         {/* Drag and drop area */}
+
         <div
           className={`flex min-h-[150px] w-full flex-col items-center justify-center rounded-lg border-2 border-dashed text-center transition md:min-h-[300px] ${
             isDragActive ? "border-blue-500 bg-blue-50" : "border-gray-300"

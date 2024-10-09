@@ -16,7 +16,7 @@ export default function SectionHeader(props: PropsSectionHeader) {
       {React.createElement(
         Element,
         {
-          className: `text flex flex-col items-center text-center md:text-3xl text-2xl font-bold  text-blue-dark-imperial uppercase`,
+          className: `text-base flex flex-col items-center text-center sm:text-lg md:text-xl lg:text-2xl font-bold  text-blue-dark-imperial uppercase`,
         },
         <>
           {props.caption}
