@@ -5,6 +5,8 @@ import { Button } from "./Button";
 import SortableImageList from "./SortableImageList";
 import { useFileContext } from "@/context/FileContext";
 import { Menubar } from "./menubar";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/UI/tabs";
+import { Card } from "./card";
 
 const Dropzone = () => {
   const { fileList, setFileList } = useFileContext();
@@ -31,37 +33,43 @@ const Dropzone = () => {
   });
 
   return (
-    <div className={`w-full p-5`}>
-      {/* z-index 996 */}
-      <div {...getRootProps()}>
-        <input {...getInputProps()} />
-        {/* Drag and drop area */}
-        <Menubar className="mb-3 w-full px-3 py-7">
-          <Button variant="outline" onClick={open}>
-            Add Files
-          </Button>
-          <Button variant="outline" onClick={handleClearList}>
-            Clear List
-          </Button>
-          <Button
-            variant="outline"
-            onClick={() => handleConvertToPdf(fileList)}
-          >
-            Convert
-          </Button>
-        </Menubar>
-
-        <div
-          className={`flex min-h-[150px] w-full flex-col items-center justify-center rounded-lg border text-center transition md:min-h-[300px] ${
-            isDragActive ? "border-blue-500 bg-blue-50" : "border-gray-300"
-          }`}
-        >
-          <SortableImageList />
-          <div className={`${fileList.length > 0 && "hidden"}`}>
-            <p className="font-bold text-black-500">Drop files here</p>
+    <div className={`flex w-full flex-col items-center p-5`}>
+      <Menubar className="mb-3 flex w-[400px] flex-row justify-center px-3 py-7">
+        <Button variant="outline" onClick={open}>
+          Add Files
+        </Button>
+        <Button variant="outline" onClick={handleClearList}>
+          Clear List
+        </Button>
+        <Button variant="outline" onClick={() => handleConvertToPdf(fileList)}>
+          Convert
+        </Button>
+      </Menubar>
+      <Tabs defaultValue="filelist" className="w-[400px]">
+        <TabsList className="grid w-full grid-cols-2">
+          <TabsTrigger value="filelist">File List</TabsTrigger>
+          <TabsTrigger value="settings">Settings</TabsTrigger>
+        </TabsList>
+        <TabsContent value="filelist">
+          <div {...getRootProps()}>
+            <input {...getInputProps()} />
+            <Card
+              className={`flex min-h-[150px] w-full flex-col items-center justify-center rounded-lg border text-center transition sm:min-h-[300px] ${isDragActive && "border-blue-500 bg-blue-50"}`}
+            >
+              {fileList.length > 0 ? (
+                <SortableImageList />
+              ) : (
+                <div>
+                  <p className="text-base text-black-500">Drop files here</p>
+                </div>
+              )}
+            </Card>
           </div>
-        </div>
-      </div>
+        </TabsContent>
+        <TabsContent value="settings">
+          <Card className="min-h-[150px] w-full sm:min-h-[300px]"></Card>
+        </TabsContent>
+      </Tabs>
     </div>
   );
 };
