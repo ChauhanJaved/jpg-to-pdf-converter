@@ -7,6 +7,7 @@ import { useFileContext } from "@/context/FileContext";
 import { Menubar } from "./menubar";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/UI/tabs";
 import { Card } from "./card";
+import { Download, Plus, X } from "lucide-react";
 
 const Dropzone = () => {
   const { fileList, setFileList } = useFileContext();
@@ -33,19 +34,24 @@ const Dropzone = () => {
   });
 
   return (
-    <div className={`flex w-full flex-col items-center p-5`}>
-      <Menubar className="mb-3 flex w-[400px] flex-row justify-center px-3 py-7">
+    <div
+      className={`mb-5 mt-5 flex w-full max-w-[400px] flex-col items-center`}
+    >
+      <Menubar className="mb-3 flex w-full flex-row justify-center px-3 py-7">
         <Button variant="outline" onClick={open}>
+          <Plus className="mr-1 hidden h-4 w-4 min-[370px]:block" />
           Add Files
         </Button>
         <Button variant="outline" onClick={handleClearList}>
+          <X className="mr-1 hidden h-4 w-4 min-[370px]:block" />
           Clear List
         </Button>
         <Button variant="outline" onClick={() => handleConvertToPdf(fileList)}>
+          <Download className="mr-1 hidden h-4 w-4 min-[370px]:block" />
           Convert
         </Button>
       </Menubar>
-      <Tabs defaultValue="filelist" className="w-[400px]">
+      <Tabs defaultValue="filelist" className="w-full">
         <TabsList className="grid w-full grid-cols-2">
           <TabsTrigger value="filelist">File List</TabsTrigger>
           <TabsTrigger value="settings">Settings</TabsTrigger>
