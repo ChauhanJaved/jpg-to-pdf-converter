@@ -4,10 +4,9 @@ import { handleConvertToPdf } from "@/lib/pdf-lib";
 import { Button } from "./Button";
 import SortableImageList from "./SortableImageList";
 import { useFileContext } from "@/context/FileContext";
-import { Menubar } from "./menubar";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/UI/tabs";
 import { Card } from "./card";
-import { Download, ImagePlus, ListX, Plus, SquareX, X } from "lucide-react";
+import { Download, ImagePlus, ListX, Settings } from "lucide-react";
 
 const Dropzone = () => {
   const { fileList, setFileList } = useFileContext();
@@ -35,27 +34,44 @@ const Dropzone = () => {
 
   return (
     <div className={`mb-5 mt-5 flex w-full flex-col items-center`}>
-      <div className="mb-3 flex w-full items-center justify-end space-x-2 rounded-md border px-3 py-3 shadow-sm">
-        <Button onClick={open} className="lg:text-lg">
+      <div className="mb-3 flex w-full flex-wrap items-center justify-end rounded-md border py-3 pr-3 shadow-sm">
+        <Button
+          onClick={open}
+          className="m-2 w-[110px] lg:w-[150px] lg:text-lg"
+        >
           <ImagePlus className="mr-2 h-4 w-4 lg:h-6 lg:w-6" />
           Add Files
         </Button>
-        <Button onClick={handleClearList} className="lg:text-lg">
+        <Button
+          onClick={handleClearList}
+          className="m-2 w-[110px] lg:w-[150px] lg:text-lg"
+        >
           <ListX className="mr-2 h-4 w-4 lg:h-6 lg:w-6" />
           Clear All
         </Button>
         <Button
           onClick={() => handleConvertToPdf(fileList)}
-          className="lg:text-lg"
+          className="m-2 w-[110px] lg:w-[150px] lg:text-lg"
         >
           <Download className="mr-2 h-4 w-4 lg:h-6 lg:w-6" />
           Convert
         </Button>
+        <Button
+          onClick={() => handleConvertToPdf(fileList)}
+          className="m-2 w-[110px] lg:w-[150px] lg:text-lg"
+        >
+          <Settings className="mr-2 h-4 w-4 lg:h-6 lg:w-6" />
+          Settings
+        </Button>
       </div>
       <Tabs defaultValue="filelist" className="w-full">
-        <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value="filelist">File List</TabsTrigger>
-          <TabsTrigger value="settings">Settings</TabsTrigger>
+        <TabsList className="flex flex-row justify-end">
+          <TabsTrigger value="filelist" className="w-[100px]">
+            File List
+          </TabsTrigger>
+          <TabsTrigger value="settings" className="w-[100px]">
+            Settings
+          </TabsTrigger>
         </TabsList>
         <TabsContent value="filelist">
           <div {...getRootProps()}>
