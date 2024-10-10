@@ -4,7 +4,6 @@ import { handleConvertToPdf } from "@/lib/pdf-lib";
 import { Button } from "./Button";
 import SortableImageList from "./SortableImageList";
 import { useFileContext } from "@/context/FileContext";
-import { Card } from "./card";
 import { Download, Plus, Settings, X } from "lucide-react";
 import SectionHeader from "./SectionHeader";
 
@@ -35,7 +34,11 @@ const Dropzone = () => {
   return (
     <div className={`mb-5 flex w-full flex-col items-center`}>
       {fileList.length === 0 && (
-        <SectionHeader caption="JPG to PDF Converter" className={`my-10`} />
+        <SectionHeader
+          caption="JPG to PDF Converter"
+          className={`my-10`}
+          desc="Convert JPG images to PDF in seconds. Easily adjust orientation and margins."
+        />
       )}
       {/* Toolbar */}
       {fileList.length > 0 && (
@@ -74,8 +77,8 @@ const Dropzone = () => {
       <div className="container w-full xl:max-w-screen-xl">
         <div {...getRootProps()}>
           <input {...getInputProps()} />
-          <Card
-            className={`flex min-h-[150px] w-full flex-col items-center justify-center rounded-lg border text-center transition sm:min-h-[300px] ${isDragActive && "border-blue-500 bg-blue-50"}`}
+          <div
+            className={`flex min-h-[150px] w-full flex-col items-center justify-center rounded-lg border text-center shadow-sm transition sm:min-h-[300px] ${isDragActive && "border-blue-500 bg-blue-50"}`}
           >
             {fileList.length > 0 ? (
               <SortableImageList />
@@ -91,7 +94,7 @@ const Dropzone = () => {
                 <p className="text-base text-black-500">or drop your files</p>
               </div>
             )}
-          </Card>
+          </div>
         </div>
       </div>
     </div>

@@ -1,53 +1,62 @@
 /* eslint-disable @next/next/no-img-element */
-//External  imports
-import React from "react";
-import { Card } from "./card";
+import React, { useEffect, useState } from "react";
 import { Button } from "./Button";
 import { Grip, X } from "lucide-react";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-//Internal imports
 import { useFileContext } from "@/context/FileContext";
+
 interface FileObject {
   file: File;
   id: string;
 }
+
 interface SortableImageCardProps {
   fileObject: FileObject;
 }
 
-export default function SortableImageCard({
+const SortableImageCard = React.memo(function SortableImageCard({
   fileObject,
 }: SortableImageCardProps) {
   const { removeFile } = useFileContext();
-  const {
-    index,
-    attributes,
-    listeners,
-    setNodeRef,
-    transform,
-    transition,
-    isSorting,
-  } = useSortable({
-    id: fileObject.id,
-  });
+  const { id, file } = fileObject;
+
+  const { attributes, listeners, setNodeRef, transform, transition, index } =
+    useSortable({ id });
 
   const style = {
+    transform: CSS.Transform.toString(transform),
     transition,
-    transform: isSorting ? undefined : CSS.Translate.toString(transform),
   };
+
+  // State to store the image URL
+  const [imageUrl, setImageUrl] = useState<string | null>(null);
+
+  // Create a URL for the image and clean it up on unmount
+  useEffect(() => {
+    const url = URL.createObjectURL(file);
+    setImageUrl(url);
+
+    return () => {
+      URL.revokeObjectURL(url); // Clean up URL when component is unmounted
+    };
+  }, [file]);
+
   return (
     <div ref={setNodeRef} style={style}>
-      <Card key={index} className="mt-5 overflow-hidden">
+      <div className="my-5 overflow-hidden rounded border shadow-sm">
         <figure className="relative flex min-h-[300px] w-[200px] items-center justify-center overflow-hidden p-4">
-          <img
-            src={URL.createObjectURL(fileObject.file)}
-            alt={`Thumbnail-${index}`}
-            className="object-contain"
-          />
-          <p
-            className={`absolute left-1 top-1 flex h-[34px] w-[34px] touch-none items-center justify-center rounded-full bg-black text-sm text-white opacity-70`}
-          >
+          {imageUrl ? (
+            <img
+              src={imageUrl}
+              alt={`Thumbnail for ${file.name}`}
+              className="object-contain"
+            />
+          ) : (
+            <p>Loading...</p>
+          )}
+
+          <p className="absolute left-1 top-1 flex h-[34px] w-[34px] touch-none items-center justify-center rounded-full bg-black text-sm text-white opacity-70">
             {index + 1}
           </p>
           <Button
@@ -55,23 +64,27 @@ export default function SortableImageCard({
             {...attributes}
             variant="outline"
             size="icon"
-            className={`absolute right-1 top-1 touch-none`}
+            className="absolute right-1 top-1 touch-none"
+            aria-label="Reorder Image"
           >
             <Grip className="h-4 w-4" />
           </Button>
           <Button
-            onClick={() => removeFile(fileObject.id)}
+            onClick={() => removeFile(id)}
             size="icon"
             variant="outline"
-            className={`b absolute right-[calc(45px)] top-1`}
+            className="absolute right-[calc(45px)] top-1"
+            aria-label="Remove Image"
           >
             <X className="h-4 w-4" />
           </Button>
           <figcaption className="absolute bottom-0 left-1/2 w-full -translate-x-1/2 transform bg-black p-2 text-sm text-white opacity-70">
-            {`${fileObject.file.name}`}
+            {file.name}
           </figcaption>
         </figure>
-      </Card>
+      </div>
     </div>
   );
-}
+});
+
+export default SortableImageCard;
