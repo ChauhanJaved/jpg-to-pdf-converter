@@ -36,16 +36,19 @@ const Dropzone = () => {
   return (
     <div className={`mb-5 mt-5 flex w-full flex-col items-center`}>
       <div className="mb-3 flex w-full items-center justify-end space-x-2 rounded-md border px-3 py-3 shadow-sm">
-        <Button variant="outline" onClick={open} className="">
-          <ImagePlus className="mr-1 h-4 w-4" />
+        <Button onClick={open} className="lg:text-lg">
+          <ImagePlus className="mr-2 h-4 w-4 lg:h-6 lg:w-6" />
           Add Files
         </Button>
-        <Button variant="outline" onClick={handleClearList}>
-          <ListX className="mr-1" />
+        <Button onClick={handleClearList} className="lg:text-lg">
+          <ListX className="mr-2 h-4 w-4 lg:h-6 lg:w-6" />
           Clear All
         </Button>
-        <Button variant="outline" onClick={() => handleConvertToPdf(fileList)}>
-          <Download className="mr-1" />
+        <Button
+          onClick={() => handleConvertToPdf(fileList)}
+          className="lg:text-lg"
+        >
+          <Download className="mr-2 h-4 w-4 lg:h-6 lg:w-6" />
           Convert
         </Button>
       </div>
