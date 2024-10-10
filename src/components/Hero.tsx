@@ -2,7 +2,7 @@
 
 import { HeaderNavItems } from "@/data/website-data";
 import Dropzone from "./UI/Dropzone";
-import SectionHeader from "./UI/SectionHeader";
+
 import { FileProvider } from "@/context/FileContext";
 
 const Hero = () => {
@@ -10,9 +10,8 @@ const Hero = () => {
     <FileProvider>
       <section
         id={HeaderNavItems.Home}
-        className="relative m-auto mt-[80px] flex w-full scroll-m-[80px] flex-col items-center justify-start px-3 xl:max-w-screen-xl"
+        className="relative m-auto mb-10 mt-[83px] flex w-full scroll-m-[83px] flex-col items-center justify-start px-3"
       >
-        <SectionHeader caption="JPG to PDF Converter" className="mt-10" />
         <Dropzone />
       </section>
     </FileProvider>

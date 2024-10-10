@@ -93,7 +93,7 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
         </ul>
       </nav>
       {/* z-index 998 */}
-      <div className="fixed left-0 right-0 top-0 z-[998] bg-white shadow-[0_0_18px_rgba(0,0,0,0.1)]">
+      <div className="fixed left-0 right-0 top-0 z-[998] border bg-white shadow-sm">
         <div
           className={`container mx-auto w-full text-blue-dark-imperial xl:max-w-screen-xl`}
         >

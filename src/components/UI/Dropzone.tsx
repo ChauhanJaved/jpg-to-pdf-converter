@@ -6,6 +6,7 @@ import SortableImageList from "./SortableImageList";
 import { useFileContext } from "@/context/FileContext";
 import { Card } from "./card";
 import { Download, Plus, Settings, X } from "lucide-react";
+import SectionHeader from "./SectionHeader";
 
 const Dropzone = () => {
   const { fileList, setFileList } = useFileContext();
@@ -32,36 +33,45 @@ const Dropzone = () => {
   });
 
   return (
-    <div className={`mb-5 mt-5 flex w-full flex-col items-center`}>
-      <div className="mb-3 flex w-full flex-wrap items-center justify-end rounded-md border py-3 pr-3 shadow-sm">
-        <Button
-          onClick={open}
-          className="m-2 w-[114px] lg:w-[140px] lg:text-lg"
-        >
-          <Plus className="mr-2 h-4 w-4 lg:h-6 lg:w-6" />
-          Add Files
-        </Button>
-        <Button
-          onClick={handleClearList}
-          className="m-2 w-[114px] lg:w-[140px] lg:text-lg"
-        >
-          <X className="mr-2 h-4 w-4 lg:h-6 lg:w-6" />
-          Clear All
-        </Button>
-        <Button className="m-2 w-[114px] lg:w-[140px] lg:text-lg">
-          <Settings className="mr-2 h-4 w-4 lg:h-6 lg:w-6" />
-          Settings
-        </Button>
-        <Button
-          onClick={() => handleConvertToPdf(fileList)}
-          className="m-2 w-[114px] lg:w-[140px] lg:text-lg"
-        >
-          <Download className="mr-2 h-4 w-4 lg:h-6 lg:w-6" />
-          Convert
-        </Button>
-      </div>
+    <div className={`mb-5 flex w-full flex-col items-center`}>
+      {fileList.length === 0 && (
+        <SectionHeader caption="JPG to PDF Converter" className={`my-10`} />
+      )}
+      {/* Toolbar */}
+      {fileList.length > 0 && (
+        <div className="sticky top-[82px] z-[998] m-auto w-full bg-white py-3">
+          <div className="container m-auto flex w-full flex-wrap items-center justify-end rounded-md border bg-white py-3 pr-3 shadow-sm xl:max-w-screen-xl">
+            <Button
+              onClick={open}
+              className="m-2 w-[114px] lg:w-[140px] lg:text-lg"
+            >
+              <Plus className="mr-2 h-4 w-4 lg:h-6 lg:w-6" />
+              Add Files
+            </Button>
+            <Button
+              onClick={handleClearList}
+              className="m-2 w-[114px] lg:w-[140px] lg:text-lg"
+            >
+              <X className="mr-2 h-4 w-4 lg:h-6 lg:w-6" />
+              Clear All
+            </Button>
+            <Button className="m-2 w-[114px] lg:w-[140px] lg:text-lg">
+              <Settings className="mr-2 h-4 w-4 lg:h-6 lg:w-6" />
+              Settings
+            </Button>
+            <Button
+              onClick={() => handleConvertToPdf(fileList)}
+              className="m-2 w-[114px] lg:w-[140px] lg:text-lg"
+            >
+              <Download className="mr-2 h-4 w-4 lg:h-6 lg:w-6" />
+              Convert
+            </Button>
+          </div>
+        </div>
+      )}
 
-      <div className="w-full">
+      {/* Dropzone */}
+      <div className="container w-full xl:max-w-screen-xl">
         <div {...getRootProps()}>
           <input {...getInputProps()} />
           <Card
@@ -71,13 +81,14 @@ const Dropzone = () => {
               <SortableImageList />
             ) : (
               <div>
-                <p className="text-base text-black-500">
-                  Click &rdquo;Add Files&rdquo; or
-                </p>
-                <p className="text-base text-black-500">Drop files here and</p>
-                <p className="text-base text-black-500">
-                  Click &rdquo;Convert&rdquo;
-                </p>
+                <Button
+                  onClick={open}
+                  className="m-2 w-[114px] lg:w-[140px] lg:text-lg"
+                >
+                  <Plus className="mr-2 h-4 w-4 lg:h-6 lg:w-6" />
+                  Add Files
+                </Button>
+                <p className="text-base text-black-500">or drop your files</p>
               </div>
             )}
           </Card>
