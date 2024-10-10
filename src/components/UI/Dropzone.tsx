@@ -4,7 +4,6 @@ import { handleConvertToPdf } from "@/lib/pdf-lib";
 import { Button } from "./Button";
 import SortableImageList from "./SortableImageList";
 import { useFileContext } from "@/context/FileContext";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/UI/tabs";
 import { Card } from "./card";
 import { Download, ImagePlus, ListX, Settings } from "lucide-react";
 
@@ -64,43 +63,29 @@ const Dropzone = () => {
           Settings
         </Button>
       </div>
-      <Tabs defaultValue="filelist" className="w-full">
-        <TabsList className="flex flex-row justify-end">
-          <TabsTrigger value="filelist" className="w-[100px]">
-            File List
-          </TabsTrigger>
-          <TabsTrigger value="settings" className="w-[100px]">
-            Settings
-          </TabsTrigger>
-        </TabsList>
-        <TabsContent value="filelist">
-          <div {...getRootProps()}>
-            <input {...getInputProps()} />
-            <Card
-              className={`flex min-h-[150px] w-full flex-col items-center justify-center rounded-lg border text-center transition sm:min-h-[300px] ${isDragActive && "border-blue-500 bg-blue-50"}`}
-            >
-              {fileList.length > 0 ? (
-                <SortableImageList />
-              ) : (
-                <div>
-                  <p className="text-base text-black-500">
-                    Click &rdquo;Add Files&rdquo; or
-                  </p>
-                  <p className="text-base text-black-500">
-                    Drop files here and
-                  </p>
-                  <p className="text-base text-black-500">
-                    Click &rdquo;Convert&rdquo;
-                  </p>
-                </div>
-              )}
-            </Card>
-          </div>
-        </TabsContent>
-        <TabsContent value="settings">
-          <Card className="min-h-[150px] w-full sm:min-h-[300px]"></Card>
-        </TabsContent>
-      </Tabs>
+
+      <div className="w-full">
+        <div {...getRootProps()}>
+          <input {...getInputProps()} />
+          <Card
+            className={`flex min-h-[150px] w-full flex-col items-center justify-center rounded-lg border text-center transition sm:min-h-[300px] ${isDragActive && "border-blue-500 bg-blue-50"}`}
+          >
+            {fileList.length > 0 ? (
+              <SortableImageList />
+            ) : (
+              <div>
+                <p className="text-base text-black-500">
+                  Click &rdquo;Add Files&rdquo; or
+                </p>
+                <p className="text-base text-black-500">Drop files here and</p>
+                <p className="text-base text-black-500">
+                  Click &rdquo;Convert&rdquo;
+                </p>
+              </div>
+            )}
+          </Card>
+        </div>
+      </div>
     </div>
   );
 };
