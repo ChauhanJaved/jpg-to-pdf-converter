@@ -58,7 +58,7 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
   // Returns dynamic link classes with an underline animation based on the active state.
   const linkClasses = (isActive: boolean) =>
     classNames(
-      "relative ml-2 px-2 py-2 text-sm font-semibold uppercase before:absolute before:bottom-0 before:left-0 before:h-0.5 before:w-full before:scale-0 before:bg-blue-ultramarine before:transition-transform before:duration-300 hover:before:scale-100",
+      "relative ml-2 px-2 py-2 text-sm font-semibold uppercase before:absolute before:bottom-0 before:left-0 before:h-0.5 before:w-full before:scale-0 before:bg-primary before:transition-transform before:duration-300 hover:before:scale-100",
       { "before:scale-100": isActive },
     );
 
@@ -100,7 +100,7 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
           <div className="mx-auto flex h-20 w-11/12 items-center justify-between md:w-full">
             {/* company name */}
             <h1
-              className={`${montserrat.className} border-l-[5px] border-l-blue-ultramarine pl-3 text-2xl font-bold tracking-wider sm:text-3xl lg:text-4xl`}
+              className={`${montserrat.className} border-l-[5px] border-l-primary pl-3 text-2xl font-bold tracking-wider sm:text-3xl lg:text-4xl`}
             >
               <Link
                 onClick={() => {
