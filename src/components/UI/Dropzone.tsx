@@ -5,7 +5,7 @@ import { Button } from "./Button";
 import SortableImageList from "./SortableImageList";
 import { useFileContext } from "@/context/FileContext";
 import { Card } from "./card";
-import { Download, ImagePlus, ListX, Settings } from "lucide-react";
+import { Download, Plus, Settings, X } from "lucide-react";
 
 const Dropzone = () => {
   const { fileList, setFileList } = useFileContext();
@@ -36,31 +36,28 @@ const Dropzone = () => {
       <div className="mb-3 flex w-full flex-wrap items-center justify-end rounded-md border py-3 pr-3 shadow-sm">
         <Button
           onClick={open}
-          className="m-2 w-[110px] lg:w-[150px] lg:text-lg"
+          className="m-2 w-[114px] lg:w-[140px] lg:text-lg"
         >
-          <ImagePlus className="mr-2 h-4 w-4 lg:h-6 lg:w-6" />
+          <Plus className="mr-2 h-4 w-4 lg:h-6 lg:w-6" />
           Add Files
         </Button>
         <Button
           onClick={handleClearList}
-          className="m-2 w-[110px] lg:w-[150px] lg:text-lg"
+          className="m-2 w-[114px] lg:w-[140px] lg:text-lg"
         >
-          <ListX className="mr-2 h-4 w-4 lg:h-6 lg:w-6" />
+          <X className="mr-2 h-4 w-4 lg:h-6 lg:w-6" />
           Clear All
+        </Button>
+        <Button className="m-2 w-[114px] lg:w-[140px] lg:text-lg">
+          <Settings className="mr-2 h-4 w-4 lg:h-6 lg:w-6" />
+          Settings
         </Button>
         <Button
           onClick={() => handleConvertToPdf(fileList)}
-          className="m-2 w-[110px] lg:w-[150px] lg:text-lg"
+          className="m-2 w-[114px] lg:w-[140px] lg:text-lg"
         >
           <Download className="mr-2 h-4 w-4 lg:h-6 lg:w-6" />
           Convert
-        </Button>
-        <Button
-          onClick={() => handleConvertToPdf(fileList)}
-          className="m-2 w-[110px] lg:w-[150px] lg:text-lg"
-        >
-          <Settings className="mr-2 h-4 w-4 lg:h-6 lg:w-6" />
-          Settings
         </Button>
       </div>
 
