@@ -10,7 +10,7 @@ const Hero = () => {
     <FileProvider>
       <section
         id={HeaderNavItems.Home}
-        className="relative m-auto mb-10 mt-[83px] flex w-full scroll-m-[83px] flex-col items-center justify-start px-3"
+        className="relative m-auto mt-[83px] flex w-full scroll-m-[83px] flex-col items-center justify-start px-3"
       >
         <Dropzone />
       </section>
