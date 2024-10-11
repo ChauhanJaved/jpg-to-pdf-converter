@@ -62,12 +62,12 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
 
   return (
     <header className={`${montserrat.className}`}>
-      {/* z-index 999 */}
+      {/* z-index 50 */}
       {/* Mobile meun */}
       <nav>
         <ul
           className={classNames(
-            "fixed bottom-[0] top-[0] z-[999] w-64 bg-white pt-3 text-blue-dark-imperial shadow-[0_0_18px_rgba(0,0,0,0.1)] transition-all duration-300",
+            "fixed bottom-[0] top-[0] z-[50] w-64 bg-white pt-3 text-blue-dark-imperial shadow-[0_0_18px_rgba(0,0,0,0.1)] transition-all duration-300",
             {
               "left-0 opacity-100": isMenuOpen,
               "-left-64 opacity-0": !isMenuOpen,
@@ -90,8 +90,8 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
           ))}
         </ul>
       </nav>
-      {/* z-index 998 */}
-      <div className="fixed left-0 right-0 top-0 z-[998] border bg-white shadow-sm">
+      {/* z-index 10 */}
+      <div className="fixed left-0 right-0 top-0 z-[10] border bg-white shadow-sm">
         <div
           className={`container mx-auto w-full text-blue-dark-imperial xl:max-w-screen-xl`}
         >
@@ -149,14 +149,14 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
           </div>
         </div>
       </div>
-      {/* z-index 997 */}
+      {/* z-index 9 */}
       {/* this div is to lock background in case of mobile menu activated */}
       <div
         onClick={() => {
           toggleMenu(false);
         }}
         className={classNames(
-          `fixed left-0 top-0 z-[997] h-full w-full bg-slate-950 text-3xl opacity-60`,
+          `fixed left-0 top-0 z-[9] h-full w-full bg-slate-950 text-3xl opacity-60`,
           { hidden: !isMenuOpen },
         )}
       ></div>

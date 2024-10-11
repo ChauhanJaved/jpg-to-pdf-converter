@@ -72,7 +72,7 @@ const Dropzone = () => {
         )}
         {/* Toolbar */}
         {fileList.length > 0 && (
-          <div className="sticky top-[82px] z-[998] m-auto w-full bg-white py-3">
+          <div className="sticky top-[82px] z-[10] m-auto w-full bg-white py-3">
             <div className="container m-auto flex w-full flex-wrap items-center justify-center rounded-md border bg-white py-3 pr-3 shadow-sm sm:justify-end xl:max-w-screen-xl">
               <Button
                 onClick={open}
