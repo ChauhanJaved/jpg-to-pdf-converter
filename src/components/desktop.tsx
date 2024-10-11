@@ -20,7 +20,7 @@ export default function Desktop() {
     portfolioItem && (
       <section
         id={HeaderNavItems.Desktop}
-        className="container mx-auto flex scroll-m-[64px] flex-col items-center justify-center px-3 py-10 xl:max-w-screen-xl"
+        className="container mx-auto flex scroll-m-[64px] flex-col items-center justify-center px-3 pt-16 xl:max-w-screen-xl"
       >
         <SectionHeader
           caption={`Desktop ${portfolioItem.title}`}

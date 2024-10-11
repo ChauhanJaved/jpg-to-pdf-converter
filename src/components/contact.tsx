@@ -1,5 +1,8 @@
-import { HeaderNavItems } from "@/data/website-data";
+import { email, HeaderNavItems } from "@/data/website-data";
 import React from "react";
+import SectionHeader from "./UI/SectionHeader";
+import HeroIcons, { IconNames } from "./UI/HeroIcons";
+import { nunito } from "./font/font";
 
 export default function Contact() {
   return (
@@ -7,43 +10,46 @@ export default function Contact() {
       id={HeaderNavItems.Contact}
       className="container mx-auto scroll-m-[64px] px-3 pt-16 text-lg xl:max-w-screen-xl"
     >
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda quaerat
-      soluta dolores aspernatur eligendi dignissimos suscipit ipsum eos,
-      obcaecati est in explicabo fuga iste laudantium! Dolorum maxime optio
-      ducimus neque! Lorem ipsum dolor sit amet consectetur adipisicing elit.
-      Facere vel voluptatibus temporibus! Recusandae dolorum labore quaerat
-      doloribus perspiciatis, magnam non illum reprehenderit accusantium officia
-      facilis rerum cupiditate impedit voluptatibus fugiat! Reiciendis
-      laboriosam sint dolore. Adipisci quidem ea vel tempore repudiandae
-      quibusdam recusandae in dolorem vero sit animi exercitationem neque sed
-      explicabo at, ratione omnis quasi eaque commodi. Architecto, ea dolorum.
-      Consequatur et pariatur eius fugiat illum ullam officia inventore nobis
-      impedit hic dolor quos sit magni obcaecati, quis consectetur suscipit
-      neque fuga provident minus aliquam? Rem enim libero consectetur quidem?
-      Nemo hic totam modi temporibus ipsum nisi, fugit necessitatibus ipsam
-      cupiditate voluptatem vero quam, eligendi id. Totam quibusdam deserunt
-      sequi eum vitae delectus, qui adipisci assumenda nemo iusto eligendi
-      quasi. Qui est voluptatibus voluptatum voluptatem ab repellendus totam
-      delectus illum, perspiciatis dignissimos, cupiditate blanditiis
-      consequuntur repudiandae officia. Enim quod minus adipisci itaque
-      voluptates repudiandae ex saepe accusantium, accusamus voluptas
-      architecto? Tempore sunt sequi cum harum aspernatur quaerat exercitationem
-      enim, possimus rerum, natus laudantium culpa deleniti quia eaque nemo
-      porro doloribus saepe? Doloribus error magni nemo natus totam, nesciunt
-      dolorum at? Ea quaerat dolorum quo eligendi voluptatibus, unde qui
-      repellendus maiores voluptatum ratione tempora suscipit sapiente quasi
-      nulla aspernatur repellat totam fuga numquam nemo ducimus asperiores harum
-      maxime magni! Placeat, quisquam. Sint assumenda vitae nemo odio ipsum
-      laboriosam temporibus, a officia sunt non voluptatem eveniet eius
-      similique cumque et, expedita aperiam soluta amet ad. Pariatur iure quasi
-      ducimus ut accusantium quas? Quos, fugit. Odio, quam, excepturi eius
-      laboriosam animi dolorem deleniti deserunt ducimus optio modi doloribus
-      molestias iure, cum esse totam obcaecati inventore voluptates neque
-      provident temporibus est fugit. Aspernatur, sapiente. Perferendis
-      explicabo vel officia amet corporis, in dignissimos! Libero molestias
-      perspiciatis accusantium perferendis. Dolorem quas, dolore laboriosam,
-      earum quibusdam praesentium accusamus molestiae eum sequi aliquid sunt in
-      voluptate. Sit, libero!
+      <SectionHeader caption="contact" element="h2" />
+      <div className="mt-10 flex flex-col items-center">
+        <div className="flex flex-col space-y-5 md:flex-row md:space-x-5 md:space-y-0">
+          <div className="w-80 rounded bg-white-snow p-7">
+            <HeroIcons
+              iconName={IconNames.Envelope}
+              className="size-14 text-blue-ultramarine"
+            />
+            <h3
+              className={`${nunito.className} mt-3 text-lg font-bold text-blue-dark-imperial md:text-xl`}
+            >
+              Email Us
+            </h3>
+            <p className="mt-1">{email}</p>
+          </div>
+          <div className="w-80 rounded bg-white-snow p-7">
+            <HeroIcons
+              iconName={IconNames.Clock}
+              className="size-14 text-blue-ultramarine"
+            />
+            <h3
+              className={`${nunito.className} mt-3 text-lg font-bold text-blue-dark-imperial md:text-xl`}
+            >
+              Open Hours
+            </h3>
+            <p className="mt-1">
+              Monday - Saturday <br /> 10:00AM - 08:00PM
+            </p>
+          </div>
+        </div>
+
+        <p className={`mb-8 mt-8 text-lg`}>
+          Please feel free to contact us if you have encountered a problem with
+          our software product, you have a question about our product or
+          purchase related question. If you are a licensed user, please include
+          your order details, so that we can make your problem a priority for
+          our support staff. Please note that the response will take some time
+          (12 - 24 hours).
+        </p>
+      </div>
     </section>
   );
 }
