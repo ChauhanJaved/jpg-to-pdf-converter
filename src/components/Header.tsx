@@ -39,8 +39,6 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
       const section = hash.substring(1); // Remove the "#" from the hash
       if (headerNavItems.includes(section)) {
         setActiveSection(section);
-      } else {
-        setActiveSection(HeaderNavItems.Portfolio);
       }
     } else {
       setActiveSection(defaultActiveSection);
