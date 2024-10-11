@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { companyName, copyrightYear } from "@/data/website-data";
 import type { Metadata } from "next";
+import { Toaster } from "@/components/UI/toaster";
 
 export const metadata: Metadata = {
   title: "JPG to PDF Converter",
@@ -24,6 +25,7 @@ export default function RootLayout({
         <Header />
         {children}
         <Footer companyName={companyName} copyrightYear={copyrightYear} />
+        <Toaster />
       </body>
     </html>
   );

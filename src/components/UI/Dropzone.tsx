@@ -34,9 +34,8 @@ const Dropzone = () => {
         })),
       ]);
     } else {
-      console.log("in");
       toast({
-        description: "File(s) already added!",
+        title: "File(s) already added !",
       });
     }
   };
