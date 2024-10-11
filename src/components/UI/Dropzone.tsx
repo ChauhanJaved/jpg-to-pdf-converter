@@ -6,18 +6,39 @@ import SortableImageList from "./SortableImageList";
 import { useFileContext } from "@/context/FileContext";
 import { Download, Plus, Settings, X } from "lucide-react";
 import SectionHeader from "./SectionHeader";
+import { useToast } from "@/hooks/use-toast";
 
 const Dropzone = () => {
+  const { toast } = useToast();
   const { fileList, setFileList } = useFileContext();
 
   const onDrop = (acceptedFiles: File[]) => {
-    setFileList((prevFileList) => [
-      ...prevFileList,
-      ...acceptedFiles.map((file) => ({
-        file,
-        id: `${file.name}-${file.size}-${file.lastModified}`,
-      })),
-    ]);
+    // Filter out duplicate files
+    const filteredFiles = acceptedFiles.filter(
+      (newFile) =>
+        !fileList.some(
+          (existingFile) =>
+            existingFile.file.name === newFile.name &&
+            existingFile.file.size === newFile.size &&
+            existingFile.file.lastModified === newFile.lastModified,
+        ),
+    );
+
+    // Add only the new, non-duplicate files to the list
+    if (filteredFiles.length > 0) {
+      setFileList((prevFileList) => [
+        ...prevFileList,
+        ...filteredFiles.map((file) => ({
+          file,
+          id: `${file.name}-${file.size}-${file.lastModified}`,
+        })),
+      ]);
+    } else {
+      console.log("in");
+      toast({
+        description: "File(s) already added!",
+      });
+    }
   };
   const handleClearList = () => {
     setFileList([]);
