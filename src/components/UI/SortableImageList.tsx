@@ -11,7 +11,6 @@ import {
   arrayMove,
   SortableContext,
   sortableKeyboardCoordinates,
-  verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 
 import { useFileContext } from "@/context/FileContext";
@@ -43,7 +42,7 @@ const SortableImageList = () => {
       onDragEnd={handleDragEnd}
       collisionDetection={closestCenter}
     >
-      <SortableContext items={fileList} strategy={verticalListSortingStrategy}>
+      <SortableContext items={fileList}>
         {fileList.map((fileObj) => (
           <SortableImageCard key={fileObj.id} fileObject={fileObj} />
         ))}

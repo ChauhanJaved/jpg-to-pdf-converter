@@ -44,8 +44,8 @@ const SortableImageCard = React.memo(function SortableImageCard({
 
   return (
     <div ref={setNodeRef} style={style}>
-      <div className="my-5 overflow-hidden rounded border shadow-sm">
-        <figure className="relative flex min-h-[300px] w-[200px] items-center justify-center overflow-hidden p-4">
+      <div className="m-3 my-5 overflow-hidden rounded border shadow-sm">
+        <figure className="relative flex h-[300px] w-[200px] items-center justify-center overflow-hidden p-4">
           {imageUrl ? (
             <img
               src={imageUrl}
