@@ -4,7 +4,7 @@ import { handleConvertToPdf } from "@/lib/pdf-lib";
 import { Button } from "./Button";
 import SortableImageList from "./SortableImageList";
 import { useFileContext } from "@/context/FileContext";
-import { Download, Plus, Settings, X } from "lucide-react";
+import { Download, Loader2, Plus, Settings, X } from "lucide-react";
 import SectionHeader from "./SectionHeader";
 import { useToast } from "@/hooks/use-toast";
 import { Fragment, useState } from "react";
@@ -13,10 +13,16 @@ import { Dialog, DialogContent } from "@/components/UI/dialog";
 const Dropzone = () => {
   const { toast } = useToast();
   const { fileList, setFileList } = useFileContext();
-  const [isConverting, setIsConverting] = useState(false);
+  const [isConvertingFiles, setIsConvertingFiles] = useState(false);
+  const [isLoadingFiles, setIsLoadingFiles] = useState(false);
 
-  const onDrop = (acceptedFiles: File[]) => {
+  const onDrop = async (acceptedFiles: File[]) => {
     // Filter out duplicate files
+    setIsLoadingFiles(true);
+
+    // Simulate processing delay for testing purposes (remove in production)
+    // await new Promise((resolve) => setTimeout(resolve, 1000));
+
     const filteredFiles = acceptedFiles.filter(
       (newFile) =>
         !fileList.some(
@@ -41,6 +47,7 @@ const Dropzone = () => {
         title: "File(s) already added !",
       });
     }
+    setIsLoadingFiles(false);
   };
   const handleClearList = () => {
     setFileList([]);
@@ -56,9 +63,9 @@ const Dropzone = () => {
   });
 
   const handleConversion = async () => {
-    setIsConverting(true); // Show dialog and lock screen
+    setIsConvertingFiles(true); // Show dialog and lock screen
     await handleConvertToPdf(fileList); // Perform conversion
-    setIsConverting(false); // Hide dialog when done
+    setIsConvertingFiles(false); // Hide dialog when done
   };
   return (
     <Fragment>
@@ -88,13 +95,15 @@ const Dropzone = () => {
                 <X className="mr-2 h-4 w-4 lg:h-6 lg:w-6" />
                 Clear All
               </Button>
-              <Button className="m-2 w-[114px] lg:w-[140px] lg:text-lg">
+              <Button
+                onClick={() => setIsConvertingFiles(true)}
+                className="m-2 w-[114px] lg:w-[140px] lg:text-lg"
+              >
                 <Settings className="mr-2 h-4 w-4 lg:h-6 lg:w-6" />
                 Settings
               </Button>
               <Button
                 onClick={handleConversion}
-                disabled={isConverting}
                 className="m-2 w-[114px] lg:w-[140px] lg:text-lg"
               >
                 <Download className="mr-2 h-4 w-4 lg:h-6 lg:w-6" />
@@ -129,13 +138,21 @@ const Dropzone = () => {
           </div>
         </div>
       </div>
-      {/* Dialog for locking screen and showing a message */}
-      <Dialog open={isConverting}>
+      {/* Converting files */}
+      <Dialog open={isConvertingFiles}>
         <DialogContent className="flex items-center justify-center">
-          <div className="flex flex-col items-center">
-            <p>Converting your files, please wait...</p>
-            {/* You can also add a spinner here */}
-            <div className="loader mt-4" />
+          <div className="flex items-center">
+            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            Converting your files...
+          </div>
+        </DialogContent>
+      </Dialog>
+      {/* Loading files */}
+      <Dialog open={isLoadingFiles}>
+        <DialogContent className="flex items-center justify-center">
+          <div className="flex items-center">
+            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            Loading your files...
           </div>
         </DialogContent>
       </Dialog>
