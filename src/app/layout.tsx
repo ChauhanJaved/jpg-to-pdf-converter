@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { companyName, copyrightYear } from "@/data/website-data";
 import type { Metadata } from "next";
-import { Toaster } from "@/components/UI/toaster";
+import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
   title: "JPG to PDF Converter",

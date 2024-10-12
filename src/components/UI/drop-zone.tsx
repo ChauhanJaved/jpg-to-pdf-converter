@@ -1,7 +1,7 @@
 "use client";
 import { useDropzone } from "react-dropzone";
 import { handleConvertToPdf } from "@/lib/pdf-lib";
-import { Button } from "./Button";
+import { Button } from "./button";
 import SortableImageList from "./SortableImageList";
 import { useFileContext } from "@/context/FileContext";
 import { Download, Loader2, Plus, Settings, X } from "lucide-react";

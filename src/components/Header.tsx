@@ -6,13 +6,13 @@ import classNames from "classnames";
 
 //Internal imports
 import { montserrat } from "@/components/font/font";
-import HeroIcons, { IconNames } from "./UI/HeroIcons";
+import HeroIcons, { IconNames } from "./ui/HeroIcons";
 import {
   headerCompanyName,
   HeaderNavItems,
   headerNavItems,
 } from "@/data/website-data";
-import useIntersectionObserver from "./hooks/useIntersectionObserver";
+import useIntersectionObserver from "../hooks/use-intersection-observer";
 
 interface HeaderProps {
   defaultActiveSection?: string;

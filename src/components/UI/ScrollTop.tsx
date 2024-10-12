@@ -1,7 +1,7 @@
 "use client";
 
 import { ArrowUp } from "lucide-react";
-import { Button } from "./Button";
+import { Button } from "./button";
 //Internal imports
 import { useEffect, useRef, useState } from "react";
 

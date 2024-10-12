@@ -1,7 +1,7 @@
 import { email, HeaderNavItems } from "@/data/website-data";
 import React from "react";
-import SectionHeader from "./UI/SectionHeader";
-import HeroIcons, { IconNames } from "./UI/HeroIcons";
+import SectionHeader from "./ui/SectionHeader";
+import HeroIcons, { IconNames } from "./ui/HeroIcons";
 import { nunito } from "./font/font";
 
 export default function Contact() {

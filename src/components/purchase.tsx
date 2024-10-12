@@ -4,7 +4,7 @@ import {
   ProductIDs,
 } from "@/data/website-data";
 import React from "react";
-import SectionHeader from "./UI/SectionHeader";
+import SectionHeader from "./ui/SectionHeader";
 
 export default function Purchase() {
   const portfolioItem = portfolioItems.find(
