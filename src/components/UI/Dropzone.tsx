@@ -21,7 +21,7 @@ const Dropzone = () => {
     setIsLoadingFiles(true);
 
     // Simulate processing delay for testing purposes (remove in production)
-    // await new Promise((resolve) => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
     const filteredFiles = acceptedFiles.filter(
       (newFile) =>
