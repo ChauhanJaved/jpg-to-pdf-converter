@@ -4,12 +4,12 @@ import {
   ProductIDs,
 } from "@/data/website-data";
 import React from "react";
-import SectionHeader from "./ui/SectionHeader";
+import SectionHeader from "./ui/section-header";
 import { Button } from "./ui/button";
 import { Download } from "lucide-react";
 import Link from "next/link";
-import HeroIcons, { IconNames } from "./ui/HeroIcons";
-import { montserrat } from "./font/font";
+import HeroIcons, { IconNames } from "./ui/hero-icons";
+import { montserrat } from "../lib/font";
 import Image from "next/image";
 
 export default function Desktop() {

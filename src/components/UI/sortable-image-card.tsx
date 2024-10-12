@@ -4,7 +4,7 @@ import { Button } from "./button";
 import { Grip, X } from "lucide-react";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { useFileContext } from "@/context/FileContext";
+import { useFileContext } from "@/context/file-context";
 
 interface FileObject {
   file: File;

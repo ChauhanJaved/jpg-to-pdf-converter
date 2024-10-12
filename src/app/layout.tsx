@@ -1,8 +1,8 @@
 //Internal imports
-import { roboto } from "@/components/font/font";
+import { roboto } from "@/lib/font";
 import "./globals.css";
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
+import Footer from "@/components/footer";
+import Header from "@/components/header";
 import { companyName, copyrightYear } from "@/data/website-data";
 import type { Metadata } from "next";
 import { Toaster } from "@/components/ui/toaster";

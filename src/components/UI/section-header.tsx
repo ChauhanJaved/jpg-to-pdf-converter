@@ -1,7 +1,7 @@
 //External imports
 import React from "react";
 //Internal imports
-import { montserrat } from "@/components/font/font";
+import { montserrat } from "@/lib/font";
 
 interface PropsSectionHeader {
   caption: string;

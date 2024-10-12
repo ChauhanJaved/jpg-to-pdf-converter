@@ -13,8 +13,8 @@ import {
   sortableKeyboardCoordinates,
 } from "@dnd-kit/sortable";
 
-import { useFileContext } from "@/context/FileContext";
-import SortableImageCard from "./SortableImageCard";
+import { useFileContext } from "@/context/file-context";
+import SortableImageCard from "./sortable-image-card";
 
 const SortableImageList = ({ disabled }: { disabled: boolean }) => {
   const { fileList, setFileList } = useFileContext();

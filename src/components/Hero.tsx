@@ -3,7 +3,7 @@
 import { HeaderNavItems } from "@/data/website-data";
 import Dropzone from "./ui/drop-zone";
 
-import { FileProvider } from "@/context/FileContext";
+import { FileProvider } from "@/context/file-context";
 
 const Hero = () => {
   return (

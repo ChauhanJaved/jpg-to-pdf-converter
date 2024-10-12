@@ -5,8 +5,8 @@ import Link from "next/link";
 import classNames from "classnames";
 
 //Internal imports
-import { montserrat } from "@/components/font/font";
-import HeroIcons, { IconNames } from "./ui/HeroIcons";
+import { montserrat } from "@/lib/font";
+import HeroIcons, { IconNames } from "./ui/hero-icons";
 import {
   headerCompanyName,
   HeaderNavItems,

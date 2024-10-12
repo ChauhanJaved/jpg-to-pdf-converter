@@ -2,10 +2,10 @@
 import { useDropzone } from "react-dropzone";
 import { handleConvertToPdf } from "@/lib/pdf-lib";
 import { Button } from "./button";
-import SortableImageList from "./SortableImageList";
-import { useFileContext } from "@/context/FileContext";
+import SortableImageList from "./sortable-image-list";
+import { useFileContext } from "@/context/file-context";
 import { Download, Loader2, Plus, Settings, X } from "lucide-react";
-import SectionHeader from "./SectionHeader";
+import SectionHeader from "./section-header";
 import { useToast } from "@/hooks/use-toast";
 import { Fragment, useLayoutEffect, useState } from "react";
 
