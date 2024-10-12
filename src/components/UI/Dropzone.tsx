@@ -7,7 +7,7 @@ import { useFileContext } from "@/context/FileContext";
 import { Download, Loader2, Plus, Settings, X } from "lucide-react";
 import SectionHeader from "./SectionHeader";
 import { useToast } from "@/hooks/use-toast";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Dialog, DialogContent } from "@/components/UI/dialog";
 
 const Dropzone = () => {
@@ -51,7 +51,6 @@ const Dropzone = () => {
         title: "File(s) already added !",
       });
     }
-    setIsLoadingFiles(false);
   };
   const handleClearList = () => {
     setFileList([]);
@@ -78,6 +77,13 @@ const Dropzone = () => {
     setIsLoadingFiles(true); // Start loader when the file picker is opened
     open(); // Trigger file picker to open
   };
+  // Use `useEffect` to monitor fileList changes
+  useEffect(() => {
+    // When `fileList` changes, and the UI reflects the update, stop the loading state
+    if (fileList.length > 0 || fileList.length === 0) {
+      setIsLoadingFiles(false);
+    }
+  }, [fileList]);
   return (
     <Fragment>
       <div className={`mb-5 flex w-full flex-col items-center`}>
