@@ -16,7 +16,7 @@ import {
 import { useFileContext } from "@/context/FileContext";
 import SortableImageCard from "./SortableImageCard";
 
-const SortableImageList = () => {
+const SortableImageList = ({ disabled }: { disabled: boolean }) => {
   const { fileList, setFileList } = useFileContext();
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -42,7 +42,7 @@ const SortableImageList = () => {
       onDragEnd={handleDragEnd}
       collisionDetection={closestCenter}
     >
-      <SortableContext items={fileList}>
+      <SortableContext items={fileList} disabled={disabled}>
         {fileList.map((fileObj) => (
           <SortableImageCard key={fileObj.id} fileObject={fileObj} />
         ))}

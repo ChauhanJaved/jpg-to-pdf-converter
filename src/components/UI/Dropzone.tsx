@@ -7,8 +7,7 @@ import { useFileContext } from "@/context/FileContext";
 import { Download, Loader2, Plus, Settings, X } from "lucide-react";
 import SectionHeader from "./SectionHeader";
 import { useToast } from "@/hooks/use-toast";
-import { Fragment, useEffect, useState } from "react";
-import { Dialog, DialogContent } from "@/components/UI/dialog";
+import { Fragment, useLayoutEffect, useState } from "react";
 
 const Dropzone = () => {
   const { toast } = useToast();
@@ -23,10 +22,6 @@ const Dropzone = () => {
     setIsLoadingFiles(false);
   };
   const onDrop = async (acceptedFiles: File[]) => {
-    // Filter out duplicate files
-
-    // Simulate processing delay for testing purposes (remove in production)
-
     const filteredFiles = acceptedFiles.filter(
       (newFile) =>
         !fileList.some(
@@ -36,7 +31,6 @@ const Dropzone = () => {
             existingFile.file.lastModified === newFile.lastModified,
         ),
     );
-
     // Add only the new, non-duplicate files to the list
     if (filteredFiles.length > 0) {
       setFileList((prevFileList) => [
@@ -47,6 +41,7 @@ const Dropzone = () => {
         })),
       ]);
     } else {
+      setIsLoadingFiles(false);
       toast({
         title: "File(s) already added !",
       });
@@ -65,6 +60,7 @@ const Dropzone = () => {
     accept: { "image/jpeg": [".jpg", ".jpeg"] }, // Only allow JPG files
     multiple: true, // Allow multiple file selection
     onError,
+    disabled: isConvertingFiles || isLoadingFiles,
   });
 
   const handleConversion = async () => {
@@ -75,13 +71,14 @@ const Dropzone = () => {
   // When the file picker is opened, show a pre-loading state
   const handleOpenFilePicker = () => {
     setIsLoadingFiles(true); // Start loader when the file picker is opened
+
     open(); // Trigger file picker to open
   };
-  // Use `useEffect` to monitor fileList changes
-  useEffect(() => {
-    // When `fileList` changes, and the UI reflects the update, stop the loading state
-    if (fileList.length > 0 || fileList.length === 0) {
-      setIsLoadingFiles(false);
+
+  useLayoutEffect(() => {
+    if (fileList.length > 0) {
+      // The DOM has been updated, and the browser is about to repaint
+      setIsLoadingFiles(false); // Set loading state to false here
     }
   }, [fileList]);
   return (
@@ -99,8 +96,9 @@ const Dropzone = () => {
           <div className="sticky top-[82px] z-[10] m-auto w-full bg-white py-3">
             <div className="container m-auto flex w-full flex-wrap items-center justify-center rounded-md border bg-white py-3 pr-3 shadow-sm sm:justify-end xl:max-w-screen-xl">
               <Button
+                disabled={isConvertingFiles || isLoadingFiles}
                 onClick={handleOpenFilePicker}
-                className="m-2 w-[114px] lg:w-[140px] lg:text-lg"
+                className={`m-2 w-[114px] lg:w-[140px] lg:text-lg`}
               >
                 {isLoadingFiles ? (
                   <Loader2
@@ -112,6 +110,7 @@ const Dropzone = () => {
                 Add Files
               </Button>
               <Button
+                disabled={isConvertingFiles || isLoadingFiles}
                 onClick={handleClearList}
                 className="m-2 w-[114px] lg:w-[140px] lg:text-lg"
               >
@@ -119,17 +118,22 @@ const Dropzone = () => {
                 Clear All
               </Button>
               <Button
-                onClick={() => setIsConvertingFiles(true)}
+                disabled={isConvertingFiles || isLoadingFiles}
                 className="m-2 w-[114px] lg:w-[140px] lg:text-lg"
               >
                 <Settings className="mr-2 h-4 w-4 lg:h-6 lg:w-6" />
                 Settings
               </Button>
               <Button
+                disabled={isConvertingFiles || isLoadingFiles}
                 onClick={handleConversion}
                 className="m-2 w-[114px] lg:w-[140px] lg:text-lg"
               >
-                <Download className="mr-2 h-4 w-4 lg:h-6 lg:w-6" />
+                {isConvertingFiles ? (
+                  <Loader2 className="mr-2 h-4 w-4 lg:h-6 lg:w-6" />
+                ) : (
+                  <Download className="mr-2 h-4 w-4 lg:h-6 lg:w-6" />
+                )}
                 Convert
               </Button>
             </div>
@@ -144,10 +148,13 @@ const Dropzone = () => {
               className={`flex min-h-[150px] w-full flex-wrap items-center justify-center rounded-lg border text-center shadow-sm transition sm:min-h-[300px] ${isDragActive && "border-blue-500 bg-blue-50"}`}
             >
               {fileList.length > 0 ? (
-                <SortableImageList />
+                <SortableImageList
+                  disabled={isLoadingFiles || isConvertingFiles}
+                />
               ) : (
                 <div>
                   <Button
+                    disabled={isConvertingFiles || isLoadingFiles}
                     onClick={handleOpenFilePicker}
                     className="m-2 w-[114px] lg:w-[140px] lg:text-lg"
                   >
@@ -168,14 +175,14 @@ const Dropzone = () => {
         </div>
       </div>
       {/* Converting files */}
-      <Dialog open={isConvertingFiles}>
+      {/* <Dialog open={isConvertingFiles}>
         <DialogContent className="flex items-center justify-center">
           <div className="flex items-center">
             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
             Converting your files...
           </div>
         </DialogContent>
-      </Dialog>
+      </Dialog> */}
       {/* Loading files */}
       {/* <Dialog open={isLoadingFiles}>
         <DialogContent className="flex items-center justify-center">
