@@ -1,11 +1,12 @@
 //Internal imports
 import { roboto } from "@/lib/font";
 import "./globals.css";
-import Footer from "@/components/footer";
 import Header from "@/components/header";
 import { companyName, copyrightYear } from "@/data/website-data";
 import type { Metadata } from "next";
 import { Toaster } from "@/components/ui/toaster";
+import Footer from "@/components/footer";
+import ScrollTop from "@/components/ui/scroll-top";
 
 export const metadata: Metadata = {
   title: "JPG to PDF Converter",
@@ -25,6 +26,7 @@ export default function RootLayout({
         <Header />
         {children}
         <Footer companyName={companyName} copyrightYear={copyrightYear} />
+        <ScrollTop />
         <Toaster />
       </body>
     </html>
