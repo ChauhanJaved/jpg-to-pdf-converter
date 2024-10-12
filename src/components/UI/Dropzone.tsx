@@ -16,12 +16,16 @@ const Dropzone = () => {
   const [isConvertingFiles, setIsConvertingFiles] = useState(false);
   const [isLoadingFiles, setIsLoadingFiles] = useState(false);
 
+  const onFileDialogCancel = () => {
+    setIsLoadingFiles(false);
+  };
+  const onError = () => {
+    setIsLoadingFiles(false);
+  };
   const onDrop = async (acceptedFiles: File[]) => {
     // Filter out duplicate files
-    setIsLoadingFiles(true);
 
     // Simulate processing delay for testing purposes (remove in production)
-    await new Promise((resolve) => setTimeout(resolve, 1000));
 
     const filteredFiles = acceptedFiles.filter(
       (newFile) =>
@@ -56,16 +60,23 @@ const Dropzone = () => {
   // Set up the dropzone, restricting to JPG files only
   const { getRootProps, getInputProps, isDragActive, open } = useDropzone({
     onDrop,
+    onFileDialogCancel,
     noClick: true,
     noKeyboard: true,
     accept: { "image/jpeg": [".jpg", ".jpeg"] }, // Only allow JPG files
     multiple: true, // Allow multiple file selection
+    onError,
   });
 
   const handleConversion = async () => {
     setIsConvertingFiles(true); // Show dialog and lock screen
     await handleConvertToPdf(fileList); // Perform conversion
     setIsConvertingFiles(false); // Hide dialog when done
+  };
+  // When the file picker is opened, show a pre-loading state
+  const handleOpenFilePicker = () => {
+    setIsLoadingFiles(true); // Start loader when the file picker is opened
+    open(); // Trigger file picker to open
   };
   return (
     <Fragment>
@@ -82,10 +93,16 @@ const Dropzone = () => {
           <div className="sticky top-[82px] z-[10] m-auto w-full bg-white py-3">
             <div className="container m-auto flex w-full flex-wrap items-center justify-center rounded-md border bg-white py-3 pr-3 shadow-sm sm:justify-end xl:max-w-screen-xl">
               <Button
-                onClick={open}
+                onClick={handleOpenFilePicker}
                 className="m-2 w-[114px] lg:w-[140px] lg:text-lg"
               >
-                <Plus className="mr-2 h-4 w-4 lg:h-6 lg:w-6" />
+                {isLoadingFiles ? (
+                  <Loader2
+                    className={`mr-2 h-4 w-4 animate-spin lg:h-6 lg:w-6`}
+                  />
+                ) : (
+                  <Plus className={`mr-2 h-4 w-4 lg:h-6 lg:w-6`} />
+                )}
                 Add Files
               </Button>
               <Button
@@ -125,10 +142,16 @@ const Dropzone = () => {
               ) : (
                 <div>
                   <Button
-                    onClick={open}
+                    onClick={handleOpenFilePicker}
                     className="m-2 w-[114px] lg:w-[140px] lg:text-lg"
                   >
-                    <Plus className="mr-2 h-4 w-4 lg:h-6 lg:w-6" />
+                    {isLoadingFiles ? (
+                      <Loader2
+                        className={`mr-2 h-4 w-4 animate-spin lg:h-6 lg:w-6`}
+                      />
+                    ) : (
+                      <Plus className={`mr-2 h-4 w-4 lg:h-6 lg:w-6`} />
+                    )}
                     Add Files
                   </Button>
                   <p className="text-base text-black-500">or drop your files</p>
@@ -148,14 +171,14 @@ const Dropzone = () => {
         </DialogContent>
       </Dialog>
       {/* Loading files */}
-      <Dialog open={isLoadingFiles}>
+      {/* <Dialog open={isLoadingFiles}>
         <DialogContent className="flex items-center justify-center">
           <div className="flex items-center">
             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
             Loading your files...
           </div>
         </DialogContent>
-      </Dialog>
+      </Dialog> */}
     </Fragment>
   );
 };
