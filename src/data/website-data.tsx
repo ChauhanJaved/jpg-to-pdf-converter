@@ -2445,3 +2445,42 @@ export const portfolioItems: portfolioItem[] = [
     },
   },
 ];
+
+export const licenseOptions = [
+  {
+    licenseType: "One Computer License",
+    price: "$24.95 USD",
+    paymentLink:
+      "https://frameworkteam.onfastspring.com/jpg-to-pdf-converter-one-computer-license",
+  },
+  {
+    licenseType: "Two Computers License",
+    price: "$39.95 USD",
+    paymentLink:
+      "https://frameworkteam.onfastspring.com/jpg-to-pdf-converter-two-computers-license",
+  },
+  {
+    licenseType: "Three Computers License",
+    price: "$44.95 USD",
+    paymentLink:
+      "https://frameworkteam.onfastspring.com/jpg-to-pdf-converter-three-computers-license",
+  },
+  {
+    licenseType: "Five Computers License",
+    price: "$64.95 USD",
+    paymentLink:
+      "https://frameworkteam.onfastspring.com/jpg-to-pdf-converter-five-computers-license",
+  },
+  {
+    licenseType: "Ten Computers License",
+    price: "$109.95 USD",
+    paymentLink:
+      "https://frameworkteam.onfastspring.com/jpg-to-pdf-converter-ten-computers-license",
+  },
+  {
+    licenseType: "Unlimited Computers License",
+    price: "$224.95 USD",
+    paymentLink:
+      "https://frameworkteam.onfastspring.com/jpg-to-pdf-converter-unlimited-computers-license",
+  },
+];
