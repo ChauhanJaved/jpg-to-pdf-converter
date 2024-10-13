@@ -4,9 +4,9 @@ import "./globals.css";
 import Header from "@/components/header";
 import { companyName, copyrightYear } from "@/data/website-data";
 import type { Metadata } from "next";
-import { Toaster } from "@/components/UI/toaster";
+import { Toaster } from "@/components/ui/toaster";
 import Footer from "@/components/footer";
-import ScrollTop from "@/components/UI/scroll-top";
+import ScrollTop from "@/components/ui/scroll-top";
 
 export const metadata: Metadata = {
   title: "JPG to PDF Converter",

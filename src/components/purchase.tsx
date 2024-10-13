@@ -5,7 +5,7 @@ import {
   ProductIDs,
 } from "@/data/website-data";
 import React from "react";
-import SectionHeader from "./UI/section-header";
+import SectionHeader from "./ui/section-header";
 import { ShoppingCart } from "lucide-react";
 import Link from "next/link";
 

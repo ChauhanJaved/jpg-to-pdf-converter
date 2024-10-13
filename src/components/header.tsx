@@ -6,7 +6,7 @@ import classNames from "classnames";
 
 //Internal imports
 import { montserrat } from "@/lib/font";
-import HeroIcons, { IconNames } from "./UI/hero-icons";
+import HeroIcons, { IconNames } from "./ui/hero-icons";
 import {
   headerCompanyName,
   HeaderNavItems,

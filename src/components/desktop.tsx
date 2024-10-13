@@ -4,11 +4,11 @@ import {
   ProductIDs,
 } from "@/data/website-data";
 import React from "react";
-import SectionHeader from "./UI/section-header";
-import { Button } from "./UI/button";
+import SectionHeader from "./ui/section-header";
+import { Button } from "./ui/button";
 import { Download } from "lucide-react";
 import Link from "next/link";
-import HeroIcons, { IconNames } from "./UI/hero-icons";
+import HeroIcons, { IconNames } from "./ui/hero-icons";
 import { montserrat } from "../lib/font";
 import Image from "next/image";
 

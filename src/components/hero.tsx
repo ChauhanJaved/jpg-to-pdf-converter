@@ -1,7 +1,7 @@
 "use client";
 
 import { HeaderNavItems } from "@/data/website-data";
-import Dropzone from "./UI/drop-zone";
+import Dropzone from "./ui/drop-zone";
 
 import { FileProvider } from "@/context/file-context";
 
