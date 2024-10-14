@@ -9,6 +9,7 @@ export const email: string = "support@frameworkteam.com";
 export const copyrightYear: string = new Date().getFullYear().toString();
 export enum HeaderNavItems {
   Home = "home",
+  Desktop = "desktop",
   Purchase = "Purchase",
   Contact = "contact",
 }
