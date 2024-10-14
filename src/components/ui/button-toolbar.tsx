@@ -23,12 +23,8 @@ export default function ButtonToolbar({
         onClick={handleOnClick}
         className={`${className}`}
       >
-        {Icon && (
-          <Icon className="h-5 w-5 sm:mr-2 sm:h-6 sm:w-6 md:h-6 md:w-6" />
-        )}
-        <span className="hidden sm:block sm:text-base md:text-lg">
-          {caption}
-        </span>{" "}
+        {Icon && <Icon className="h-6 w-6 sm:mr-2" />}
+        <span className="hidden text-base sm:block">{caption}</span>{" "}
         {/* Use the caption prop here */}
       </Button>
       <span className="mt-1 text-xs sm:hidden">{caption}</span>
