@@ -4,7 +4,7 @@ import { handleConvertToPdf } from "@/lib/pdf-lib";
 import { Button } from "./button";
 import SortableImageList from "./sortable-image-list";
 import { useFileContext } from "@/context/file-context";
-import { Download, Loader2, Plus, Settings, X } from "lucide-react";
+import { Download, Plus, Settings, X } from "lucide-react";
 import SectionHeader from "./section-header";
 import { useToast } from "@/hooks/use-toast";
 import { Fragment, useLayoutEffect, useState } from "react";
@@ -139,16 +139,9 @@ const Dropzone = () => {
                   <Button
                     disabled={isConvertingFiles || isLoadingFiles}
                     onClick={handleOpenFilePicker}
-                    className="m-2 w-[114px] lg:w-[140px] lg:text-lg"
                   >
-                    {isLoadingFiles ? (
-                      <Loader2
-                        className={`mr-2 h-4 w-4 animate-spin lg:h-6 lg:w-6`}
-                      />
-                    ) : (
-                      <Plus className={`mr-2 h-4 w-4 lg:h-6 lg:w-6`} />
-                    )}
-                    Add Files
+                    <Plus className={`mr-2 h-5 w-5 sm:h-6 sm:w-6`} />
+                    <span className="sm:text-base">Add Files</span>
                   </Button>
                   <p className="text-base text-black-500">or drop your files</p>
                 </div>

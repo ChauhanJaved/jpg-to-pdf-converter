@@ -9,7 +9,6 @@ export const email: string = "support@frameworkteam.com";
 export const copyrightYear: string = new Date().getFullYear().toString();
 export enum HeaderNavItems {
   Home = "home",
-  Desktop = "Desktop",
   Purchase = "Purchase",
   Contact = "contact",
 }
@@ -19,8 +18,6 @@ export const heroDesc: string =
   "We are team of talented professionals creating feature-rich Progressive Web Apps and Windows Desktop Applications.";
 export const headerNavItems: string[] = [
   HeaderNavItems.Home,
-  HeaderNavItems.Desktop,
-  HeaderNavItems.Purchase,
   HeaderNavItems.Contact,
 ];
 export const indexMetadata: Metadata = {
