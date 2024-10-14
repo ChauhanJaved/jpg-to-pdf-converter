@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState } from "react";
 import { Button } from "./button";
-import { Grip, X } from "lucide-react";
+import { Grip, RotateCw, X } from "lucide-react";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { useFileContext } from "@/context/file-context";
@@ -51,6 +51,7 @@ const SortableImageCard = React.memo(function SortableImageCard({
               src={imageUrl}
               alt={`Thumbnail for ${file.name}`}
               className="object-contain"
+              loading="lazy"
             />
           ) : (
             <p>Loading...</p>
@@ -59,25 +60,35 @@ const SortableImageCard = React.memo(function SortableImageCard({
           <p className="absolute left-1 top-1 flex h-[34px] w-[34px] touch-none items-center justify-center rounded-full bg-black text-sm text-white opacity-70">
             {index + 1}
           </p>
-          <Button
-            {...listeners}
-            {...attributes}
-            variant="outline"
-            size="icon"
-            className="absolute right-1 top-1 touch-none"
-            aria-label="Reorder Image"
-          >
-            <Grip className="h-4 w-4" />
-          </Button>
-          <Button
-            onClick={() => removeFile(id)}
-            size="icon"
-            variant="outline"
-            className="absolute right-[calc(45px)] top-1"
-            aria-label="Remove Image"
-          >
-            <X className="h-4 w-4" />
-          </Button>
+          <div className="absolute right-1 top-1 flex items-center justify-center space-x-1">
+            <Button
+              size="icon"
+              variant="outline"
+              className=""
+              aria-label="Rotate CW"
+            >
+              <RotateCw className="h-4 w-4" />
+            </Button>
+            <Button
+              onClick={() => removeFile(id)}
+              size="icon"
+              variant="outline"
+              className=" "
+              aria-label="Remove Image"
+            >
+              <X className="h-4 w-4" />
+            </Button>
+            <Button
+              {...listeners}
+              {...attributes}
+              variant="outline"
+              size="icon"
+              className="touch-none"
+              aria-label="Reorder Image"
+            >
+              <Grip className="h-4 w-4" />
+            </Button>
+          </div>
           <figcaption className="absolute bottom-0 left-1/2 w-full -translate-x-1/2 transform bg-black p-2 text-sm text-white opacity-70">
             {file.name}
           </figcaption>
