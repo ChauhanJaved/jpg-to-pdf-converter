@@ -4,11 +4,12 @@ import { handleConvertToPdf } from "@/lib/pdf-lib";
 import { Button } from "./button";
 import SortableImageList from "./sortable-image-list";
 import { useFileContext } from "@/context/file-context";
-import { Download, Plus, Settings, X } from "lucide-react";
+import { Download, Plus, X } from "lucide-react";
 import SectionHeader from "./section-header";
 import { useToast } from "@/hooks/use-toast";
 import { Fragment, useLayoutEffect, useState } from "react";
 import ButtonToolbar from "./button-toolbar";
+import SettingsSheet from "./settings-sheet";
 
 const Dropzone = () => {
   const { toast } = useToast();
@@ -108,11 +109,12 @@ const Dropzone = () => {
                 handleOnClick={handleClearList}
                 icon={X}
               ></ButtonToolbar>
-              <ButtonToolbar
+              <SettingsSheet disabled={isConvertingFiles || isLoadingFiles} />
+              {/* <ButtonToolbar
                 disabled={isConvertingFiles || isLoadingFiles}
                 caption="Settings"
                 icon={Settings}
-              ></ButtonToolbar>
+              ></ButtonToolbar> */}
               <ButtonToolbar
                 disabled={isConvertingFiles || isLoadingFiles}
                 caption="Convert"

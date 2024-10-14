@@ -20,8 +20,8 @@ export default function ButtonToolbar({
     <div className="flex flex-col items-center justify-center">
       <Button
         disabled={disabled}
-        onClick={handleOnClick}
         className={`${className}`}
+        onClick={handleOnClick}
       >
         {Icon && <Icon className="h-6 w-6 sm:mr-2" />}
         <span className="hidden text-base sm:block">{caption}</span>{" "}
