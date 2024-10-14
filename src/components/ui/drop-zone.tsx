@@ -144,6 +144,11 @@ const Dropzone = () => {
                     <span className="sm:text-base">Add Files</span>
                   </Button>
                   <p className="text-base text-black-500">or drop your files</p>
+                  <p className="mt-2 px-3 text-sm text-gray-500">
+                    Your privacy is our priority: Files are securely processed
+                    on your device and never leave your device, ensuring
+                    complete control and confidentiality.
+                  </p>
                 </div>
               )}
             </div>
