@@ -8,6 +8,7 @@ import { Download, Loader2, Plus, Settings, X } from "lucide-react";
 import SectionHeader from "./section-header";
 import { useToast } from "@/hooks/use-toast";
 import { Fragment, useLayoutEffect, useState } from "react";
+import ButtonToolbar from "./button-toolbar";
 
 const Dropzone = () => {
   const { toast } = useToast();
@@ -94,48 +95,30 @@ const Dropzone = () => {
         {/* Toolbar */}
         {fileList.length > 0 && (
           <div className="sticky top-[82px] z-[10] m-auto w-full bg-white py-3">
-            <div className="container m-auto flex w-full flex-wrap items-center justify-center rounded-md border bg-white py-3 pr-3 shadow-sm sm:justify-end xl:max-w-screen-xl">
-              <Button
+            <div className="container m-auto flex w-full flex-wrap items-center justify-end space-x-3 rounded-md border bg-white py-3 pr-3 shadow-sm sm:justify-end xl:max-w-screen-xl">
+              <ButtonToolbar
                 disabled={isConvertingFiles || isLoadingFiles}
-                onClick={handleOpenFilePicker}
-                className={`m-2 w-[114px] lg:w-[140px] lg:text-lg`}
-              >
-                {isLoadingFiles ? (
-                  <Loader2
-                    className={`mr-2 h-4 w-4 animate-spin lg:h-6 lg:w-6`}
-                  />
-                ) : (
-                  <Plus className={`mr-2 h-4 w-4 lg:h-6 lg:w-6`} />
-                )}
-                Add Files
-              </Button>
-              <Button
+                caption="Add Files"
+                handleOnClick={handleOpenFilePicker}
+                icon={Plus}
+              ></ButtonToolbar>
+              <ButtonToolbar
                 disabled={isConvertingFiles || isLoadingFiles}
-                onClick={handleClearList}
-                className="m-2 w-[114px] lg:w-[140px] lg:text-lg"
-              >
-                <X className="mr-2 h-4 w-4 lg:h-6 lg:w-6" />
-                Clear All
-              </Button>
-              <Button
+                caption="Clear All"
+                handleOnClick={handleClearList}
+                icon={X}
+              ></ButtonToolbar>
+              <ButtonToolbar
                 disabled={isConvertingFiles || isLoadingFiles}
-                className="m-2 w-[114px] lg:w-[140px] lg:text-lg"
-              >
-                <Settings className="mr-2 h-4 w-4 lg:h-6 lg:w-6" />
-                Settings
-              </Button>
-              <Button
+                caption="Settings"
+                icon={Settings}
+              ></ButtonToolbar>
+              <ButtonToolbar
                 disabled={isConvertingFiles || isLoadingFiles}
-                onClick={handleConversion}
-                className="m-2 w-[114px] lg:w-[140px] lg:text-lg"
-              >
-                {isConvertingFiles ? (
-                  <Loader2 className="mr-2 h-4 w-4 lg:h-6 lg:w-6" />
-                ) : (
-                  <Download className="mr-2 h-4 w-4 lg:h-6 lg:w-6" />
-                )}
-                Convert
-              </Button>
+                caption="Convert"
+                handleOnClick={handleConversion}
+                icon={Download}
+              ></ButtonToolbar>
             </div>
           </div>
         )}
@@ -145,7 +128,7 @@ const Dropzone = () => {
           <div {...getRootProps()}>
             <input {...getInputProps()} />
             <div
-              className={`flex min-h-[150px] w-full flex-wrap items-center justify-center rounded-lg border text-center shadow-sm transition sm:min-h-[300px] ${isDragActive && "border-blue-500 bg-blue-50"}`}
+              className={`flex min-h-[200px] w-full flex-wrap items-center justify-center rounded-lg border text-center shadow-sm transition sm:min-h-[300px] ${isDragActive && "border-blue-500 bg-blue-50"}`}
             >
               {fileList.length > 0 ? (
                 <SortableImageList
