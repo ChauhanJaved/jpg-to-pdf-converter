@@ -25,6 +25,8 @@ import { PageOrientationEnum } from "@/lib/pdf-lib";
 
 interface SettingsSheetProps {
   disabled?: boolean;
+  orientation: PageOrientationEnum;
+  onOrientationChange: (orientation: PageOrientationEnum) => void;
 }
 
 function capitalizeFirstLetter(word: string) {
@@ -33,15 +35,14 @@ function capitalizeFirstLetter(word: string) {
 
 export default function SettingsSheet({
   disabled = false,
+  orientation,
+  onOrientationChange,
 }: SettingsSheetProps) {
   const [open, setOpen] = useState(false);
   const openSheet = () => {
     setOpen(true);
   };
-  const [orientation, setOrientation] = useState(PageOrientationEnum.landscape);
-  const handleOrientationChange = (value: PageOrientationEnum) => {
-    setOrientation(value);
-  };
+
   return (
     <>
       <ButtonToolbar
@@ -55,13 +56,10 @@ export default function SettingsSheet({
           <SheetHeader>
             <SheetTitle>Settings</SheetTitle>
           </SheetHeader>
-          <div className="mt-3 flex flex-col border px-3 py-4 shadow-sm">
+          <div className="mt-3 flex flex-col rounded border px-3 py-4 shadow-sm">
             <div className="flex flex-col space-y-3">
               <Label htmlFor="orientation">Page Orientation</Label>
-              <Select
-                value={orientation}
-                onValueChange={handleOrientationChange}
-              >
+              <Select value={orientation} onValueChange={onOrientationChange}>
                 <SelectTrigger className="w-[200px]">
                   <SelectValue placeholder="Select Page orientation" />
                 </SelectTrigger>
