@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 import {
   Sheet,
   SheetClose,
   SheetContent,
-  SheetDescription,
   SheetFooter,
   SheetHeader,
   SheetTitle,
@@ -15,8 +13,22 @@ import {
 import ButtonToolbar from "./button-toolbar";
 import { Settings } from "lucide-react";
 
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { PageOrientationEnum } from "@/lib/pdf-lib";
+
 interface SettingsSheetProps {
   disabled?: boolean;
+}
+
+function capitalizeFirstLetter(word: string) {
+  return word.charAt(0).toUpperCase() + word.slice(1);
 }
 
 export default function SettingsSheet({
@@ -25,6 +37,10 @@ export default function SettingsSheet({
   const [open, setOpen] = useState(false);
   const openSheet = () => {
     setOpen(true);
+  };
+  const [orientation, setOrientation] = useState(PageOrientationEnum.landscape);
+  const handleOrientationChange = (value: PageOrientationEnum) => {
+    setOrientation(value);
   };
   return (
     <>
@@ -37,28 +53,34 @@ export default function SettingsSheet({
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetContent>
           <SheetHeader>
-            <SheetTitle>Edit profile</SheetTitle>
-            <SheetDescription>
-              Make changes to your profile here. Click save when done.
-            </SheetDescription>
+            <SheetTitle>Settings</SheetTitle>
           </SheetHeader>
-          <div className="grid gap-4 py-4">
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="name" className="text-right">
-                Name
-              </Label>
-              <Input id="name" value="Pedro Duarte" className="col-span-3" />
-            </div>
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="username" className="text-right">
-                Username
-              </Label>
-              <Input id="username" value="@peduarte" className="col-span-3" />
+          <div className="mt-3 flex flex-col border px-3 py-4 shadow-sm">
+            <div className="flex flex-col space-y-3">
+              <Label htmlFor="orientation">Page Orientation</Label>
+              <Select
+                value={orientation}
+                onValueChange={handleOrientationChange}
+              >
+                <SelectTrigger className="w-[200px]">
+                  <SelectValue placeholder="Select Page orientation" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    <SelectItem value={PageOrientationEnum.portrait}>
+                      {capitalizeFirstLetter(PageOrientationEnum.portrait)}
+                    </SelectItem>
+                    <SelectItem value={PageOrientationEnum.landscape}>
+                      {capitalizeFirstLetter(PageOrientationEnum.landscape)}
+                    </SelectItem>
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
             </div>
           </div>
-          <SheetFooter>
+          <SheetFooter className="mt-3">
             <SheetClose asChild>
-              <Button type="submit">Save changes</Button>
+              <Button>OK</Button>
             </SheetClose>
           </SheetFooter>
         </SheetContent>
