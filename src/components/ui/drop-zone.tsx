@@ -129,7 +129,7 @@ const Dropzone = () => {
                 icon={X}
               ></ButtonToolbar>
               <SettingsSheet
-                disabled={false}
+                disabled={isConvertingFiles || isLoadingFiles}
                 orientation={orientation}
                 pageSize={pageSize}
                 margin={margin}
