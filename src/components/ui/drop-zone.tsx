@@ -21,10 +21,20 @@ const Dropzone = () => {
   const { fileList, setFileList } = useFileContext();
   const [isConvertingFiles, setIsConvertingFiles] = useState(false);
   const [isLoadingFiles, setIsLoadingFiles] = useState(false);
+  //Conversion settings Start--------
   const [orientation, setOrientation] = useState(PageOrientationEnum.portrait);
+  const [pageSize, setPageSize] = useState(PageSizeEnum.A4);
+  const [margin, setMargin] = useState(MarginEnum.None);
   const handleOrientationChange = (value: PageOrientationEnum) => {
     setOrientation(value);
   };
+  const handlePageSizeChange = (newPageSize: PageSizeEnum) => {
+    setPageSize(newPageSize);
+  };
+  const handleMarginChange = (newMargin: MarginEnum) => {
+    setMargin(newMargin);
+  };
+  //Conversion settings End--------
 
   const onFileDialogCancel = () => {
     setIsLoadingFiles(false);
@@ -76,12 +86,7 @@ const Dropzone = () => {
 
   const handleConversion = async () => {
     setIsConvertingFiles(true); // Show dialog and lock screen
-    await handleConvertToPdf(
-      fileList,
-      orientation,
-      PageSizeEnum.A4,
-      MarginEnum.Small,
-    ); // Perform conversion
+    await handleConvertToPdf(fileList, orientation, pageSize, margin); // Perform conversion
     setIsConvertingFiles(false); // Hide dialog when done
   };
   // When the file picker is opened, show a pre-loading state
@@ -124,9 +129,13 @@ const Dropzone = () => {
                 icon={X}
               ></ButtonToolbar>
               <SettingsSheet
-                disabled={isConvertingFiles || isLoadingFiles}
+                disabled={false}
                 orientation={orientation}
+                pageSize={pageSize}
+                margin={margin}
                 onOrientationChange={handleOrientationChange}
+                onPageSizeChange={handlePageSizeChange}
+                onMarginChange={handleMarginChange}
               />
               <ButtonToolbar
                 disabled={isConvertingFiles || isLoadingFiles}
