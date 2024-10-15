@@ -1,6 +1,11 @@
 "use client";
 import { useDropzone } from "react-dropzone";
-import { handleConvertToPdf } from "@/lib/pdf-lib";
+import {
+  handleConvertToPdf,
+  MarginEnum,
+  PageOrientationEnum,
+  PageSizeEnum,
+} from "@/lib/pdf-lib";
 import { Button } from "./button";
 import SortableImageList from "./sortable-image-list";
 import { useFileContext } from "@/context/file-context";
@@ -67,7 +72,12 @@ const Dropzone = () => {
 
   const handleConversion = async () => {
     setIsConvertingFiles(true); // Show dialog and lock screen
-    await handleConvertToPdf(fileList); // Perform conversion
+    await handleConvertToPdf(
+      fileList,
+      PageOrientationEnum.landscape,
+      PageSizeEnum.Fit,
+      MarginEnum.Small,
+    ); // Perform conversion
     setIsConvertingFiles(false); // Hide dialog when done
   };
   // When the file picker is opened, show a pre-loading state
