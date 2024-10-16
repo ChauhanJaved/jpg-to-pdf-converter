@@ -1,5 +1,5 @@
 "use client";
-import { useDropzone } from "react-dropzone";
+import { useDropzone, FileRejection } from "react-dropzone";
 import {
   handleConvertToPdf,
   MarginEnum,
@@ -41,32 +41,97 @@ const Dropzone = () => {
   const onError = () => {
     setIsLoadingFiles(false);
   };
-  const onDrop = async (acceptedFiles: File[]) => {
-    const filteredFiles = acceptedFiles.filter(
-      (newFile) =>
-        !fileList.some(
+  const onDrop = async (
+    acceptedFiles: File[],
+    rejectedFiles: FileRejection[],
+  ) => {
+    try {
+      // Handle Unsupported Files with Detailed Errors
+      if (rejectedFiles.length > 0) {
+        const unsupportedFileMessages = rejectedFiles.map((fileRejection) => {
+          const reasons = fileRejection.errors.map((error) => error.message);
+          return `${fileRejection.file.name}: ${reasons.join(", ")}`;
+        });
+
+        toast({
+          title: "Unsupported file(s) detected!",
+          description: `The following files were rejected: ${unsupportedFileMessages.join(", ")}`,
+          variant: "destructive",
+        });
+      }
+
+      // Detect Duplicate Files
+      const duplicateFiles = acceptedFiles.filter((newFile) =>
+        fileList.some(
           (existingFile) =>
             existingFile.file.name === newFile.name &&
             existingFile.file.size === newFile.size &&
             existingFile.file.lastModified === newFile.lastModified,
         ),
-    );
-    // Add only the new, non-duplicate files to the list
-    if (filteredFiles.length > 0) {
-      setFileList((prevFileList) => [
-        ...prevFileList,
-        ...filteredFiles.map((file) => ({
-          file,
-          id: `${file.name}-${file.size}-${file.lastModified}`,
-        })),
-      ]);
-    } else {
+      );
+
+      if (duplicateFiles.length > 0) {
+        toast({
+          title: "Duplicate file(s) detected!",
+          description: `The following files are already in the list: ${duplicateFiles
+            .map((file) => file.name)
+            .join(", ")}`,
+          variant: "default",
+        });
+      }
+
+      // Filter out duplicate files from accepted files
+      const filteredFiles = acceptedFiles.filter(
+        (newFile) =>
+          !fileList.some(
+            (existingFile) =>
+              existingFile.file.name === newFile.name &&
+              existingFile.file.size === newFile.size &&
+              existingFile.file.lastModified === newFile.lastModified,
+          ),
+      );
+
+      // Add New Non-Duplicate Files to the List
+      if (filteredFiles.length > 0) {
+        setFileList((prevFileList) => [
+          ...prevFileList,
+          ...filteredFiles.map((file) => ({
+            file,
+            id: `${file.name}-${file.size}-${file.lastModified}`,
+          })),
+        ]);
+      }
+
+      // Stop Loading State Once All Files are Processed
       setIsLoadingFiles(false);
-      toast({
-        title: "File(s) already added !",
-      });
+
+      // If no new files were added
+      if (filteredFiles.length === 0 && duplicateFiles.length > 0) {
+        toast({
+          title: "No new files added!",
+          description:
+            "All selected files are either duplicates or unsupported.",
+        });
+      }
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        // Handle the error, accessing 'message' safely
+        toast({
+          title: "An unexpected error occurred!",
+          description: `${error.message} - Please try again.`,
+          variant: "destructive",
+        });
+      } else {
+        // Handle non-Error types (if applicable, but uncommon)
+        toast({
+          title: "An unexpected issue occurred!",
+          description: "Something went wrong, but it's not an Error object.",
+          variant: "destructive",
+        });
+      }
     }
   };
+
   const handleClearList = () => {
     setFileList([]);
     window.scrollTo({ top: 0 });
@@ -77,7 +142,9 @@ const Dropzone = () => {
     onFileDialogCancel,
     noClick: true,
     noKeyboard: true,
-    accept: { "image/jpeg": [".jpg", ".jpeg"] }, // Only allow JPG files
+    accept: {
+      "image/*": [".jpg", ".jpeg", ".png", ".gif", ".bmp", ".tiff", ".webp"],
+    }, // Allow all common image files
     multiple: true, // Allow multiple file selection
     onError,
     disabled: isConvertingFiles || isLoadingFiles,
@@ -164,13 +231,10 @@ const Dropzone = () => {
                     <Plus className={`mr-2 h-5 w-5 sm:h-6 sm:w-6`} />
                     <span className="sm:text-base">Add Files</span>
                   </Button> */}
-                  <p className="m-auto mt-2 px-3 text-sm text-gray-500 sm:w-3/4 sm:text-base md:w-3/5 md:text-lg lg:w-1/2">
+                  <p className="m-auto mt-2 px-3 text-base text-gray-500 sm:w-3/4 sm:text-base md:w-3/5 md:text-lg lg:w-1/2">
                     Click the <strong>Add Files</strong> button or{" "}
                     <strong>Drop</strong> your files here. Adjust your settings
                     as needed, then click <strong>Convert</strong> to begin.
-                    Rest assured, your privacy is our top priority. All files
-                    are processed securely on <strong>your device</strong> and
-                    never leave it, ensuring full control and confidentiality.
                   </p>
                 </div>
               )}
