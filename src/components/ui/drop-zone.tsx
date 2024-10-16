@@ -6,7 +6,6 @@ import {
   PageOrientationEnum,
   PageSizeEnum,
 } from "@/lib/pdf-lib";
-import { Button } from "./button";
 import SortableImageList from "./sortable-image-list";
 import { useFileContext } from "@/context/file-context";
 import { Download, Plus, X } from "lucide-react";
@@ -113,46 +112,44 @@ const Dropzone = () => {
           />
         )}
         {/* Toolbar */}
-        {fileList.length > 0 && (
-          <div className="sticky top-[82px] z-[8] m-auto w-full bg-white py-3">
-            <div className="container m-auto flex w-full flex-wrap items-center justify-end space-x-3 rounded-md border bg-white py-3 pr-3 shadow-sm sm:justify-end xl:max-w-screen-xl">
-              <ButtonToolbar
-                disabled={isConvertingFiles || isLoadingFiles}
-                caption="Add Files"
-                handleOnClick={handleOpenFilePicker}
-                icon={Plus}
-              ></ButtonToolbar>
-              <ButtonToolbar
-                disabled={isConvertingFiles || isLoadingFiles}
-                caption="Clear All"
-                handleOnClick={handleClearList}
-                icon={X}
-              ></ButtonToolbar>
-              <SettingsSheet
-                disabled={isConvertingFiles || isLoadingFiles}
-                orientation={orientation}
-                pageSize={pageSize}
-                margin={margin}
-                onOrientationChange={handleOrientationChange}
-                onPageSizeChange={handlePageSizeChange}
-                onMarginChange={handleMarginChange}
-              />
-              <ButtonToolbar
-                disabled={isConvertingFiles || isLoadingFiles}
-                caption="Convert"
-                handleOnClick={handleConversion}
-                icon={Download}
-              ></ButtonToolbar>
-            </div>
+        <div className="sticky top-[82px] z-[8] m-auto w-full bg-white py-3">
+          <div className="container m-auto flex w-full flex-wrap items-center justify-center space-x-3 rounded-md border bg-white py-3 pr-3 shadow-sm sm:justify-end xl:max-w-screen-xl">
+            <ButtonToolbar
+              disabled={isConvertingFiles || isLoadingFiles}
+              caption="Add Files"
+              handleOnClick={handleOpenFilePicker}
+              icon={Plus}
+            ></ButtonToolbar>
+            <ButtonToolbar
+              disabled={isConvertingFiles || isLoadingFiles}
+              caption="Clear All"
+              handleOnClick={handleClearList}
+              icon={X}
+            ></ButtonToolbar>
+            <SettingsSheet
+              disabled={isConvertingFiles || isLoadingFiles}
+              orientation={orientation}
+              pageSize={pageSize}
+              margin={margin}
+              onOrientationChange={handleOrientationChange}
+              onPageSizeChange={handlePageSizeChange}
+              onMarginChange={handleMarginChange}
+            />
+            <ButtonToolbar
+              disabled={isConvertingFiles || isLoadingFiles}
+              caption="Convert"
+              handleOnClick={handleConversion}
+              icon={Download}
+            ></ButtonToolbar>
           </div>
-        )}
+        </div>
 
         {/* Dropzone */}
         <div className="container w-full xl:max-w-screen-xl">
           <div {...getRootProps()}>
             <input {...getInputProps()} />
             <div
-              className={`flex min-h-[200px] w-full flex-wrap items-center justify-center rounded-lg border text-center shadow-sm transition sm:min-h-[300px] ${isDragActive && "border-blue-500 bg-blue-50"}`}
+              className={`flex min-h-[200px] w-full flex-wrap items-center justify-center rounded-lg border-2 border-dashed text-center transition sm:min-h-[300px] ${isDragActive && "border-primary bg-secondary"}`}
             >
               {fileList.length > 0 ? (
                 <SortableImageList
@@ -160,18 +157,20 @@ const Dropzone = () => {
                 />
               ) : (
                 <div>
-                  <Button
+                  {/* <Button
                     disabled={isConvertingFiles || isLoadingFiles}
                     onClick={handleOpenFilePicker}
                   >
                     <Plus className={`mr-2 h-5 w-5 sm:h-6 sm:w-6`} />
                     <span className="sm:text-base">Add Files</span>
-                  </Button>
-                  <p className="text-base text-black-500">or drop your files</p>
-                  <p className="m-auto mt-2 px-3 text-sm text-gray-500 sm:w-1/2">
-                    Your privacy is our priority: Files are securely processed
-                    on your device and never leave your device, ensuring
-                    complete control and confidentiality.
+                  </Button> */}
+                  <p className="m-auto mt-2 px-3 text-sm text-gray-500 sm:w-3/4 sm:text-base md:w-3/5 md:text-lg lg:w-1/2">
+                    Click the <strong>Add Files</strong> button or{" "}
+                    <strong>Drop</strong> your files here. Adjust your settings
+                    as needed, then click <strong>Convert</strong> to begin.
+                    Rest assured, your privacy is our top priority. All files
+                    are processed securely on <strong>your device</strong> and
+                    never leave it, ensuring full control and confidentiality.
                   </p>
                 </div>
               )}
