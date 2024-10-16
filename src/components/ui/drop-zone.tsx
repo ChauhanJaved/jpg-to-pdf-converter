@@ -107,7 +107,7 @@ const Dropzone = () => {
         {fileList.length === 0 && (
           <SectionHeader
             caption="JPG to PDF Converter"
-            className={`my-10`}
+            className={`mb-2 mt-10`}
             desc="Convert JPG images to PDF in seconds. Easily adjust orientation and margins."
           />
         )}
