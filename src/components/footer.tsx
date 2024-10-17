@@ -7,6 +7,7 @@ interface PropsFooter {
 }
 
 export default function Footer(props: PropsFooter) {
+  const currentDateTime = new Date().toLocaleString();
   return (
     <footer className="container mx-auto flex flex-col items-center border-t-[1px] border-black-200 px-2 py-8 text-center xl:max-w-screen-xl">
       <p>
@@ -30,6 +31,7 @@ export default function Footer(props: PropsFooter) {
         >
           Privacy Policy
         </Link>
+        <p>{currentDateTime}</p>
       </div>
     </footer>
   );
