@@ -51,7 +51,6 @@ const SortableImageCard = React.memo(function SortableImageCard({
               src={imageUrl}
               alt={`Thumbnail for ${file.name}`}
               className="object-contain"
-              loading="lazy"
             />
           ) : (
             <p>Loading...</p>
