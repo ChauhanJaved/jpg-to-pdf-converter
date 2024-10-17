@@ -146,8 +146,6 @@ const Dropzone = () => {
   const { getRootProps, getInputProps, isDragActive, open } = useDropzone({
     onDrop,
     onFileDialogCancel,
-    noClick: true,
-    noKeyboard: true,
     accept: {
       "image/jpeg": [".jpg", ".jpeg"],
     },

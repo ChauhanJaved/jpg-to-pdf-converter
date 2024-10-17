@@ -21,8 +21,8 @@ const Hero = () => {
         <Dropzone />
         <div className="flex text-base sm:text-lg">
           <div className="flex space-x-2">
-            <div className="">
-              <CircleCheck className="h-6 w-6 text-primary" />
+            <div>
+              <CircleCheck className="h-6 w-6 text-primary sm:h-7 sm:w-7" />
             </div>
             <div className="flex flex-col">
               <strong>Local, Secure, and Private File Conversion</strong>
