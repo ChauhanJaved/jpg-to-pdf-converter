@@ -1,7 +1,7 @@
 "use client";
 
 import { HeaderNavItems } from "@/data/website-data";
-import DropzoneCustom from "./ui/drop-zone";
+import Dropzone from "./ui/drop-zone";
 
 import { FileProvider } from "@/context/file-context";
 import SectionHeader from "./ui/section-header";
@@ -18,7 +18,7 @@ const Hero = () => {
           caption="JPG to PDF Converter"
           className={`mb-2 mt-10`}
         />
-        <DropzoneCustom />
+        <Dropzone />
         <div className="flex text-base sm:text-lg">
           <div className="flex space-x-2">
             <div>
