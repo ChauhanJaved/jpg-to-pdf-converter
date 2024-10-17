@@ -13,7 +13,6 @@ import { Download, Plus, X } from "lucide-react";
 
 //Internal Imports----------
 import SortableImageList from "./sortable-image-list";
-import SectionHeader from "./section-header";
 import ButtonToolbar from "./button-toolbar";
 import SettingsSheet from "./settings-sheet";
 import { useFileContext } from "@/context/file-context";
@@ -163,13 +162,6 @@ const Dropzone = () => {
   return (
     <Fragment>
       <div className={`mb-5 flex w-full flex-col items-center`}>
-        {fileList.length === 0 && (
-          <SectionHeader
-            caption="JPG to PDF Converter"
-            className={`mb-2 mt-10`}
-            desc="Convert JPG images to PDF in seconds. Easily adjust orientation and margins."
-          />
-        )}
         {/* Toolbar */}
         <div className="sticky top-[82px] z-[8] m-auto w-full bg-white py-3">
           <div className="container m-auto flex w-full flex-wrap items-center justify-center space-x-3 rounded-md border bg-white py-3 pr-3 shadow-sm sm:justify-end xl:max-w-screen-xl">
@@ -208,7 +200,7 @@ const Dropzone = () => {
           <div {...getRootProps()}>
             <input {...getInputProps()} />
             <div
-              className={`flex min-h-[200px] w-full flex-wrap items-center justify-center rounded-lg border-2 border-dashed text-center transition sm:min-h-[300px] ${isDragActive && "border-primary bg-secondary"}`}
+              className={`flex min-h-[150px] w-full flex-wrap items-center justify-center rounded-lg border-2 border-dashed text-center transition sm:min-h-[300px] ${isDragActive && "border-primary bg-secondary"}`}
             >
               {fileList.length > 0 ? (
                 <SortableImageList
@@ -216,13 +208,6 @@ const Dropzone = () => {
                 />
               ) : (
                 <div>
-                  {/* <Button
-                    disabled={isConvertingFiles || isLoadingFiles}
-                    onClick={handleOpenFilePicker}
-                  >
-                    <Plus className={`mr-2 h-5 w-5 sm:h-6 sm:w-6`} />
-                    <span className="sm:text-base">Add Files</span>
-                  </Button> */}
                   <p className="m-auto mt-2 px-3 text-base text-gray-500 sm:w-3/4 sm:text-base md:w-3/5 md:text-lg lg:w-1/2">
                     Click the <strong>Add Files</strong> button or{" "}
                     <strong>Drop</strong> your files here. Adjust your settings
