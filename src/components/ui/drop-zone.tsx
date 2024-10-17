@@ -172,7 +172,9 @@ const Dropzone = () => {
               icon={Plus}
             ></ButtonToolbar>
             <ButtonToolbar
-              disabled={isConvertingFiles || isLoadingFiles}
+              disabled={
+                fileList.length === 0 || isConvertingFiles || isLoadingFiles
+              }
               caption="Clear All"
               handleOnClick={handleClearList}
               icon={X}
@@ -187,7 +189,9 @@ const Dropzone = () => {
               onMarginChange={handleMarginChange}
             />
             <ButtonToolbar
-              disabled={isConvertingFiles || isLoadingFiles}
+              disabled={
+                fileList.length === 0 || isConvertingFiles || isLoadingFiles
+              }
               caption="Convert"
               handleOnClick={handleConversion}
               icon={Download}
