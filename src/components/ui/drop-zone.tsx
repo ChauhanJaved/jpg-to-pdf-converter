@@ -1,4 +1,7 @@
 "use client";
+
+//External Imports----------
+import { Fragment, useState } from "react";
 import { useDropzone, FileRejection } from "react-dropzone";
 import {
   handleConvertToPdf,
@@ -6,21 +9,28 @@ import {
   PageOrientationEnum,
   PageSizeEnum,
 } from "@/lib/pdf-lib";
-import SortableImageList from "./sortable-image-list";
-import { useFileContext } from "@/context/file-context";
 import { Download, Plus, X } from "lucide-react";
+
+//Internal Imports----------
+import SortableImageList from "./sortable-image-list";
 import SectionHeader from "./section-header";
-import { useToast } from "@/hooks/use-toast";
-import { Fragment, useLayoutEffect, useState } from "react";
 import ButtonToolbar from "./button-toolbar";
 import SettingsSheet from "./settings-sheet";
+import { useFileContext } from "@/context/file-context";
+import { useToast } from "@/hooks/use-toast";
 
 const Dropzone = () => {
   const { toast } = useToast();
+
+  //fileList----------
   const { fileList, setFileList } = useFileContext();
+  const handleClearList = () => {
+    setFileList([]);
+    window.scrollTo({ top: 0 });
+  };
+
+  //Conversion--------
   const [isConvertingFiles, setIsConvertingFiles] = useState(false);
-  const [isLoadingFiles, setIsLoadingFiles] = useState(false);
-  //Conversion settings Start--------
   const [orientation, setOrientation] = useState(PageOrientationEnum.portrait);
   const [pageSize, setPageSize] = useState(PageSizeEnum.A4);
   const [margin, setMargin] = useState(MarginEnum.None);
@@ -33,8 +43,14 @@ const Dropzone = () => {
   const handleMarginChange = (newMargin: MarginEnum) => {
     setMargin(newMargin);
   };
-  //Conversion settings End--------
+  const handleConversion = async () => {
+    setIsConvertingFiles(true);
+    await handleConvertToPdf(fileList, orientation, pageSize, margin);
+    setIsConvertingFiles(false);
+  };
 
+  //DropZone----------
+  const [isLoadingFiles, setIsLoadingFiles] = useState(false);
   const onFileDialogCancel = () => {
     setIsLoadingFiles(false);
   };
@@ -52,11 +68,9 @@ const Dropzone = () => {
           const reasons = fileRejection.errors.map((error) => error.message);
           return `${fileRejection.file.name}: ${reasons.join(", ")}`;
         });
-
         toast({
           title: "Unsupported file(s) detected!",
           description: `The following files were rejected: ${unsupportedFileMessages.join(", ")}`,
-          variant: "destructive",
         });
       }
 
@@ -76,7 +90,6 @@ const Dropzone = () => {
           description: `The following files are already in the list: ${duplicateFiles
             .map((file) => file.name)
             .join(", ")}`,
-          variant: "default",
         });
       }
 
@@ -102,9 +115,6 @@ const Dropzone = () => {
         ]);
       }
 
-      // Stop Loading State Once All Files are Processed
-      setIsLoadingFiles(false);
-
       // If no new files were added
       if (filteredFiles.length === 0 && duplicateFiles.length > 0) {
         toast({
@@ -113,6 +123,8 @@ const Dropzone = () => {
             "All selected files are either duplicates or unsupported.",
         });
       }
+      // Stop Loading State Once All Files are Processed
+      setIsLoadingFiles(false);
     } catch (error: unknown) {
       if (error instanceof Error) {
         // Handle the error, accessing 'message' safely
@@ -129,45 +141,25 @@ const Dropzone = () => {
           variant: "destructive",
         });
       }
+      setIsLoadingFiles(false);
     }
   };
-
-  const handleClearList = () => {
-    setFileList([]);
-    window.scrollTo({ top: 0 });
-  };
-  // Set up the dropzone, restricting to JPG files only
   const { getRootProps, getInputProps, isDragActive, open } = useDropzone({
     onDrop,
     onFileDialogCancel,
     noClick: true,
     noKeyboard: true,
     accept: {
-      "image/*": [".jpg", ".jpeg", ".png", ".gif", ".bmp", ".tiff", ".webp"],
-    }, // Allow all common image files
-    multiple: true, // Allow multiple file selection
+      "image/jpeg": [".jpg", ".jpeg"],
+    },
+    multiple: true,
     onError,
     disabled: isConvertingFiles || isLoadingFiles,
   });
-
-  const handleConversion = async () => {
-    setIsConvertingFiles(true); // Show dialog and lock screen
-    await handleConvertToPdf(fileList, orientation, pageSize, margin); // Perform conversion
-    setIsConvertingFiles(false); // Hide dialog when done
-  };
-  // When the file picker is opened, show a pre-loading state
   const handleOpenFilePicker = () => {
-    setIsLoadingFiles(true); // Start loader when the file picker is opened
-
-    open(); // Trigger file picker to open
+    setIsLoadingFiles(true);
+    open();
   };
-
-  useLayoutEffect(() => {
-    if (fileList.length > 0) {
-      // The DOM has been updated, and the browser is about to repaint
-      setIsLoadingFiles(false); // Set loading state to false here
-    }
-  }, [fileList]);
   return (
     <Fragment>
       <div className={`mb-5 flex w-full flex-col items-center`}>
