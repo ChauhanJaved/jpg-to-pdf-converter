@@ -9,12 +9,13 @@ import {
   PageOrientationEnum,
   PageSizeEnum,
 } from "@/lib/pdf-lib";
-import { Download, Plus, X } from "lucide-react";
+import { Download, X } from "lucide-react";
 
 //Internal Imports----------
 import SortableImageList from "./sortable-image-list";
 import ButtonToolbar from "./button-toolbar";
 import SettingsSheet from "./settings-sheet";
+import DropZoneButton from "./drop-zone-button";
 import { useFileContext } from "@/context/file-context";
 import { useToast } from "@/hooks/use-toast";
 
@@ -143,7 +144,7 @@ const Dropzone = () => {
       setIsLoadingFiles(false);
     }
   };
-  const { getRootProps, getInputProps, isDragActive, open } = useDropzone({
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
     noClick: true,
     noKeyboard: true,
     onDrop,
@@ -155,55 +156,56 @@ const Dropzone = () => {
     onError,
     disabled: isConvertingFiles || isLoadingFiles,
   });
-  const handleOpenFilePicker = () => {
-    setIsLoadingFiles(true);
-    open();
-  };
+  // const handleOpenFilePicker = () => {
+  //   setIsLoadingFiles(true);
+  //   open();
+  // };
   return (
     <Fragment>
       <div
         className={`flex w-full flex-col items-center border border-blue-900`}
       >
-        <div {...getRootProps()}>
-          <input {...getInputProps()} />
-          {/* Toolbar */}
-          <div className="sticky top-[82px] z-[8] border border-pink-600 bg-white py-3">
-            <div className="flex flex-wrap items-center justify-center space-x-3 rounded-md border bg-white py-3 shadow-sm sm:justify-end sm:pr-3">
-              <ButtonToolbar
+        {/* Toolbar */}
+        <div className="sticky top-[82px] z-[8] border border-pink-600 bg-white py-3">
+          <div className="flex flex-wrap items-center justify-center space-x-3 rounded-md border bg-white py-3 shadow-sm sm:justify-end sm:pr-3">
+            <DropZoneButton />
+            {/* <ButtonToolbar
                 disabled={isConvertingFiles || isLoadingFiles}
                 caption="Add Files"
                 handleOnClick={handleOpenFilePicker}
                 icon={Plus}
-              ></ButtonToolbar>
-              <ButtonToolbar
-                disabled={
-                  fileList.length === 0 || isConvertingFiles || isLoadingFiles
-                }
-                caption="Clear All"
-                handleOnClick={handleClearList}
-                icon={X}
-              ></ButtonToolbar>
-              <SettingsSheet
-                disabled={isConvertingFiles || isLoadingFiles}
-                orientation={orientation}
-                pageSize={pageSize}
-                margin={margin}
-                onOrientationChange={handleOrientationChange}
-                onPageSizeChange={handlePageSizeChange}
-                onMarginChange={handleMarginChange}
-              />
-              <ButtonToolbar
-                disabled={
-                  fileList.length === 0 || isConvertingFiles || isLoadingFiles
-                }
-                caption="Convert"
-                handleOnClick={handleConversion}
-                icon={Download}
-              ></ButtonToolbar>
-            </div>
+              ></ButtonToolbar> */}
+            <ButtonToolbar
+              disabled={
+                fileList.length === 0 || isConvertingFiles || isLoadingFiles
+              }
+              caption="Clear All"
+              handleOnClick={handleClearList}
+              icon={X}
+            ></ButtonToolbar>
+            <SettingsSheet
+              disabled={isConvertingFiles || isLoadingFiles}
+              orientation={orientation}
+              pageSize={pageSize}
+              margin={margin}
+              onOrientationChange={handleOrientationChange}
+              onPageSizeChange={handlePageSizeChange}
+              onMarginChange={handleMarginChange}
+            />
+            <ButtonToolbar
+              disabled={
+                fileList.length === 0 || isConvertingFiles || isLoadingFiles
+              }
+              caption="Convert"
+              handleOnClick={handleConversion}
+              icon={Download}
+            ></ButtonToolbar>
           </div>
+        </div>
 
-          {/* Dropzone */}
+        {/* Dropzone */}
+        <div {...getRootProps()}>
+          <input {...getInputProps()} />
           <div
             className={`flex min-h-[150px] w-full flex-wrap items-center justify-center rounded-lg border-2 border-dashed text-center transition sm:min-h-[300px] ${isDragActive && "border-primary bg-secondary"}`}
           >
