@@ -8,8 +8,13 @@ import { Plus } from "lucide-react";
 import ButtonToolbar from "./button-toolbar";
 import { useFileContext } from "@/context/file-context";
 import { useToast } from "@/hooks/use-toast";
+interface DropZoneButtonProps {
+  isDisabled: boolean;
+}
 
-export default function DropZoneButton() {
+export default function DropZoneButton({
+  isDisabled = false,
+}: DropZoneButtonProps) {
   const { toast } = useToast();
   //fileList----------
   const { fileList, setFileList } = useFileContext();
@@ -109,7 +114,11 @@ export default function DropZoneButton() {
       setIsLoadingFiles(false);
     }
   };
+  const onFileDialogOpen = () => {
+    setIsLoadingFiles(true);
+  };
   const { getRootProps, getInputProps } = useDropzone({
+    onFileDialogOpen,
     onDrop,
     onFileDialogCancel,
     accept: {
@@ -117,14 +126,14 @@ export default function DropZoneButton() {
     },
     multiple: true,
     onError,
-    disabled: isLoadingFiles,
+    disabled: isDisabled || isLoadingFiles,
   });
 
   return (
     <div {...getRootProps()}>
       <input {...getInputProps()} />
       <ButtonToolbar
-        disabled={isLoadingFiles}
+        disabled={isLoadingFiles || isDisabled}
         caption="Add Files"
         icon={Plus}
       ></ButtonToolbar>

@@ -12,7 +12,7 @@ const Hero = () => {
     <FileProvider>
       <section
         id={HeaderNavItems.Home}
-        className="container m-auto mt-[83px] flex w-full scroll-m-[83px] flex-col items-center justify-start border border-red-900 px-3 xl:max-w-screen-xl"
+        className="container m-auto mt-[83px] flex w-full scroll-m-[83px] flex-col items-center justify-start px-3 xl:max-w-screen-xl"
       >
         <SectionHeader
           caption="JPG to PDF Converter"

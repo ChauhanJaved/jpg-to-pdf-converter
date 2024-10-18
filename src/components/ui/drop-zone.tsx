@@ -57,6 +57,9 @@ const Dropzone = () => {
   const onError = () => {
     setIsLoadingFiles(false);
   };
+  const onFileDialogOpen = () => {
+    setIsLoadingFiles(true);
+  };
   const onDrop = async (
     acceptedFiles: File[],
     rejectedFiles: FileRejection[],
@@ -144,7 +147,9 @@ const Dropzone = () => {
       setIsLoadingFiles(false);
     }
   };
+
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onFileDialogOpen,
     noClick: true,
     noKeyboard: true,
     onDrop,
@@ -162,13 +167,11 @@ const Dropzone = () => {
   // };
   return (
     <Fragment>
-      <div
-        className={`flex w-full flex-col items-center border border-blue-900`}
-      >
+      <div className={`flex w-full flex-col items-center`}>
         {/* Toolbar */}
-        <div className="sticky top-[82px] z-[8] border border-pink-600 bg-white py-3">
+        <div className="sticky top-[82px] z-[8] w-full bg-white py-3">
           <div className="flex flex-wrap items-center justify-center space-x-3 rounded-md border bg-white py-3 shadow-sm sm:justify-end sm:pr-3">
-            <DropZoneButton />
+            <DropZoneButton isDisabled={isConvertingFiles || isLoadingFiles} />
             {/* <ButtonToolbar
                 disabled={isConvertingFiles || isLoadingFiles}
                 caption="Add Files"
@@ -204,7 +207,7 @@ const Dropzone = () => {
         </div>
 
         {/* Dropzone */}
-        <div {...getRootProps()}>
+        <div {...getRootProps()} className="w-full">
           <input {...getInputProps()} />
           <div
             className={`flex min-h-[150px] w-full flex-wrap items-center justify-center rounded-lg border-2 border-dashed text-center transition sm:min-h-[300px] ${isDragActive && "border-primary bg-secondary"}`}
