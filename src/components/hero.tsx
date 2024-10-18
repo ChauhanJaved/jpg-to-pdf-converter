@@ -12,14 +12,14 @@ const Hero = () => {
     <FileProvider>
       <section
         id={HeaderNavItems.Home}
-        className="container m-auto mt-[83px] flex w-full scroll-m-[83px] flex-col items-center justify-start px-3 xl:max-w-screen-xl"
+        className="container m-auto mt-[83px] flex w-full scroll-m-[83px] flex-col items-center justify-start border border-red-900 px-3 xl:max-w-screen-xl"
       >
         <SectionHeader
           caption="JPG to PDF Converter"
           className={`mb-2 mt-10`}
         />
         <Dropzone />
-        <div className="flex text-base sm:text-lg">
+        <div className="mt-3 flex text-base sm:text-lg">
           <div className="flex space-x-2">
             <div>
               <CircleCheck className="h-6 w-6 text-primary sm:h-7 sm:w-7" />
