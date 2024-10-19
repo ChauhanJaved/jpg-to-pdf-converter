@@ -2,22 +2,24 @@
 
 //External Imports----------
 import { useDropzone, FileRejection } from "react-dropzone";
-import { Plus } from "lucide-react";
+
 //Internal Imports----------
-import ButtonToolbar from "./button-toolbar";
+import SortableImageList from "./sortable-image-list";
 import { useFileContext } from "@/context/file-context";
 import { useToast } from "@/hooks/use-toast";
 
-interface DropZoneButtonProps {
+interface DropZoneBoxProps {
   isDisabled: boolean;
   setIsLoadingFiles: (isDisabled: boolean) => void;
 }
 
-export default function DropZoneButton({
+export default function DropZoneBox({
   isDisabled = false,
   setIsLoadingFiles,
-}: DropZoneButtonProps) {
+}: DropZoneBoxProps) {
+  //Uer message----------
   const { toast } = useToast();
+
   //fileList----------
   const { fileList, setFileList } = useFileContext();
 
@@ -27,6 +29,9 @@ export default function DropZoneButton({
   };
   const onError = () => {
     setIsLoadingFiles(false);
+  };
+  const onFileDialogOpen = () => {
+    setIsLoadingFiles(true);
   };
   const onDrop = async (
     acceptedFiles: File[],
@@ -115,11 +120,11 @@ export default function DropZoneButton({
       setIsLoadingFiles(false);
     }
   };
-  const onFileDialogOpen = () => {
-    setIsLoadingFiles(true);
-  };
-  const { getRootProps, getInputProps } = useDropzone({
+
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onFileDialogOpen,
+    noClick: true,
+    noKeyboard: true,
     onDrop,
     onFileDialogCancel,
     accept: {
@@ -129,15 +134,24 @@ export default function DropZoneButton({
     onError,
     disabled: isDisabled,
   });
-
   return (
-    <div {...getRootProps()}>
+    <div {...getRootProps()} className="w-full">
       <input {...getInputProps()} />
-      <ButtonToolbar
-        disabled={isDisabled}
-        caption="Add Files"
-        icon={Plus}
-      ></ButtonToolbar>
+      <div
+        className={`flex min-h-[150px] w-full flex-wrap items-center justify-center rounded-lg border-2 border-dashed text-center transition sm:min-h-[300px] ${isDragActive && "border-primary bg-secondary"}`}
+      >
+        {fileList.length > 0 ? (
+          <SortableImageList disabled={isDisabled} />
+        ) : (
+          <div>
+            <p className="m-auto mt-2 px-3 text-base text-gray-500 sm:w-3/4 sm:text-base md:w-3/5 md:text-lg lg:w-1/2">
+              Click the <strong>Add Files</strong> button or{" "}
+              <strong>Drop</strong> your files here. Adjust your settings as
+              needed, then click <strong>Convert</strong> to begin.
+            </p>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
