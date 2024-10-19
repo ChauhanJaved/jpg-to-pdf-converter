@@ -38,6 +38,7 @@ export default function DropZoneBox({
     rejectedFiles: FileRejection[],
   ) => {
     try {
+      setIsLoadingFiles(true);
       // Handle Unsupported Files with Detailed Errors
       if (rejectedFiles.length > 0) {
         const unsupportedFileMessages = rejectedFiles.map((fileRejection) => {
