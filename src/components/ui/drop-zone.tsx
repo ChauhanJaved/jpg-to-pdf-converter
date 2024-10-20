@@ -13,10 +13,10 @@ import { Download, Trash2 } from "lucide-react";
 //Internal Imports----------
 import ButtonToolbar from "./button-toolbar";
 import SettingsSheet from "./settings-sheet";
-import DropZoneButton from "./drop-zone-button";
 import { useFileContext } from "@/context/file-context";
 
 import DropZoneBox from "./drop-zone-box";
+import FileInputButton from "./file-input-button";
 
 const Dropzone = () => {
   //FileList----------
@@ -53,7 +53,11 @@ const Dropzone = () => {
       {/* Toolbar */}
       <div className="sticky top-[82px] z-[8] w-full bg-white py-3">
         <div className="flex flex-wrap items-center justify-center space-x-3 rounded-md border bg-white py-3 shadow-sm sm:justify-end sm:pr-3">
-          <DropZoneButton
+          {/* <DropZoneButton
+            isDisabled={isConvertingFiles || isLoadingFiles}
+            setIsLoadingFiles={setIsConvertingFiles}
+          /> */}
+          <FileInputButton
             isDisabled={isConvertingFiles || isLoadingFiles}
             setIsLoadingFiles={setIsConvertingFiles}
           />
