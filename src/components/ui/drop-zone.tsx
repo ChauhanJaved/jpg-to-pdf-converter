@@ -65,7 +65,7 @@ const Dropzone = () => {
             disabled={
               fileList.length === 0 || isConvertingFiles || isLoadingFiles
             }
-            caption="Remove All"
+            caption="Clear All"
             handleOnClick={handleClearList}
             icon={Trash2}
           ></ButtonToolbar>

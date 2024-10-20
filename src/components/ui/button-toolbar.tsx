@@ -20,10 +20,10 @@ export default function ButtonToolbar({
     <div className="flex flex-col items-center justify-center">
       <Button
         disabled={disabled}
-        className={`${className}`}
+        className={`${className} h-12 w-12 p-0 sm:h-9 sm:w-auto sm:px-4 sm:py-2`}
         onClick={handleOnClick}
       >
-        {Icon && <Icon className="h-6 w-6 sm:mr-2" />}
+        {Icon && <Icon className="sm:mr-2 sm:h-6 sm:w-6" />}
         <span className="hidden text-base sm:block">{caption}</span>{" "}
         {/* Use the caption prop here */}
       </Button>
