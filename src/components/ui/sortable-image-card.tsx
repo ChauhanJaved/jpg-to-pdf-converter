@@ -59,7 +59,7 @@ const SortableImageCard = React.memo(function SortableImageCard({
           <p className="absolute left-1 top-1 flex h-[34px] w-[34px] touch-none items-center justify-center rounded-full bg-black text-sm text-white opacity-70">
             {index + 1}
           </p>
-          <div className="absolute right-1 top-1 flex items-center justify-center space-x-1">
+          <div className="absolute right-1 top-1 flex items-center justify-center space-x-2">
             <Button
               variant="outline"
               aria-label="Rotate CW"
