@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState } from "react";
 import { Button } from "./button";
-import { Grip, RotateCw, X } from "lucide-react";
+import { Grip, RotateCw, Trash2 } from "lucide-react";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { useFileContext } from "@/context/file-context";
@@ -75,7 +75,7 @@ const SortableImageCard = React.memo(function SortableImageCard({
               className=" "
               aria-label="Remove Image"
             >
-              <X className="h-4 w-4" />
+              <Trash2 className="h-4 w-4" />
             </Button>
             <Button
               {...listeners}

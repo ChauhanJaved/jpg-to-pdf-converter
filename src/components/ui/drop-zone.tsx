@@ -8,7 +8,7 @@ import {
   PageOrientationEnum,
   PageSizeEnum,
 } from "@/lib/pdf-lib";
-import { Download, X } from "lucide-react";
+import { Download, Trash2 } from "lucide-react";
 
 //Internal Imports----------
 import ButtonToolbar from "./button-toolbar";
@@ -61,9 +61,9 @@ const Dropzone = () => {
             disabled={
               fileList.length === 0 || isConvertingFiles || isLoadingFiles
             }
-            caption="Clear All"
+            caption="Remove All"
             handleOnClick={handleClearList}
-            icon={X}
+            icon={Trash2}
           ></ButtonToolbar>
           <SettingsSheet
             disabled={isConvertingFiles || isLoadingFiles}
