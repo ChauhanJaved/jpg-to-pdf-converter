@@ -44,8 +44,32 @@ const SortableImageCard = React.memo(function SortableImageCard({
 
   return (
     <div ref={setNodeRef} style={style}>
-      <div className="m-3 my-5 overflow-hidden rounded border shadow-sm">
-        <figure className="relative flex h-[300px] w-[200px] items-center justify-center overflow-hidden p-4">
+      <div className="flex flex-col items-center justify-center gap-2 rounded border shadow-sm">
+        {/* Box-1--------- */}
+        <div className="mt-2 flex w-full items-center justify-end gap-2 pr-2">
+          <Button variant="outline" aria-label="Rotate CW" size={"icon"}>
+            <RotateCw />
+          </Button>
+          <Button
+            onClick={() => removeFile(id)}
+            variant="outline"
+            size={"icon"}
+            aria-label="Remove Image"
+          >
+            <Trash2 />
+          </Button>
+          <Button
+            {...listeners}
+            {...attributes}
+            variant="outline"
+            size="icon"
+            aria-label="Reorder Image"
+          >
+            <Grip />
+          </Button>
+        </div>
+        {/* Box-2---------- */}
+        <figure className="relative flex h-[350px] w-[250px] items-center justify-center overflow-hidden border-t bg-primary-foreground p-4">
           {imageUrl ? (
             <img
               src={imageUrl}
@@ -55,33 +79,10 @@ const SortableImageCard = React.memo(function SortableImageCard({
           ) : (
             <p>Loading...</p>
           )}
-
-          <p className="absolute left-1 top-1 flex h-[34px] w-[34px] touch-none items-center justify-center rounded-full bg-black text-sm text-white opacity-70">
+          <p className="absolute left-2 top-2 flex h-auto min-h-11 w-auto min-w-11 items-center justify-center rounded-full bg-black text-sm text-white opacity-70">
             {index + 1}
           </p>
-          <div className="absolute right-1 top-1 flex items-center justify-center space-x-2">
-            <Button variant="outline" aria-label="Rotate CW" size={"icon"}>
-              <RotateCw />
-            </Button>
-            <Button
-              onClick={() => removeFile(id)}
-              variant="outline"
-              size={"icon"}
-              aria-label="Remove Image"
-            >
-              <Trash2 />
-            </Button>
-            <Button
-              {...listeners}
-              {...attributes}
-              variant="outline"
-              size="icon"
-              aria-label="Reorder Image"
-            >
-              <Grip />
-            </Button>
-          </div>
-          <figcaption className="absolute bottom-0 left-1/2 w-full -translate-x-1/2 transform bg-black p-2 text-sm text-white opacity-70">
+          <figcaption className="absolute bottom-2 left-4 right-4 bg-black p-2 text-sm text-white opacity-70">
             {file.name}
           </figcaption>
         </figure>
