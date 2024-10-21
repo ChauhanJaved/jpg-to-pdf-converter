@@ -60,17 +60,13 @@ const SortableImageCard = React.memo(function SortableImageCard({
             {index + 1}
           </p>
           <div className="absolute right-1 top-1 flex items-center justify-center space-x-2">
-            <Button
-              variant="outline"
-              aria-label="Rotate CW"
-              className="h-11 w-11 p-0"
-            >
+            <Button variant="outline" aria-label="Rotate CW" size={"icon"}>
               <RotateCw />
             </Button>
             <Button
               onClick={() => removeFile(id)}
               variant="outline"
-              className="h-11 w-11 p-0"
+              size={"icon"}
               aria-label="Remove Image"
             >
               <Trash2 />
@@ -80,7 +76,6 @@ const SortableImageCard = React.memo(function SortableImageCard({
               {...attributes}
               variant="outline"
               size="icon"
-              className="h-11 w-11 touch-none p-0"
               aria-label="Reorder Image"
             >
               <Grip />

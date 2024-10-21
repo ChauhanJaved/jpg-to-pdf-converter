@@ -52,11 +52,7 @@ const Dropzone = () => {
     <div className={`flex w-full flex-col items-center`}>
       {/* Toolbar */}
       <div className="sticky top-[82px] z-[8] w-full bg-white py-3">
-        <div className="flex flex-wrap items-center justify-center space-x-3 rounded-md border bg-white py-3 shadow-sm sm:justify-end sm:pr-3">
-          {/* <DropZoneButton
-            isDisabled={isConvertingFiles || isLoadingFiles}
-            setIsLoadingFiles={setIsConvertingFiles}
-          /> */}
+        <div className="flex flex-wrap items-center justify-center gap-3 rounded-md border bg-white p-3 shadow-sm sm:justify-end">
           <FileInputButton
             isDisabled={isConvertingFiles || isLoadingFiles}
             setIsLoadingFiles={setIsConvertingFiles}
@@ -65,7 +61,7 @@ const Dropzone = () => {
             disabled={
               fileList.length === 0 || isConvertingFiles || isLoadingFiles
             }
-            caption="Clear All"
+            caption="Remove All"
             handleOnClick={handleClearList}
             icon={Trash2}
           ></ButtonToolbar>
