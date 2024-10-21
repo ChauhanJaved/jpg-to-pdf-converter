@@ -23,15 +23,18 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { MarginEnum, PageOrientationEnum, PageSizeEnum } from "@/lib/pdf-lib";
+import { Checkbox } from "./check-box";
 
 interface SettingsSheetProps {
   disabled?: boolean;
   orientation: PageOrientationEnum;
   pageSize: PageSizeEnum;
   margin: MarginEnum;
+  imgPreview: boolean;
   onOrientationChange: (orientation: PageOrientationEnum) => void;
   onPageSizeChange: (pageSize: PageSizeEnum) => void;
   onMarginChange: (margin: MarginEnum) => void;
+  onImgPreviewChange: (isPreview: boolean) => void;
 }
 
 function capitalizeFirstLetter(word: string) {
@@ -43,9 +46,11 @@ export default function SettingsSheet({
   orientation,
   pageSize,
   margin,
+  imgPreview,
   onOrientationChange,
   onPageSizeChange,
   onMarginChange,
+  onImgPreviewChange,
 }: SettingsSheetProps) {
   const [open, setOpen] = useState(false);
   const openSheet = () => {
@@ -126,6 +131,15 @@ export default function SettingsSheet({
                   </SelectGroup>
                 </SelectContent>
               </Select>
+            </div>
+            <div className="mt-5 flex items-center">
+              <Checkbox
+                id="imagepreview"
+                className="mr-1"
+                checked={imgPreview}
+                onCheckedChange={onImgPreviewChange}
+              />
+              <Label htmlFor="imagepreview">Image Preview</Label>
             </div>
           </div>
           <SheetFooter className="mt-3">

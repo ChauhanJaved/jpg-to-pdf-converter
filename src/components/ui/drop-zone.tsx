@@ -31,6 +31,7 @@ const Dropzone = () => {
   const [orientation, setOrientation] = useState(PageOrientationEnum.portrait);
   const [pageSize, setPageSize] = useState(PageSizeEnum.A4);
   const [margin, setMargin] = useState(MarginEnum.None);
+  const [imagePreview, setImagePreview] = useState(true);
   const handleOrientationChange = (value: PageOrientationEnum) => {
     setOrientation(value);
   };
@@ -39,6 +40,9 @@ const Dropzone = () => {
   };
   const handleMarginChange = (newMargin: MarginEnum) => {
     setMargin(newMargin);
+  };
+  const handleImagePreviewChange = (isImgPreview: boolean) => {
+    setImagePreview(isImgPreview);
   };
   const handleConversion = async () => {
     setIsConvertingFiles(true);
@@ -70,9 +74,11 @@ const Dropzone = () => {
             orientation={orientation}
             pageSize={pageSize}
             margin={margin}
+            imgPreview={imagePreview}
             onOrientationChange={handleOrientationChange}
             onPageSizeChange={handlePageSizeChange}
             onMarginChange={handleMarginChange}
+            onImgPreviewChange={handleImagePreviewChange}
           />
           <ButtonToolbar
             disabled={
