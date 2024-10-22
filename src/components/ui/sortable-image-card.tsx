@@ -43,9 +43,9 @@ const SortableImageCard = React.memo(function SortableImageCard({
   }, [file]);
 
   return (
-    <div ref={setNodeRef} style={style}>
+    <div ref={setNodeRef} style={style} className="touch-none">
       <div className="flex flex-col items-center justify-center gap-2 rounded border shadow-sm">
-        {/* Box-1--------- */}
+        {/* Box-1 Toolbar--------- */}
         <div className="mt-2 flex w-full items-center justify-end gap-2 pr-2">
           <Button variant="outline" aria-label="Rotate CW" size={"icon"}>
             <RotateCw />
