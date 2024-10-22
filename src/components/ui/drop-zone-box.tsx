@@ -145,8 +145,11 @@ export default function DropZoneBox({
   return (
     <div {...getRootProps()} className="w-full">
       <input {...getInputProps()} />
-      <div className="flex justify-between border-t p-3 text-sm sm:text-base">
-        <div className="font-bold">{`Total Files: ${fileList.length}`}</div>
+      <div className="flex items-center justify-between border-t p-3 text-sm sm:text-base">
+        <div>
+          {"Total Files: "}
+          <span className="font-bold">{fileList.length}</span>
+        </div>
         <div className="flex items-center">
           <Checkbox
             id="imagepreview"
