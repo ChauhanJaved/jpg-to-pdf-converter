@@ -38,7 +38,7 @@ const SortableImageCard = React.memo(function SortableImageCard({
   };
 
   // State to store the image URL
-  const [imageUrl, setImageUrl] = useState<string | null>(null);
+  const [imageUrl, setImageUrl] = useState<string | undefined>(undefined);
 
   // Create a URL for the image and clean it up on unmount
   useEffect(() => {
@@ -51,7 +51,7 @@ const SortableImageCard = React.memo(function SortableImageCard({
   }, [file]);
 
   return (
-    <div ref={setNodeRef} style={style} className="touch-none">
+    <div ref={setNodeRef} style={style} className="">
       <div className="flex flex-col items-center justify-center gap-2 rounded border shadow-sm">
         {/* Box-1 Toolbar--------- */}
         <div className="mt-2 flex w-full items-center justify-end gap-2 pr-2">
@@ -72,30 +72,41 @@ const SortableImageCard = React.memo(function SortableImageCard({
             variant="outline"
             size="icon"
             aria-label="Reorder Image"
+            className="touch-none"
           >
             <Grip />
           </Button>
         </div>
         {/* Box-2---------- */}
-        <figure className="relative flex h-[350px] w-[250px] items-center justify-center overflow-hidden border-t bg-primary-foreground">
-          {imageUrl ? (
-            <img
-              src={imageUrl}
-              alt={`Thumbnail for ${file.name}`}
-              className="object-contain"
-            />
-          ) : (
-            <p>Loading...</p>
-          )}
+        {false ? (
+          <figure className="relative flex h-[350px] w-[250px] items-center justify-center overflow-hidden border-t bg-primary-foreground">
+            {imageUrl ? (
+              <img
+                src={imageUrl}
+                alt={`Thumbnail for ${file.name}`}
+                className="object-contain"
+              />
+            ) : (
+              <p>Loading...</p>
+            )}
 
-          <figcaption className="absolute bottom-0 left-0 right-0 flex items-center justify-center gap-1 bg-black p-2 text-xs text-white opacity-70">
-            <div className="flex min-h-11 min-w-11 items-center justify-center rounded-full bg-primary text-sm">
+            <figcaption className="absolute bottom-0 left-0 right-0 flex items-center justify-center gap-1 bg-black p-2 text-xs text-white opacity-70">
+              <div className="flex min-h-11 min-w-11 items-center justify-center rounded-full bg-primary text-sm">
+                {index + 1}
+              </div>
+              <div className="ml-2 text-left">{file.name}</div>
+              <div>{formatFileSize(file.size)}</div>
+            </figcaption>
+          </figure>
+        ) : (
+          <div className="flex h-[75px] w-[250px] items-center justify-center overflow-hidden border-t bg-primary-foreground text-xs">
+            <div className="roun flex min-h-11 min-w-11 items-center justify-center border-r text-sm">
               {index + 1}
             </div>
-            <div>{file.name}</div>
-            <div>{formatFileSize(file.size)}</div>
-          </figcaption>
-        </figure>
+            <div className="border-r px-2 text-left">{file.name}</div>
+            <div className="px-2">{formatFileSize(file.size)}</div>
+          </div>
+        )}
       </div>
     </div>
   );

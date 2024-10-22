@@ -139,7 +139,7 @@ export default function DropZoneBox({
     <div {...getRootProps()} className="w-full">
       <input {...getInputProps()} />
       <div
-        className={`flex min-h-[150px] w-full flex-wrap items-center justify-center gap-5 rounded border p-5 text-center shadow-sm transition sm:min-h-[300px] ${isDragActive && "border-primary bg-secondary"}`}
+        className={`flex min-h-[150px] w-full flex-wrap items-center justify-center gap-5 border-t p-5 text-center transition sm:min-h-[300px] ${isDragActive && "bg-secondary"}`}
       >
         {fileList.length > 0 ? (
           <SortableImageList disabled={isDisabled} />
