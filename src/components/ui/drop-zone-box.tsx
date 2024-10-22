@@ -145,7 +145,8 @@ export default function DropZoneBox({
   return (
     <div {...getRootProps()} className="w-full">
       <input {...getInputProps()} />
-      <div className="flex justify-between border-t p-3 text-sm">
+      <div className="flex justify-between border-t p-3 text-sm sm:text-base">
+        <div className="font-bold">{`Total Files: ${fileList.length}`}</div>
         <div className="flex items-center">
           <Checkbox
             id="imagepreview"
@@ -155,7 +156,6 @@ export default function DropZoneBox({
           />
           <Label htmlFor="imagepreview">Image Preview</Label>
         </div>
-        <div>{`Total: ${fileList.length}`}</div>
       </div>
       <div
         className={`flex min-h-[150px] w-full flex-wrap items-center justify-center gap-5 border-t p-5 text-center transition sm:min-h-[300px] ${isDragActive && "bg-secondary"}`}

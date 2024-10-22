@@ -42,13 +42,19 @@ const SortableImageCard = React.memo(function SortableImageCard({
 
   // Create a URL for the image and clean it up on unmount
   useEffect(() => {
-    const url = URL.createObjectURL(file);
-    setImageUrl(url);
+    let url: string | undefined;
+
+    if (isPreviewVisible) {
+      url = URL.createObjectURL(file);
+      setImageUrl(url);
+    }
 
     return () => {
-      URL.revokeObjectURL(url); // Clean up URL when component is unmounted
+      if (url) {
+        URL.revokeObjectURL(url); // Clean up URL only if it was created
+      }
     };
-  }, [file]);
+  }, [file, isPreviewVisible]);
 
   return (
     <div ref={setNodeRef} style={style} className="">
