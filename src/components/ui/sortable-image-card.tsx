@@ -15,6 +15,14 @@ interface SortableImageCardProps {
   fileObject: FileObject;
 }
 
+function formatFileSize(size: number): string {
+  if (size === 0) return "0 Bytes";
+  const k = 1024;
+  const sizes = ["Bytes", "KB", "MB", "GB", "TB"];
+  const i = Math.floor(Math.log(size) / Math.log(k));
+  return parseFloat((size / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
+}
+
 const SortableImageCard = React.memo(function SortableImageCard({
   fileObject,
 }: SortableImageCardProps) {
@@ -69,7 +77,7 @@ const SortableImageCard = React.memo(function SortableImageCard({
           </Button>
         </div>
         {/* Box-2---------- */}
-        <figure className="relative flex h-[350px] w-[250px] items-center justify-center overflow-hidden border-t bg-primary-foreground p-4">
+        <figure className="relative flex h-[350px] w-[250px] items-center justify-center overflow-hidden border-t bg-primary-foreground">
           {imageUrl ? (
             <img
               src={imageUrl}
@@ -79,11 +87,13 @@ const SortableImageCard = React.memo(function SortableImageCard({
           ) : (
             <p>Loading...</p>
           )}
-          <p className="absolute left-2 top-2 flex h-auto min-h-11 w-auto min-w-11 items-center justify-center rounded-full bg-black text-sm text-white opacity-70">
-            {index + 1}
-          </p>
-          <figcaption className="absolute bottom-2 left-4 right-4 bg-black p-2 text-sm text-white opacity-70">
-            {file.name}
+
+          <figcaption className="absolute bottom-0 left-0 right-0 flex items-center justify-center gap-1 bg-black p-2 text-xs text-white opacity-70">
+            <div className="flex min-h-11 min-w-11 items-center justify-center rounded-full bg-primary text-sm">
+              {index + 1}
+            </div>
+            <div>{file.name}</div>
+            <div>{formatFileSize(file.size)}</div>
           </figcaption>
         </figure>
       </div>
