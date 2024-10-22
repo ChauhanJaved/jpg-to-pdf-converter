@@ -15,8 +15,14 @@ import {
 
 import { useFileContext } from "@/context/file-context";
 import SortableImageCard from "./sortable-image-card";
-
-const SortableImageList = ({ disabled }: { disabled: boolean }) => {
+interface SortableImageListProps {
+  disabled: boolean;
+  isPreviewVisible: boolean;
+}
+const SortableImageList = ({
+  disabled,
+  isPreviewVisible,
+}: SortableImageListProps) => {
   const { fileList, setFileList } = useFileContext();
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -44,7 +50,11 @@ const SortableImageList = ({ disabled }: { disabled: boolean }) => {
     >
       <SortableContext items={fileList} disabled={disabled}>
         {fileList.map((fileObj) => (
-          <SortableImageCard key={fileObj.id} fileObject={fileObj} />
+          <SortableImageCard
+            key={fileObj.id}
+            isPreviewVisible={isPreviewVisible}
+            fileObject={fileObj}
+          />
         ))}
       </SortableContext>
     </DndContext>

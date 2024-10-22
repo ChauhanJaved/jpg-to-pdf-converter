@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState } from "react";
 import { Button } from "./button";
-import { Grip, RotateCw, Trash2 } from "lucide-react";
+import { Grip, Pencil, Trash2, ZoomIn } from "lucide-react";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { useFileContext } from "@/context/file-context";
@@ -11,10 +11,6 @@ interface FileObject {
   id: string;
 }
 
-interface SortableImageCardProps {
-  fileObject: FileObject;
-}
-
 function formatFileSize(size: number): string {
   if (size === 0) return "0 Bytes";
   const k = 1024;
@@ -22,9 +18,13 @@ function formatFileSize(size: number): string {
   const i = Math.floor(Math.log(size) / Math.log(k));
   return parseFloat((size / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
 }
-
+interface SortableImageCardProps {
+  fileObject: FileObject;
+  isPreviewVisible: boolean;
+}
 const SortableImageCard = React.memo(function SortableImageCard({
   fileObject,
+  isPreviewVisible,
 }: SortableImageCardProps) {
   const { removeFile } = useFileContext();
   const { id, file } = fileObject;
@@ -55,8 +55,11 @@ const SortableImageCard = React.memo(function SortableImageCard({
       <div className="flex flex-col items-center justify-center gap-2 rounded border shadow-sm">
         {/* Box-1 Toolbar--------- */}
         <div className="mt-2 flex w-full items-center justify-end gap-2 pr-2">
-          <Button variant="outline" aria-label="Rotate CW" size={"icon"}>
-            <RotateCw />
+          <Button variant="outline" aria-label="Edit Image" size={"icon"}>
+            <Pencil />
+          </Button>
+          <Button variant="outline" aria-label="Zoom In" size={"icon"}>
+            <ZoomIn />
           </Button>
           <Button
             onClick={() => removeFile(id)}
@@ -78,7 +81,7 @@ const SortableImageCard = React.memo(function SortableImageCard({
           </Button>
         </div>
         {/* Box-2---------- */}
-        {false ? (
+        {isPreviewVisible ? (
           <figure className="relative flex h-[350px] w-[250px] items-center justify-center overflow-hidden border-t bg-primary-foreground">
             {imageUrl ? (
               <img

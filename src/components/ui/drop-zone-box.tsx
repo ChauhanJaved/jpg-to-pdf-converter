@@ -7,6 +7,9 @@ import { useDropzone, FileRejection } from "react-dropzone";
 import SortableImageList from "./sortable-image-list";
 import { useFileContext } from "@/context/file-context";
 import { useToast } from "@/hooks/use-toast";
+import { Checkbox } from "./check-box";
+import { useState } from "react";
+import { Label } from "./label";
 
 interface DropZoneBoxProps {
   isDisabled: boolean;
@@ -135,14 +138,33 @@ export default function DropZoneBox({
     onError,
     disabled: isDisabled,
   });
+  const [isPreviewVisible, setIsPreviewVisible] = useState<boolean>(true);
+  const togglePreview = () => {
+    setIsPreviewVisible((prevState) => !prevState);
+  };
   return (
     <div {...getRootProps()} className="w-full">
       <input {...getInputProps()} />
+      <div className="flex justify-between border-t p-3 text-sm">
+        <div className="flex items-center">
+          <Checkbox
+            id="imagepreview"
+            className="mr-1"
+            checked={isPreviewVisible}
+            onCheckedChange={togglePreview}
+          />
+          <Label htmlFor="imagepreview">Image Preview</Label>
+        </div>
+        <div>{`Total: ${fileList.length}`}</div>
+      </div>
       <div
         className={`flex min-h-[150px] w-full flex-wrap items-center justify-center gap-5 border-t p-5 text-center transition sm:min-h-[300px] ${isDragActive && "bg-secondary"}`}
       >
         {fileList.length > 0 ? (
-          <SortableImageList disabled={isDisabled} />
+          <SortableImageList
+            disabled={isDisabled}
+            isPreviewVisible={isPreviewVisible}
+          />
         ) : (
           <div>
             <p className="m-auto mt-2 px-3 text-base text-gray-500 sm:w-3/4 sm:text-base md:w-3/5 md:text-lg lg:w-1/2">
