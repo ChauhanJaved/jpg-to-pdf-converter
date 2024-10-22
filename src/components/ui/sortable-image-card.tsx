@@ -40,13 +40,42 @@ const SortableImageCard = React.memo(function SortableImageCard({
   // State to store the image URL
   const [imageUrl, setImageUrl] = useState<string | undefined>(undefined);
 
+  // Thumbnail creation function to limit image dimensions
+  const createThumbnail = (
+    file: File,
+    maxWidth = 300,
+    maxHeight = 300,
+  ): Promise<string> => {
+    return new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onload = function (event) {
+        const img = new Image();
+        img.src = event.target?.result as string;
+
+        img.onload = function () {
+          const canvas = document.createElement("canvas");
+          const ctx = canvas.getContext("2d");
+
+          const ratio = Math.min(maxWidth / img.width, maxHeight / img.height);
+          canvas.width = img.width * ratio;
+          canvas.height = img.height * ratio;
+
+          ctx?.drawImage(img, 0, 0, canvas.width, canvas.height);
+          resolve(canvas.toDataURL(file.type));
+        };
+      };
+      reader.readAsDataURL(file);
+    });
+  };
+
   // Create a URL for the image and clean it up on unmount
   useEffect(() => {
     let url: string | undefined;
 
     if (isPreviewVisible) {
-      url = URL.createObjectURL(file);
-      setImageUrl(url);
+      createThumbnail(file).then((thumbnailUrl) => {
+        setImageUrl(thumbnailUrl); // Set the thumbnail URL
+      });
     }
 
     return () => {

@@ -10,6 +10,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Checkbox } from "./check-box";
 import { useState } from "react";
 import { Label } from "./label";
+import { ScrollArea } from "./scroll-area";
 
 interface DropZoneBoxProps {
   isDisabled: boolean;
@@ -160,24 +161,26 @@ export default function DropZoneBox({
           <Label htmlFor="imagepreview">Image Preview</Label>
         </div>
       </div>
-      <div
-        className={`flex min-h-[150px] w-full flex-wrap items-center justify-center gap-5 border-t p-5 text-center transition sm:min-h-[300px] ${isDragActive && "bg-secondary"}`}
-      >
-        {fileList.length > 0 ? (
-          <SortableImageList
-            disabled={isDisabled}
-            isPreviewVisible={isPreviewVisible}
-          />
-        ) : (
-          <div>
-            <p className="m-auto mt-2 px-3 text-base text-gray-500 sm:w-3/4 sm:text-base md:w-3/5 md:text-lg lg:w-1/2">
-              Click the <strong>Add Files</strong> button or{" "}
-              <strong>Drop</strong> your files here. Adjust your settings as
-              needed, then click <strong>Convert</strong> to begin.
-            </p>
-          </div>
-        )}
-      </div>
+      <ScrollArea className="border-t">
+        <div
+          className={`flex max-h-[300px] min-h-[150px] w-full flex-wrap items-center justify-center gap-5 p-5 text-center transition sm:max-h-[600px] sm:min-h-[300px] ${isDragActive && "bg-secondary"}`}
+        >
+          {fileList.length > 0 ? (
+            <SortableImageList
+              disabled={isDisabled}
+              isPreviewVisible={isPreviewVisible}
+            />
+          ) : (
+            <div>
+              <p className="m-auto mt-2 px-3 text-base text-gray-500 sm:w-3/4 sm:text-base md:w-3/5 md:text-lg lg:w-1/2">
+                Click the <strong>Add Files</strong> button or{" "}
+                <strong>Drop</strong> your files here. Adjust your settings as
+                needed, then click <strong>Convert</strong> to begin.
+              </p>
+            </div>
+          )}
+        </div>
+      </ScrollArea>
     </div>
   );
 }
