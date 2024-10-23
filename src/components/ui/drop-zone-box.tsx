@@ -146,10 +146,12 @@ export default function DropZoneBox({
   return (
     <div {...getRootProps()} className="w-full">
       <input {...getInputProps()} />
-      <div className="flex items-center justify-between border-t p-3 text-sm sm:text-base">
-        <div className="flex items-center justify-center gap-2">
-          <Label>Selected Files:</Label>
-          <Badge>{`${fileList.length}`}</Badge>
+      <div className="flex items-center justify-end gap-5 border-t p-3 text-sm sm:text-base">
+        <div
+          className={`${fileList.length === 0 && "hidden"} flex items-center justify-center gap-1`}
+        >
+          <Badge className="">{`${fileList.length}`}</Badge>
+          <Label>Total Files</Label>
         </div>
         <div className="flex items-center justify-center gap-1">
           <Checkbox
