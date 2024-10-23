@@ -148,10 +148,10 @@ export default function DropZoneBox({
       <input {...getInputProps()} />
       <div className="flex items-center justify-between border-t p-3 text-sm sm:text-base">
         <div className="flex items-center justify-center gap-2">
-          <Label>Total Files:</Label>
+          <Label>Selected Files:</Label>
           <Badge>{`${fileList.length}`}</Badge>
         </div>
-        <div className="flex items-center">
+        <div className="flex items-center justify-center gap-1">
           <Checkbox
             id="preview"
             className="mr-1"
@@ -164,7 +164,7 @@ export default function DropZoneBox({
         </div>
       </div>
       <div
-        className={`flex max-h-[300px] min-h-[150px] w-full flex-wrap items-center justify-center gap-5 border-t p-5 text-center transition sm:max-h-[600px] sm:min-h-[300px] ${isDragActive && "bg-secondary"}`}
+        className={`flex min-h-[150px] w-full flex-wrap items-center justify-center gap-5 border-t p-5 text-center transition sm:min-h-[300px] ${isDragActive && "bg-secondary"}`}
       >
         {fileList.length > 0 ? (
           <SortableImageList
