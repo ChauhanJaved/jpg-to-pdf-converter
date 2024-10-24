@@ -11,7 +11,7 @@ import { Checkbox } from "./check-box";
 import { useState } from "react";
 import { Label } from "./label";
 import { Badge } from "./badge";
-import { ShieldCheck } from "lucide-react";
+import { MessageCircleQuestion, ShieldCheck } from "lucide-react";
 
 interface DropZoneBoxProps {
   isDisabled: boolean;
@@ -128,9 +128,9 @@ export default function DropZoneBox({
   };
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    onFileDialogOpen,
     noClick: true,
     noKeyboard: true,
+    onFileDialogOpen,
     onDrop,
     onFileDialogCancel,
     accept: {
@@ -175,27 +175,43 @@ export default function DropZoneBox({
             isPreviewVisible={isPreviewVisible}
           />
         ) : (
-          <div className="flex flex-col items-start justify-start text-left sm:w-4/5 md:w-3/4 lg:w-3/5">
-            <p className="">
-              Click the <strong>Add Files</strong> button or{" "}
-              <strong>Drop</strong> your files here. Adjust your settings as
-              needed, then click <strong>Convert</strong> to begin.
-            </p>
-            <div className="mt-3">
-              <ShieldCheck className="mr-1 inline text-primary" />
-              <p className="inline text-base">
-                <strong>Local, Secure, and Private File Conversion:</strong> Our
-                JPG to PDF converter prioritizes your file privacy and security
-                by processing everything <strong>locally</strong> on your
-                device. Unlike other converters that require uploading files to
-                external servers, our tool ensures that your images{" "}
-                <strong>never leave</strong> your device. This no-upload
-                approach guarantees maximum data privacy, making it the ideal
-                solution for users handling sensitive or personal files. All
-                conversions happen directly in your browser, ensuring complete
-                security and giving you peace of mind knowing your files are
-                processed safely and remain in your control.
-              </p>
+          <div className="flex flex-col items-start justify-start text-left">
+            {/* Box----------1 */}
+            <div className="mt-3 flex flex-row">
+              <div>
+                <MessageCircleQuestion className="mr-3 h-9 w-9 text-primary" />
+              </div>
+              <div className="flex flex-col items-start gap-1">
+                <div className="text-lg font-bold">How to Convert ?</div>
+                <p className="text-base">
+                  Click the <strong>Add Files</strong> button or{" "}
+                  <strong>Drop</strong> your files here. Adjust your settings as
+                  needed, then click <strong>Convert</strong> to begin.
+                </p>
+              </div>
+            </div>
+            {/* Box----------2 */}
+            <div className="mt-3 flex flex-row">
+              <div>
+                <ShieldCheck className="mr-3 inline h-9 w-9 text-primary" />
+              </div>
+              <div className="flex flex-col items-start gap-1">
+                <div className="text-lg font-bold">
+                  Local, Secure, and Private File Conversion
+                </div>
+                <p className="text-base">
+                  Our JPG to PDF converter prioritizes your file privacy and
+                  security by processing everything locally on your device.
+                  Unlike other converters that require uploading files to
+                  external servers, our tool ensures that your images never
+                  leave your device. This no-upload approach guarantees maximum
+                  data privacy, making it the ideal solution for users handling
+                  sensitive or personal files. All conversions happen directly
+                  in your browser, ensuring complete security and giving you
+                  peace of mind knowing your files are processed safely and
+                  remain in your control.
+                </p>
+              </div>
             </div>
           </div>
         )}
