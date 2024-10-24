@@ -179,11 +179,13 @@ export default function DropZoneBox({
             {/* Box----------1 */}
             <div className="mt-3 flex flex-row">
               <div>
-                <MessageCircleQuestion className="mr-3 h-9 w-9 text-primary" />
+                <MessageCircleQuestion className="mr-3 h-9 w-9 text-primary sm:h-10 sm:w-10" />
               </div>
               <div className="flex flex-col items-start gap-1">
-                <div className="text-lg font-bold">How to Convert ?</div>
-                <p className="text-base">
+                <div className="text-lg font-bold sm:text-xl">
+                  How to Convert ?
+                </div>
+                <p className="text-base sm:text-lg">
                   Click the <strong>Add Files</strong> button or{" "}
                   <strong>Drop</strong> your files here. Adjust your settings as
                   needed, then click <strong>Convert</strong> to begin.
@@ -193,13 +195,13 @@ export default function DropZoneBox({
             {/* Box----------2 */}
             <div className="mt-3 flex flex-row">
               <div>
-                <ShieldCheck className="mr-3 inline h-9 w-9 text-primary" />
+                <ShieldCheck className="mr-3 inline h-9 w-9 text-primary sm:h-10 sm:w-10" />
               </div>
               <div className="flex flex-col items-start gap-1">
-                <div className="text-lg font-bold">
+                <div className="text-lg font-bold sm:text-xl">
                   Local, Secure, and Private File Conversion
                 </div>
-                <p className="text-base">
+                <p className="text-base sm:text-lg">
                   Our JPG to PDF converter prioritizes your file privacy and
                   security by processing everything locally on your device.
                   Unlike other converters that require uploading files to
