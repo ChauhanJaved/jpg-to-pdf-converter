@@ -11,6 +11,7 @@ import { Checkbox } from "./check-box";
 import { useState } from "react";
 import { Label } from "./label";
 import { Badge } from "./badge";
+import { ShieldCheck } from "lucide-react";
 
 interface DropZoneBoxProps {
   isDisabled: boolean;
@@ -166,7 +167,7 @@ export default function DropZoneBox({
         </div>
       </div>
       <div
-        className={`flex min-h-[150px] w-full flex-wrap items-center justify-center gap-5 border-t p-5 text-center transition sm:min-h-[300px] ${isDragActive && "bg-secondary"}`}
+        className={`flex w-full flex-wrap items-center justify-center gap-5 border-t p-5 text-center transition ${isDragActive && "bg-secondary"}`}
       >
         {fileList.length > 0 ? (
           <SortableImageList
@@ -174,12 +175,28 @@ export default function DropZoneBox({
             isPreviewVisible={isPreviewVisible}
           />
         ) : (
-          <div>
-            <p className="m-auto mt-2 px-3 text-base text-gray-500 sm:w-3/4 sm:text-base md:w-3/5 md:text-lg lg:w-1/2">
+          <div className="flex flex-col items-start justify-start text-left sm:w-4/5 md:w-3/4 lg:w-3/5">
+            <p className="">
               Click the <strong>Add Files</strong> button or{" "}
               <strong>Drop</strong> your files here. Adjust your settings as
               needed, then click <strong>Convert</strong> to begin.
             </p>
+            <div className="mt-3">
+              <ShieldCheck className="mr-1 inline text-primary" />
+              <p className="inline text-base">
+                <strong>Local, Secure, and Private File Conversion:</strong> Our
+                JPG to PDF converter prioritizes your file privacy and security
+                by processing everything <strong>locally</strong> on your
+                device. Unlike other converters that require uploading files to
+                external servers, our tool ensures that your images{" "}
+                <strong>never leave</strong> your device. This no-upload
+                approach guarantees maximum data privacy, making it the ideal
+                solution for users handling sensitive or personal files. All
+                conversions happen directly in your browser, ensuring complete
+                security and giving you peace of mind knowing your files are
+                processed safely and remain in your control.
+              </p>
+            </div>
           </div>
         )}
       </div>
