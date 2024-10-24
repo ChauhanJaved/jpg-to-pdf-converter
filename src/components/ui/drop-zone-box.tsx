@@ -193,7 +193,7 @@ export default function DropZoneBox({
               </div>
             </div>
             {/* Box----------2 */}
-            <div className="mt-3 flex flex-row">
+            <div className="mt-5 flex flex-row">
               <div>
                 <ShieldCheck className="mr-3 inline h-9 w-9 text-primary sm:h-10 sm:w-10" />
               </div>
