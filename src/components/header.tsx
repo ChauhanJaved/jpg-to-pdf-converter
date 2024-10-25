@@ -14,6 +14,9 @@ import {
 } from "@/data/website-data";
 import useIntersectionObserver from "../hooks/use-intersection-observer";
 import { ModeToggle } from "./ui/mode-toggle";
+import { Menu } from "lucide-react";
+import { Button } from "./ui/button";
+import SheetMainManu from "./sheet-main-manu";
 
 interface HeaderProps {
   defaultActiveSection?: string;
@@ -68,7 +71,7 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
       <nav>
         <ul
           className={classNames(
-            "fixed bottom-[0] top-[0] z-[50] w-64 bg-white pt-3 text-blue-dark-imperial shadow-[0_0_18px_rgba(0,0,0,0.1)] transition-all duration-300",
+            "fixed bottom-[0] top-[0] z-[50] w-64 bg-white pt-3 shadow-[0_0_18px_rgba(0,0,0,0.1)] transition-all duration-300",
             {
               "left-0 opacity-100": isMenuOpen,
               "-left-64 opacity-0": !isMenuOpen,
@@ -92,7 +95,7 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
         </ul>
       </nav>
       {/* z-index 10 */}
-      <div className="fixed left-0 right-0 top-0 z-[10] border bg-white shadow-sm">
+      <div className="fixed left-0 right-0 top-0 z-[10] border-b shadow-sm">
         <div className={`container mx-auto w-full xl:max-w-screen-xl`}>
           <div className="mx-auto flex h-20 w-11/12 items-center justify-between md:w-full">
             {/* company name */}
@@ -125,10 +128,13 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
                     </Link>
                   </li>
                 ))}
-                <li>
-                  <ModeToggle />
-                </li>
               </ul>
+              <ModeToggle />
+              <SheetMainManu
+                activeSection={activeSection}
+                setActiveSection={setActiveSection}
+              />
+
               <HeroIcons
                 iconName={IconNames.Bars3}
                 className={classNames("size-9 cursor-pointer lg:hidden", {
