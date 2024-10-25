@@ -6,7 +6,6 @@ import {
   SheetClose,
   SheetContent,
   SheetDescription,
-  SheetFooter,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
@@ -23,10 +22,12 @@ const linkClasses = (isActive: boolean) =>
     { "before:scale-100": isActive },
   );
 interface SheetMainManuProps {
+  className: string;
   activeSection: string;
   setActiveSection: (value: string) => void;
 }
 export default function SheetMainManu({
+  className,
   activeSection,
   setActiveSection,
 }: SheetMainManuProps) {
@@ -37,7 +38,12 @@ export default function SheetMainManu({
 
   return (
     <Fragment>
-      <Button size={"icon"} variant={"outline"} onClick={openSheet}>
+      <Button
+        size={"icon"}
+        variant={"outline"}
+        onClick={openSheet}
+        className={className}
+      >
         <Menu />
       </Button>
       <Sheet open={open} onOpenChange={setOpen}>
