@@ -14,20 +14,12 @@ export default function Contact() {
         <div className="flex flex-col space-y-5 md:flex-row md:space-x-5 md:space-y-0">
           <div className="w-80 rounded border p-7 shadow-sm">
             <Mail className="h-9 w-9 text-primary sm:h-10 sm:w-10" />
-            <h3
-              className={`mt-3 text-lg font-bold text-blue-dark-imperial md:text-xl`}
-            >
-              Email Us
-            </h3>
+            <h3 className={`mt-3 text-lg font-bold md:text-xl`}>Email Us</h3>
             <p className="mt-1">{email}</p>
           </div>
           <div className="w-80 rounded border p-7 shadow-sm">
             <Clock className="h-9 w-9 text-primary sm:h-10 sm:w-10" />
-            <h3
-              className={`mt-3 text-lg font-bold text-blue-dark-imperial md:text-xl`}
-            >
-              Open Hours
-            </h3>
+            <h3 className={`mt-3 text-lg font-bold md:text-xl`}>Open Hours</h3>
             <p className="mt-1">
               Monday - Saturday <br /> 10:00AM - 08:00PM
             </p>
