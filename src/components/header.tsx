@@ -13,6 +13,7 @@ import {
   headerNavItems,
 } from "@/data/website-data";
 import useIntersectionObserver from "../hooks/use-intersection-observer";
+import { ModeToggle } from "./ui/mode-toggle";
 
 interface HeaderProps {
   defaultActiveSection?: string;
@@ -92,9 +93,7 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
       </nav>
       {/* z-index 10 */}
       <div className="fixed left-0 right-0 top-0 z-[10] border bg-white shadow-sm">
-        <div
-          className={`container mx-auto w-full text-blue-dark-imperial xl:max-w-screen-xl`}
-        >
+        <div className={`container mx-auto w-full xl:max-w-screen-xl`}>
           <div className="mx-auto flex h-20 w-11/12 items-center justify-between md:w-full">
             {/* company name */}
             <h1
@@ -126,6 +125,9 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
                     </Link>
                   </li>
                 ))}
+                <li>
+                  <ModeToggle />
+                </li>
               </ul>
               <HeroIcons
                 iconName={IconNames.Bars3}
