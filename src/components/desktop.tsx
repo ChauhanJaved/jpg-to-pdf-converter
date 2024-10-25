@@ -9,7 +9,6 @@ import { Button } from "./ui/button";
 import { Download } from "lucide-react";
 import Link from "next/link";
 import HeroIcons, { IconNames } from "./ui/hero-icons";
-import { montserrat } from "../lib/font";
 import Image from "next/image";
 
 export default function Desktop() {
@@ -63,9 +62,7 @@ export default function Desktop() {
                     />
 
                     <div className="flex flex-grow flex-col pl-3 text-left">
-                      <h2 className={`${montserrat.className} font-bold`}>
-                        {item}
-                      </h2>
+                      <h2 className={`font-bold`}>{item}</h2>
                     </div>
                   </div>
                 </div>

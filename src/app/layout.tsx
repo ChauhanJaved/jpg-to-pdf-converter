@@ -1,5 +1,4 @@
 //Internal imports
-import {} from "@/lib/font";
 import "./globals.css";
 import Header from "@/components/header";
 import { companyName, copyrightYear } from "@/data/website-data";

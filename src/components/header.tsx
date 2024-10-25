@@ -5,7 +5,6 @@ import Link from "next/link";
 import classNames from "classnames";
 
 //Internal imports
-import { montserrat } from "@/lib/font";
 import {
   headerCompanyName,
   HeaderNavItems,
@@ -45,14 +44,14 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
     );
 
   return (
-    <header className={`${montserrat.className}`}>
+    <header>
       {/* z-index 10 */}
       <div className="fixed left-0 right-0 top-0 z-[10] border-b bg-background shadow-sm">
         <div className={`container w-full px-3 xl:max-w-screen-xl`}>
           <div className="flex h-20 items-center justify-between">
             {/* company name */}
             <div
-              className={`${montserrat.className} border-l-[5px] border-l-primary pl-3 text-base font-bold tracking-wider sm:text-lg md:text-xl lg:text-2xl`}
+              className={`border-l-[5px] border-l-primary pl-3 text-lg font-bold tracking-wider sm:text-xl md:text-2xl lg:text-3xl`}
             >
               <Link
                 onClick={() => {

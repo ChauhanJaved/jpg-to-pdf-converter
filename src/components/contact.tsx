@@ -1,8 +1,6 @@
 import { email, HeaderNavItems } from "@/data/website-data";
 import React from "react";
 import SectionHeader from "./ui/section-header";
-
-import { nunito } from "../lib/font";
 import { Clock, Mail } from "lucide-react";
 
 export default function Contact() {
@@ -17,7 +15,7 @@ export default function Contact() {
           <div className="w-80 rounded border p-7 shadow-sm">
             <Mail className="h-9 w-9 text-primary sm:h-10 sm:w-10" />
             <h3
-              className={`${nunito.className} mt-3 text-lg font-bold text-blue-dark-imperial md:text-xl`}
+              className={`mt-3 text-lg font-bold text-blue-dark-imperial md:text-xl`}
             >
               Email Us
             </h3>
@@ -26,7 +24,7 @@ export default function Contact() {
           <div className="w-80 rounded border p-7 shadow-sm">
             <Clock className="h-9 w-9 text-primary sm:h-10 sm:w-10" />
             <h3
-              className={`${nunito.className} mt-3 text-lg font-bold text-blue-dark-imperial md:text-xl`}
+              className={`mt-3 text-lg font-bold text-blue-dark-imperial md:text-xl`}
             >
               Open Hours
             </h3>
