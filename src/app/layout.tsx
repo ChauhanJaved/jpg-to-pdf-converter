@@ -19,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className="font-sans" suppressHydrationWarning>
       <body>
         <ThemeProvider
           attribute="class"

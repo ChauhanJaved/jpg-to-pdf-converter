@@ -13,6 +13,7 @@ import {
 import useIntersectionObserver from "../hooks/use-intersection-observer";
 import { ModeToggle } from "./ui/mode-toggle";
 import SheetMainManu from "./sheet-main-manu";
+import { raleway } from "@/lib/font";
 
 interface HeaderProps {
   defaultActiveSection?: string;
@@ -50,18 +51,22 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
         <div className={`container w-full px-3 xl:max-w-screen-xl`}>
           <div className="flex h-20 items-center justify-between">
             {/* company name */}
-            <div
-              className={`border-l-[5px] border-l-primary pl-3 text-lg font-bold tracking-wider sm:text-xl md:text-2xl lg:text-3xl`}
+            <Link
+              onClick={() => {
+                setActiveSection(HeaderNavItems.Home);
+              }}
+              href={`/`}
             >
-              <Link
-                onClick={() => {
-                  setActiveSection(HeaderNavItems.Home);
-                }}
-                href={`/`}
+              <div
+                className={`${raleway.className} flex flex-col border-l-[5px] border-l-primary pl-3`}
               >
-                {headerCompanyName}
-              </Link>
-            </div>
+                <p className="text-lg font-bold tracking-wider sm:text-xl">
+                  {" "}
+                  {headerCompanyName}{" "}
+                </p>
+                <p className="text-lg font-bold sm:text-xl"> {"Softwares"}</p>
+              </div>
+            </Link>
             {/* desktop menu */}
             <nav className="flex items-center gap-2">
               <ul className={`hidden items-center gap-2 lg:flex`}>

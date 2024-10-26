@@ -17,7 +17,7 @@ import { useFileContext } from "@/context/file-context";
 
 import DropZoneBox from "./drop-zone-box";
 import FileInputButton from "./file-input-button";
-import SectionHeader from "./section-header";
+import { raleway } from "@/lib/font";
 
 const Dropzone = () => {
   //FileList----------
@@ -56,11 +56,19 @@ const Dropzone = () => {
   return (
     <>
       {fileList.length === 0 && (
-        <SectionHeader
-          caption="JPG to PDF Converter"
-          className={`mb-2 mt-10`}
-          desc="Combine all JPG images into Multi-Page PDF or Convert each JPG into Single-Page PDF"
-        />
+        <>
+          <div className="mt-6 flex flex-col items-center justify-center gap-2 px-3 lg:mt-10">
+            <h1
+              className={`${raleway.className} text-4xl font-extrabold tracking-tight lg:text-5xl`}
+            >
+              Fee JPG to PDF Converter
+            </h1>
+            <p className={`text-lg leading-7 lg:text-xl`}>
+              Combine all JPG images into Multi-Page PDF or Convert each JPG
+              into Single-Page PDF
+            </p>
+          </div>
+        </>
       )}
       <div
         className={`mt-5 flex w-full flex-col items-center rounded border shadow-sm`}
