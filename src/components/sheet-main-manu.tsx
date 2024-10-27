@@ -10,17 +10,12 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import classNames from "classnames";
 
 import { Menu } from "lucide-react";
 import Link from "next/link";
 import { headerNavItems } from "@/data/website-data";
-// Returns dynamic link classes with an underline animation based on the active state.
-const linkClasses = (isActive: boolean) =>
-  classNames(
-    "relative ml-2 px-2 py-2 text-sm font-semibold uppercase before:absolute before:bottom-0 before:left-0 before:h-0.5 before:w-full before:scale-0 before:bg-primary before:transition-transform before:duration-300 hover:before:scale-100",
-    { "before:scale-100": isActive },
-  );
+import { poppins } from "@/lib/font";
+
 interface SheetMainManuProps {
   className: string;
   activeSection: string;
@@ -28,7 +23,6 @@ interface SheetMainManuProps {
 }
 export default function SheetMainManu({
   className,
-  activeSection,
   setActiveSection,
 }: SheetMainManuProps) {
   const [open, setOpen] = useState(false);
@@ -40,7 +34,7 @@ export default function SheetMainManu({
     <Fragment>
       <Button
         size={"icon"}
-        variant={"outline"}
+        variant={"ghost"}
         onClick={openSheet}
         className={className}
       >
@@ -54,18 +48,17 @@ export default function SheetMainManu({
             <SheetDescription className="hidden">Main Manu</SheetDescription>
           </SheetHeader>
           <nav>
-            <ul>
+            <ul className={`${poppins.className}`}>
               {headerNavItems.map((item) => (
-                <li key={item} className="mt-4 lg:mt-0">
+                <li key={item} className="">
                   <SheetClose asChild>
                     <Link
                       onClick={() => {
                         setActiveSection(item);
                       }}
-                      className={linkClasses(activeSection === item)}
                       href={`/#${item}`}
                     >
-                      {item}
+                      <Button variant={"ghost"}>{item}</Button>
                     </Link>
                   </SheetClose>
                 </li>

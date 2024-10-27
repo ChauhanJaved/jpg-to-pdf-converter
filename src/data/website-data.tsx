@@ -19,6 +19,7 @@ export const heroDesc: string =
   "We are team of talented professionals creating feature-rich Progressive Web Apps and Windows Desktop Applications.";
 export const headerNavItems: string[] = [
   HeaderNavItems.Home,
+  HeaderNavItems.Purchase,
   HeaderNavItems.Contact,
 ];
 export const indexMetadata: Metadata = {

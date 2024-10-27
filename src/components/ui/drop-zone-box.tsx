@@ -147,7 +147,7 @@ export default function DropZoneBox({
   return (
     <div {...getRootProps()} className="w-full">
       <input {...getInputProps()} />
-      <div className="flex items-center justify-end gap-5 border-t p-3 text-sm sm:text-base">
+      <div className="flex items-center justify-end gap-5 p-3 text-sm sm:text-base">
         <div
           className={`${fileList.length === 0 && "hidden"} flex items-center justify-center gap-1`}
         >
@@ -167,7 +167,7 @@ export default function DropZoneBox({
         </div>
       </div>
       <div
-        className={`flex w-full flex-wrap items-center justify-center gap-5 border-t p-5 text-center transition ${isDragActive && "bg-secondary"}`}
+        className={`flex w-full flex-wrap items-center justify-center gap-5 p-5 text-center transition ${isDragActive && "bg-secondary"}`}
       >
         {fileList.length > 0 ? (
           <SortableImageList
@@ -175,7 +175,7 @@ export default function DropZoneBox({
             isPreviewVisible={isPreviewVisible}
           />
         ) : (
-          <div className="flex flex-col items-start justify-start text-left">
+          <div className="flex flex-col items-start justify-start rounded bg-background p-3 text-left">
             {/* Box----------1 */}
             <div className="mt-3 flex flex-row">
               <div>

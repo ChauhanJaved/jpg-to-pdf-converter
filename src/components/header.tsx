@@ -5,15 +5,11 @@ import Link from "next/link";
 import classNames from "classnames";
 
 //Internal imports
-import {
-  headerCompanyName,
-  HeaderNavItems,
-  headerNavItems,
-} from "@/data/website-data";
+import { HeaderNavItems, headerNavItems } from "@/data/website-data";
 import useIntersectionObserver from "../hooks/use-intersection-observer";
 import { ModeToggle } from "./ui/mode-toggle";
 import SheetMainManu from "./sheet-main-manu";
-import { raleway } from "@/lib/font";
+import { poppins, raleway } from "@/lib/font";
 
 interface HeaderProps {
   defaultActiveSection?: string;
@@ -48,50 +44,54 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
     <header>
       {/* z-index 10 */}
       <div className="fixed left-0 right-0 top-0 z-[10] border-b bg-background shadow-sm">
-        <div className={`container w-full px-3 xl:max-w-screen-xl`}>
-          <div className="flex h-20 items-center justify-between">
-            {/* company name */}
-            <Link
-              onClick={() => {
-                setActiveSection(HeaderNavItems.Home);
-              }}
-              href={`/`}
+        <div
+          className={`container flex h-20 w-full items-center justify-between px-3 xl:max-w-screen-xl`}
+        >
+          {/* Company name/logo */}
+          <Link
+            onClick={() => {
+              setActiveSection(HeaderNavItems.Home);
+            }}
+            href={`/`}
+          >
+            <div
+              className={`${raleway.className} flex flex-col items-start justify-center border-l-[5px] border-l-primary py-1 pl-3 text-lg font-extrabold leading-tight tracking-wider`}
             >
-              <div
-                className={`${raleway.className} flex flex-col border-l-[5px] border-l-primary pl-3`}
-              >
-                <p className="text-lg font-bold tracking-wider sm:text-xl">
-                  {" "}
-                  {headerCompanyName}{" "}
-                </p>
-                <p className="text-lg font-bold sm:text-xl"> {"Softwares"}</p>
-              </div>
-            </Link>
-            {/* desktop menu */}
-            <nav className="flex items-center gap-2">
-              <ul className={`hidden items-center gap-2 lg:flex`}>
-                {headerNavItems.map((item, index) => (
-                  <li key={item}>
-                    <Link
-                      onClick={() => {
-                        setActiveSection(item);
-                      }}
-                      className={linkClasses(activeSection === item)}
-                      href={index === 0 ? "/" : `/#${item}`}
-                    >
-                      {item}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+              <p>FrameworkTeam</p>
+              <p>Softwares</p>
+            </div>
+          </Link>
+          {/*Menu */}
+          <nav className="flex items-center gap-2">
+            {/* Desktop Menu */}
+            <ul
+              className={`${poppins.className} hidden items-center gap-2 lg:flex`}
+            >
+              {headerNavItems.map((item, index) => (
+                <li key={item}>
+                  <Link
+                    onClick={() => {
+                      setActiveSection(item);
+                    }}
+                    className={linkClasses(activeSection === item)}
+                    href={index === 0 ? "/" : `/#${item}`}
+                  >
+                    {item}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <div className="flex flex-row items-center gap-1">
+              {/* Dark mode */}
               <ModeToggle />
+              {/* Mobile meun */}
               <SheetMainManu
                 className="lg:hidden"
                 activeSection={activeSection}
                 setActiveSection={setActiveSection}
               />
-            </nav>
-          </div>
+            </div>
+          </nav>
         </div>
       </div>
     </header>

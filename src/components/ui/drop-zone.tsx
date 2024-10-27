@@ -71,7 +71,7 @@ const Dropzone = () => {
         </>
       )}
       <div
-        className={`mt-5 flex w-full flex-col items-center rounded border shadow-sm`}
+        className={`mt-5 flex w-full flex-col items-center rounded border bg-muted shadow-sm`}
       >
         {/* Toolbar */}
         <div className="flex w-full flex-wrap items-center justify-end gap-3 p-3">

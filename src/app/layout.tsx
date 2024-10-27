@@ -7,6 +7,7 @@ import { Toaster } from "@/components/ui/toaster";
 import Footer from "@/components/footer";
 import ScrollTop from "@/components/ui/scroll-top";
 import { ThemeProvider } from "@/components/theme-provider";
+import { roboto } from "@/lib/font";
 
 export const metadata: Metadata = {
   title: "JPG to PDF Converter",
@@ -19,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="font-sans" suppressHydrationWarning>
+    <html lang="en" className={`${roboto.className}`} suppressHydrationWarning>
       <body>
         <ThemeProvider
           attribute="class"
