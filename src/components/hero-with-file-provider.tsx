@@ -2,24 +2,23 @@
 
 //External Imports----------
 import { useState } from "react";
+import { Download, Trash2 } from "lucide-react";
+
+//Internal Imports----------
 import {
   handleConvertToPdf,
   MarginEnum,
   PageOrientationEnum,
   PageSizeEnum,
 } from "@/lib/pdf-lib";
-import { Download, Trash2 } from "lucide-react";
-
-//Internal Imports----------
-import ButtonToolbar from "./button-toolbar";
-import SettingsSheet from "./settings-sheet";
-import { useFileContext } from "@/context/file-context";
-
-import DropZoneBox from "./drop-zone-box";
-import FileInputButton from "./file-input-button";
 import { raleway } from "@/lib/font";
+import ButtonToolbar from "@/components/ui/button-toolbar";
+import SettingsSheet from "@/components/ui/settings-sheet";
+import { useFileContext } from "@/context/file-context";
+import DropZoneBox from "@/components/ui/drop-zone-box";
+import FileInputButton from "@/components/ui/file-input-button";
 
-const Dropzone = () => {
+const HeroWithFileProvider = () => {
   //FileList----------
   const { fileList, setFileList } = useFileContext();
   const handleClearList = () => {
@@ -54,24 +53,24 @@ const Dropzone = () => {
   const [isLoadingFiles, setIsLoadingFiles] = useState(false);
 
   return (
-    <>
+    <div className="flex flex-col">
+      {/* Box----------1 */}
       {fileList.length === 0 && (
-        <>
-          <div className="mt-6 flex flex-col items-center justify-center gap-2 px-3 lg:mt-10">
-            <h1
-              className={`${raleway.className} text-4xl font-extrabold tracking-tight lg:text-5xl`}
-            >
-              Fee JPG to PDF Converter
-            </h1>
-            <p className={`text-lg leading-7 lg:text-xl`}>
-              Combine all JPG images into Multi-Page PDF or Convert each JPG
-              into Single-Page PDF
-            </p>
-          </div>
-        </>
+        <div className="flex flex-col items-center justify-center gap-2 px-6 pb-6 pt-6 lg:pt-10">
+          <h1
+            className={`${raleway.className} text-4xl font-extrabold lg:text-5xl`}
+          >
+            Fee JPG to PDF Converter
+          </h1>
+          <p className={`text-lg leading-7 text-muted-foreground lg:text-xl`}>
+            Combine all JPG images into multi Page PDF or Convert each JPG into
+            single page PDF
+          </p>
+        </div>
       )}
+      {/* Box----------2 */}
       <div
-        className={`mt-5 flex w-full flex-col items-center rounded border shadow-sm`}
+        className={`flex w-full flex-col items-center rounded border shadow-sm`}
       >
         {/* Toolbar */}
         <div className="flex w-full flex-wrap items-center justify-end gap-3 p-3">
@@ -112,8 +111,8 @@ const Dropzone = () => {
           setIsLoadingFiles={setIsLoadingFiles}
         />
       </div>
-    </>
+    </div>
   );
 };
 
-export default Dropzone;
+export default HeroWithFileProvider;

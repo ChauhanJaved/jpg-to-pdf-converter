@@ -1,18 +1,17 @@
 "use client";
-
+//Internal Imports
 import { HeaderNavItems } from "@/data/website-data";
-import Dropzone from "./ui/drop-zone";
-
 import { FileProvider } from "@/context/file-context";
+import HeroWithFileProvider from "@/components/hero-with-file-provider";
 
 const Hero = () => {
   return (
     <FileProvider>
       <section
         id={HeaderNavItems.Home}
-        className="container m-auto mt-[83px] flex w-full scroll-m-[83px] flex-col items-center justify-start px-3 xl:max-w-screen-xl"
+        className="container m-auto mt-[83px] w-full scroll-m-[83px] xl:max-w-screen-xl"
       >
-        <Dropzone />
+        <HeroWithFileProvider />
       </section>
     </FileProvider>
   );
