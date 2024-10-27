@@ -146,27 +146,30 @@ export default function DropZoneBox({
   };
   return (
     <div className="w-full">
-      <div className="flex items-center justify-end gap-5 p-3 text-sm sm:text-base">
-        <div
-          className={`${fileList.length === 0 && "hidden"} flex items-center justify-center gap-1`}
-        >
-          <Badge className="">{`${fileList.length}`}</Badge>
-          <Label>Total Files</Label>
-        </div>
-        {fileList.length > 0 && (
-          <div className="flex items-center justify-center gap-1">
-            <Checkbox
-              id="preview"
-              className="mr-1"
-              checked={isPreviewVisible}
-              onCheckedChange={togglePreview}
-            />
-            <Label htmlFor="preview" className="cursor-pointer">
-              File Preview
-            </Label>
+      {/* Toolbar for file preview and count ---------- */}
+      {fileList.length > 0 && (
+        <div className="flex items-center justify-end gap-5 p-3 text-sm sm:text-base">
+          <div
+            className={`${fileList.length === 0 && "hidden"} flex items-center justify-center gap-1`}
+          >
+            <Badge className="">{`${fileList.length}`}</Badge>
+            <Label>Total Files</Label>
           </div>
-        )}
-      </div>
+          {fileList.length > 0 && (
+            <div className="flex items-center justify-center gap-1">
+              <Checkbox
+                id="preview"
+                className="mr-1"
+                checked={isPreviewVisible}
+                onCheckedChange={togglePreview}
+              />
+              <Label htmlFor="preview" className="cursor-pointer">
+                File Preview
+              </Label>
+            </div>
+          )}
+        </div>
+      )}
       {/* Drop Area ---------- */}
       <div
         {...getRootProps()}
