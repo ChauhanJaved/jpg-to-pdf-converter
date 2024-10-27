@@ -2,19 +2,17 @@
 //External  imports
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import classNames from "classnames";
 
 //Internal imports
-import { HeaderNavItems, headerNavItems } from "@/data/website-data";
-import useIntersectionObserver from "../hooks/use-intersection-observer";
-import { ModeToggle } from "./ui/mode-toggle";
-import SheetMainManu from "./sheet-main-manu";
 import { poppins, raleway } from "@/lib/font";
+import { HeaderNavItems, headerNavItems } from "@/data/website-data";
+import useIntersectionObserver from "@/hooks/use-intersection-observer";
+import { ModeToggle } from "@/components/ui/mode-toggle";
+import SheetMainManu from "@/components/sheet-main-manu";
 
 interface HeaderProps {
   defaultActiveSection?: string;
 }
-
 export default function Header({ defaultActiveSection = "" }: HeaderProps) {
   const [activeSection, setActiveSection] = useState<string>("");
 
@@ -32,13 +30,6 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
   }, [defaultActiveSection]);
 
   useIntersectionObserver(setActiveSection);
-
-  // Returns dynamic link classes with an underline animation based on the active state.
-  const linkClasses = (isActive: boolean) =>
-    classNames(
-      "relative px-2 py-2 text-sm font-semibold uppercase before:absolute before:bottom-0 before:left-0 before:h-0.5 before:w-full before:scale-0 before:bg-primary before:transition-transform before:duration-300 hover:before:scale-100",
-      { "before:scale-100": isActive },
-    );
 
   return (
     <header>
@@ -73,7 +64,7 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
                     onClick={() => {
                       setActiveSection(item);
                     }}
-                    className={linkClasses(activeSection === item)}
+                    className={`relative px-2 py-2 text-sm font-semibold uppercase before:absolute before:bottom-0 before:left-0 before:h-0.5 before:w-full before:scale-0 before:bg-primary before:transition-transform before:duration-300 hover:before:scale-100 ${activeSection === item && "before:scale-100"}`}
                     href={index === 0 ? "/" : `/#${item}`}
                   >
                     {item}

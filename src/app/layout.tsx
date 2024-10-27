@@ -1,7 +1,11 @@
 //Internal imports
 import "./globals.css";
 import Header from "@/components/header";
-import { companyName, copyrightYear } from "@/data/website-data";
+import {
+  companyName,
+  copyrightYear,
+  HeaderNavItems,
+} from "@/data/website-data";
 import type { Metadata } from "next";
 import { Toaster } from "@/components/ui/toaster";
 import Footer from "@/components/footer";
@@ -28,7 +32,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Header />
+          <Header defaultActiveSection={HeaderNavItems.Home} />
           {children}
           <Footer companyName={companyName} copyrightYear={copyrightYear} />
           <ScrollTop />
