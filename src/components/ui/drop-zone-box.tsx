@@ -11,8 +11,7 @@ import { Checkbox } from "./check-box";
 import { useState } from "react";
 import { Label } from "./label";
 import { Badge } from "./badge";
-import { Button } from "./button";
-import { Plus } from "lucide-react";
+import FileInputButton from "./file-input-button";
 
 interface DropZoneBoxProps {
   isDisabled: boolean;
@@ -128,7 +127,7 @@ export default function DropZoneBox({
     }
   };
 
-  const { getRootProps, getInputProps, isDragActive, open } = useDropzone({
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
     noClick: true,
     noKeyboard: true,
     onFileDialogOpen,
@@ -146,8 +145,7 @@ export default function DropZoneBox({
     setIsPreviewVisible((prevState) => !prevState);
   };
   return (
-    <div {...getRootProps()} className="w-full rounded border">
-      <input {...getInputProps()} />
+    <div className="w-full">
       <div className="flex items-center justify-end gap-5 p-3 text-sm sm:text-base">
         <div
           className={`${fileList.length === 0 && "hidden"} flex items-center justify-center gap-1`}
@@ -169,9 +167,12 @@ export default function DropZoneBox({
           </div>
         )}
       </div>
+      {/* Drop Area ---------- */}
       <div
-        className={`flex w-full flex-wrap items-center justify-center gap-5 p-5 text-center transition ${isDragActive && "bg-secondary"}`}
+        {...getRootProps()}
+        className={`flex w-full flex-wrap items-center justify-center gap-5 p-5 text-center transition ${isDragActive && "bg-secondary"} lg:min-h-72 lg:border-2 lg:border-dashed`}
       >
+        <input {...getInputProps()} />
         {fileList.length > 0 ? (
           <SortableImageList
             disabled={isDisabled}
@@ -179,13 +180,14 @@ export default function DropZoneBox({
           />
         ) : (
           <div className="flex flex-col items-start justify-start rounded bg-background text-left">
-            {/* Box----------1 */}
             <div className="flex flex-row">
               <div className="flex flex-col items-center gap-1">
-                <Button onClick={open} className="p-8 text-2xl">
-                  <Plus className="mr-3 h-8 w-8" /> Add Files
-                </Button>
-                <p className="text-base sm:text-lg">or drop files here</p>
+                <FileInputButton
+                  buttonType="main"
+                  isDisabled={false}
+                  setIsLoadingFiles={setIsLoadingFiles}
+                />
+                <p className="hidden text-lg lg:block">or drop files here</p>
               </div>
             </div>
           </div>

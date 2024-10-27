@@ -13,7 +13,7 @@ const Hero = () => {
         className="container m-auto mt-[83px] w-full scroll-m-[83px] xl:max-w-screen-xl"
       >
         <HeroWithFileProvider />
-
+        {/* Product description */}
         <div className="mt-5 flex flex-row p-3">
           <div>
             <ShieldCheck className="mr-3 inline h-9 w-9 text-primary sm:h-10 sm:w-10" />

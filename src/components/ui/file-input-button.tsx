@@ -7,16 +7,14 @@ import { useRef } from "react";
 import ButtonToolbar from "./button-toolbar";
 import { useFileContext } from "@/context/file-context";
 import { useToast } from "@/hooks/use-toast";
+import { Button } from "./button";
 
 interface FileInputButtonProps {
   isDisabled: boolean;
   setIsLoadingFiles: (isDisabled: boolean) => void;
+  buttonType: string;
 }
-
-export default function FileInputButton({
-  isDisabled = false,
-  setIsLoadingFiles,
-}: FileInputButtonProps) {
+export default function FileInputButton(props: FileInputButtonProps) {
   const { toast } = useToast();
   // fileList----------
   const { fileList, setFileList } = useFileContext();
@@ -93,7 +91,7 @@ export default function FileInputButton({
       }
 
       // Stop Loading State Once All Files are Processed
-      setIsLoadingFiles(false);
+      props.setIsLoadingFiles(false);
     } catch (error: unknown) {
       if (error instanceof Error) {
         // Handle the error, accessing 'message' safely
@@ -110,7 +108,7 @@ export default function FileInputButton({
           variant: "destructive",
         });
       }
-      setIsLoadingFiles(false);
+      props.setIsLoadingFiles(false);
     }
   };
   const handleButtonClick = () => {
@@ -126,17 +124,26 @@ export default function FileInputButton({
         type="file"
         accept="image/jpeg"
         multiple
-        disabled={isDisabled}
+        disabled={props.isDisabled}
         onChange={handleFileSelect}
         className="hidden"
       />
-
-      <ButtonToolbar
-        disabled={isDisabled}
-        caption="Add Files"
-        icon={Plus}
-        handleOnClick={handleButtonClick}
-      />
+      {props.buttonType === "toolbar" ? (
+        <ButtonToolbar
+          disabled={props.isDisabled}
+          caption="Add Files"
+          icon={Plus}
+          handleOnClick={handleButtonClick}
+        />
+      ) : (
+        <Button
+          className={"py-6 text-xl"}
+          disabled={props.isDisabled}
+          onClick={handleButtonClick}
+        >
+          <Plus className="mr-3 h-8 w-8" /> Add Files
+        </Button>
+      )}
     </div>
   );
 }

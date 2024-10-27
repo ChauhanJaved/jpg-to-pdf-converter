@@ -62,7 +62,9 @@ const HeroWithFileProvider = () => {
           >
             Fee JPG to PDF Converter
           </h1>
-          <p className={`text-lg leading-7 text-muted-foreground lg:text-xl`}>
+          <p
+            className={`text-lg leading-7 text-secondary-foreground lg:text-xl`}
+          >
             Combine all JPG images into multi Page PDF or Convert each JPG into
             single page PDF
           </p>
@@ -72,8 +74,9 @@ const HeroWithFileProvider = () => {
       <div className={`flex w-full flex-col items-center px-3`}>
         {/* Toolbar */}
         {fileList.length > 0 && (
-          <div className="flex w-full flex-wrap items-center justify-end gap-3 p-3">
+          <div className="mt-3 flex w-full flex-wrap items-center justify-end gap-3 p-3">
             <FileInputButton
+              buttonType="toolbar"
               isDisabled={isConvertingFiles || isLoadingFiles}
               setIsLoadingFiles={setIsConvertingFiles}
             />
