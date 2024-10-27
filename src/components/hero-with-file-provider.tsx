@@ -69,43 +69,43 @@ const HeroWithFileProvider = () => {
         </div>
       )}
       {/* Box----------2 */}
-      <div
-        className={`flex w-full flex-col items-center rounded border shadow-sm`}
-      >
+      <div className={`flex w-full flex-col items-center px-3`}>
         {/* Toolbar */}
-        <div className="flex w-full flex-wrap items-center justify-end gap-3 p-3">
-          <FileInputButton
-            isDisabled={isConvertingFiles || isLoadingFiles}
-            setIsLoadingFiles={setIsConvertingFiles}
-          />
-          <ButtonToolbar
-            disabled={
-              fileList.length === 0 || isConvertingFiles || isLoadingFiles
-            }
-            caption="Remove All"
-            handleOnClick={handleClearList}
-            icon={Trash2}
-          ></ButtonToolbar>
-          <SettingsSheet
-            disabled={isConvertingFiles || isLoadingFiles}
-            orientation={orientation}
-            pageSize={pageSize}
-            margin={margin}
-            imgPreview={imagePreview}
-            onOrientationChange={handleOrientationChange}
-            onPageSizeChange={handlePageSizeChange}
-            onMarginChange={handleMarginChange}
-            onImgPreviewChange={handleImagePreviewChange}
-          />
-          <ButtonToolbar
-            disabled={
-              fileList.length === 0 || isConvertingFiles || isLoadingFiles
-            }
-            caption="Convert"
-            handleOnClick={handleConversion}
-            icon={Download}
-          ></ButtonToolbar>
-        </div>
+        {fileList.length > 0 && (
+          <div className="flex w-full flex-wrap items-center justify-end gap-3 p-3">
+            <FileInputButton
+              isDisabled={isConvertingFiles || isLoadingFiles}
+              setIsLoadingFiles={setIsConvertingFiles}
+            />
+            <ButtonToolbar
+              disabled={
+                fileList.length === 0 || isConvertingFiles || isLoadingFiles
+              }
+              caption="Remove All"
+              handleOnClick={handleClearList}
+              icon={Trash2}
+            ></ButtonToolbar>
+            <SettingsSheet
+              disabled={isConvertingFiles || isLoadingFiles}
+              orientation={orientation}
+              pageSize={pageSize}
+              margin={margin}
+              imgPreview={imagePreview}
+              onOrientationChange={handleOrientationChange}
+              onPageSizeChange={handlePageSizeChange}
+              onMarginChange={handleMarginChange}
+              onImgPreviewChange={handleImagePreviewChange}
+            />
+            <ButtonToolbar
+              disabled={
+                fileList.length === 0 || isConvertingFiles || isLoadingFiles
+              }
+              caption="Convert"
+              handleOnClick={handleConversion}
+              icon={Download}
+            ></ButtonToolbar>
+          </div>
+        )}
         <DropZoneBox
           isDisabled={isConvertingFiles || isLoadingFiles}
           setIsLoadingFiles={setIsLoadingFiles}

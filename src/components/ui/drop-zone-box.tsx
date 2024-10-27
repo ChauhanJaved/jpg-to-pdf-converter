@@ -11,7 +11,8 @@ import { Checkbox } from "./check-box";
 import { useState } from "react";
 import { Label } from "./label";
 import { Badge } from "./badge";
-import { MessageCircleQuestion, ShieldCheck } from "lucide-react";
+import { Button } from "./button";
+import { Plus } from "lucide-react";
 
 interface DropZoneBoxProps {
   isDisabled: boolean;
@@ -127,7 +128,7 @@ export default function DropZoneBox({
     }
   };
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+  const { getRootProps, getInputProps, isDragActive, open } = useDropzone({
     noClick: true,
     noKeyboard: true,
     onFileDialogOpen,
@@ -145,7 +146,7 @@ export default function DropZoneBox({
     setIsPreviewVisible((prevState) => !prevState);
   };
   return (
-    <div {...getRootProps()} className="w-full">
+    <div {...getRootProps()} className="w-full rounded border">
       <input {...getInputProps()} />
       <div className="flex items-center justify-end gap-5 p-3 text-sm sm:text-base">
         <div
@@ -154,17 +155,19 @@ export default function DropZoneBox({
           <Badge className="">{`${fileList.length}`}</Badge>
           <Label>Total Files</Label>
         </div>
-        <div className="flex items-center justify-center gap-1">
-          <Checkbox
-            id="preview"
-            className="mr-1"
-            checked={isPreviewVisible}
-            onCheckedChange={togglePreview}
-          />
-          <Label htmlFor="preview" className="cursor-pointer">
-            File Preview
-          </Label>
-        </div>
+        {fileList.length > 0 && (
+          <div className="flex items-center justify-center gap-1">
+            <Checkbox
+              id="preview"
+              className="mr-1"
+              checked={isPreviewVisible}
+              onCheckedChange={togglePreview}
+            />
+            <Label htmlFor="preview" className="cursor-pointer">
+              File Preview
+            </Label>
+          </div>
+        )}
       </div>
       <div
         className={`flex w-full flex-wrap items-center justify-center gap-5 p-5 text-center transition ${isDragActive && "bg-secondary"}`}
@@ -175,44 +178,14 @@ export default function DropZoneBox({
             isPreviewVisible={isPreviewVisible}
           />
         ) : (
-          <div className="flex flex-col items-start justify-start rounded bg-background p-3 text-left">
+          <div className="flex flex-col items-start justify-start rounded bg-background text-left">
             {/* Box----------1 */}
-            <div className="mt-3 flex flex-row">
-              <div>
-                <MessageCircleQuestion className="mr-3 h-9 w-9 text-primary sm:h-10 sm:w-10" />
-              </div>
-              <div className="flex flex-col items-start gap-1">
-                <div className="text-lg font-bold sm:text-xl">
-                  How to Convert ?
-                </div>
-                <p className="text-base sm:text-lg">
-                  Click the <strong>Add Files</strong> button or{" "}
-                  <strong>Drop</strong> your files here. Adjust your settings as
-                  needed, then click <strong>Convert</strong> to begin.
-                </p>
-              </div>
-            </div>
-            {/* Box----------2 */}
-            <div className="mt-5 flex flex-row">
-              <div>
-                <ShieldCheck className="mr-3 inline h-9 w-9 text-primary sm:h-10 sm:w-10" />
-              </div>
-              <div className="flex flex-col items-start gap-1">
-                <div className="text-lg font-bold sm:text-xl">
-                  Local, Secure, and Private File Conversion
-                </div>
-                <p className="text-base sm:text-lg">
-                  Our JPG to PDF converter prioritizes your file privacy and
-                  security by processing everything locally on your device.
-                  Unlike other converters that require uploading files to
-                  external servers, our tool ensures that your images never
-                  leave your device. This no-upload approach guarantees maximum
-                  data privacy, making it the ideal solution for users handling
-                  sensitive or personal files. All conversions happen directly
-                  in your browser, ensuring complete security and giving you
-                  peace of mind knowing your files are processed safely and
-                  remain in your control.
-                </p>
+            <div className="flex flex-row">
+              <div className="flex flex-col items-center gap-1">
+                <Button onClick={open} className="p-8 text-2xl">
+                  <Plus className="mr-3 h-8 w-8" /> Add Files
+                </Button>
+                <p className="text-base sm:text-lg">or drop files here</p>
               </div>
             </div>
           </div>
