@@ -35,11 +35,11 @@ interface HeroSettingsSheetProps {
   orientation: PageOrientationEnum;
   pageSize: PageSizeEnum;
   margin: MarginEnum;
-  imgPreview: boolean;
+  mergeAllImages: boolean;
   onOrientationChange: (orientation: PageOrientationEnum) => void;
   onPageSizeChange: (pageSize: PageSizeEnum) => void;
   onMarginChange: (margin: MarginEnum) => void;
-  onImgPreviewChange: (isPreview: boolean) => void;
+  onMergeAllImagesChange: (shouldMerge: boolean) => void;
 }
 
 export default function HeroSettingsSheet({
@@ -47,11 +47,11 @@ export default function HeroSettingsSheet({
   orientation,
   pageSize,
   margin,
-  imgPreview,
+  mergeAllImages,
   onOrientationChange,
   onPageSizeChange,
   onMarginChange,
-  onImgPreviewChange,
+  onMergeAllImagesChange,
 }: HeroSettingsSheetProps) {
   const [open, setOpen] = useState(false);
   const openSheet = () => {
@@ -133,14 +133,16 @@ export default function HeroSettingsSheet({
                 </SelectContent>
               </Select>
             </div>
-            <div className="mt-5 flex items-center">
+            <div className="mt-7 flex items-center">
               <Checkbox
                 id="imagepreview"
                 className="mr-1"
-                checked={imgPreview}
-                onCheckedChange={onImgPreviewChange}
+                checked={mergeAllImages}
+                onCheckedChange={onMergeAllImagesChange}
               />
-              <Label htmlFor="imagepreview">Image Preview</Label>
+              <Label htmlFor="imagepreview">
+                Merge all images in one PDF file
+              </Label>
             </div>
           </div>
           <SheetFooter className="mt-3">

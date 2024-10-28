@@ -29,21 +29,22 @@ const HeroWithFileProvider = () => {
   //Conversion--------
   const [isConvertingFiles, setIsConvertingFiles] = useState(false);
   const [orientation, setOrientation] = useState(PageOrientationEnum.portrait);
-  const [pageSize, setPageSize] = useState(PageSizeEnum.A4);
-  const [margin, setMargin] = useState(MarginEnum.None);
-  const [imagePreview, setImagePreview] = useState(true);
   const handleOrientationChange = (value: PageOrientationEnum) => {
     setOrientation(value);
   };
+  const [pageSize, setPageSize] = useState(PageSizeEnum.A4);
   const handlePageSizeChange = (newPageSize: PageSizeEnum) => {
     setPageSize(newPageSize);
   };
+  const [margin, setMargin] = useState(MarginEnum.None);
   const handleMarginChange = (newMargin: MarginEnum) => {
     setMargin(newMargin);
   };
-  const handleImagePreviewChange = (isImgPreview: boolean) => {
-    setImagePreview(isImgPreview);
+  const [mergeAllImages, setMergeAllImages] = useState(true);
+  const handleMergeAllImagesChange = (shouldMerge: boolean) => {
+    setMergeAllImages(shouldMerge);
   };
+
   const handleConversion = async () => {
     setIsConvertingFiles(true);
     await handleConvertToPdf(fileList, orientation, pageSize, margin);
@@ -93,11 +94,11 @@ const HeroWithFileProvider = () => {
             orientation={orientation}
             pageSize={pageSize}
             margin={margin}
-            imgPreview={imagePreview}
+            mergeAllImages={mergeAllImages}
             onOrientationChange={handleOrientationChange}
             onPageSizeChange={handlePageSizeChange}
             onMarginChange={handleMarginChange}
-            onImgPreviewChange={handleImagePreviewChange}
+            onMergeAllImagesChange={handleMergeAllImagesChange}
           />
           {/* Convert button */}
           <HeroButtonToolbar
