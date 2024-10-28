@@ -1,7 +1,10 @@
+//Extarnal Imports
 import React, { Fragment, useState } from "react";
+import { Settings } from "lucide-react";
+
+//Internal Imports
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-
 import {
   Sheet,
   SheetClose,
@@ -11,9 +14,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import ButtonToolbar from "./button-toolbar";
-import { Settings } from "lucide-react";
-
+import HeroButtonToolbar from "@/components/hero-button-toolbar";
 import {
   Select,
   SelectContent,
@@ -23,9 +24,13 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { MarginEnum, PageOrientationEnum, PageSizeEnum } from "@/lib/pdf-lib";
-import { Checkbox } from "./check-box";
+import { Checkbox } from "@/components/ui/check-box";
 
-interface SettingsSheetProps {
+function capitalizeFirstLetter(word: string) {
+  return word.charAt(0).toUpperCase() + word.slice(1);
+}
+
+interface HeroSettingsSheetProps {
   disabled?: boolean;
   orientation: PageOrientationEnum;
   pageSize: PageSizeEnum;
@@ -37,11 +42,7 @@ interface SettingsSheetProps {
   onImgPreviewChange: (isPreview: boolean) => void;
 }
 
-function capitalizeFirstLetter(word: string) {
-  return word.charAt(0).toUpperCase() + word.slice(1);
-}
-
-export default function SettingsSheet({
+export default function HeroSettingsSheet({
   disabled = false,
   orientation,
   pageSize,
@@ -51,7 +52,7 @@ export default function SettingsSheet({
   onPageSizeChange,
   onMarginChange,
   onImgPreviewChange,
-}: SettingsSheetProps) {
+}: HeroSettingsSheetProps) {
   const [open, setOpen] = useState(false);
   const openSheet = () => {
     setOpen(true);
@@ -59,12 +60,12 @@ export default function SettingsSheet({
 
   return (
     <Fragment>
-      <ButtonToolbar
+      <HeroButtonToolbar
         handleOnClick={openSheet}
         disabled={disabled}
         caption="Settings"
         icon={Settings}
-      ></ButtonToolbar>
+      ></HeroButtonToolbar>
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetTrigger asChild></SheetTrigger>
         <SheetContent>

@@ -1,52 +1,47 @@
 "use client";
 
-//External Imports----------
-import { useDropzone, FileRejection } from "react-dropzone";
+// External Imports----------
 import { Plus } from "lucide-react";
-//Internal Imports----------
-import ButtonToolbar from "./button-toolbar";
+import { useRef } from "react";
+// Internal Imports----------
+import HeroButtonToolbar from "./hero-button-toolbar";
 import { useFileContext } from "@/context/file-context";
 import { useToast } from "@/hooks/use-toast";
+import { Button } from "@/components/ui/button";
 
-interface DropZoneButtonProps {
+interface HeroFileInputButtonProps {
   isDisabled: boolean;
   setIsLoadingFiles: (isDisabled: boolean) => void;
+  buttonType: string;
 }
-
-export default function DropZoneButton({
-  isDisabled = false,
-  setIsLoadingFiles,
-}: DropZoneButtonProps) {
+export default function HeroFileInputButton(props: HeroFileInputButtonProps) {
   const { toast } = useToast();
-  //fileList----------
+  // fileList----------
   const { fileList, setFileList } = useFileContext();
 
-  //DropZone----------
-  const onFileDialogCancel = () => {
-    setIsLoadingFiles(false);
-  };
-  const onError = () => {
-    setIsLoadingFiles(false);
-  };
-  const onDrop = async (
-    acceptedFiles: File[],
-    rejectedFiles: FileRejection[],
+  // Handle File Selection
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const handleFileSelect = async (
+    event: React.ChangeEvent<HTMLInputElement>,
   ) => {
+    const selectedFiles = Array.from(event.target.files || []);
     try {
       // Handle Unsupported Files with Detailed Errors
-      if (rejectedFiles.length > 0) {
-        const unsupportedFileMessages = rejectedFiles.map((fileRejection) => {
-          const reasons = fileRejection.errors.map((error) => error.message);
-          return `${fileRejection.file.name}: ${reasons.join(", ")}`;
-        });
+      const unsupportedFiles = selectedFiles.filter(
+        (file) => !file.type.includes("jpeg"),
+      );
+
+      if (unsupportedFiles.length > 0) {
         toast({
           title: "Unsupported file(s) detected!",
-          description: `The following files were rejected: ${unsupportedFileMessages.join(", ")}`,
+          description: `The following files were rejected: ${unsupportedFiles
+            .map((file) => file.name)
+            .join(", ")}`,
         });
       }
 
       // Detect Duplicate Files
-      const duplicateFiles = acceptedFiles.filter((newFile) =>
+      const duplicateFiles = selectedFiles.filter((newFile) =>
         fileList.some(
           (existingFile) =>
             existingFile.file.name === newFile.name &&
@@ -65,7 +60,7 @@ export default function DropZoneButton({
       }
 
       // Filter out duplicate files from accepted files
-      const filteredFiles = acceptedFiles.filter(
+      const filteredFiles = selectedFiles.filter(
         (newFile) =>
           !fileList.some(
             (existingFile) =>
@@ -94,8 +89,9 @@ export default function DropZoneButton({
             "All selected files are either duplicates or unsupported.",
         });
       }
+
       // Stop Loading State Once All Files are Processed
-      setIsLoadingFiles(false);
+      props.setIsLoadingFiles(false);
     } catch (error: unknown) {
       if (error instanceof Error) {
         // Handle the error, accessing 'message' safely
@@ -112,32 +108,42 @@ export default function DropZoneButton({
           variant: "destructive",
         });
       }
-      setIsLoadingFiles(false);
+      props.setIsLoadingFiles(false);
     }
   };
-  const onFileDialogOpen = () => {
-    setIsLoadingFiles(true);
+  const handleButtonClick = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
   };
-  const { getRootProps, getInputProps } = useDropzone({
-    onFileDialogOpen,
-    onDrop,
-    onFileDialogCancel,
-    accept: {
-      "image/jpeg": [".jpg", ".jpeg"],
-    },
-    multiple: true,
-    onError,
-    disabled: isDisabled,
-  });
 
   return (
-    <div {...getRootProps()}>
-      <input {...getInputProps()} />
-      <ButtonToolbar
-        disabled={isDisabled}
-        caption="Add Files"
-        icon={Plus}
-      ></ButtonToolbar>
+    <div>
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept="image/jpeg"
+        multiple
+        disabled={props.isDisabled}
+        onChange={handleFileSelect}
+        className="hidden"
+      />
+      {props.buttonType === "toolbar" ? (
+        <HeroButtonToolbar
+          disabled={props.isDisabled}
+          caption="Add Files"
+          icon={Plus}
+          handleOnClick={handleButtonClick}
+        />
+      ) : (
+        <Button
+          className={"py-6 text-xl"}
+          disabled={props.isDisabled}
+          onClick={handleButtonClick}
+        >
+          <Plus className="mr-3 h-8 w-8" /> Add JPG Images
+        </Button>
+      )}
     </div>
   );
 }

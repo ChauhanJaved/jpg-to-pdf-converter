@@ -1,6 +1,10 @@
+//External Imports
 import React, { Fragment, useState } from "react";
-import { Button } from "@/components/ui/button";
+import { Menu } from "lucide-react";
+import Link from "next/link";
 
+//Internal Imports
+import { Button } from "@/components/ui/button";
 import {
   Sheet,
   SheetClose,
@@ -10,21 +14,18 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-
-import { Menu } from "lucide-react";
-import Link from "next/link";
 import { headerNavItems } from "@/data/website-data";
 import { poppins } from "@/lib/font";
 
-interface SheetMainManuProps {
+interface HeaderSheetMainManuProps {
   className: string;
   activeSection: string;
   setActiveSection: (value: string) => void;
 }
-export default function SheetMainManu({
+export default function HeaderSheetMainManu({
   className,
   setActiveSection,
-}: SheetMainManuProps) {
+}: HeaderSheetMainManuProps) {
   const [open, setOpen] = useState(false);
   const openSheet = () => {
     setOpen(true);

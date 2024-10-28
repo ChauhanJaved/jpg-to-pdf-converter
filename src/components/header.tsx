@@ -7,8 +7,8 @@ import Link from "next/link";
 import { poppins, raleway } from "@/lib/font";
 import { HeaderNavItems, headerNavItems } from "@/data/website-data";
 import useIntersectionObserver from "@/hooks/use-intersection-observer";
-import { ModeToggle } from "@/components/ui/mode-toggle";
-import SheetMainManu from "@/components/sheet-main-manu";
+import { HeaderModeToggle } from "@/components/header-mode-toggle";
+import HeaderSheetMainManu from "@/components/header-sheet-main-manu";
 
 interface HeaderProps {
   defaultActiveSection?: string;
@@ -74,9 +74,9 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
             </ul>
             <div className="flex flex-row items-center gap-1">
               {/* Dark mode */}
-              <ModeToggle />
+              <HeaderModeToggle />
               {/* Mobile meun */}
-              <SheetMainManu
+              <HeaderSheetMainManu
                 className="lg:hidden"
                 activeSection={activeSection}
                 setActiveSection={setActiveSection}

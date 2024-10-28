@@ -1,9 +1,11 @@
 "use client";
 
-import { ArrowUp } from "lucide-react";
-import { Button } from "./button";
-//Internal imports
+//External Imports
 import { useEffect, useRef, useState } from "react";
+import { ArrowUp } from "lucide-react";
+
+//Internal imports
+import { Button } from "@/components/ui/button";
 
 export default function ScrollTop() {
   const [isVisible, setIsVisible] = useState(false);

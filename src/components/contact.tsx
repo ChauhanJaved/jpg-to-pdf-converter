@@ -1,7 +1,10 @@
-import { email, HeaderNavItems } from "@/data/website-data";
+//External Imports
 import React from "react";
-import SectionHeader from "./ui/section-header";
 import { Clock, Mail } from "lucide-react";
+
+//Internal Imports
+import { email, HeaderNavItems } from "@/data/website-data";
+import SectionHeader from "@/components/section-header";
 
 export default function Contact() {
   return (

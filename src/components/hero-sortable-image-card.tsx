@@ -1,11 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
+//External Imports
 import React, { useEffect, useState } from "react";
-import { Button } from "./button";
 import { Grip, Pencil, Trash2, ZoomIn } from "lucide-react";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+
+//Internal Imports
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { useFileContext } from "@/context/file-context";
-import { Badge } from "./badge";
 
 interface FileObject {
   file: File;
@@ -19,14 +22,14 @@ function formatFileSize(size: number): string {
   const i = Math.floor(Math.log(size) / Math.log(k));
   return parseFloat((size / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
 }
-interface SortableImageCardProps {
+interface HeroSortableImageCardProps {
   fileObject: FileObject;
   isPreviewVisible: boolean;
 }
-const SortableImageCard = React.memo(function SortableImageCard({
+const HeroSortableImageCard = React.memo(function SortableImageCard({
   fileObject,
   isPreviewVisible,
-}: SortableImageCardProps) {
+}: HeroSortableImageCardProps) {
   const { removeFile } = useFileContext();
   const { id, file } = fileObject;
 
@@ -109,4 +112,4 @@ const SortableImageCard = React.memo(function SortableImageCard({
   );
 });
 
-export default SortableImageCard;
+export default HeroSortableImageCard;

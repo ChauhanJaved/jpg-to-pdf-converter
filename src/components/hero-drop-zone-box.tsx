@@ -1,28 +1,34 @@
 "use client";
 
 //External Imports----------
+import { useState } from "react";
 import { useDropzone, FileRejection } from "react-dropzone";
 
 //Internal Imports----------
-import SortableImageList from "./sortable-image-list";
 import { useFileContext } from "@/context/file-context";
+import HeroSortableImageList from "@/components/hero-sortable-image-list";
+import HeroFileInputButton from "@/components/hero-file-input-button";
 import { useToast } from "@/hooks/use-toast";
-import { Checkbox } from "./check-box";
-import { useState } from "react";
-import { Label } from "./label";
-import { Badge } from "./badge";
-import FileInputButton from "./file-input-button";
+import { Checkbox } from "@/components/ui/check-box";
+import { Label } from "@/components/ui/label";
+import { Badge } from "@/components/ui/badge";
 
-interface DropZoneBoxProps {
+interface HeroDropZoneBoxProps {
   isDisabled: boolean;
   setIsLoadingFiles: (isDisabled: boolean) => void;
 }
 
-export default function DropZoneBox({
+export default function HeroDropZoneBox({
   isDisabled = false,
   setIsLoadingFiles,
-}: DropZoneBoxProps) {
-  //Uer message----------
+}: HeroDropZoneBoxProps) {
+  //Preview On/off
+  const [isPreviewVisible, setIsPreviewVisible] = useState<boolean>(true);
+  const togglePreview = () => {
+    setIsPreviewVisible((prevState) => !prevState);
+  };
+
+  //User message----------
   const { toast } = useToast();
 
   //fileList----------
@@ -140,10 +146,7 @@ export default function DropZoneBox({
     onError,
     disabled: isDisabled,
   });
-  const [isPreviewVisible, setIsPreviewVisible] = useState<boolean>(true);
-  const togglePreview = () => {
-    setIsPreviewVisible((prevState) => !prevState);
-  };
+
   return (
     <div className="w-full">
       {/* Toolbar for file preview and count ---------- */}
@@ -177,7 +180,7 @@ export default function DropZoneBox({
       >
         <input {...getInputProps()} />
         {fileList.length > 0 ? (
-          <SortableImageList
+          <HeroSortableImageList
             disabled={isDisabled}
             isPreviewVisible={isPreviewVisible}
           />
@@ -185,7 +188,7 @@ export default function DropZoneBox({
           <div className="flex flex-col items-start justify-start rounded bg-background text-left">
             <div className="flex flex-row">
               <div className="flex flex-col items-center gap-1">
-                <FileInputButton
+                <HeroFileInputButton
                   buttonType="main"
                   isDisabled={false}
                   setIsLoadingFiles={setIsLoadingFiles}

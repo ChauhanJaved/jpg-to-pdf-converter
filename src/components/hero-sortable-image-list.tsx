@@ -1,3 +1,4 @@
+//External Imports
 import {
   DndContext,
   closestCenter,
@@ -13,16 +14,18 @@ import {
   sortableKeyboardCoordinates,
 } from "@dnd-kit/sortable";
 
+//Internal Imports
 import { useFileContext } from "@/context/file-context";
-import SortableImageCard from "./sortable-image-card";
-interface SortableImageListProps {
+import HeroSortableImageCard from "@/components/hero-sortable-image-card";
+
+interface HeroSortableImageListProps {
   disabled: boolean;
   isPreviewVisible: boolean;
 }
-const SortableImageList = ({
+const HeroSortableImageList = ({
   disabled,
   isPreviewVisible,
-}: SortableImageListProps) => {
+}: HeroSortableImageListProps) => {
   const { fileList, setFileList } = useFileContext();
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -50,7 +53,7 @@ const SortableImageList = ({
     >
       <SortableContext items={fileList} disabled={disabled}>
         {fileList.map((fileObj) => (
-          <SortableImageCard
+          <HeroSortableImageCard
             key={fileObj.id}
             isPreviewVisible={isPreviewVisible}
             fileObject={fileObj}
@@ -61,4 +64,4 @@ const SortableImageList = ({
   );
 };
 
-export default SortableImageList;
+export default HeroSortableImageList;

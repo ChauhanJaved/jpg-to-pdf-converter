@@ -12,11 +12,11 @@ import {
   PageSizeEnum,
 } from "@/lib/pdf-lib";
 import { raleway } from "@/lib/font";
-import ButtonToolbar from "@/components/ui/button-toolbar";
-import SettingsSheet from "@/components/ui/settings-sheet";
+import HeroButtonToolbar from "@/components/hero-button-toolbar";
+import HeroSettingsSheet from "@/components/hero-settings-sheet";
 import { useFileContext } from "@/context/file-context";
-import DropZoneBox from "@/components/ui/drop-zone-box";
-import FileInputButton from "@/components/ui/file-input-button";
+import HeroDropZoneBox from "@/components/hero-drop-zone-box";
+import HeroFileInputButton from "@/components/hero-file-input-button";
 
 const HeroWithFileProvider = () => {
   //FileList----------
@@ -54,8 +54,8 @@ const HeroWithFileProvider = () => {
 
   return (
     <div className="flex flex-col">
-      {/* Box----------1 */}
-      {fileList.length === 0 && (
+      {fileList.length === 0 ? (
+        // SEO h1 and desc text
         <div className="flex flex-col items-center justify-center gap-2 px-6 pb-6 pt-6 lg:pt-10">
           <h1
             className={`${raleway.className} text-4xl font-extrabold lg:text-5xl`}
@@ -69,24 +69,26 @@ const HeroWithFileProvider = () => {
             single page PDF
           </p>
         </div>
-      )}
-      {/* Box----------2 */}
-      {fileList.length > 0 && (
+      ) : (
+        // Main toolbar with convert and add file buttons
         <div className="mt-3 flex w-full flex-wrap items-center justify-end gap-3 p-3">
-          <FileInputButton
+          {/* Add file button */}
+          <HeroFileInputButton
             buttonType="toolbar"
             isDisabled={isConvertingFiles || isLoadingFiles}
-            setIsLoadingFiles={setIsConvertingFiles}
+            setIsLoadingFiles={setIsLoadingFiles}
           />
-          <ButtonToolbar
+          {/* Remove all button */}
+          <HeroButtonToolbar
             disabled={
               fileList.length === 0 || isConvertingFiles || isLoadingFiles
             }
             caption="Remove All"
             handleOnClick={handleClearList}
             icon={Trash2}
-          ></ButtonToolbar>
-          <SettingsSheet
+          ></HeroButtonToolbar>
+          {/* Setting button */}
+          <HeroSettingsSheet
             disabled={isConvertingFiles || isLoadingFiles}
             orientation={orientation}
             pageSize={pageSize}
@@ -97,18 +99,19 @@ const HeroWithFileProvider = () => {
             onMarginChange={handleMarginChange}
             onImgPreviewChange={handleImagePreviewChange}
           />
-          <ButtonToolbar
+          {/* Convert button */}
+          <HeroButtonToolbar
             disabled={
               fileList.length === 0 || isConvertingFiles || isLoadingFiles
             }
             caption="Convert"
             handleOnClick={handleConversion}
             icon={Download}
-          ></ButtonToolbar>
+          ></HeroButtonToolbar>
         </div>
       )}
-      {/* Box----------3 */}
-      <DropZoneBox
+      {/* Dropzone with file count and preview on/off*/}
+      <HeroDropZoneBox
         isDisabled={isConvertingFiles || isLoadingFiles}
         setIsLoadingFiles={setIsLoadingFiles}
       />

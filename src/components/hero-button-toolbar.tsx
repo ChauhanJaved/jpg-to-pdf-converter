@@ -1,21 +1,21 @@
-import React from "react";
-import { Button } from "./button"; // Ensure this import is correct
+//Internal Imports
+import { Button } from "@/components/ui/button";
 
-interface ButtonToolbarProps {
+interface HeroButtonToolbarProps {
   caption?: string;
   handleOnClick?: () => void;
   disabled?: boolean;
   className?: string;
-  icon?: React.ElementType; // Icon can be any React node
+  icon?: React.ElementType;
 }
 
-export default function ButtonToolbar({
+export default function HeroButtonToolbar({
   caption = "",
   handleOnClick,
   disabled = false,
   className = "",
   icon: Icon,
-}: ButtonToolbarProps) {
+}: HeroButtonToolbarProps) {
   return (
     <div className="flex flex-col items-center justify-center">
       <Button
