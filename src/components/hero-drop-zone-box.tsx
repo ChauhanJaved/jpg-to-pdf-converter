@@ -148,7 +148,7 @@ export default function HeroDropZoneBox({
   });
 
   return (
-    <div className="w-full lg:px-10">
+    <div className="w-full">
       {/* Toolbar for file preview and count ---------- */}
       {fileList.length > 0 && (
         <div className="flex items-center justify-end gap-5 p-3 text-sm sm:text-base">

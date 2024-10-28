@@ -56,7 +56,7 @@ const HeroWithFileProvider = () => {
     <div className="flex flex-col">
       {fileList.length === 0 ? (
         // SEO h1 and desc text
-        <div className="flex flex-col items-center justify-center gap-2 px-6 pb-6 pt-6 lg:pt-10">
+        <div className="flex flex-col items-start gap-2 py-6 sm:pt-10 md:pt-12 lg:items-center lg:pt-16">
           <h1
             className={`${raleway.className} text-4xl font-extrabold lg:text-5xl`}
           >
@@ -71,7 +71,7 @@ const HeroWithFileProvider = () => {
         </div>
       ) : (
         // Main toolbar with convert and add file buttons
-        <div className="mt-3 flex w-full flex-wrap items-center justify-end gap-3 p-3">
+        <div className="mt-3 flex w-full flex-wrap items-center justify-end gap-3 py-3">
           {/* Add file button */}
           <HeroFileInputButton
             buttonType="toolbar"
