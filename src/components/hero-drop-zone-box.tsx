@@ -148,7 +148,7 @@ export default function HeroDropZoneBox({
   });
 
   return (
-    <div className="w-full">
+    <div className="w-full lg:px-10">
       {/* Toolbar for file preview and count ---------- */}
       {fileList.length > 0 && (
         <div className="flex items-center justify-end gap-5 p-3 text-sm sm:text-base">
@@ -173,7 +173,7 @@ export default function HeroDropZoneBox({
           )}
         </div>
       )}
-      {/* Drop Area ---------- */}
+      {/* Dropzone Area ---------- */}
       <div
         {...getRootProps()}
         className={`flex w-full flex-wrap items-center justify-center gap-5 p-5 text-center transition ${isDragActive && "bg-secondary"} lg:min-h-72 lg:border-2 lg:border-dashed`}
