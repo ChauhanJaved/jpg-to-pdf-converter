@@ -33,9 +33,7 @@ export default function Purchase() {
               <div className="flex flex-row rounded border p-5 shadow-sm">
                 <ShoppingCart className="mr-5 h-8 w-8 text-primary sm:h-9 sm:w-9" />
                 <div className="flex flex-col items-start justify-center font-bold">
-                  <p className="text-base text-primary sm:text-lg">
-                    {license.licenseType}{" "}
-                  </p>
+                  <p className="text-base sm:text-lg">{license.licenseType} </p>
                   <p className="text-base sm:text-lg"> {license.price}</p>
                 </div>
               </div>
