@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/sheet";
 import { headerNavItems } from "@/data/website-data";
 import { poppins } from "@/lib/font";
+import { HeaderModeToggle } from "./header-mode-toggle";
 
 interface HeaderSheetMainManuProps {
   className: string;
@@ -49,7 +50,7 @@ export default function HeaderSheetMainManu({
             <SheetDescription className="hidden">Main Manu</SheetDescription>
           </SheetHeader>
           <nav>
-            <ul className={`${poppins.className}`}>
+            <ul className={`${poppins.className} `}>
               {headerNavItems.map((item) => (
                 <li key={item} className="">
                   <SheetClose asChild>
@@ -64,6 +65,15 @@ export default function HeaderSheetMainManu({
                   </SheetClose>
                 </li>
               ))}
+              <li>
+                <Button variant={"ghost"}>
+                  <Link href={"/signin"}>Sign In</Link>
+                </Button>
+              </li>
+              <li className="pl-1">
+                {/* Dark mode */}
+                <HeaderModeToggle />
+              </li>
             </ul>
           </nav>
         </SheetContent>

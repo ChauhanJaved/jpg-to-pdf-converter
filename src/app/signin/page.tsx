@@ -1,17 +1,13 @@
-import Contact from "@/components/contact";
 import Header from "@/components/header";
-import Hero from "@/components/hero";
-import Purchase from "@/components/purchase";
+import SignInButtons from "@/components/sing-in-buttons";
 import { HeaderNavItems } from "@/data/website-data";
 
-export default function Home() {
+export default function Page() {
   return (
     <>
       <Header defaultActiveSection={HeaderNavItems.Home} />
       <main id="main">
-        <Hero />
-        <Purchase />
-        <Contact />
+        <SignInButtons />
       </main>
     </>
   );

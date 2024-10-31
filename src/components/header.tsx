@@ -9,6 +9,7 @@ import { HeaderNavItems, headerNavItems } from "@/data/website-data";
 import useIntersectionObserver from "@/hooks/use-intersection-observer";
 import { HeaderModeToggle } from "@/components/header-mode-toggle";
 import HeaderSheetMainManu from "@/components/header-sheet-main-manu";
+import { Button } from "./ui/button";
 
 interface HeaderProps {
   defaultActiveSection?: string;
@@ -56,7 +57,7 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
           <nav className="flex items-center gap-2">
             {/* Desktop Menu */}
             <ul
-              className={`${poppins.className} hidden items-center gap-2 lg:flex`}
+              className={`${poppins.className} hidden items-center gap-2 md:flex`}
             >
               {headerNavItems.map((item, index) => (
                 <li key={item}>
@@ -71,13 +72,20 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
                   </Link>
                 </li>
               ))}
+              <li>
+                <Button>
+                  <Link href={"/signin"}>Sign In</Link>
+                </Button>
+              </li>
+              <li>
+                {/* Dark mode */}
+                <HeaderModeToggle />
+              </li>
             </ul>
             <div className="flex flex-row items-center gap-1">
-              {/* Dark mode */}
-              <HeaderModeToggle />
               {/* Mobile meun */}
               <HeaderSheetMainManu
-                className="lg:hidden"
+                className="md:hidden"
                 activeSection={activeSection}
                 setActiveSection={setActiveSection}
               />
