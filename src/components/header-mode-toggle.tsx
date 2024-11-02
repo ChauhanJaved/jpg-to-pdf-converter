@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 export function HeaderModeToggle() {
-  const { setTheme } = useTheme();
+  const { setTheme, systemTheme } = useTheme();
 
   return (
     <DropdownMenu>
@@ -28,13 +28,16 @@ export function HeaderModeToggle() {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuItem onClick={() => setTheme("light")}>
-          Light
+          <Sun />
+          Light Theme
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setTheme("dark")}>
-          Dark
+          <Moon />
+          Dark Theme
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setTheme("system")}>
-          System
+          {systemTheme === "dark" ? <Moon /> : <Sun />}
+          Device Default
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

@@ -1,13 +1,14 @@
 "use client";
 //External  imports
 import Link from "next/link";
-import { User, UserCheck } from "lucide-react";
+import { User } from "lucide-react";
 
 //Internal imports
 import { poppins, raleway } from "@/lib/font";
 import { HeaderModeToggle } from "@/components/header-mode-toggle";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/context/auth-context";
+import HeaderUserOptions from "./header-user-options";
 
 export default function Header() {
   const { user } = useAuth();
@@ -30,9 +31,7 @@ export default function Header() {
           <ul className={`${poppins.className} flex items-center gap-1`}>
             <li>
               {user ? (
-                <Button className="relative" variant={"ghost"} size={"icon"}>
-                  <UserCheck className="text-primary" />
-                </Button>
+                <HeaderUserOptions />
               ) : (
                 <Link href={"/signin"}>
                   <Button className="relative" variant={"ghost"} size={"icon"}>
