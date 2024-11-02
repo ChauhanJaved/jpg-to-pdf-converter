@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { auth } from "../../firebaseConfig";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { useRouter } from "next/navigation";
@@ -7,9 +7,17 @@ import { raleway } from "@/lib/font";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { FcGoogle } from "react-icons/fc";
+import { useAuth } from "@/context/auth-context";
 
 const SignInButtons: React.FC = () => {
+  const { user, loading } = useAuth();
   const router = useRouter();
+  useEffect(() => {
+    // Redirect to homepage if the user is already logged in
+    if (user) {
+      router.push("/");
+    }
+  }, [user, router]);
 
   const handleGoogleSignIn = async () => {
     const provider = new GoogleAuthProvider();
@@ -40,12 +48,13 @@ const SignInButtons: React.FC = () => {
             className={`text-lg leading-7 text-secondary-foreground lg:text-xl`}
           >
             New user?
-            <Link className="ml-3" href={"/signup"}>
+            <Link className="ml-3" href={""}>
               Create an account
             </Link>
           </p>
           <div className="flex w-auto flex-col items-center gap-3 py-10">
             <Button
+              disabled={loading}
               variant={"outline"}
               className={"text-lg"}
               onClick={handleGoogleSignIn}

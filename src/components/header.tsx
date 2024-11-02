@@ -1,97 +1,52 @@
 "use client";
 //External  imports
-import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import { User, UserCheck } from "lucide-react";
 
 //Internal imports
 import { poppins, raleway } from "@/lib/font";
-import { HeaderNavItems, headerNavItems } from "@/data/website-data";
-import useIntersectionObserver from "@/hooks/use-intersection-observer";
 import { HeaderModeToggle } from "@/components/header-mode-toggle";
-import HeaderSheetMainManu from "@/components/header-sheet-main-manu";
-import { Button } from "./ui/button";
+import { Button } from "@/components/ui/button";
+import { useAuth } from "@/context/auth-context";
 
-interface HeaderProps {
-  defaultActiveSection?: string;
-}
-export default function Header({ defaultActiveSection = "" }: HeaderProps) {
-  const [activeSection, setActiveSection] = useState<string>("");
-
-  // Handle direct navigation with hash
-  useEffect(() => {
-    const hash = window.location.hash;
-    if (hash) {
-      const section = hash.substring(1); // Remove the "#" from the hash
-      if (headerNavItems.includes(section)) {
-        setActiveSection(section);
-      }
-    } else {
-      setActiveSection(defaultActiveSection);
-    }
-  }, [defaultActiveSection]);
-
-  useIntersectionObserver(setActiveSection);
-
+export default function Header() {
+  const { user } = useAuth();
   return (
     <header>
       {/* z-index 10 */}
-      <div className="fixed left-0 right-0 top-0 z-[10] border-b bg-background shadow-sm">
-        <div
-          className={`container flex h-20 w-full items-center justify-between px-3 xl:max-w-screen-xl`}
-        >
-          {/* Company name/logo */}
-          <Link
-            onClick={() => {
-              setActiveSection(HeaderNavItems.Home);
-            }}
-            href={`/`}
+      <div className="fixed left-0 right-0 top-0 z-[10] flex h-20 w-full items-center justify-between border-b bg-background px-3 shadow-sm">
+        {/* Company name/logo */}
+        <Link href={`/`}>
+          <div
+            className={`${raleway.className} flex flex-col items-start justify-center border-l-[5px] border-l-primary py-1 pl-3 text-lg font-extrabold leading-tight tracking-wider`}
           >
-            <div
-              className={`${raleway.className} flex flex-col items-start justify-center border-l-[5px] border-l-primary py-1 pl-3 text-lg font-extrabold leading-tight tracking-wider`}
-            >
-              <p>FrameworkTeam</p>
-              <p>Softwares</p>
-            </div>
-          </Link>
-          {/*Menu */}
-          <nav className="flex items-center gap-2">
-            {/* Desktop Menu */}
-            <ul
-              className={`${poppins.className} hidden items-center gap-2 md:flex`}
-            >
-              {headerNavItems.map((item, index) => (
-                <li key={item}>
-                  <Link
-                    onClick={() => {
-                      setActiveSection(item);
-                    }}
-                    className={`relative px-2 py-2 text-sm font-semibold uppercase before:absolute before:bottom-0 before:left-0 before:h-0.5 before:w-full before:scale-0 before:bg-primary before:transition-transform before:duration-300 hover:before:scale-100 ${activeSection === item && "before:scale-100"}`}
-                    href={index === 0 ? "/" : `/#${item}`}
-                  >
-                    {item}
-                  </Link>
-                </li>
-              ))}
-              <li>
-                <Button>
-                  <Link href={"/signin"}>Sign In</Link>
+            <p>FrameworkTeam</p>
+            <p>Softwares</p>
+          </div>
+        </Link>
+
+        {/*Menu */}
+        <nav className="flex items-center gap-2">
+          <ul className={`${poppins.className} flex items-center gap-1`}>
+            <li>
+              {user ? (
+                <Button className="relative" variant={"ghost"} size={"icon"}>
+                  <UserCheck className="text-primary" />
                 </Button>
-              </li>
-              <li>
-                {/* Dark mode */}
-                <HeaderModeToggle />
-              </li>
-            </ul>
-            <div className="flex flex-row items-center gap-1">
-              {/* Mobile meun */}
-              <HeaderSheetMainManu
-                className="md:hidden"
-                activeSection={activeSection}
-                setActiveSection={setActiveSection}
-              />
-            </div>
-          </nav>
-        </div>
+              ) : (
+                <Link href={"/signin"}>
+                  <Button className="relative" variant={"ghost"} size={"icon"}>
+                    <User />
+                  </Button>
+                </Link>
+              )}
+            </li>
+            <li>
+              {/* Dark mode */}
+              <HeaderModeToggle />
+            </li>
+          </ul>
+        </nav>
       </div>
     </header>
   );

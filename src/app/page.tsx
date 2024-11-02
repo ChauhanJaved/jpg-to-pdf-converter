@@ -1,13 +1,12 @@
+"user client";
 import Contact from "@/components/contact";
-import Header from "@/components/header";
+
 import Hero from "@/components/hero";
 import Purchase from "@/components/purchase";
-import { HeaderNavItems } from "@/data/website-data";
 
 export default function Home() {
   return (
     <>
-      <Header defaultActiveSection={HeaderNavItems.Home} />
       <main id="main">
         <Hero />
         <Purchase />
