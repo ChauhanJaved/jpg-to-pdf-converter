@@ -1,5 +1,4 @@
 "use client";
-
 import React, {
   createContext,
   useContext,
@@ -13,6 +12,10 @@ import { auth } from "../../firebaseConfig";
 interface AuthContextProps {
   user: User | null;
   loading: boolean;
+  isTrial: boolean;
+  remainingTrialDays: number;
+  incrementConversionCount: () => void;
+  conversionCount: number;
 }
 
 const AuthContext = createContext<AuthContextProps | undefined>(undefined);
@@ -22,39 +25,72 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
 }) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
+  const [isTrial, setIsTrial] = useState(false);
+  const [remainingTrialDays, setRemainingTrialDays] = useState(14);
+  const [conversionCount, setConversionCount] = useState(0);
 
   useEffect(() => {
-    console.log("Setting up onAuthStateChanged...");
-    const unsubscribe = onAuthStateChanged(
-      auth,
-      (firebaseUser) => {
-        console.log("Auth state changed:", firebaseUser);
-        setUser(firebaseUser);
-        setLoading(false);
-      },
-      (error) => {
-        console.error("Auth state change error:", error);
-        setLoading(false);
-      },
-    );
+    const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+      setUser(firebaseUser);
+      setLoading(false);
+      if (firebaseUser) {
+        const daysRemaining = 14; // Assume calculation based on account creation
+        setIsTrial(true);
+        setRemainingTrialDays(daysRemaining);
+      }
+    });
 
-    return () => unsubscribe(); // Cleanup subscription on unmount
+    return () => unsubscribe();
   }, []);
-  console.log("AuthContext user:", user);
-  console.log("AuthContext loading:", loading);
+
+  // For non-logged-in users, use local storage to track conversions
+  useEffect(() => {
+    if (!user) {
+      const storedCount = Number(localStorage.getItem("conversionCount") || 0);
+      const storedDate = localStorage.getItem("conversionDate") || "";
+      const today = new Date().toDateString();
+
+      if (storedDate === today) {
+        // Same day, use stored count
+        setConversionCount(storedCount);
+      } else {
+        // New day, reset count and update date
+        setConversionCount(0);
+        localStorage.setItem("conversionCount", "0");
+        localStorage.setItem("conversionDate", today);
+      }
+    }
+  }, [user]);
+
+  const incrementConversionCount = () => {
+    if (!user) {
+      const updatedCount = conversionCount + 1;
+      setConversionCount(updatedCount);
+      localStorage.setItem("conversionCount", updatedCount.toString());
+    }
+  };
+
   return (
-    <AuthContext.Provider value={{ user, loading }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        loading,
+        isTrial,
+        remainingTrialDays,
+        conversionCount,
+        incrementConversionCount,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
 };
 
-// Custom hook for accessing auth context
+// Custom hook to access Auth context
 export const useAuth = () => {
   const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error("useAuth must be used within an AuthProvider");
-  }
-  console.log("useAuth context:", context); // Check context value
+  if (!context) throw new Error("useAuth must be used within an AuthProvider");
   return context;
 };
+
+export const TOTAL_CONVERSIONS_PER_DAY = 5;

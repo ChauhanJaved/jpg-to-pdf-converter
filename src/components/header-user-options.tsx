@@ -12,6 +12,7 @@ import {
 import { useAuth } from "@/context/auth-context";
 import { auth } from "../../firebaseConfig";
 import { signOut } from "firebase/auth";
+import Link from "next/link";
 
 export default function HeaderUserOptions() {
   const { user } = useAuth();
@@ -49,10 +50,12 @@ export default function HeaderUserOptions() {
         </DropdownMenuLabel>
 
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={handleLogout}>
-          <ShoppingCart />
-          <span>Buy License</span>
-        </DropdownMenuItem>
+        <Link href={"/purchase"}>
+          <DropdownMenuItem>
+            <ShoppingCart />
+            <span>Buy License</span>
+          </DropdownMenuItem>
+        </Link>
         <DropdownMenuItem onClick={handleLogout}>
           <LogOut />
           <span>Log out</span>

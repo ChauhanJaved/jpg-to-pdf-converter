@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { raleway } from "@/lib/font";
 import { Button } from "@/components/ui/button";
 import { FcGoogle } from "react-icons/fc";
-import { useAuth } from "@/context/auth-context";
+import { TOTAL_CONVERSIONS_PER_DAY, useAuth } from "@/context/auth-context";
 
 const SignInButtons: React.FC = () => {
   const { user, loading } = useAuth();
@@ -33,7 +33,7 @@ const SignInButtons: React.FC = () => {
 
   return (
     <section
-      id="singin"
+      id="signin"
       className="container m-auto mt-[83px] w-full scroll-m-[83px] xl:max-w-screen-xl"
     >
       <div className="mx-5 sm:mx-7 md:mx-9 lg:mx-11">
@@ -41,11 +41,10 @@ const SignInButtons: React.FC = () => {
           <h1
             className={`${raleway.className} text-4xl font-extrabold lg:text-5xl`}
           >
-            Sing In
+            Sign In
           </h1>
           <p className="text-xl lg:text-2xl">
-            Enjoy 5 free conversions per day! Start a 14-day free trial for
-            unlimited access, or sign in if you’re a paid user.
+            {`Enjoy ${TOTAL_CONVERSIONS_PER_DAY} free conversions per day! Start a 14-day free trial for unlimited access, or sign in if you’re a paid user.`}
           </p>
 
           <div className="flex w-auto flex-col items-center gap-3 py-10">
@@ -56,7 +55,7 @@ const SignInButtons: React.FC = () => {
               onClick={handleGoogleSignIn}
             >
               <FcGoogle className="mr-2" size={20} />
-              Continue with Google
+              SignIn with Google
             </Button>
           </div>
         </div>
