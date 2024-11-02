@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "./ui/button";
-import { LogOut, UserCheck } from "lucide-react";
+import { LogOut, ShoppingCart, UserCheck } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -44,11 +44,15 @@ export default function HeaderUserOptions() {
         <DropdownMenuLabel>{user?.displayName}</DropdownMenuLabel>
         <DropdownMenuLabel>
           {daysLeft > 0
-            ? `Your trial ends in ${daysLeft} days.`
-            : `Your trial has ended.`}
+            ? `Trial ends in ${daysLeft} days.`
+            : `Trial has ended.`}
         </DropdownMenuLabel>
 
         <DropdownMenuSeparator />
+        <DropdownMenuItem onClick={handleLogout}>
+          <ShoppingCart />
+          <span>Buy License</span>
+        </DropdownMenuItem>
         <DropdownMenuItem onClick={handleLogout}>
           <LogOut />
           <span>Log out</span>

@@ -4,7 +4,6 @@ import { auth } from "../../firebaseConfig";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import { raleway } from "@/lib/font";
-import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { FcGoogle } from "react-icons/fc";
 import { useAuth } from "@/context/auth-context";
@@ -42,16 +41,13 @@ const SignInButtons: React.FC = () => {
           <h1
             className={`${raleway.className} text-4xl font-extrabold lg:text-5xl`}
           >
-            Sign In
+            Sing In
           </h1>
-          <p
-            className={`text-lg leading-7 text-secondary-foreground lg:text-xl`}
-          >
-            New user?
-            <Link className="ml-3" href={""}>
-              Create an account
-            </Link>
+          <p className="text-xl lg:text-2xl">
+            Enjoy 5 free conversions per day! Start a 14-day free trial for
+            unlimited access, or sign in if you’re a paid user.
           </p>
+
           <div className="flex w-auto flex-col items-center gap-3 py-10">
             <Button
               disabled={loading}
