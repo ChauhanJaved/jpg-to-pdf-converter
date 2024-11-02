@@ -1,5 +1,6 @@
 "use client";
 //External  imports
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { User } from "lucide-react";
 
@@ -9,9 +10,30 @@ import { HeaderModeToggle } from "@/components/header-mode-toggle";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/context/auth-context";
 import HeaderUserOptions from "./header-user-options";
-
-export default function Header() {
+import { headerNavItems } from "@/data/website-data";
+import useIntersectionObserver from "@/hooks/use-intersection-observer";
+import HeaderSheetMainManu from "@/components/header-sheet-main-manu";
+interface HeaderProps {
+  defaultActiveSection?: string;
+}
+export default function Header({ defaultActiveSection = "" }: HeaderProps) {
   const { user } = useAuth();
+  const [activeSection, setActiveSection] = useState<string>("");
+
+  // Handle direct navigation with hash
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash) {
+      const section = hash.substring(1); // Remove the "#" from the hash
+      if (headerNavItems.includes(section)) {
+        setActiveSection(section);
+      }
+    } else {
+      setActiveSection(defaultActiveSection);
+    }
+  }, [defaultActiveSection]);
+
+  useIntersectionObserver(setActiveSection);
   return (
     <header>
       {/* z-index 10 */}
@@ -28,21 +50,53 @@ export default function Header() {
 
         {/*Menu */}
         <nav className="flex items-center gap-2">
+          {/* Desktop Menu */}
+          <ul
+            className={`${poppins.className} hidden items-center gap-2 lg:flex`}
+          >
+            {headerNavItems.map((item, index) => (
+              <li key={item}>
+                <Link
+                  onClick={() => {
+                    setActiveSection(item);
+                  }}
+                  className={`relative px-2 py-2 text-sm font-semibold uppercase before:absolute before:bottom-0 before:left-0 before:h-0.5 before:w-full before:scale-0 before:bg-primary before:transition-transform before:duration-300 hover:before:scale-100 ${activeSection === item && "before:scale-100"}`}
+                  href={index === 0 ? "/" : `/#${item}`}
+                >
+                  {item}
+                </Link>
+              </li>
+            ))}
+            <li>
+              {/* Dark mode */}
+              <HeaderModeToggle />
+            </li>
+          </ul>
           <ul className={`${poppins.className} flex items-center gap-1`}>
+            {/* User SignIn */}
             <li>
               {user ? (
                 <HeaderUserOptions />
               ) : (
-                <Link href={"/signin"}>
+                <Link
+                  href={"/#signin"}
+                  onClick={() => {
+                    setActiveSection("");
+                  }}
+                >
                   <Button className="relative" variant={"ghost"} size={"icon"}>
                     <User />
                   </Button>
                 </Link>
               )}
             </li>
+            {/* Mobile meun */}
             <li>
-              {/* Dark mode */}
-              <HeaderModeToggle />
+              <HeaderSheetMainManu
+                className="lg:hidden"
+                activeSection={activeSection}
+                setActiveSection={setActiveSection}
+              />
             </li>
           </ul>
         </nav>

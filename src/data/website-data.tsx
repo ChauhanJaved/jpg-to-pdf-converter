@@ -7,16 +7,17 @@ export const headerCompanyName: string = "FrameworkTeam";
 export const companyName: string = "FrameworkTeam Softwares";
 export const email: string = "support@frameworkteam.com";
 export const copyrightYear: string = new Date().getFullYear().toString();
-export enum HeaderNavItems {
-  Home = "home",
-  Desktop = "desktop",
-  Purchase = "Purchase",
-  Contact = "contact",
-}
+
 export const heroTitle: string =
   "We offer cutting-edge solutions to grow your business";
 export const heroDesc: string =
   "We are team of talented professionals creating feature-rich Progressive Web Apps and Windows Desktop Applications.";
+export enum HeaderNavItems {
+  Home = "home",
+  Purchase = "purchase",
+  Desktop = "desktop",
+  Contact = "contact",
+}
 export const headerNavItems: string[] = [
   HeaderNavItems.Home,
   HeaderNavItems.Purchase,

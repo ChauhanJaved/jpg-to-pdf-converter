@@ -50,7 +50,7 @@ export default function HeaderUserOptions() {
         </DropdownMenuLabel>
 
         <DropdownMenuSeparator />
-        <Link href={"/purchase"}>
+        <Link href={"/#purchase"}>
           <DropdownMenuItem>
             <ShoppingCart />
             <span>Buy License</span>

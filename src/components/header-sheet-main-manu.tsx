@@ -65,11 +65,6 @@ export default function HeaderSheetMainManu({
                   </SheetClose>
                 </li>
               ))}
-              <li>
-                <Button variant={"ghost"}>
-                  <Link href={"/signin"}>Sign In</Link>
-                </Button>
-              </li>
               <li className="pl-1">
                 {/* Dark mode */}
                 <HeaderModeToggle />

@@ -80,7 +80,7 @@ const HeroWithFileProvider = () => {
       return true; // Indicate conversion is allowed
     } else {
       // Redirect to sign-in page if count reaches the limit
-      router.push("/signin");
+      router.push("/#signin");
       return false; // Indicate conversion is not allowed
     }
   };
@@ -91,7 +91,7 @@ const HeroWithFileProvider = () => {
         return true; // Indicate conversion is allowed
       } else {
         // Redirect to purchase page if trial has expired
-        router.push("/purchase");
+        router.push("/#purchase");
         return false; // Indicate conversion is not allowed
       }
     } else {
