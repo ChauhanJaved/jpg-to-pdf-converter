@@ -15,6 +15,16 @@ import { signOut } from "firebase/auth";
 
 export default function HeaderUserOptions() {
   const { user } = useAuth();
+  const creationDate = new Date(
+    auth.currentUser?.metadata.creationTime || Date.now(),
+  );
+  const calculateTrialDaysLeft = (creationDate: Date) => {
+    const now = new Date();
+    const diffTime = now.getTime() - creationDate.getTime();
+    const diffDays = Math.ceil(14 - diffTime / (1000 * 60 * 60 * 24));
+    return diffDays > 0 ? diffDays : 0; // Return 0 if trial period has expired
+  };
+  const daysLeft = calculateTrialDaysLeft(creationDate);
   const handleLogout = async () => {
     try {
       await signOut(auth);
@@ -32,6 +42,12 @@ export default function HeaderUserOptions() {
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
         <DropdownMenuLabel>{user?.displayName}</DropdownMenuLabel>
+        <DropdownMenuLabel>
+          {daysLeft > 0
+            ? `Your trial ends in ${daysLeft} days.`
+            : `Your trial has ended.`}
+        </DropdownMenuLabel>
+
         <DropdownMenuSeparator />
         <DropdownMenuItem onClick={handleLogout}>
           <LogOut />
