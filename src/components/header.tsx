@@ -8,8 +8,6 @@ import { User } from "lucide-react";
 import { poppins, raleway } from "@/lib/font";
 import { HeaderModeToggle } from "@/components/header-mode-toggle";
 import { Button } from "@/components/ui/button";
-import { useAuth } from "@/context/auth-context";
-import HeaderUserOptions from "./header-user-options";
 import { headerNavItems } from "@/data/website-data";
 import useIntersectionObserver from "@/hooks/use-intersection-observer";
 import HeaderSheetMainManu from "@/components/header-sheet-main-manu";
@@ -17,7 +15,6 @@ interface HeaderProps {
   defaultActiveSection?: string;
 }
 export default function Header({ defaultActiveSection = "" }: HeaderProps) {
-  const { user } = useAuth();
   const [activeSection, setActiveSection] = useState<string>("");
 
   // Handle direct navigation with hash
@@ -75,20 +72,9 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
           <ul className={`${poppins.className} flex items-center gap-1`}>
             {/* User SignIn */}
             <li>
-              {user ? (
-                <HeaderUserOptions />
-              ) : (
-                <Link
-                  href={"/#signin"}
-                  onClick={() => {
-                    setActiveSection("");
-                  }}
-                >
-                  <Button className="relative" variant={"ghost"} size={"icon"}>
-                    <User />
-                  </Button>
-                </Link>
-              )}
+              <Button className="relative" variant={"ghost"} size={"icon"}>
+                <User />
+              </Button>
             </li>
             {/* Mobile meun */}
             <li>

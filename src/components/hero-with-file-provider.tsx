@@ -3,7 +3,6 @@
 //External Imports----------
 import { useState } from "react";
 import { Download, Trash2 } from "lucide-react";
-import { useRouter } from "next/navigation";
 
 //Internal Imports----------
 import {
@@ -18,7 +17,6 @@ import HeroSettingsSheet from "@/components/hero-settings-sheet";
 import { useFileContext } from "@/context/file-context";
 import HeroDropZoneBox from "@/components/hero-drop-zone-box";
 import HeroFileInputButton from "@/components/hero-file-input-button";
-import { TOTAL_CONVERSIONS_PER_DAY, useAuth } from "@/context/auth-context";
 
 const HeroWithFileProvider = () => {
   //FileList----------
@@ -46,57 +44,15 @@ const HeroWithFileProvider = () => {
   const handleMergeAllImagesChange = (shouldMerge: boolean) => {
     setMergeAllImages(shouldMerge);
   };
-  const router = useRouter();
-  const {
-    user,
-    conversionCount,
-    incrementConversionCount,
-    remainingTrialDays,
-    isTrial,
-  } = useAuth();
+
   const handleConversion = async () => {
     setIsConvertingFiles(true);
-
     try {
-      if (!user) {
-        const canConvert = await handleGuestConversion();
-        if (!canConvert) return; // Early return if redirection occurs
-      } else {
-        const canConvert = await handleLoggedInUserConversion();
-        if (!canConvert) return; // Early return if redirection occurs
-      }
-
-      // Proceed with the file conversion after checking the user status
       await handleConvertToPdf(fileList, orientation, pageSize, margin);
     } catch (error) {
       console.error("Conversion error:", error);
     } finally {
       setIsConvertingFiles(false);
-    }
-  };
-  const handleGuestConversion = async () => {
-    if (conversionCount < TOTAL_CONVERSIONS_PER_DAY) {
-      incrementConversionCount();
-      return true; // Indicate conversion is allowed
-    } else {
-      // Redirect to sign-in page if count reaches the limit
-      router.push("/#signin");
-      return false; // Indicate conversion is not allowed
-    }
-  };
-  const handleLoggedInUserConversion = async () => {
-    if (isTrial) {
-      if (remainingTrialDays > 0) {
-        // Allow access if trial days are left
-        return true; // Indicate conversion is allowed
-      } else {
-        // Redirect to purchase page if trial has expired
-        router.push("/#purchase");
-        return false; // Indicate conversion is not allowed
-      }
-    } else {
-      // User is a paid user, allow access
-      return true; // Indicate conversion is allowed
     }
   };
 

@@ -9,7 +9,6 @@ import ScrollTop from "@/components/ui/scroll-top";
 import { ThemeProvider } from "@/components/theme-provider";
 import { roboto } from "@/lib/font";
 import { FileProvider } from "@/context/file-context";
-import { AuthProvider } from "@/context/auth-context";
 import Header from "@/components/header";
 
 export const metadata: Metadata = {
@@ -25,22 +24,20 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${roboto.className}`} suppressHydrationWarning>
       <body>
-        <AuthProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <FileProvider>
-              <Header />
-              {children}
-              <Footer companyName={companyName} copyrightYear={copyrightYear} />
-              <ScrollTop />
-              <Toaster />
-            </FileProvider>
-          </ThemeProvider>
-        </AuthProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <FileProvider>
+            <Header />
+            {children}
+            <Footer companyName={companyName} copyrightYear={copyrightYear} />
+            <ScrollTop />
+            <Toaster />
+          </FileProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
