@@ -18,11 +18,13 @@ interface UserProviderProps {
   children: ReactNode;
 }
 
+const totalConversionCount: number = 14;
 const UserContext = createContext<UserContextType | undefined>(undefined);
 
 export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
   const [userStatus, setUserStatus] = useState<"trial" | "paid">("trial");
-  const [conversionCount, setConversionCount] = useState<number>(14);
+  const [conversionCount, setConversionCount] =
+    useState<number>(totalConversionCount);
 
   useEffect(() => {
     const storedData = localStorage.getItem("userData");
@@ -33,7 +35,7 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
     } else {
       const initialData = { userStatus, conversionCount };
       localStorage.setItem(
-        "userData",
+        "_sys_data",
         encryptData(JSON.stringify(initialData)),
       );
       // Also update the database with this initialData if first-time user

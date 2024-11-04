@@ -2,20 +2,21 @@
 //External  imports
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { User } from "lucide-react";
 
 //Internal imports
 import { poppins, raleway } from "@/lib/font";
 import { HeaderModeToggle } from "@/components/header-mode-toggle";
-import { Button } from "@/components/ui/button";
 import { headerNavItems } from "@/data/website-data";
 import useIntersectionObserver from "@/hooks/use-intersection-observer";
 import HeaderSheetMainManu from "@/components/header-sheet-main-manu";
+import { useUser } from "@/context/user-context";
+import HeaderTrialUser from "./header-trial-user";
 interface HeaderProps {
   defaultActiveSection?: string;
 }
 export default function Header({ defaultActiveSection = "" }: HeaderProps) {
   const [activeSection, setActiveSection] = useState<string>("");
+  const { userStatus } = useUser();
 
   // Handle direct navigation with hash
   useEffect(() => {
@@ -70,11 +71,14 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
             </li>
           </ul>
           <ul className={`${poppins.className} flex items-center gap-1`}>
-            {/* User SignIn */}
             <li>
-              <Button className="relative" variant={"ghost"} size={"icon"}>
-                <User />
-              </Button>
+              {userStatus === "paid" ? (
+                // Paid User
+                ""
+              ) : (
+                // Trial User
+                <HeaderTrialUser />
+              )}
             </li>
             {/* Mobile meun */}
             <li>
