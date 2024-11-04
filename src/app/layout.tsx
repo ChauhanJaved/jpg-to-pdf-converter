@@ -10,6 +10,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { roboto } from "@/lib/font";
 import { FileProvider } from "@/context/file-context";
 import Header from "@/components/header";
+import { UserProvider } from "@/context/user-context";
 
 export const metadata: Metadata = {
   title: "JPG to PDF Converter",
@@ -24,20 +25,22 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${roboto.className}`} suppressHydrationWarning>
       <body>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <FileProvider>
-            <Header />
-            {children}
-            <Footer companyName={companyName} copyrightYear={copyrightYear} />
-            <ScrollTop />
-            <Toaster />
-          </FileProvider>
-        </ThemeProvider>
+        <UserProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <FileProvider>
+              <Header />
+              {children}
+              <Footer companyName={companyName} copyrightYear={copyrightYear} />
+              <ScrollTop />
+              <Toaster />
+            </FileProvider>
+          </ThemeProvider>
+        </UserProvider>
       </body>
     </html>
   );
