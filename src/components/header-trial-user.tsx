@@ -9,6 +9,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { ShoppingCart, User, Wrench } from "lucide-react";
+import Link from "next/link";
 
 export default function HeaderTrialUser() {
   return (
@@ -21,10 +22,12 @@ export default function HeaderTrialUser() {
       <DropdownMenuContent className="w-56">
         <DropdownMenuLabel>Trial User</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
-          <ShoppingCart />
-          <span>Buy License</span>
-        </DropdownMenuItem>
+        <Link href={"/#purchase"}>
+          <DropdownMenuItem>
+            <ShoppingCart />
+            <span>Buy License</span>
+          </DropdownMenuItem>
+        </Link>
         <DropdownMenuItem>
           <Wrench />
           <span>Register License</span>
