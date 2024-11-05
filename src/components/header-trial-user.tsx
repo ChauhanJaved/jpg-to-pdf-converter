@@ -52,8 +52,8 @@ export default function HeaderTrialUser() {
             <User />
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="w-56">
-          <DropdownMenuLabel>Trial User</DropdownMenuLabel>
+        <DropdownMenuContent>
+          <DropdownMenuLabel>Trail User</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <Link href={"/#purchase"}>
             <DropdownMenuItem>

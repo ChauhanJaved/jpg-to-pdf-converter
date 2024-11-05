@@ -11,7 +11,7 @@ import useIntersectionObserver from "@/hooks/use-intersection-observer";
 import HeaderSheetMainManu from "@/components/header-sheet-main-manu";
 import { useUser } from "@/context/user-context";
 import HeaderTrialUser from "./header-trial-user";
-import { UserCheck } from "lucide-react";
+import HeaderPaidUser from "./header-paid-user";
 interface HeaderProps {
   defaultActiveSection?: string;
 }
@@ -75,7 +75,7 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
             <li>
               {userStatus === "paid" ? (
                 // Paid User
-                <UserCheck className="text-primary" />
+                <HeaderPaidUser />
               ) : (
                 // Trial User
                 <HeaderTrialUser />
