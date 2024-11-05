@@ -47,7 +47,7 @@ export default function HeaderSheetMainManu({
         <SheetContent>
           <SheetHeader>
             <SheetTitle className="hidden">Main Manu</SheetTitle>
-            <SheetDescription className="hidden">Main Manu</SheetDescription>
+            <SheetDescription className="sr-only">Main Manu</SheetDescription>
           </SheetHeader>
           <nav>
             <ul className={`${poppins.className} `}>
@@ -67,7 +67,9 @@ export default function HeaderSheetMainManu({
               ))}
               <li className="pl-1">
                 {/* Dark mode */}
-                <HeaderModeToggle />
+                <SheetClose asChild>
+                  <HeaderModeToggle />
+                </SheetClose>
               </li>
             </ul>
           </nav>

@@ -76,7 +76,7 @@ export default function HeroSettingsSheet({
             <div className="flex flex-col space-y-2">
               <Label htmlFor="orientation">Page Orientation</Label>
               <Select value={orientation} onValueChange={onOrientationChange}>
-                <SelectTrigger className="w-[200px]">
+                <SelectTrigger className="w-[150px]">
                   <SelectValue placeholder="Select Page orientation" />
                 </SelectTrigger>
                 <SelectContent>
@@ -94,7 +94,7 @@ export default function HeroSettingsSheet({
             <div className="mt-5 flex flex-col space-y-2">
               <Label htmlFor="size">Page Size</Label>
               <Select value={pageSize} onValueChange={onPageSizeChange}>
-                <SelectTrigger className="w-[200px]">
+                <SelectTrigger className="w-[150px]">
                   <SelectValue placeholder="Select Page Size" />
                 </SelectTrigger>
                 <SelectContent>
@@ -115,7 +115,7 @@ export default function HeroSettingsSheet({
             <div className="mt-5 flex flex-col space-y-2">
               <Label htmlFor="size">Margin</Label>
               <Select value={margin} onValueChange={onMarginChange}>
-                <SelectTrigger className="w-[200px]">
+                <SelectTrigger className="w-[150px]">
                   <SelectValue placeholder="Select Margin" />
                 </SelectTrigger>
                 <SelectContent>
@@ -140,9 +140,7 @@ export default function HeroSettingsSheet({
                 checked={mergeAllImages}
                 onCheckedChange={onMergeAllImagesChange}
               />
-              <Label htmlFor="imagepreview">
-                Merge all images in one PDF file
-              </Label>
+              <Label htmlFor="imagepreview">Merge all JPG</Label>
             </div>
           </div>
           <SheetFooter className="mt-3">
