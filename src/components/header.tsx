@@ -12,6 +12,7 @@ import HeaderSheetMainManu from "@/components/header-sheet-main-manu";
 import { useUser } from "@/context/user-context";
 import HeaderTrialUser from "./header-trial-user";
 import HeaderPaidUser from "./header-paid-user";
+
 interface HeaderProps {
   defaultActiveSection?: string;
 }

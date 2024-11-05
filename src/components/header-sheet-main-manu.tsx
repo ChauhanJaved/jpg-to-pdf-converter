@@ -18,6 +18,7 @@ import {
 import { headerNavItems } from "@/data/website-data";
 import { poppins } from "@/lib/font";
 import { HeaderModeToggle } from "./header-mode-toggle";
+import { Separator } from "./ui/separator";
 
 interface HeaderSheetMainManuProps {
   className: string;
@@ -74,6 +75,8 @@ export default function HeaderSheetMainManu({
               </li>
             </ul>
           </nav>
+          <Separator />
+          <br />
           <SheetFooter>
             <SheetClose asChild>
               <Button>Close</Button>

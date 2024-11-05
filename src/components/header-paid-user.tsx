@@ -2,23 +2,30 @@ import { UserCheck } from "lucide-react";
 import React from "react";
 import { Button } from "./ui/button";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuLabel,
-  DropdownMenuTrigger,
-} from "./ui/dropdown-menu";
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 
 export default function HeaderPaidUser() {
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
+    <Popover>
+      <PopoverTrigger asChild>
         <Button className="relative" variant={"ghost"} size={"icon"}>
           <UserCheck className="text-primary" />
         </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent>
-        <DropdownMenuLabel>Licensed User</DropdownMenuLabel>
-      </DropdownMenuContent>
-    </DropdownMenu>
+      </PopoverTrigger>
+      <PopoverContent className="w-50">Licensed User</PopoverContent>
+    </Popover>
+    // <DropdownMenu>
+    //   <DropdownMenuTrigger asChild>
+    //     <Button className="relative" variant={"ghost"} size={"icon"}>
+    //       <UserCheck className="text-primary" />
+    //     </Button>
+    //   </DropdownMenuTrigger>
+    //   <DropdownMenuContent>
+    //     <DropdownMenuLabel>Licensed User</DropdownMenuLabel>
+    //   </DropdownMenuContent>
+    // </DropdownMenu>
   );
 }
