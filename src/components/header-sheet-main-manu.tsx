@@ -10,6 +10,7 @@ import {
   SheetClose,
   SheetContent,
   SheetDescription,
+  SheetFooter,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
@@ -73,6 +74,11 @@ export default function HeaderSheetMainManu({
               </li>
             </ul>
           </nav>
+          <SheetFooter>
+            <SheetClose asChild>
+              <Button>Close</Button>
+            </SheetClose>
+          </SheetFooter>
         </SheetContent>
       </Sheet>
     </Fragment>

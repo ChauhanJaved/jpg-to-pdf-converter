@@ -10,7 +10,7 @@ import { encryptData, decryptData } from "@/lib/encryption";
 
 interface UserContextType {
   userStatus: "trial" | "paid";
-  setUserStatus: (status: "trial" | "paid") => void;
+  registerAsPaid: () => void;
   conversionCount: number;
   decrementConversion: () => void;
 }
@@ -20,6 +20,7 @@ interface UserProviderProps {
 }
 
 const totalConversionCount: number = 14;
+const localStorageName: string = "_sys_data";
 const UserContext = createContext<UserContextType | undefined>(undefined);
 
 export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
@@ -28,7 +29,7 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
     useState<number>(totalConversionCount);
 
   useEffect(() => {
-    const storedData = localStorage.getItem("userData");
+    const storedData = localStorage.getItem(localStorageName);
     if (storedData) {
       const decryptedData = JSON.parse(decryptData(storedData));
       setUserStatus(decryptedData.userStatus);
@@ -36,7 +37,7 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
     } else {
       const initialData = { userStatus, conversionCount };
       localStorage.setItem(
-        "_sys_data",
+        localStorageName,
         encryptData(JSON.stringify(initialData)),
       );
       // Also update the database with this initialData if first-time user
@@ -47,16 +48,25 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
     if (conversionCount > 0) {
       setConversionCount(conversionCount - 1);
       const newData = { userStatus, conversionCount: conversionCount - 1 };
-      localStorage.setItem("userData", encryptData(JSON.stringify(newData)));
+      localStorage.setItem(
+        localStorageName,
+        encryptData(JSON.stringify(newData)),
+      );
       // Optionally, sync this to the database
     }
   };
-
+  const registerAsPaid = () => {
+    setUserStatus("paid");
+    const encryptedData = encryptData(
+      JSON.stringify({ userStatus: "paid", conversionCount }),
+    );
+    localStorage.setItem(localStorageName, encryptedData);
+  };
   return (
     <UserContext.Provider
       value={{
         userStatus,
-        setUserStatus,
+        registerAsPaid,
         conversionCount,
         decrementConversion,
       }}

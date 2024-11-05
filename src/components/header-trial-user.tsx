@@ -22,7 +22,7 @@ import {
 import { Input } from "@/components/ui/input";
 
 export default function HeaderTrialUser() {
-  const { setUserStatus } = useUser(); // Access user context
+  const { registerAsPaid } = useUser(); // Access user context
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [licenseKey, setLicenseKey] = useState("");
   const [error, setError] = useState("");
@@ -34,7 +34,7 @@ export default function HeaderTrialUser() {
       // Replace with your license key validation API call or Firebase function
       const isValid = await validateLicenseKey(licenseKey); // mock function for validation
       if (isValid) {
-        setUserStatus("paid");
+        registerAsPaid();
         setIsDialogOpen(false); // Close dialog
       } else {
         setError("License key is not valid. Please try again.");
