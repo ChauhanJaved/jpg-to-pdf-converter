@@ -17,6 +17,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogFooter,
+  DialogDescription,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 
@@ -72,13 +73,19 @@ export default function HeaderTrialUser() {
         <DialogContent>
           <DialogHeader>
             <DialogTitle>Register License</DialogTitle>
+            <DialogDescription className="sr-only">
+              Enter license key
+            </DialogDescription>
           </DialogHeader>
           <Input
             placeholder="Enter license key"
             value={licenseKey}
-            onChange={(e) => setLicenseKey(e.target.value)}
+            onChange={(e) => {
+              setLicenseKey(e.target.value);
+              setError("");
+            }}
           />
-          {error && <p className="mt-2 text-red-500">{error}</p>}
+          {error && <p className="text-destructive">{error}</p>}
           <DialogFooter>
             <Button onClick={handleLicenseValidation}>Validate License</Button>
           </DialogFooter>
