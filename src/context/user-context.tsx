@@ -10,6 +10,7 @@ import { encryptData, decryptData } from "@/lib/encryption";
 
 interface UserContextType {
   userStatus: "trial" | "paid";
+  setUserStatus: (status: "trial" | "paid") => void;
   conversionCount: number;
   decrementConversion: () => void;
 }
@@ -53,7 +54,12 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
 
   return (
     <UserContext.Provider
-      value={{ userStatus, conversionCount, decrementConversion }}
+      value={{
+        userStatus,
+        setUserStatus,
+        conversionCount,
+        decrementConversion,
+      }}
     >
       {children}
     </UserContext.Provider>

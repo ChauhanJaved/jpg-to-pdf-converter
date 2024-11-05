@@ -75,7 +75,7 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
             <li>
               {userStatus === "paid" ? (
                 // Paid User
-                <UserCheck />
+                <UserCheck className="text-primary" />
               ) : (
                 // Trial User
                 <HeaderTrialUser />
