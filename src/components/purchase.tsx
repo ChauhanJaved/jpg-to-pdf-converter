@@ -17,28 +17,39 @@ export default function Purchase() {
     portfolioItem && (
       <section
         id={HeaderNavItems.Purchase}
-        className="container mx-auto scroll-m-[64px] px-3 pt-16 text-lg xl:max-w-screen-xl"
+        className="container mx-auto scroll-m-[64px] bg-secondary px-3 py-10 text-lg xl:max-w-screen-xl"
       >
-        <SectionHeader
-          caption={`Buy License`}
-          desc={
-            portfolioItem.desc
-              ? portfolioItem.desc
-              : "One Time Purchase | Lifetime Use License | Free Upgrades | 15 Days Money Back Guarantee"
-          }
-        />
-        <div className="mt-16 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
-          {licenseOptions.map((license, index) => (
-            <Link target="_blank" key={index} href={license.paymentLink}>
-              <div className="flex flex-row rounded border p-5 shadow-sm">
-                <ShoppingCart className="mr-5 h-8 w-8 text-primary sm:h-9 sm:w-9" />
-                <div className="flex flex-col items-start justify-center font-bold">
-                  <p className="text-base sm:text-lg">{license.licenseType} </p>
-                  <p className="text-base sm:text-lg"> {license.price}</p>
+        <div className="mx-5 sm:mx-7 md:mx-9 lg:mx-11">
+          <SectionHeader
+            element="h2"
+            caption={`Buy License`}
+            desc={
+              portfolioItem.desc
+                ? portfolioItem.desc
+                : "One Time Purchase | Lifetime Use License | Free Upgrades | 15 Days Money Back Guarantee | Secure FastSpring Payments"
+            }
+          />
+          <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {licenseOptions.map((license, index) => (
+              <Link target="_blank" key={index} href={license.paymentLink}>
+                <div className="flex flex-row gap-3">
+                  <div className="pt-1">
+                    <ShoppingCart className="h-6 w-6" />
+                  </div>
+                  <div className="flex flex-col items-start justify-center">
+                    <p className="text-base sm:text-lg">
+                      {license.licenseType}{" "}
+                    </p>
+                    <p className="text-base sm:text-lg"> {license.price}</p>
+                  </div>
                 </div>
-              </div>
-            </Link>
-          ))}
+              </Link>
+            ))}
+          </div>
+          <p className="mt-10">
+            We use Bright Market, LLC dba FastSpring, 801 Garden St., Santa
+            Barbara, CA 93101 (USA) to process your payment.{" "}
+          </p>
         </div>
       </section>
     )
