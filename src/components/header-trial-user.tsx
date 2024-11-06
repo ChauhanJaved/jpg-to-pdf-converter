@@ -87,7 +87,7 @@ export default function HeaderTrialUser() {
           />
           {error && <p className="text-destructive">{error}</p>}
           <DialogFooter>
-            <Button onClick={handleLicenseValidation}>Validate License</Button>
+            <Button onClick={handleLicenseValidation}>Register License</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>

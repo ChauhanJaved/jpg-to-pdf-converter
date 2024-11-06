@@ -17,6 +17,7 @@ import HeroSettingsSheet from "@/components/hero-settings-sheet";
 import { useFileContext } from "@/context/file-context";
 import HeroDropZoneBox from "@/components/hero-drop-zone-box";
 import HeroFileInputButton from "@/components/hero-file-input-button";
+import { useUser } from "@/context/user-context";
 
 const HeroWithFileProvider = () => {
   //FileList----------
@@ -58,7 +59,7 @@ const HeroWithFileProvider = () => {
 
   // Adding file
   const [isLoadingFiles, setIsLoadingFiles] = useState(false);
-
+  const { userStatus } = useUser();
   return (
     <div className="flex flex-col">
       {fileList.length === 0 ? (
@@ -67,7 +68,11 @@ const HeroWithFileProvider = () => {
           <h1
             className={`${raleway.className} text-4xl font-extrabold lg:text-5xl`}
           >
-            Fee JPG to PDF Converter
+            <span
+              className={`${userStatus === "paid" && "hidden"}`}
+            >{`Free `}</span>
+            <span>{`JPG to PDF `}</span>
+            <span>{`Converter`}</span>
           </h1>
           <p
             className={`text-lg leading-7 text-secondary-foreground lg:text-xl`}
