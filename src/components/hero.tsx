@@ -12,15 +12,17 @@ const Hero = () => {
       <div className="mx-5 sm:mx-7 md:mx-9 lg:mx-11">
         <HeroWithFileProvider />
         {/* Product description */}
-        <div className="mt-5 flex flex-row">
-          <div>
-            <ShieldCheck className="mr-3 inline h-9 w-9 text-primary sm:h-10 sm:w-10" />
+        <div className="mt-5 flex flex-row gap-2">
+          {/* Box----------1 */}
+          <div className="pt-1">
+            <ShieldCheck className="h-6 w-6" />
           </div>
-          <div className="flex flex-col items-start gap-1">
-            <div className="text-lg font-bold sm:text-xl">
+          {/* Box----------2 */}
+          <div className="flex flex-col">
+            <p className="text-lg font-semibold lg:text-xl">
               Local, Secure, and Private File Conversion
-            </div>
-            <p className="text-base sm:text-lg">
+            </p>
+            <p className="text-base lg:text-lg">
               Our JPG to PDF converter prioritizes your file privacy and
               security by processing everything locally on your device. Unlike
               other converters that require uploading files to external servers,
