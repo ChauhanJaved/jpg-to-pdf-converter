@@ -20,6 +20,7 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
+import { HeaderNavItems } from "@/data/website-data";
 
 export default function HeaderTrialUser() {
   const { registerAsPaid } = useUser(); // Access user context
@@ -55,7 +56,7 @@ export default function HeaderTrialUser() {
         <DropdownMenuContent>
           <DropdownMenuLabel>Trail User</DropdownMenuLabel>
           <DropdownMenuSeparator />
-          <Link href={"/#purchase"}>
+          <Link href={`/#${HeaderNavItems.Pricing}`}>
             <DropdownMenuItem>
               <ShoppingCart />
               <span>Buy License</span>

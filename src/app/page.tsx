@@ -1,14 +1,14 @@
 "user client";
 import Contact from "@/components/contact";
 import Hero from "@/components/hero";
-import Purchase from "@/components/purchase";
+import Pricing from "@/components/pricing";
 
 export default function Home() {
   return (
     <>
       <main id="main">
         <Hero />
-        <Purchase />
+        <Pricing />
         <Contact />
       </main>
     </>

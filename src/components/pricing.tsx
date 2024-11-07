@@ -10,15 +10,15 @@ import { ShoppingCart } from "lucide-react";
 import Link from "next/link";
 import { Button } from "./ui/button";
 
-export default function Purchase() {
+export default function Pricing() {
   const portfolioItem = portfolioItems.find(
     (item) => item.id === ProductIDs.JPGtoPDFConverter,
   );
   return (
     portfolioItem && (
-      <section id={HeaderNavItems.Pricing} className="scroll-m-[64px]">
+      <section id={HeaderNavItems.Pricing} className="scroll-m-[80px]">
         <div className="container mx-auto px-3 py-10 xl:max-w-screen-xl">
-          <div className="mx-5 sm:mx-7 md:mx-9 lg:mx-11">
+          <div className="mx-5 flex flex-col items-center sm:mx-7 md:mx-9 lg:mx-11">
             <SectionHeader
               element="h2"
               caption={`License Pricing`}
@@ -28,7 +28,7 @@ export default function Purchase() {
                   : "One-Time Purchase | Lifetime License | Free Upgrades | 15-Day Money-Back Guarantee | Secure Payments via FastSpring"
               }
             />
-            <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-10 grid max-w-[750px] grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {licenseOptions.map((license, index) => (
                 <div key={index} className="flex items-center justify-center">
                   <Link

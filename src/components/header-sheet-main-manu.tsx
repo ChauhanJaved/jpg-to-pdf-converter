@@ -62,7 +62,7 @@ export default function HeaderSheetMainManu({
                       }}
                       href={`/#${item}`}
                     >
-                      <Button variant={"ghost"}>{item.toUpperCase()}</Button>
+                      <Button variant={"ghost"}>{item}</Button>
                     </Link>
                   </SheetClose>
                 </li>

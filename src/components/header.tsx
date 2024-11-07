@@ -54,14 +54,14 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
           <ul
             className={`${poppins.className} hidden items-center gap-2 lg:flex`}
           >
-            {headerNavItems.map((item, index) => (
+            {headerNavItems.map((item) => (
               <li key={item}>
                 <Link
                   onClick={() => {
                     setActiveSection(item);
                   }}
                   className={`relative px-2 py-2 text-base font-semibold before:absolute before:bottom-0 before:left-0 before:h-0.5 before:w-full before:scale-0 before:bg-primary before:transition-transform before:duration-300 hover:before:scale-100 ${activeSection === item && "before:scale-100"}`}
-                  href={index === 0 ? "/" : `/#${item}`}
+                  href={`/#${item}`}
                 >
                   {item}
                 </Link>
