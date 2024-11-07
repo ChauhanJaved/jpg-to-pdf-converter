@@ -11,13 +11,14 @@ import {
   PageOrientationEnum,
   PageSizeEnum,
 } from "@/lib/pdf-lib";
-import { raleway } from "@/lib/font";
+
 import HeroButtonToolbar from "@/components/hero-button-toolbar";
 import HeroSettingsSheet from "@/components/hero-settings-sheet";
 import { useFileContext } from "@/context/file-context";
 import HeroDropZoneBox from "@/components/hero-drop-zone-box";
 import HeroFileInputButton from "@/components/hero-file-input-button";
 import { useUser } from "@/context/user-context";
+import SectionHeader from "./section-header";
 
 const HeroWithFileProvider = () => {
   //FileList----------
@@ -63,24 +64,13 @@ const HeroWithFileProvider = () => {
   return (
     <div className="flex flex-col">
       {fileList.length === 0 ? (
-        // SEO h1 and desc text
-        <div className="flex flex-col items-start gap-2 py-6 sm:pt-10 md:pt-12 lg:items-center lg:pt-16">
-          <h1
-            className={`${raleway.className} text-4xl font-extrabold lg:text-5xl`}
-          >
-            <span
-              className={`${userStatus === "paid" && "hidden"}`}
-            >{`Free `}</span>
-            <span>{`JPG to PDF `}</span>
-            <span>{`Converter`}</span>
-          </h1>
-          <p
-            className={`text-lg leading-7 text-secondary-foreground lg:text-xl`}
-          >
-            Combine all JPG images into multi Page PDF or Convert each JPG into
-            single page PDF
-          </p>
-        </div>
+        <SectionHeader
+          className="pt-5 sm:pt-10 md:pt-12 lg:pt-16"
+          caption={`${userStatus === "trial" ? "Free " : ""}JPG to PDF Converter`}
+          desc={
+            " Combine all JPG images into multi Page PDF or Convert each JPG into single page PDF"
+          }
+        />
       ) : (
         // Main toolbar with convert and add file buttons
         <div className="mt-3 flex w-full flex-wrap items-center justify-end gap-3 py-3">

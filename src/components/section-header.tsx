@@ -11,7 +11,7 @@ interface PropsSectionHeader {
 export default function SectionHeader(props: PropsSectionHeader) {
   const Element = props.element || "h1";
   return (
-    <div className={`${props.className}`}>
+    <div className={`${props.className} mb-12`}>
       {React.createElement(
         Element,
         {
@@ -26,7 +26,9 @@ export default function SectionHeader(props: PropsSectionHeader) {
           </span>
         </>,
       )}
-      {props.desc && <p className={`pt-3 text-center`}>{props.desc}</p>}
+      {props.desc && (
+        <p className={`pt-3 text-center text-lg font-bold`}>{props.desc}</p>
+      )}
     </div>
   );
 }

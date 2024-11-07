@@ -28,7 +28,7 @@ export default function Pricing() {
                   : "One-Time Purchase | Lifetime License | Free Upgrades | 15-Day Money-Back Guarantee | Secure Payments via FastSpring"
               }
             />
-            <div className="mt-10 grid max-w-[750px] grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid max-w-[750px] grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {licenseOptions.map((license, index) => (
                 <div key={index} className="flex items-center justify-center">
                   <Link
@@ -51,7 +51,7 @@ export default function Pricing() {
                 </div>
               ))}
             </div>
-            <p className="mt-10">
+            <p className="mt-10 lg:text-lg">
               We partner with Bright Market, LLC, dba{" "}
               <strong>FastSpring</strong>, located at 801 Garden St., Santa
               Barbara, <strong>CA 93101, USA</strong>, for secure and efficient
