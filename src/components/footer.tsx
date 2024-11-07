@@ -9,7 +9,7 @@ interface PropsFooter {
 export default function Footer(props: PropsFooter) {
   const currentDateTime = new Date().toLocaleString();
   return (
-    <footer className="container mx-auto flex flex-col items-center border-t-[1px] border-black-200 px-2 py-8 text-center xl:max-w-screen-xl">
+    <footer className="container mx-auto flex flex-col items-center border-t-[1px] border-black-200 px-2 py-8 text-center text-gray-700 dark:text-gray-300 xl:max-w-screen-xl">
       <p>
         © Copyright {props.copyrightYear}{" "}
         <span className="font-bold">{props.companyName}</span>. All Rights

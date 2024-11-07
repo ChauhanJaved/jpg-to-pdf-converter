@@ -16,7 +16,10 @@ export default function Pricing() {
   );
   return (
     portfolioItem && (
-      <section id={HeaderNavItems.Pricing} className="scroll-m-[80px]">
+      <section
+        id={HeaderNavItems.Pricing}
+        className="scroll-m-[80px] text-gray-700 dark:text-gray-300"
+      >
         <div className="container mx-auto px-3 py-10 xl:max-w-screen-xl">
           <div className="mx-5 flex flex-col items-center sm:mx-7 md:mx-9 lg:mx-11">
             <SectionHeader
@@ -54,8 +57,8 @@ export default function Pricing() {
             <p className="mt-10 lg:text-lg">
               We partner with Bright Market, LLC, dba{" "}
               <strong>FastSpring</strong>, located at 801 Garden St., Santa
-              Barbara, <strong>CA 93101, USA</strong>, for secure and efficient
-              payment processing. Once your order is complete, FastSpring will
+              Barbara, CA 93101, USA, for secure and efficient payment
+              processing. Once your order is complete, FastSpring will
               immediately send a license key to the email address associated
               with your order. To activate your license, simply enter the key in
               the app. For your privacy, FastSpring does not share any sensitive

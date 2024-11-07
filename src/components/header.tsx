@@ -37,7 +37,7 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
   return (
     <header>
       {/* z-index 10 */}
-      <div className="fixed left-0 right-0 top-0 z-[10] flex h-20 w-full items-center justify-between border-b bg-background px-3 shadow-sm">
+      <div className="fixed left-0 right-0 top-0 z-[10] flex h-20 w-full items-center justify-between border-b bg-background px-3 text-gray-700 shadow-sm dark:text-gray-300">
         {/* Company name/logo */}
         <Link href={`/#${HeaderNavItems.Home}`}>
           <div
