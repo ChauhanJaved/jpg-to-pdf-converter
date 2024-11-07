@@ -12,7 +12,7 @@ export default function Contact() {
       id={HeaderNavItems.Contact}
       className="container mx-auto scroll-m-[64px] px-3 pt-16 text-lg xl:max-w-screen-xl"
     >
-      <SectionHeader caption="contact" element="h2" />
+      <SectionHeader caption="Contact Us" element="h2" />
       <div className="mt-10 flex flex-col items-center">
         <div className="flex flex-col space-y-5 md:flex-row md:space-x-5 md:space-y-0">
           <div className="w-80 rounded border p-7 shadow-sm">
