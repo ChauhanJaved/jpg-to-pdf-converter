@@ -21,6 +21,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { HeaderNavItems } from "@/data/website-data";
+import { useToast } from "@/hooks/use-toast";
 
 export default function HeaderTrialUser() {
   const { registerAsPaid } = useUser(); // Access user context
@@ -37,6 +38,10 @@ export default function HeaderTrialUser() {
       if (isValid) {
         registerAsPaid();
         setIsDialogOpen(false); // Close dialog
+        toast({
+          title: "Successfully Registered",
+          description: "Your license key has been registered.",
+        });
       } else {
         setError("License key is not valid. Please try again.");
       }
@@ -44,7 +49,7 @@ export default function HeaderTrialUser() {
       setError(`An error occurred. Please try again later. ${error}`);
     }
   };
-
+  const { toast } = useToast();
   return (
     <>
       <DropdownMenu>
