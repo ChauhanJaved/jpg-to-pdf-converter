@@ -26,7 +26,7 @@ export default function Pricing() {
               desc={
                 portfolioItem.desc
                   ? portfolioItem.desc
-                  : "One-Time Purchase | Lifetime License | Free Upgrades | 15-Day Money-Back Guarantee | Secure Payments via FastSpring"
+                  : "One-Time Purchase with Lifetime License | Free Lifetime Upgrades | 15-Day Money-Back Guarantee | Single License Valid for Both Desktop and Web Apps | Secure Payments via FastSpring"
               }
             />
             <div className="grid max-w-[750px] grid-cols-1 gap-5 text-gray-700 dark:text-gray-300 sm:grid-cols-2 lg:grid-cols-3">

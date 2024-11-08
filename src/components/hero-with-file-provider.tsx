@@ -68,7 +68,7 @@ const HeroWithFileProvider = () => {
           className="pb-5 pt-5 sm:pt-10 md:pt-12 lg:pb-10 lg:pt-16"
           caption={`${userStatus === "trial" ? "Free " : ""}JPG to PDF Converter`}
           desc={
-            " Combine all JPG images into multi Page PDF or Convert each JPG into single page PDF"
+            "Combine multiple JPG images into a single multi-page PDF | Convert each JPG image into an individual single-page PDF | Customize page orientation (Portrait or Landscape) | Choose from multiple page sizes (A4, US Letter, or fit to image) | Adjust page margins (None, Small, or Large) to suit your needs"
           }
         />
       ) : (
