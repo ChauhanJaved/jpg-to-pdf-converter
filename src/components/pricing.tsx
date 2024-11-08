@@ -16,13 +16,11 @@ export default function Pricing() {
   );
   return (
     portfolioItem && (
-      <section
-        id={HeaderNavItems.Pricing}
-        className="scroll-m-[80px] text-gray-700 dark:text-gray-300"
-      >
+      <section id={HeaderNavItems.Pricing} className="scroll-m-[80px]">
         <div className="container mx-auto px-3 py-10 xl:max-w-screen-xl">
           <div className="mx-5 flex flex-col items-center sm:mx-7 md:mx-9 lg:mx-11">
             <SectionHeader
+              className="pb-10"
               element="h2"
               caption={`License Pricing`}
               desc={
@@ -31,7 +29,7 @@ export default function Pricing() {
                   : "One-Time Purchase | Lifetime License | Free Upgrades | 15-Day Money-Back Guarantee | Secure Payments via FastSpring"
               }
             />
-            <div className="grid max-w-[750px] grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid max-w-[750px] grid-cols-1 gap-5 text-gray-700 dark:text-gray-300 sm:grid-cols-2 lg:grid-cols-3">
               {licenseOptions.map((license, index) => (
                 <div key={index} className="flex items-center justify-center">
                   <Link
@@ -54,7 +52,7 @@ export default function Pricing() {
                 </div>
               ))}
             </div>
-            <p className="mt-10 lg:text-lg">
+            <p className="mt-10 text-gray-700 dark:text-gray-300 lg:text-lg">
               We partner with Bright Market, LLC, dba{" "}
               <strong>FastSpring</strong>, located at 801 Garden St., Santa
               Barbara, CA 93101, USA, for secure and efficient payment

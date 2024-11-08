@@ -7,7 +7,7 @@ const Hero = () => {
   return (
     <section
       id={HeaderNavItems.Home}
-      className="container m-auto mt-[83px] w-full scroll-m-[83px] pb-10 text-gray-700 dark:text-gray-300 xl:max-w-screen-xl"
+      className="container m-auto mt-[83px] w-full scroll-m-[83px] pb-10 xl:max-w-screen-xl"
     >
       <div className="mx-5 sm:mx-7 md:mx-9 lg:mx-11">
         <HeroWithFileProvider />
@@ -18,8 +18,8 @@ const Hero = () => {
             <ShieldCheck className="h-6 w-6" />
           </div>
           {/* Box----------2 */}
-          <div className="flex flex-col">
-            <p className="text-lg font-semibold lg:text-xl">
+          <div className="flex flex-col text-gray-700 dark:text-gray-300">
+            <p className="text-base font-semibold lg:text-lg">
               Local, Secure, and Private File Conversion
             </p>
             <p className="text-base lg:text-lg">

@@ -11,11 +11,11 @@ interface PropsSectionHeader {
 export default function SectionHeader(props: PropsSectionHeader) {
   const Element = props.element || "h1";
   return (
-    <div className={`${props.className} mb-12`}>
+    <div className={`${props.className}`}>
       {React.createElement(
         Element,
         {
-          className: `${Element === "h1" ? "text-4xl font-extrabold tracking-tight lg:text-5xl" : "text-3xl font-semibold tracking-tight"} flex flex-col items-center text-center`,
+          className: `${Element === "h1" ? "text-4xl font-bold tracking-tight lg:text-5xl" : "text-3xl font-semibold tracking-tight"} flex flex-col items-center text-center text-gray-900 dark:text-gray-100`,
         },
         <>
           {props.caption}
@@ -27,7 +27,11 @@ export default function SectionHeader(props: PropsSectionHeader) {
         </>,
       )}
       {props.desc && (
-        <p className={`pt-3 text-center text-lg font-medium`}>{props.desc}</p>
+        <p
+          className={`pt-3 text-center text-lg font-medium text-gray-700 dark:text-gray-300`}
+        >
+          {props.desc}
+        </p>
       )}
     </div>
   );

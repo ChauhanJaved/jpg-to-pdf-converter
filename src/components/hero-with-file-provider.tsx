@@ -65,7 +65,7 @@ const HeroWithFileProvider = () => {
     <div className="flex flex-col">
       {fileList.length === 0 ? (
         <SectionHeader
-          className="pt-5 sm:pt-10 md:pt-12 lg:pt-16"
+          className="pb-5 pt-5 sm:pt-10 md:pt-12 lg:pb-10 lg:pt-16"
           caption={`${userStatus === "trial" ? "Free " : ""}JPG to PDF Converter`}
           desc={
             " Combine all JPG images into multi Page PDF or Convert each JPG into single page PDF"
@@ -73,7 +73,7 @@ const HeroWithFileProvider = () => {
         />
       ) : (
         // Main toolbar with convert and add file buttons
-        <div className="mt-3 flex w-full flex-wrap items-center justify-end gap-3 py-3">
+        <div className="mt-5 flex w-full flex-wrap items-center justify-end gap-3 py-3 lg:mt-10">
           {/* Add file button */}
           <HeroFileInputButton
             buttonType="toolbar"

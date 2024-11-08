@@ -17,15 +17,5 @@ export default function HeaderPaidUser() {
       </PopoverTrigger>
       <PopoverContent className="w-50">Licensed User</PopoverContent>
     </Popover>
-    // <DropdownMenu>
-    //   <DropdownMenuTrigger asChild>
-    //     <Button className="relative" variant={"ghost"} size={"icon"}>
-    //       <UserCheck className="text-primary" />
-    //     </Button>
-    //   </DropdownMenuTrigger>
-    //   <DropdownMenuContent>
-    //     <DropdownMenuLabel>Licensed User</DropdownMenuLabel>
-    //   </DropdownMenuContent>
-    // </DropdownMenu>
   );
 }
