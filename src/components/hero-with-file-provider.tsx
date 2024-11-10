@@ -11,14 +11,14 @@ import {
   PageOrientationEnum,
   PageSizeEnum,
 } from "@/lib/pdf-lib";
-
+import SectionHeader from "@/components/section-header";
 import HeroButtonToolbar from "@/components/hero-button-toolbar";
-import HeroSettingsSheet from "@/components/hero-settings-sheet";
-import { useFileContext } from "@/context/file-context";
-import HeroDropZoneBox from "@/components/hero-drop-zone-box";
 import HeroFileInputButton from "@/components/hero-file-input-button";
+import HeroSettingsSheet from "@/components/hero-settings-sheet";
+import HeroDropZoneBox from "@/components/hero-drop-zone-box";
+import { useFileContext } from "@/context/file-context";
+
 import { useUser } from "@/context/user-context";
-import SectionHeader from "./section-header";
 
 const HeroWithFileProvider = () => {
   //FileList----------
@@ -68,7 +68,7 @@ const HeroWithFileProvider = () => {
           className="pb-5 pt-5 sm:pt-10 md:pt-12 lg:pb-10 lg:pt-16"
           caption={`${userStatus === "trial" ? "Free " : ""}JPG to PDF Converter`}
           desc={
-            "Combine multiple JPG images into a single multi-page PDF | Convert each JPG image into an individual single-page PDF | Customize page orientation (Portrait or Landscape) | Choose from multiple page sizes (A4, US Letter, or fit to image) | Adjust page margins (None, Small, or Large) to suit your needs"
+            "Combine multiple JPG images into a single multi-page PDF | Convert each JPG image into an individual single-page PDF | Customize page orientation | Choose from multiple page sizes | Adjust page margins"
           }
         />
       ) : (

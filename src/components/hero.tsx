@@ -1,13 +1,14 @@
+//External Imports
+import { ShieldCheck } from "lucide-react";
 //Internal Imports
 import { HeaderNavItems } from "@/data/website-data";
 import HeroWithFileProvider from "@/components/hero-with-file-provider";
-import { ShieldCheck } from "lucide-react";
 
 const Hero = () => {
   return (
     <section
       id={HeaderNavItems.Home}
-      className="container m-auto mt-[83px] w-full scroll-m-[83px] pb-10 xl:max-w-screen-xl"
+      className="container mt-[80px] scroll-m-[80px] xl:max-w-screen-xl"
     >
       <div className="mx-5 sm:mx-7 md:mx-9 lg:mx-11">
         <HeroWithFileProvider />

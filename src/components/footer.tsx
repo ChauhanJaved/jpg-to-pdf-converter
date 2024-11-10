@@ -7,31 +7,31 @@ interface PropsFooter {
 }
 
 export default function Footer(props: PropsFooter) {
-  const currentDateTime = new Date().toLocaleString();
   return (
-    <footer className="container mx-auto flex flex-col items-center border-t-[1px] border-black-200 px-2 py-8 text-center text-gray-700 dark:text-gray-300 xl:max-w-screen-xl">
-      <p>
-        © Copyright {props.copyrightYear}{" "}
-        <span className="font-bold">{props.companyName}</span>. All Rights
-        Reserved
-      </p>
-      <div className="mt-2">
-        <Link
-          href="https://www.frameworkteam.com/terms-of-use.html"
-          target="_blank"
-          className="hover:text-black-800 active:text-black-800"
-        >
-          Terms of Use
-        </Link>
-        <span className="mx-2">|</span>
-        <Link
-          href="https://www.frameworkteam.com/privacy-policy.html"
-          target="_blank"
-          className="hover:text-black-800 active:text-black-800"
-        >
-          Privacy Policy
-        </Link>
-        <p>{currentDateTime}</p>
+    <footer className="mt-10 border-t text-gray-700 dark:text-gray-300">
+      <div className="mx-5 my-5 flex flex-col items-center text-center sm:mx-7 md:mx-9 lg:mx-11">
+        <p>
+          © {props.copyrightYear}{" "}
+          <Link href={"https://www.frameworkteam.com/"} target="_blank">
+            {props.companyName}
+          </Link>
+          . All Rights Reserved
+        </p>
+        <div className="mt-2">
+          <Link
+            href="https://www.frameworkteam.com/terms-of-use.html"
+            target="_blank"
+          >
+            Terms of Use
+          </Link>
+          <span className="mx-2">|</span>
+          <Link
+            href="https://www.frameworkteam.com/privacy-policy.html"
+            target="_blank"
+          >
+            Privacy Policy
+          </Link>
+        </div>
       </div>
     </footer>
   );
