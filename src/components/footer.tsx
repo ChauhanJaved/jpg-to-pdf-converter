@@ -9,15 +9,15 @@ interface PropsFooter {
 export default function Footer(props: PropsFooter) {
   return (
     <footer className="mt-10 border-t text-gray-700 dark:text-gray-300">
-      <div className="mx-5 my-5 flex flex-col items-center text-center sm:mx-7 md:mx-9 lg:mx-11">
+      <div className="mx-5 mb-16 mt-5 flex flex-col items-center gap-1 text-center sm:mx-7 md:mx-9 lg:mx-11">
         <p>
-          © {props.copyrightYear}{" "}
+          © {props.copyrightYear}
+          {", "}
           <Link href={"https://www.frameworkteam.com/"} target="_blank">
             {props.companyName}
           </Link>
-          . All Rights Reserved
         </p>
-        <div className="mt-2">
+        <div className="flex flex-row gap-1">
           <Link
             href="https://www.frameworkteam.com/terms-of-use.html"
             target="_blank"
