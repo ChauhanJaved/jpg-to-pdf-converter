@@ -12,6 +12,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Checkbox } from "@/components/ui/check-box";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
+import { ShieldCheck } from "lucide-react";
 
 interface HeroDropZoneBoxProps {
   isDisabled: boolean;
@@ -176,7 +177,7 @@ export default function HeroDropZoneBox({
       {/* Dropzone Area ---------- */}
       <div
         {...getRootProps()}
-        className={`flex w-full flex-wrap items-center justify-center gap-5 p-5 text-center transition ${isDragActive && "bg-secondary"} lg:min-h-72 lg:border-2 lg:border-dashed`}
+        className={`flex w-full flex-wrap items-center justify-center gap-5 p-5 text-center transition ${isDragActive && "bg-secondary"} border-2 border-dashed lg:min-h-72`}
       >
         <input {...getInputProps()} />
         {fileList.length > 0 ? (
@@ -185,16 +186,21 @@ export default function HeroDropZoneBox({
             isPreviewVisible={isPreviewVisible}
           />
         ) : (
-          <div className="flex flex-col items-start justify-start rounded bg-background text-left">
-            <div className="flex flex-row">
-              <div className="flex flex-col items-center gap-1">
-                <HeroFileInputButton
-                  buttonType="main"
-                  isDisabled={false}
-                  setIsLoadingFiles={setIsLoadingFiles}
-                />
-                <p className="hidden text-lg lg:block">or drop files here</p>
+          <div className="flex flex-col items-start justify-start gap-1 rounded bg-background text-left">
+            <div className="flex flex-col items-center gap-1">
+              {/* Box ---------- Local & Secure File Conversion */}
+              <div className="mb-3 flex items-center gap-1 text-lg">
+                <div className="">
+                  <ShieldCheck className="h-6 w-6" />
+                </div>
+                <span>Local & Secure File Conversion</span>
               </div>
+              <HeroFileInputButton
+                buttonType="main"
+                isDisabled={false}
+                setIsLoadingFiles={setIsLoadingFiles}
+              />
+              <p className="text-lg">or drop files here</p>
             </div>
           </div>
         )}

@@ -8,7 +8,7 @@ const Hero = () => {
   return (
     <section
       id={HeaderNavItems.Home}
-      className="container px-5 pt-20 lg:px-10 xl:max-w-screen-xl"
+      className="container px-5 pt-20 text-gray-700 dark:text-gray-300 lg:px-10 xl:max-w-screen-xl"
     >
       <HeroWithFileProvider />
       {/* Product description */}
