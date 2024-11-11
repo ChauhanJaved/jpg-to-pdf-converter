@@ -65,10 +65,10 @@ const HeroWithFileProvider = () => {
     <div className="flex flex-col">
       {fileList.length === 0 ? (
         <SectionHeader
-          className="pb-5 pt-5 sm:pt-10 md:pt-12 lg:pb-10 lg:pt-16"
+          className="mb-5 mt-10 lg:mb-10 lg:mt-16"
           caption={`${userStatus === "trial" ? "Free " : ""}JPG to PDF Converter`}
           desc={
-            "Combine multiple JPG images into a single multi-page PDF | Convert each JPG image into an individual single-page PDF | Customize page orientation | Choose from multiple page sizes | Adjust page margins"
+            "Combine all JPG into PDF | Convert each JPG to PDF | Easily adjust Orientation, Page Size, Margins"
           }
         />
       ) : (
