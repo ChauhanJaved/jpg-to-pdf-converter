@@ -28,7 +28,7 @@ export default function SectionHeader(props: PropsSectionHeader) {
       )}
       {props.desc && (
         <p
-          className={`pt-3 text-center text-lg font-medium text-gray-700 dark:text-gray-300`}
+          className={`mt-3 text-center text-lg font-medium text-gray-700 dark:text-gray-300 lg:mx-40`}
         >
           {props.desc}
         </p>
