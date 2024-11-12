@@ -23,7 +23,7 @@ export default function Contact() {
     >
       <SectionHeader caption="Contact Us" element="h2" />
       <div className="mt-10 flex flex-col items-center">
-        <div className="m-2 flex h-28 w-72 flex-col items-center justify-center">
+        <div className="m-2 flex flex-col items-center justify-center rounded p-5 lg:border">
           <p className="text-lg">{email}</p>
           <Button
             className="mt-5"
@@ -35,8 +35,6 @@ export default function Contact() {
             Copy Email
           </Button>
         </div>
-        <div></div>
-
         <p className={`mt-5 text-lg`}>
           Please feel free to contact us if you have encountered a problem with
           our product, you have a question about our product or purchase related
