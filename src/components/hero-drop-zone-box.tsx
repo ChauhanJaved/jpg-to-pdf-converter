@@ -186,20 +186,22 @@ export default function HeroDropZoneBox({
             isPreviewVisible={isPreviewVisible}
           />
         ) : (
-          <div className="flex flex-col items-start justify-start gap-1 rounded bg-background text-left">
+          <div className="flex flex-col items-start justify-start gap-1 rounded text-left">
             <div className="flex flex-col items-center gap-1">
-              {/* Box ---------- Local & Secure File Conversion */}
+              {/* Box 1 ---------- Local & Secure File Conversion */}
               <div className="mb-3 flex items-center gap-1 text-lg">
                 <div className="">
                   <ShieldCheck className="h-6 w-6" />
                 </div>
                 <span>Local & Secure File Conversion</span>
               </div>
+              {/* Box 2 ---------- Add JPG Files */}
               <HeroFileInputButton
                 buttonType="main"
                 isDisabled={false}
                 setIsLoadingFiles={setIsLoadingFiles}
               />
+              {/* Box 3 ---------- Drop files here */}
               <p className="text-lg">or drop files here</p>
             </div>
           </div>

@@ -141,7 +141,7 @@ export default function HeroFileInputButton(props: HeroFileInputButtonProps) {
           disabled={props.isDisabled}
           onClick={handleButtonClick}
         >
-          <Plus className="mr-3 h-8 w-8" /> Add JPG Images
+          <Plus className="mr-3 h-8 w-8" /> Add JPG Files
         </Button>
       )}
     </div>
