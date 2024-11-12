@@ -68,7 +68,7 @@ const HeroWithFileProvider = () => {
           className="mb-5 mt-10 lg:mb-10 lg:mt-16"
           caption={`${userStatus === "trial" ? "Free " : ""}JPG to PDF Converter`}
           desc={
-            "Combine all JPGs into a single PDF | Convert each JPG to a separate PDF | Easily adjust Orientation, Page Size, and Margins"
+            "Combine All JPGs into a Single PDF | Convert Each JPG to a Separate PDF | Easily Adjust Orientation, Page Size, and Margins"
           }
         />
       ) : (

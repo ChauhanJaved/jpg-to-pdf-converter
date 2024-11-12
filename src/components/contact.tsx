@@ -10,26 +10,34 @@ export default function Contact() {
   return (
     <section
       id={HeaderNavItems.Contact}
-      className="container mx-auto scroll-m-[80px] px-3 py-10 text-lg text-gray-700 dark:text-gray-300 xl:max-w-screen-xl"
+      className="container scroll-m-20 px-5 pt-10 text-gray-700 dark:text-gray-300 lg:px-10 lg:pt-20 xl:max-w-screen-xl"
     >
       <SectionHeader caption="Contact Us" element="h2" />
-      <div className="mt-10 flex flex-col items-center">
-        <div className="flex flex-col space-y-5 md:flex-row md:space-x-5 md:space-y-0">
-          <div className="w-80 rounded border p-7 shadow-sm">
-            <Mail className="h-9 w-9 text-primary sm:h-10 sm:w-10" />
-            <h3 className={`mt-3 text-lg font-bold md:text-xl`}>Email Us</h3>
-            <p className="mt-1">{email}</p>
+      <div className="mt-10 flex flex-col">
+        <div className="flex flex-wrap items-center justify-center">
+          {/* Box----------1 */}
+          <div className="m-2 flex h-28 w-72 flex-col items-center justify-center rounded border p-3">
+            <div className="flex flex-row items-center gap-1">
+              <Mail className="h-6 w-6" />
+              <p className={`text-lg`}>Support email</p>
+            </div>
+            <p className="text-lg">{email}</p>
           </div>
-          <div className="w-80 rounded border p-7 shadow-sm">
-            <Clock className="h-9 w-9 text-primary sm:h-10 sm:w-10" />
-            <h3 className={`mt-3 text-lg font-bold md:text-xl`}>Open Hours</h3>
-            <p className="mt-1">
-              Monday - Saturday <br /> 10:00AM - 08:00PM
-            </p>
+          {/* Box----------2 */}
+          <div className="m-2 flex h-28 w-72 flex-col items-center justify-center rounded border p-3">
+            <div>
+              <div className="flex flex-row items-center gap-1">
+                <Clock className="h-6 w-6" />
+                <p className={`text-lg`}>Open Hours</p>
+              </div>
+              <p className="text-lg">
+                Monday - Saturday <br /> 10:00AM - 08:00PM
+              </p>
+            </div>
           </div>
+          <div></div>
         </div>
-
-        <p className={`mb-8 mt-8 text-lg`}>
+        <p className={`mt-5 text-lg`}>
           Please feel free to contact us if you have encountered a problem with
           our product, you have a question about our product or purchase related
           question. If you are a licensed user, please include your order
@@ -38,6 +46,14 @@ export default function Contact() {
           hours).
         </p>
       </div>
+      {/* <p className={`mb-8 mt-8 text-lg`}>
+          Please feel free to contact us if you have encountered a problem with
+          our product, you have a question about our product or purchase related
+          question. If you are a licensed user, please include your order
+          details, so that we can make your problem a priority for our support
+          staff. Please note that the response will take some time (12 - 24
+          hours).
+        </p> */}
     </section>
   );
 }
