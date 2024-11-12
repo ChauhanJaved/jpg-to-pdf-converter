@@ -186,7 +186,7 @@ export default function HeroDropZoneBox({
             isPreviewVisible={isPreviewVisible}
           />
         ) : (
-          <div className="flex flex-col items-start justify-start gap-1 rounded text-left">
+          <div className="flex flex-col items-start justify-start gap-1 text-left">
             <div className="flex flex-col items-center gap-1">
               {/* Box 1 ---------- Local & Secure File Conversion */}
               <div className="mb-3 flex items-center gap-1 text-lg">
