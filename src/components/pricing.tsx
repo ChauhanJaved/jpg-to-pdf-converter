@@ -58,10 +58,9 @@ export default function Pricing() {
               Secure Payments via FastSpring
             </p>
             <p className="text-base lg:text-lg">
-              We partner with Bright Market, LLC, dba{" "}
-              <strong>FastSpring</strong>, located at 801 Garden St., Santa
-              Barbara, CA 93101, USA, for secure and efficient payment
-              processing. Once your order is complete, FastSpring will
+              We partner with Bright Market, LLC, dba FastSpring, located at 801
+              Garden St., Santa Barbara, CA 93101, USA, for secure and efficient
+              payment processing. Once your order is complete, FastSpring will
               immediately send a license key to the email address associated
               with your order. To activate your license, simply enter the key in
               the app. For your privacy, FastSpring does not share any sensitive

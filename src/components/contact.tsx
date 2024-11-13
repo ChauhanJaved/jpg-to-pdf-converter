@@ -23,8 +23,8 @@ export default function Contact() {
     >
       <SectionHeader caption="Contact Us" element="h2" />
       <div className="mt-10 flex flex-col items-center">
-        <div className="m-2 flex flex-col items-center justify-center rounded p-5 lg:border">
-          <p className="text-lg">{email}</p>
+        <div className="m-2 flex flex-col items-center justify-center rounded border p-5">
+          <p className="text-lg font-bold">{email}</p>
           <Button
             className="mt-5"
             onClick={handleCopyEmail}
