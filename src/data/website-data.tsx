@@ -14,12 +14,13 @@ export const heroDesc: string =
   "We are team of talented professionals creating feature-rich Progressive Web Apps and Windows Desktop Applications.";
 export enum HeaderNavItems {
   Home = "Home",
-  Pricing = "Pricing",
   Desktop = "Desktop",
+  Pricing = "Pricing",
   Contact = "Contact",
 }
 export const headerNavItems: string[] = [
   HeaderNavItems.Home,
+  HeaderNavItems.Desktop,
   HeaderNavItems.Pricing,
   HeaderNavItems.Contact,
 ];
