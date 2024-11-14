@@ -1,6 +1,6 @@
 "use client";
 //External Imports
-import { Copy, Mail } from "lucide-react";
+import { Copy } from "lucide-react";
 
 //Internal Imports
 import { email, HeaderNavItems } from "@/data/website-data";
@@ -27,12 +27,8 @@ export default function Contact() {
         desc="Product Support | Purchase Inquiries"
       />
       <div className="mt-10 flex flex-col items-center">
-        <div className="m-2 flex w-full flex-col items-center justify-center rounded border p-10 shadow">
-          <div className="flex flex-row items-center gap-2">
-            <Mail />
-            <p className="text-lg">Sales and Support</p>
-          </div>
-          <p className="mt-5 font-medium">{email}</p>
+        <div className="m-2 flex flex-col items-center justify-center rounded border p-5 shadow">
+          <p className="text-lg font-medium">{email}</p>
           <Button
             className="mt-2"
             onClick={handleCopyEmail}
