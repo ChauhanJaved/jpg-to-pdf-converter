@@ -19,21 +19,23 @@ export default function Desktop() {
         element="h2"
         desc="Windows 11/10/8/7 | Fully Functional 15 Days Free Trial | Secure Download"
       />
-      <div className="mt-10 flex flex-col items-center">
-        <div className="flex w-full flex-col items-center rounded border p-10 shadow">
-          <Link href={portfolioItem.downloadLink}>
-            <Button className={"py-6 text-xl"}>
-              <MonitorDown className="mr-3 h-8 w-8" /> Download Now
-            </Button>
-          </Link>
-          <div className="mt-10 flex w-full flex-col items-center md:w-2/3">
-            <Image
-              src={portfolioItem.src}
-              width={portfolioItem.width}
-              height={portfolioItem.height}
-              alt={portfolioItem.title}
-              className="relative"
-            />
+      <div className="mt-10 flex flex-col">
+        <div className="flex flex-col items-center">
+          <div className="flex w-full flex-col items-center rounded border p-10 shadow">
+            <Link href={portfolioItem.downloadLink}>
+              <Button className={"py-6 text-xl"}>
+                <MonitorDown className="mr-3 h-8 w-8" /> Download Now
+              </Button>
+            </Link>
+            <div className="mt-10 flex w-full flex-col items-center md:w-2/3">
+              <Image
+                src={portfolioItem.src}
+                width={portfolioItem.width}
+                height={portfolioItem.height}
+                alt={portfolioItem.title}
+                className="relative"
+              />
+            </div>
           </div>
         </div>
         <div className="mt-5 flex flex-col">
@@ -168,6 +170,36 @@ export default function Desktop() {
             Converter for Windows today and experience effortless file
             conversion at its finest.
           </p>
+        </div>
+        <div className="mt-5 flex flex-col">
+          <p className="text-base font-semibold lg:text-lg">
+            Helpful Links for Desktop App
+          </p>
+          <Link href={""} className="text-base lg:text-lg">
+            <Button variant={"link"} className="h-auto px-0 py-0">
+              JPG to PDF Converter software user guide
+            </Button>
+          </Link>
+          <Link href={""} className="text-base lg:text-lg">
+            <Button variant={"link"} className="h-auto px-0 py-0">
+              How to convert JPG to PDF in batch?
+            </Button>
+          </Link>
+          <Link href={""} className="text-base lg:text-lg">
+            <Button variant={"link"} className="h-auto px-0 py-0">
+              How to combine multiple JPG to PDF in Windows?
+            </Button>
+          </Link>
+          <Link href={""} className="text-base lg:text-lg">
+            <Button variant={"link"} className="h-auto px-0 py-0">
+              How do I change a scanned JPGs to a PDF file?
+            </Button>
+          </Link>
+          <Link href={""} className="text-base lg:text-lg">
+            <Button variant={"link"} className="h-auto px-0 py-0">
+              Which file format should you use JPG or PDF?
+            </Button>
+          </Link>
         </div>
       </div>
     </section>
