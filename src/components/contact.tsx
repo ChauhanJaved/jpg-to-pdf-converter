@@ -24,7 +24,7 @@ export default function Contact() {
       <SectionHeader
         caption="Contact Us"
         element="h2"
-        desc="Product Support | Purchase Inquiries"
+        desc="Product Support | Purchase Inquiries | Report an Issue"
       />
       <div className="mt-10 flex flex-col items-center">
         <div className="m-2 flex flex-col items-center justify-center rounded border p-5 shadow">
