@@ -30,7 +30,7 @@ export default function Pricing() {
                 : "One-Time Purchase with Lifetime License | Free Lifetime Upgrades | 15-Day Money-Back Guarantee | Single License Valid for Both Desktop and Web Apps | Secure Payments via FastSpring"
             }
           />
-          <div className="mt-10 flex w-full items-center justify-center rounded border py-5 shadow-md">
+          <div className="mt-10 flex w-full items-center justify-center rounded border py-5 shadow">
             <div className="grid max-w-[750px] grid-cols-1 gap-5 text-gray-700 dark:text-gray-300 sm:grid-cols-2 lg:grid-cols-3">
               {licenseOptions.map((license, index) => (
                 <div key={index} className="flex items-center justify-center">
@@ -55,7 +55,7 @@ export default function Pricing() {
               ))}
             </div>
           </div>
-          <div className="mt-10 flex flex-col">
+          <div className="mt-5 flex flex-col">
             <p className="text-base font-semibold lg:text-lg">
               Secure Payments via FastSpring
             </p>

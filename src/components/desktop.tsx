@@ -20,7 +20,7 @@ export default function Desktop() {
         desc="Windows 11/10/8/7 | Fully Functional 15 Days Free Trial | Secure Download"
       />
       <div className="mt-10 flex flex-col items-center">
-        <div className="flex w-full flex-col items-center rounded border p-10 shadow-md">
+        <div className="flex w-full flex-col items-center rounded border p-10 shadow">
           <Link href={portfolioItem.downloadLink}>
             <Button className={"py-6 text-xl"}>
               <MonitorDown className="mr-3 h-8 w-8" /> Download Now
@@ -36,7 +36,7 @@ export default function Desktop() {
             />
           </div>
         </div>
-        <div className="mt-10 flex flex-col">
+        <div className="mt-5 flex flex-col">
           <p className="text-base font-semibold lg:text-lg">
             Introducing the Ultimate JPG to PDF Converter for Windows
           </p>

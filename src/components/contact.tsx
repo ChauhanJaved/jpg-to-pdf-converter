@@ -23,7 +23,7 @@ export default function Contact() {
     >
       <SectionHeader caption="Contact Us" element="h2" />
       <div className="mt-10 flex flex-col items-center">
-        <div className="m-2 flex w-full flex-col items-center justify-center rounded border p-10 shadow-md">
+        <div className="m-2 flex w-full flex-col items-center justify-center rounded border p-10 shadow">
           <div className="flex flex-row items-center gap-2">
             <Mail />
             <p className="text-lg">Sales and Support</p>
