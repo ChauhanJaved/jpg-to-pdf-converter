@@ -30,30 +30,32 @@ export default function Pricing() {
                 : "One-Time Purchase with Lifetime License | Free Lifetime Upgrades | 15-Day Money-Back Guarantee | Single License Valid for Both Desktop and Web Apps | Secure Payments via FastSpring"
             }
           />
-          <div className="mt-10 grid max-w-[750px] grid-cols-1 gap-5 rounded p-3 text-gray-700 dark:text-gray-300 sm:grid-cols-2 lg:grid-cols-3 lg:border">
-            {licenseOptions.map((license, index) => (
-              <div key={index} className="flex items-center justify-center">
-                <Link
-                  target="_blank"
-                  href={license.paymentLink}
-                  className="w-[240px]"
-                >
-                  <div className="flex flex-row gap-1">
-                    <div className="">
-                      <Button variant={"ghost"} size={"icon"}>
-                        <ShoppingCart />
-                      </Button>
+          <div className="mt-10 flex w-full items-center justify-center rounded border py-5 shadow-md">
+            <div className="grid max-w-[750px] grid-cols-1 gap-5 text-gray-700 dark:text-gray-300 sm:grid-cols-2 lg:grid-cols-3">
+              {licenseOptions.map((license, index) => (
+                <div key={index} className="flex items-center justify-center">
+                  <Link
+                    target="_blank"
+                    href={license.paymentLink}
+                    className="w-[240px]"
+                  >
+                    <div className="flex flex-row gap-1">
+                      <div className="">
+                        <Button variant={"ghost"} size={"icon"}>
+                          <ShoppingCart />
+                        </Button>
+                      </div>
+                      <div className="flex flex-col items-start justify-center">
+                        <p>{license.licenseType} </p>
+                        <p> {license.price}</p>
+                      </div>
                     </div>
-                    <div className="flex flex-col items-start justify-center">
-                      <p>{license.licenseType} </p>
-                      <p> {license.price}</p>
-                    </div>
-                  </div>
-                </Link>
-              </div>
-            ))}
+                  </Link>
+                </div>
+              ))}
+            </div>
           </div>
-          <div className="mt-5 flex flex-col">
+          <div className="mt-10 flex flex-col">
             <p className="text-base font-semibold lg:text-lg">
               Secure Payments via FastSpring
             </p>
