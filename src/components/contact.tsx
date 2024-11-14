@@ -21,14 +21,18 @@ export default function Contact() {
       id={HeaderNavItems.Contact}
       className="container scroll-m-20 px-5 pt-10 text-gray-700 dark:text-gray-300 lg:px-10 lg:pt-20 xl:max-w-screen-xl"
     >
-      <SectionHeader caption="Contact Us" element="h2" />
+      <SectionHeader
+        caption="Contact Us"
+        element="h2"
+        desc="Product Support | Purchase Inquiries"
+      />
       <div className="mt-10 flex flex-col items-center">
         <div className="m-2 flex w-full flex-col items-center justify-center rounded border p-10 shadow">
           <div className="flex flex-row items-center gap-2">
             <Mail />
             <p className="text-lg">Sales and Support</p>
           </div>
-          <p className="mt-5">{email}</p>
+          <p className="mt-5 font-medium">{email}</p>
           <Button
             className="mt-2"
             onClick={handleCopyEmail}

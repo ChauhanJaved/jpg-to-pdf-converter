@@ -15,7 +15,7 @@ export const heroDesc: string =
 export enum HeaderNavItems {
   Home = "Home",
   Desktop = "Desktop",
-  Pricing = "Pricing",
+  Pricing = "Purchase",
   Contact = "Contact",
 }
 export const headerNavItems: string[] = [
