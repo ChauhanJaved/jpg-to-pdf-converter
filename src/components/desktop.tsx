@@ -180,22 +180,31 @@ export default function Desktop() {
               JPG to PDF Converter software user guide
             </Button>
           </Link>
-          <Link href={""} className="text-base lg:text-lg">
+          <Link
+            href={"/how-batch-convert-jpg-pdf"}
+            className="text-base lg:text-lg"
+          >
             <Button variant={"link"} className="h-auto px-0 py-0">
               How to convert JPG to PDF in batch?
             </Button>
           </Link>
-          <Link href={""} className="text-base lg:text-lg">
+          <Link
+            href={"/how-to-merge-jpg-to-pdf"}
+            className="text-base lg:text-lg"
+          >
             <Button variant={"link"} className="h-auto px-0 py-0">
               How to combine multiple JPG to PDF in Windows?
             </Button>
           </Link>
-          <Link href={""} className="text-base lg:text-lg">
+          <Link
+            href={"how-to-export-scanned-jpg-to-pdf"}
+            className="text-base lg:text-lg"
+          >
             <Button variant={"link"} className="h-auto px-0 py-0">
               How do I change a scanned JPGs to a PDF file?
             </Button>
           </Link>
-          <Link href={""} className="text-base lg:text-lg">
+          <Link href={"/jpg-vs-pdf"} className="text-base lg:text-lg">
             <Button variant={"link"} className="h-auto px-0 py-0">
               Which file format should you use JPG or PDF?
             </Button>
