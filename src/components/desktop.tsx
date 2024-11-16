@@ -175,7 +175,7 @@ export default function Desktop() {
           <p className="text-base font-semibold lg:text-lg">
             Helpful Links for Desktop App
           </p>
-          <Link href={""} className="text-base lg:text-lg">
+          <Link href={"/help"} className="text-base lg:text-lg">
             <Button variant={"link"} className="h-auto px-0 py-0">
               JPG to PDF Converter software user guide
             </Button>
