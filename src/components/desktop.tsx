@@ -172,11 +172,11 @@ export default function Desktop() {
           </p>
         </div>
         <div className="mt-5 flex flex-col">
-          <p className="mb-3 text-base font-semibold lg:text-lg">
+          <p className="mb-3 text-base font-semibold lg:mb-0 lg:text-lg">
             Helpful Links for Desktop App
           </p>
           <Link href={"/help"} className="text-base lg:text-lg">
-            <Button variant={"link"}>
+            <Button variant={"link"} className="h-auto lg:px-0 lg:py-0">
               JPG to PDF Converter software user guide
             </Button>
           </Link>
@@ -184,7 +184,7 @@ export default function Desktop() {
             href={"/how-batch-convert-jpg-pdf"}
             className="text-base lg:text-lg"
           >
-            <Button variant={"link"}>
+            <Button variant={"link"} className="h-auto lg:px-0 lg:py-0">
               How to convert JPG to PDF in batch?
             </Button>
           </Link>
@@ -192,7 +192,7 @@ export default function Desktop() {
             href={"/how-to-merge-jpg-to-pdf"}
             className="text-base lg:text-lg"
           >
-            <Button variant={"link"}>
+            <Button variant={"link"} className="h-auto lg:px-0 lg:py-0">
               How to combine multiple JPG to PDF in Windows?
             </Button>
           </Link>
@@ -200,12 +200,12 @@ export default function Desktop() {
             href={"how-to-export-scanned-jpg-to-pdf"}
             className="text-base lg:text-lg"
           >
-            <Button variant={"link"}>
+            <Button variant={"link"} className="h-auto lg:px-0 lg:py-0">
               How do I change a scanned JPGs to a PDF file?
             </Button>
           </Link>
           <Link href={"/jpg-vs-pdf"} className="text-base lg:text-lg">
-            <Button variant={"link"} className="">
+            <Button variant={"link"} className="h-auto lg:px-0 lg:py-0">
               Which file format should you use JPG or PDF?
             </Button>
           </Link>
