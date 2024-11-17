@@ -1,5 +1,5 @@
 import SectionHeader from "@/components/section-header";
-import { Slash } from "lucide-react";
+import { MonitorDown, Slash } from "lucide-react";
 
 import {
   Breadcrumb,
@@ -9,8 +9,12 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import { HeaderNavItems } from "@/data/website-data";
+import { HeaderNavItems, portfolioItems } from "@/data/website-data";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
 export default function Page() {
+  const portfolioItem = portfolioItems[0];
   return (
     <>
       <div className="px-5 pt-24">
@@ -45,6 +49,26 @@ export default function Page() {
           element="h1"
           desc="Windows 11/10/8/7 | Fully Functional - No Limits - 15 Days Free | Safe & Secure Download"
         />
+        <div className="mt-10 flex flex-col">
+          <div className="flex flex-col items-center">
+            <div className="flex w-full flex-col items-center rounded border p-10 shadow">
+              <Link href={portfolioItem.downloadLink}>
+                <Button className={"py-6 text-xl"}>
+                  <MonitorDown className="mr-3 h-8 w-8" /> Download Now
+                </Button>
+              </Link>
+              <div className="mt-10 flex w-full flex-col items-center md:w-2/3">
+                <Image
+                  src={portfolioItem.src}
+                  width={portfolioItem.width}
+                  height={portfolioItem.height}
+                  alt={portfolioItem.title}
+                  className="relative"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
     </>
   );
