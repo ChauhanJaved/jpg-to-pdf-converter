@@ -45,9 +45,9 @@ export default function Page() {
       <section className="container px-5 text-gray-700 dark:text-gray-300 lg:px-10 xl:max-w-screen-xl">
         <SectionHeader
           className="mb-5 mt-10 lg:mb-10 lg:mt-16"
-          caption="JPG to PDF Converter"
+          caption="Software User Guide"
           element="h1"
-          desc="Windows 11/10/8/7 | Version 1.5 | Updated On Jan 15, 2023"
+          desc="Windows 11/10/8/7 | JPG to PDF Converter Version 1.5 | Updated On Jan 15, 2023"
         />
         <div className="mt-10 flex flex-col">
           <div className="flex flex-col items-center">
