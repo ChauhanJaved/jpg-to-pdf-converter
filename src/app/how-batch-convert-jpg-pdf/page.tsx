@@ -102,7 +102,6 @@ export default function Page() {
                 for download. Once installed, launch the application to access
                 its user-friendly interface.
               </p>
-
               <h3 className="mt-1 font-semibold">
                 2. Add JPG Files for Conversion
               </h3>
@@ -115,7 +114,14 @@ export default function Page() {
                 file list. This drag-and-drop feature makes it easy to manage
                 large batches of images.
               </p>
-
+              <div className="my-10 flex justify-center">
+                <Image
+                  src={"/frameworkteam/jpg-to-pdf-converter-files-selected.jpg"}
+                  width={756}
+                  height={463}
+                  alt={"JPG to PDF Converter Files Selected"}
+                />
+              </div>
               <h3 className="mt-1 font-semibold">
                 3. Configure Conversion Settings
               </h3>
@@ -154,7 +160,14 @@ export default function Page() {
                   image clarity.
                 </li>
               </ul>
-
+              <div className="my-10 flex justify-center">
+                <Image
+                  src={"/frameworkteam/jpg-to-pdf-converter-settings.jpg"}
+                  width={756}
+                  height={463}
+                  alt={"JPG to PDF Converter Settings"}
+                />
+              </div>
               <h3 className="mt-1 font-semibold">
                 4. Start the Conversion Process
               </h3>
