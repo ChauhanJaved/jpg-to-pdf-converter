@@ -1,14 +1,17 @@
 "use client";
 import React from "react";
 import SectionHeader from "./section-header";
-import { HeaderNavItems, portfolioItems } from "@/data/website-data";
+import {
+  HeaderNavItems,
+  productData,
+  productImages,
+} from "@/data/website-data";
 import { Button } from "./ui/button";
 import { MonitorDown } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
 export default function Desktop() {
-  const portfolioItem = portfolioItems[0];
   return (
     <section
       id={HeaderNavItems.Desktop}
@@ -22,17 +25,17 @@ export default function Desktop() {
       <div className="mt-10 flex flex-col">
         <div className="flex flex-col items-center">
           <div className="flex w-full flex-col items-center rounded border p-10 shadow">
-            <Link href={portfolioItem.downloadLink}>
+            <Link href={productData.downloadLink}>
               <Button className={"py-6 text-xl"}>
                 <MonitorDown className="mr-3 h-8 w-8" /> Download Now
               </Button>
             </Link>
             <div className="mt-10 flex w-full flex-col items-center md:w-2/3">
               <Image
-                src={portfolioItem.src}
-                width={portfolioItem.width}
-                height={portfolioItem.height}
-                alt={portfolioItem.title}
+                src={productImages.JPGtoPDFConverter.imgName}
+                width={productImages.JPGtoPDFConverter.width}
+                height={productImages.JPGtoPDFConverter.height}
+                alt={productImages.JPGtoPDFConverter.title}
                 className="relative"
               />
             </div>

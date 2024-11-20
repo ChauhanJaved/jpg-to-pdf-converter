@@ -42,7 +42,7 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
       );
       // Also update the database with this initialData if first-time user
     }
-  }, []);
+  }, [userStatus, conversionCount]);
 
   const decrementConversion = () => {
     if (conversionCount > 0) {

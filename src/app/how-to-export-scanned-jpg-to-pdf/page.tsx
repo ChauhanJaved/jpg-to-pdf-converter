@@ -12,9 +12,12 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import { HeaderNavItems, portfolioItems } from "@/data/website-data";
+import {
+  HeaderNavItems,
+  productData,
+  productImages,
+} from "@/data/website-data";
 export default function Page() {
-  const portfolioItem = portfolioItems[0];
   return (
     <>
       <div className="px-5 pt-24">
@@ -52,17 +55,17 @@ export default function Page() {
         <div className="mt-10 flex flex-col">
           <div className="flex flex-col items-center">
             <div className="flex w-full flex-col items-center rounded border p-10 shadow">
-              <Link href={portfolioItem.downloadLink}>
+              <Link href={productData.downloadLink}>
                 <Button className={"py-6 text-xl"}>
                   <MonitorDown className="mr-3 h-8 w-8" /> Download Now
                 </Button>
               </Link>
               <div className="mt-10 flex w-full flex-col items-center md:w-2/3">
                 <Image
-                  src={portfolioItem.src}
-                  width={portfolioItem.width}
-                  height={portfolioItem.height}
-                  alt={portfolioItem.title}
+                  src={productImages.JPGtoPDFConverter.imgName}
+                  width={productImages.JPGtoPDFConverter.width}
+                  height={productImages.JPGtoPDFConverter.height}
+                  alt={productImages.JPGtoPDFConverter.title}
                   className="relative"
                 />
               </div>
@@ -120,10 +123,10 @@ export default function Page() {
               </p>
               <div className="my-10 flex justify-center">
                 <Image
-                  src={"/frameworkteam/jpg-to-pdf-converter-files-selected.jpg"}
-                  width={756}
-                  height={463}
-                  alt={"JPG to PDF Converter Files Selected"}
+                  src={productImages.JPGtoPDFConverterFilesSelected.imgName}
+                  width={productImages.JPGtoPDFConverterFilesSelected.width}
+                  height={productImages.JPGtoPDFConverterFilesSelected.height}
+                  alt={productImages.JPGtoPDFConverterFilesSelected.title}
                 />
               </div>
               <h3 className="mt-1 font-semibold">
@@ -176,10 +179,10 @@ export default function Page() {
               </ul>
               <div className="my-10 flex justify-center">
                 <Image
-                  src={"/frameworkteam/jpg-to-pdf-converter-settings.jpg"}
-                  width={756}
-                  height={463}
-                  alt={"JPG to PDF Converter Settings"}
+                  src={productImages.JPGtoPDFConverterSettings.imgName}
+                  width={productImages.JPGtoPDFConverterSettings.width}
+                  height={productImages.JPGtoPDFConverterSettings.height}
+                  alt={productImages.JPGtoPDFConverterSettings.title}
                 />
               </div>
               <h3 className="mt-1 font-semibold">
