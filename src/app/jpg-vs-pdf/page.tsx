@@ -122,71 +122,77 @@ export default function Page() {
             <h2 className="mt-1 font-semibold">
               Key Differences Between JPG and PDF
             </h2>
-            <table className="mt-3 border p-3">
-              <thead className="border">
-                <tr className="p-3">
-                  <th>Feature</th>
-                  <th>JPG</th>
-                  <th>PDF</th>
+            <table className="mt-3 border">
+              <thead>
+                <tr>
+                  <th className="border px-3 py-1">Feature</th>
+                  <th className="border px-3 py-1">JPG</th>
+                  <th className="border px-3 py-1">PDF</th>
                 </tr>
               </thead>
               <tbody>
-                <tr className="border">
-                  <td className="p-3">
+                <tr>
+                  <td className="border px-3 py-1">
                     <strong>Purpose</strong>
                   </td>
-                  <td>Primarily used for web images and photographs.</td>
-                  <td>
+                  <td className="border px-3 py-1">
+                    Primarily used for web images and photographs.
+                  </td>
+                  <td className="border px-3 py-1">
                     Used for sharing documents and combining text and images.
                   </td>
                 </tr>
                 <tr>
-                  <td>
+                  <td className="border px-3 py-1">
                     <strong>Compression</strong>
                   </td>
-                  <td>
+                  <td className="border px-3 py-1">
                     Lossy compression reduces file size but can degrade quality.
                   </td>
-                  <td>
+                  <td className="border px-3 py-1">
                     Supports lossless compression, preserving quality and
                     layout.
                   </td>
                 </tr>
                 <tr>
-                  <td>
+                  <td className="border px-3 py-1">
                     <strong>Customizability</strong>
                   </td>
-                  <td>
+                  <td className="border px-3 py-1">
                     Limited to image adjustments like size and resolution.
                   </td>
-                  <td>
+                  <td className="border px-3 py-1">
                     Highly customizable for editing, printing, and combining
                     files.
                   </td>
                 </tr>
                 <tr>
-                  <td>
+                  <td className="border px-3 py-1">
                     <strong>Multi-Page Support</strong>
                   </td>
-                  <td>Does not support multi-page files.</td>
-                  <td>Can combine multiple pages or images into one file.</td>
+                  <td className="border px-3 py-1">
+                    Does not support multi-page files.
+                  </td>
+                  <td className="border px-3 py-1">
+                    Can combine multiple pages or images into one file.
+                  </td>
                 </tr>
                 <tr>
-                  <td>
+                  <td className="border px-3 py-1">
                     <strong>Platform Compatibility</strong>
                   </td>
-                  <td>
+                  <td className="border px-3 py-1">
                     Universal for viewing images but may vary in quality on
                     different platforms.
                   </td>
-                  <td>
+                  <td className="border px-3 py-1">
                     Universally consistent across all devices and platforms.
                   </td>
                 </tr>
               </tbody>
             </table>
 
-            <h2 className="mt-1 font-semibold">
+            <h2 className="mt-3 font-semibold">
               Which Format Should You Choose?
             </h2>
             <p>
