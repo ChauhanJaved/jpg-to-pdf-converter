@@ -21,6 +21,9 @@ import { useFileContext } from "@/context/file-context";
 import { useUser } from "@/context/user-context";
 
 const HeroWithFileProvider = () => {
+  //User status
+  const { userStatus, conversionCount, decrementConversion } = useUser();
+
   //FileList----------
   const { fileList, setFileList } = useFileContext();
   const handleClearList = () => {
@@ -48,19 +51,40 @@ const HeroWithFileProvider = () => {
   };
 
   const handleConversion = async () => {
-    setIsConvertingFiles(true);
-    try {
-      await handleConvertToPdf(fileList, orientation, pageSize, margin);
-    } catch (error) {
-      console.error("Conversion error:", error);
-    } finally {
-      setIsConvertingFiles(false);
+    if (userStatus === "trial") {
+      if (conversionCount > 0) {
+        // Proceed with conversion and decrement the count
+        setIsConvertingFiles(true);
+        try {
+          await handleConvertToPdf(fileList, orientation, pageSize, margin);
+          decrementConversion(); // Reduce the count
+        } catch (error) {
+          console.error("Conversion error:", error);
+        } finally {
+          setIsConvertingFiles(false);
+        }
+      } else {
+        // Prompt user to buy a license
+        alert(
+          "Your free conversions are finished. Please purchase a license to continue.",
+        );
+      }
+    } else if (userStatus === "paid") {
+      // Proceed with conversion without decrementing
+      setIsConvertingFiles(true);
+      try {
+        await handleConvertToPdf(fileList, orientation, pageSize, margin);
+      } catch (error) {
+        console.error("Conversion error:", error);
+      } finally {
+        setIsConvertingFiles(false);
+      }
     }
   };
 
   // Adding file
   const [isLoadingFiles, setIsLoadingFiles] = useState(false);
-  const { userStatus } = useUser();
+
   return (
     <div className="flex flex-col">
       {fileList.length === 0 ? (
