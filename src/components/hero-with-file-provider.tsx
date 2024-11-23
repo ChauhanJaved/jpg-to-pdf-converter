@@ -24,7 +24,9 @@ import LicenseDialog from "./license-dialog";
 const HeroWithFileProvider = () => {
   //User status
   const { userStatus, conversionCount, decrementConversion } = useUser();
-  const [showDialog, setShowDialog] = useState(false);
+  const [showLicenseDialog, setShowLicenseDialog] = useState(false);
+  const [showRegisterLicenseDialog, setShowRegisterLicenseDialog] =
+    useState(false);
 
   //FileList----------
   const { fileList, setFileList } = useFileContext();
@@ -66,7 +68,7 @@ const HeroWithFileProvider = () => {
           setIsConvertingFiles(false);
         }
       } else {
-        setShowDialog(true);
+        setShowLicenseDialog(true);
       }
     } else if (userStatus === "paid") {
       // Proceed with conversion without decrementing
@@ -142,11 +144,12 @@ const HeroWithFileProvider = () => {
           setIsLoadingFiles={setIsLoadingFiles}
         />
       </div>
-      {showDialog && (
+      {showLicenseDialog && (
         <LicenseDialog
-          showDialog={showDialog}
-          setShowDialog={setShowDialog}
-          onClose={() => setShowDialog(false)}
+          showLicenseDialog={showLicenseDialog}
+          setShowLicenseDialog={setShowLicenseDialog}
+          showRegisterLicenseDialog={showRegisterLicenseDialog}
+          setShowRegisterLicenseDialog={setShowRegisterLicenseDialog}
         />
       )}
     </>
