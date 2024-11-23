@@ -20,6 +20,7 @@ import { useFileContext } from "@/context/file-context";
 
 import { useUser } from "@/context/user-context";
 import LicenseDialog from "./license-dialog";
+import SocialMediaDialog from "./social-media-dialog";
 
 const HeroWithFileProvider = () => {
   //User status
@@ -27,6 +28,7 @@ const HeroWithFileProvider = () => {
   const [showLicenseDialog, setShowLicenseDialog] = useState(false);
   const [showRegisterLicenseDialog, setShowRegisterLicenseDialog] =
     useState(false);
+  const [showSocialMediaDialog, setShowSocialMediaDialog] = useState(false);
 
   //FileList----------
   const { fileList, setFileList } = useFileContext();
@@ -57,6 +59,7 @@ const HeroWithFileProvider = () => {
   const handleConversion = async () => {
     if (userStatus === "trial") {
       if (conversionCount > 0) {
+        setShowSocialMediaDialog(true);
         // Proceed with conversion and decrement the count
         setIsConvertingFiles(true);
         try {
@@ -144,14 +147,18 @@ const HeroWithFileProvider = () => {
           setIsLoadingFiles={setIsLoadingFiles}
         />
       </div>
-      {showLicenseDialog && (
-        <LicenseDialog
-          showLicenseDialog={showLicenseDialog}
-          setShowLicenseDialog={setShowLicenseDialog}
-          showRegisterLicenseDialog={showRegisterLicenseDialog}
-          setShowRegisterLicenseDialog={setShowRegisterLicenseDialog}
-        />
-      )}
+
+      <LicenseDialog
+        showLicenseDialog={showLicenseDialog}
+        setShowLicenseDialog={setShowLicenseDialog}
+        showRegisterLicenseDialog={showRegisterLicenseDialog}
+        setShowRegisterLicenseDialog={setShowRegisterLicenseDialog}
+      />
+
+      <SocialMediaDialog
+        showSocialMediaDialog={showSocialMediaDialog}
+        setShowSocialMediaDialog={setShowSocialMediaDialog}
+      />
     </>
   );
 };
