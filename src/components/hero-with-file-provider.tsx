@@ -21,6 +21,7 @@ import { useFileContext } from "@/context/file-context";
 import { useUser } from "@/context/user-context";
 import LicenseDialog from "./license-dialog";
 import SocialMediaDialog from "./social-media-dialog";
+import DialogProcessing from "./dialog-processing";
 
 const HeroWithFileProvider = () => {
   //User status
@@ -59,7 +60,6 @@ const HeroWithFileProvider = () => {
   const handleConversion = async () => {
     if (userStatus === "trial") {
       if (conversionCount > 0) {
-        setShowSocialMediaDialog(true);
         // Proceed with conversion and decrement the count
         setIsConvertingFiles(true);
         try {
@@ -69,6 +69,7 @@ const HeroWithFileProvider = () => {
           console.error("Conversion error:", error);
         } finally {
           setIsConvertingFiles(false);
+          setShowSocialMediaDialog(true);
         }
       } else {
         setShowLicenseDialog(true);
@@ -158,6 +159,10 @@ const HeroWithFileProvider = () => {
       <SocialMediaDialog
         showSocialMediaDialog={showSocialMediaDialog}
         setShowSocialMediaDialog={setShowSocialMediaDialog}
+      />
+      <DialogProcessing
+        isConvertingFiles={isConvertingFiles}
+        setIsConvertingFiles={setIsConvertingFiles}
       />
     </>
   );
