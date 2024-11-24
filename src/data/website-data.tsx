@@ -17,6 +17,12 @@ export const headerNavItems: string[] = [
 ];
 
 export const productImages = {
+  JPGtoPDFConverterWeb: {
+    title: "JPG to PDF Converter Online",
+    imgName: `/${headerCompanyName.toLowerCase()}/${"jpg-to-pdf-converter-web.png".toLowerCase()}`,
+    width: 1170,
+    height: 2532,
+  },
   JPGtoPDFConverter: {
     title: "JPG to PDF Converter",
     imgName: `/${headerCompanyName.toLowerCase()}/${"jpg-to-pdf-converter.jpg".toLowerCase()}`,

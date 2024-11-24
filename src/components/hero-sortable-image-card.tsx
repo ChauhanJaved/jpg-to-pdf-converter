@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 //External Imports
 import React, { useEffect, useState } from "react";
-import { Grip, Pencil, Trash2, ZoomIn } from "lucide-react";
+import { GripVertical, Pencil, Trash2, ZoomIn } from "lucide-react";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 
@@ -58,10 +58,20 @@ const HeroSortableImageCard = React.memo(function SortableImageCard({
         {/* Box-1 Toolbar--------- */}
 
         <div className="mt-2 flex w-full items-center justify-end gap-2 pr-2">
-          <Button variant="outline" aria-label="Edit Image" size={"icon"}>
+          <Button
+            className="hidden"
+            variant="outline"
+            aria-label="Edit Image"
+            size={"icon"}
+          >
             <Pencil />
           </Button>
-          <Button variant="outline" aria-label="Zoom In" size={"icon"}>
+          <Button
+            className="hidden"
+            variant="outline"
+            aria-label="Zoom In"
+            size={"icon"}
+          >
             <ZoomIn />
           </Button>
           <Button
@@ -80,7 +90,7 @@ const HeroSortableImageCard = React.memo(function SortableImageCard({
             aria-label="Reorder Image"
             className="touch-none"
           >
-            <Grip />
+            <GripVertical />
           </Button>
         </div>
 
