@@ -13,9 +13,9 @@ const Hero = () => {
       <HeroWithFileProvider />
       {/* Product description */}
       <div className="mt-5 flex flex-col">
-        <p className="text-base font-semibold lg:text-lg">
+        <h2 className="text-base font-semibold lg:text-lg">
           Local, Secure, and Private File Conversion
-        </p>
+        </h2>
         <p className="text-base lg:text-lg">
           Our JPG to PDF converter prioritizes your file privacy and security by
           processing everything locally on your device. Unlike other converters
@@ -29,9 +29,9 @@ const Hero = () => {
         </p>
       </div>
       <div className="mt-5 flex flex-col text-gray-700 dark:text-gray-300">
-        <p className="text-base font-semibold lg:text-lg">
+        <h2 className="text-base font-semibold lg:text-lg">
           Flexible PDF Creation Options
-        </p>
+        </h2>
         <p className="text-base lg:text-lg">
           Our JPG to PDF converter offers versatile options to meet all your
           document needs. Whether you want to combine multiple JPG images into a
@@ -42,9 +42,9 @@ const Hero = () => {
         </p>
       </div>
       <div className="mt-5 flex flex-col text-gray-700 dark:text-gray-300">
-        <p className="text-base font-semibold lg:text-lg">
+        <h2 className="text-base font-semibold lg:text-lg">
           Easily Customizable Orientation, Page Size, and Margins
-        </p>
+        </h2>
         <p className="text-base lg:text-lg">
           With our JPG to PDF converter, personalizing your PDFs is simple. You
           can easily adjust page orientation (portrait or landscape), choose
@@ -63,9 +63,9 @@ const Hero = () => {
         </p>
       </div>
       <div className="mt-5 flex flex-col text-gray-700 dark:text-gray-300">
-        <p className="text-base font-semibold lg:text-lg">
+        <h2 className="text-base font-semibold lg:text-lg">
           Simple Drag-and-Drop with Easy Image Rearrangement
-        </p>
+        </h2>
         <p className="text-base lg:text-lg">
           Our JPG to PDF converter simplifies your workflow with an intuitive
           drag-and-drop interface, allowing you to quickly add files without

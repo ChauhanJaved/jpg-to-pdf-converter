@@ -45,9 +45,9 @@ export default function Pricing() {
           </div>
         </div>
         <div className="mt-5 flex flex-col">
-          <p className="text-base font-semibold lg:text-lg">
+          <h3 className="text-base font-semibold lg:text-lg">
             Secure Payments via FastSpring
-          </p>
+          </h3>
           <p className="text-base lg:text-lg">
             We partner with Bright Market, LLC, dba FastSpring, located at 801
             Garden St., Santa Barbara, CA 93101, USA, for secure and efficient
@@ -60,9 +60,9 @@ export default function Pricing() {
           </p>
         </div>
         <div className="mt-5 flex flex-col">
-          <p className="text-base font-semibold lg:text-lg">
+          <h3 className="text-base font-semibold lg:text-lg">
             One-Time Purchase with Lifetime License
-          </p>
+          </h3>
           <p className="text-base lg:text-lg">
             Enjoy a lifetime of access with just a one-time purchase of our JPG
             to PDF converter. Once you’ve acquired the license, there are no
@@ -73,9 +73,9 @@ export default function Pricing() {
           </p>
         </div>
         <div className="mt-5 flex flex-col">
-          <p className="text-base font-semibold lg:text-lg">
+          <h3 className="text-base font-semibold lg:text-lg">
             Free Lifetime Upgrades
-          </p>
+          </h3>
           <p className="text-base lg:text-lg">
             Stay up-to-date with all the latest features and enhancements, free
             of charge. Our lifetime license includes complimentary upgrades,
@@ -86,9 +86,9 @@ export default function Pricing() {
           </p>
         </div>
         <div className="mt-5 flex flex-col">
-          <p className="text-base font-semibold lg:text-lg">
+          <h3 className="text-base font-semibold lg:text-lg">
             15-Day Money-Back Guarantee
-          </p>
+          </h3>
           <p className="text-base lg:text-lg">
             We’re confident you’ll find our converter indispensable, but we
             understand that every user’s needs are different. That’s why we
@@ -99,9 +99,9 @@ export default function Pricing() {
           </p>
         </div>
         <div className="mt-5 flex flex-col">
-          <p className="text-base font-semibold lg:text-lg">
+          <h3 className="text-base font-semibold lg:text-lg">
             Single License Valid for Both Desktop and Web Apps
-          </p>
+          </h3>
           <p className="text-base lg:text-lg">
             Enjoy the flexibility of using our converter on both desktop and web
             platforms with a single license. This dual compatibility ensures you
