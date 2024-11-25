@@ -1,10 +1,10 @@
 "use client";
 
-//External Imports----------
+//External Imports
 import { useState } from "react";
 import { Download, Trash2 } from "lucide-react";
 
-//Internal Imports----------
+//Internal Imports
 import {
   handleConvertToPdf,
   MarginEnum,
@@ -17,11 +17,10 @@ import HeroFileInputButton from "@/components/hero-file-input-button";
 import HeroSettingsSheet from "@/components/hero-settings-sheet";
 import HeroDropZoneBox from "@/components/hero-drop-zone-box";
 import { useFileContext } from "@/context/file-context";
-
 import { useUser } from "@/context/user-context";
-import LicenseDialog from "./license-dialog";
-import SocialMediaDialog from "./social-media-dialog";
-import DialogProcessing from "./dialog-processing";
+import LicenseDialog from "@/components/license-dialog";
+import SocialMediaDialog from "@/components/social-media-dialog";
+import DialogProcessing from "@/components/dialog-processing";
 
 const HeroWithFileProvider = () => {
   //User status

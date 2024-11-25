@@ -1,8 +1,6 @@
 //Internal imports
 import "./globals.css";
-
 import { companyName, copyrightYear } from "@/data/website-data";
-import type { Metadata } from "next";
 import { Toaster } from "@/components/ui/toaster";
 import Footer from "@/components/footer";
 import ScrollTop from "@/components/ui/scroll-top";
@@ -11,11 +9,6 @@ import { roboto } from "@/lib/font";
 import { FileProvider } from "@/context/file-context";
 import Header from "@/components/header";
 import { UserProvider } from "@/context/user-context";
-
-export const metadata: Metadata = {
-  title: "JPG to PDF Converter",
-  description: "JPG to PDF Converter",
-};
 
 export default function RootLayout({
   children,

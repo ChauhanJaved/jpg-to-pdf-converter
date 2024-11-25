@@ -1,9 +1,8 @@
 "use client";
-
-// External Imports----------
+// External Imports
 import { Plus } from "lucide-react";
 import { useRef } from "react";
-// Internal Imports----------
+// Internal Imports
 import HeroButtonToolbar from "@/components/hero-button-toolbar";
 import { useFileContext } from "@/context/file-context";
 import { useToast } from "@/hooks/use-toast";

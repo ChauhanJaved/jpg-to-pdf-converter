@@ -1,15 +1,15 @@
-"use client";
-import React from "react";
-import SectionHeader from "./section-header";
+//External Imports
+import { MonitorDown } from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
+//Internal Imports
+import SectionHeader from "@/components/section-header";
 import {
   HeaderNavItems,
   productData,
   productImages,
 } from "@/data/website-data";
-import { Button } from "./ui/button";
-import { MonitorDown } from "lucide-react";
-import Link from "next/link";
-import Image from "next/image";
+import { Button } from "@/components/ui/button";
 
 export default function Desktop() {
   return (

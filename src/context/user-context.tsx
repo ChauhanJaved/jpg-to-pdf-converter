@@ -1,4 +1,5 @@
 "use client";
+//External Imports
 import React, {
   createContext,
   useContext,
@@ -6,6 +7,7 @@ import React, {
   useState,
   ReactNode,
 } from "react";
+//Internal Imports
 import { encryptData, decryptData } from "@/lib/encryption";
 
 interface UserContextType {

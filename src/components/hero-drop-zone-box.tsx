@@ -3,6 +3,7 @@
 //External Imports----------
 import { useState } from "react";
 import { useDropzone, FileRejection } from "react-dropzone";
+import { ShieldCheck } from "lucide-react";
 
 //Internal Imports----------
 import { useFileContext } from "@/context/file-context";
@@ -12,7 +13,6 @@ import { useToast } from "@/hooks/use-toast";
 import { Checkbox } from "@/components/ui/check-box";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
-import { ShieldCheck } from "lucide-react";
 
 interface HeroDropZoneBoxProps {
   isDisabled: boolean;

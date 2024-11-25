@@ -1,5 +1,7 @@
 "use client";
+//External Imports
 import React, { useState } from "react";
+//Internal Imports
 import { useToast } from "@/hooks/use-toast";
 import {
   AlertDialog,
@@ -11,9 +13,9 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-
 import { Input } from "@/components/ui/input";
 import { useUser } from "@/context/user-context";
+
 const validateLicenseKey = async (key: string): Promise<boolean> => {
   return key === "VALID_KEY";
 };
