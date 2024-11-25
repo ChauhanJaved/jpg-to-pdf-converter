@@ -15,7 +15,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { headerNavItems } from "@/data/website-data";
+import { HeaderNavItems, headerNavItems } from "@/data/website-data";
 import { poppins } from "@/lib/font";
 import { HeaderModeToggle } from "./header-mode-toggle";
 import { Separator } from "./ui/separator";
@@ -60,7 +60,11 @@ export default function HeaderSheetMainManu({
                       onClick={() => {
                         setActiveSection(item);
                       }}
-                      href={`/#${item}`}
+                      href={
+                        item === HeaderNavItems.Desktop
+                          ? `/${item.toLocaleLowerCase()}`
+                          : `/#${item}`
+                      }
                     >
                       <Button variant={"ghost"}>{item}</Button>
                     </Link>
