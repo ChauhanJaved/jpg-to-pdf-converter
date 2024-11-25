@@ -2,20 +2,20 @@
 import React, { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogFooter,
-  DialogDescription,
-} from "@/components/ui/dialog";
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
+
 import { Input } from "@/components/ui/input";
-import { Button } from "./ui/button";
 import { useUser } from "@/context/user-context";
 const validateLicenseKey = async (key: string): Promise<boolean> => {
-  // Implement your license validation logic here
-  // e.g., call Firebase or FastSpring
-  return key === "VALID_KEY"; // Replace with actual validation
+  return key === "VALID_KEY";
 };
 
 interface LicenseRegisterDialogProps {
@@ -29,13 +29,12 @@ export default function LicenseRegisterDialog({
   showRegisterLicenseDialog,
   setShowRegisterLicenseDialog,
 }: LicenseRegisterDialogProps) {
-  const { registerAsPaid } = useUser(); // Access user context
+  const { registerAsPaid } = useUser();
   const [licenseKey, setLicenseKey] = useState("");
   const [error, setError] = useState("");
   const handleLicenseValidation = async () => {
     try {
-      // Replace with your license key validation API call or Firebase function
-      const isValid = await validateLicenseKey(licenseKey); // mock function for validation
+      const isValid = await validateLicenseKey(licenseKey);
       if (isValid) {
         registerAsPaid();
         setShowRegisterLicenseDialog(false);
@@ -53,17 +52,14 @@ export default function LicenseRegisterDialog({
   };
   const { toast } = useToast();
   return (
-    <Dialog
-      open={showRegisterLicenseDialog}
-      onOpenChange={setShowRegisterLicenseDialog}
-    >
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Register License</DialogTitle>
-          <DialogDescription className="sr-only">
+    <AlertDialog open={showRegisterLicenseDialog}>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>Register Your License</AlertDialogTitle>
+          <AlertDialogDescription className="sr-only">
             Enter license key
-          </DialogDescription>
-        </DialogHeader>
+          </AlertDialogDescription>
+        </AlertDialogHeader>
         <Input
           placeholder="Enter license key"
           value={licenseKey}
@@ -73,10 +69,17 @@ export default function LicenseRegisterDialog({
           }}
         />
         {error && <p className="text-destructive">{error}</p>}
-        <DialogFooter>
-          <Button onClick={handleLicenseValidation}>Register License</Button>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
+        <AlertDialogFooter>
+          <AlertDialogCancel
+            onClick={() => setShowRegisterLicenseDialog(false)}
+          >
+            Cancel
+          </AlertDialogCancel>
+          <AlertDialogAction onClick={handleLicenseValidation}>
+            Register License
+          </AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
   );
 }
