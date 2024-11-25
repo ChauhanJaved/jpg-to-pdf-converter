@@ -18,7 +18,7 @@ export default function Desktop() {
       className="container scroll-m-20 px-5 pt-10 text-gray-700 dark:text-gray-300 lg:px-10 lg:pt-20 xl:max-w-screen-xl"
     >
       <SectionHeader
-        caption="JPG to PDF Converter"
+        caption="JPG to PDF Converter Desktop"
         element="h1"
         desc="Windows 11/10/8/7 | Fully Functional 15 Days Free Trial | Secure Download"
       />

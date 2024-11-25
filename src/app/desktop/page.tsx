@@ -10,13 +10,13 @@ import {
 import {
   Breadcrumb,
   BreadcrumbItem,
-  BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import Desktop from "@/components/desktop";
 import cloudinaryLoader from "@/lib/cloudinary-loader";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "JPG to PDF Converter Desktop App - Powerful Offline Software",
@@ -52,9 +52,12 @@ export default function Page() {
         <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem>
-              <BreadcrumbLink href={`/#${HeaderNavItems.Home}`}>
+              <Link
+                className="transition-colors hover:text-foreground"
+                href={`/#${HeaderNavItems.Home}`}
+              >
                 Home
-              </BreadcrumbLink>
+              </Link>
             </BreadcrumbItem>
             <BreadcrumbSeparator>
               <Slash />

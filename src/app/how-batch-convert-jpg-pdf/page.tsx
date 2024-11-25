@@ -4,7 +4,6 @@ import { MonitorDown, Slash } from "lucide-react";
 import {
   Breadcrumb,
   BreadcrumbItem,
-  BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
@@ -24,19 +23,23 @@ export default function Page() {
         <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem>
-              <BreadcrumbLink href={`/#${HeaderNavItems.Home}`}>
+              <Link
+                className="transition-colors hover:text-foreground"
+                href={`/#${HeaderNavItems.Home}`}
+              >
                 Home
-              </BreadcrumbLink>
+              </Link>
             </BreadcrumbItem>
             <BreadcrumbSeparator>
               <Slash />
             </BreadcrumbSeparator>
             <BreadcrumbItem>
-              <BreadcrumbLink
+              <Link
+                className="transition-colors hover:text-foreground"
                 href={`/${HeaderNavItems.Desktop.toLocaleLowerCase()}`}
               >
                 Desktop
-              </BreadcrumbLink>
+              </Link>
             </BreadcrumbItem>
             <BreadcrumbSeparator>
               <Slash />
