@@ -23,6 +23,7 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
   // Handle direct navigation with hash
   useEffect(() => {
     const hash = window.location.hash;
+    console.log(window.location.pathname);
     if (hash) {
       const section = hash.substring(1); // Remove the "#" from the hash
       if (headerNavItems.includes(section)) {
@@ -61,7 +62,11 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
                     setActiveSection(item);
                   }}
                   className={`relative px-2 py-2 text-base font-semibold before:absolute before:bottom-0 before:left-0 before:h-0.5 before:w-full before:scale-0 before:bg-primary before:transition-transform before:duration-300 hover:before:scale-100 ${activeSection === item && "before:scale-100"}`}
-                  href={`/#${item}`}
+                  href={
+                    item === HeaderNavItems.Desktop
+                      ? `/${item.toLocaleLowerCase()}`
+                      : `/#${item}`
+                  }
                 >
                   {item}
                 </Link>

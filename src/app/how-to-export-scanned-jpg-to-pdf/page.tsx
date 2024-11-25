@@ -32,7 +32,9 @@ export default function Page() {
               <Slash />
             </BreadcrumbSeparator>
             <BreadcrumbItem>
-              <BreadcrumbLink href={`/#${HeaderNavItems.Desktop}`}>
+              <BreadcrumbLink
+                href={`/${HeaderNavItems.Desktop.toLocaleLowerCase()}`}
+              >
                 Desktop
               </BreadcrumbLink>
             </BreadcrumbItem>

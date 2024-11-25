@@ -18,8 +18,8 @@ export default function Desktop() {
       className="container scroll-m-20 px-5 pt-10 text-gray-700 dark:text-gray-300 lg:px-10 lg:pt-20 xl:max-w-screen-xl"
     >
       <SectionHeader
-        caption="Desktop Application"
-        element="h2"
+        caption="JPG to PDF Converter"
+        element="h1"
         desc="Windows 11/10/8/7 | Fully Functional 15 Days Free Trial | Secure Download"
       />
       <div className="mt-10 flex flex-col">
@@ -42,9 +42,9 @@ export default function Desktop() {
           </div>
         </div>
         <div className="mt-5 flex flex-col">
-          <h3 className="text-base font-semibold lg:text-lg">
+          <h2 className="text-base font-semibold lg:text-lg">
             Introducing the Ultimate JPG to PDF Converter for Windows
-          </h3>
+          </h2>
           <p className="text-base lg:text-lg">
             Transform your JPG files into PDFs securely and efficiently with our
             powerful desktop software. Designed for Windows users, our JPG to
@@ -56,9 +56,9 @@ export default function Desktop() {
           </p>
         </div>
         <div className="mt-5 flex flex-col">
-          <h3 className="text-base font-semibold lg:text-lg">
+          <h2 className="text-base font-semibold lg:text-lg">
             Lightning-Fast and Reliable Conversions
-          </h3>
+          </h2>
           <p className="text-base lg:text-lg">
             Experience rapid conversion from JPG to PDF with our dependable
             software. Whether you&#39;re working from home, the office, or on
@@ -69,9 +69,9 @@ export default function Desktop() {
           </p>
         </div>
         <div className="mt-5 flex flex-col">
-          <h3 className="text-base font-semibold lg:text-lg">
+          <h2 className="text-base font-semibold lg:text-lg">
             Effortless Batch Conversion
-          </h3>
+          </h2>
           <p className="text-base lg:text-lg">
             Save time and streamline your workflow by converting multiple JPG
             images to PDFs in a single operation. Our batch processing feature
@@ -83,9 +83,9 @@ export default function Desktop() {
           </p>
         </div>
         <div className="mt-5 flex flex-col">
-          <h3 className="text-base font-semibold lg:text-lg">
+          <h2 className="text-base font-semibold lg:text-lg">
             Intuitive Drag-and-Drop Interface
-          </h3>
+          </h2>
           <p className="text-base lg:text-lg">
             Our user-friendly interface makes file conversion effortless, even
             for beginners. Simply drag and drop your JPG files into the
@@ -95,9 +95,9 @@ export default function Desktop() {
           </p>
         </div>
         <div className="mt-5 flex flex-col">
-          <h3 className="text-base font-semibold lg:text-lg">
+          <h2 className="text-base font-semibold lg:text-lg">
             Flexible Conversion Options
-          </h3>
+          </h2>
           <p className="text-base lg:text-lg">
             Customize your PDF output with versatile conversion modes. Whether
             you need to create separate PDFs for each JPG or combine multiple
@@ -108,9 +108,9 @@ export default function Desktop() {
           </p>
         </div>
         <div className="mt-5 flex flex-col">
-          <h3 className="text-base font-semibold lg:text-lg">
+          <h2 className="text-base font-semibold lg:text-lg">
             Organize Images with Ease
-          </h3>
+          </h2>
           <p className="text-base lg:text-lg">
             Take control of your file order before conversion with our
             easy-to-use MOVE UP and MOVE DOWN buttons. Rearrange your JPG images
@@ -119,9 +119,9 @@ export default function Desktop() {
           </p>
         </div>
         <div className="mt-5 flex flex-col">
-          <h3 className="text-base font-semibold lg:text-lg">
+          <h2 className="text-base font-semibold lg:text-lg">
             Designed for High-Volume Conversions
-          </h3>
+          </h2>
           <p className="text-base lg:text-lg">
             Need to convert thousands of JPG files in seconds? Our JPG to PDF
             Converter is one of the fastest and most versatile solutions
@@ -134,9 +134,9 @@ export default function Desktop() {
           </p>
         </div>
         <div className="mt-5 flex flex-col">
-          <h3 className="text-base font-semibold lg:text-lg">
+          <h2 className="text-base font-semibold lg:text-lg">
             User-Friendly with Advanced Features
-          </h3>
+          </h2>
           <p className="text-base lg:text-lg">
             Not only is our JPG to PDF Converter fast and easy to use, but it
             also offers advanced options for those who need more control over
@@ -148,9 +148,9 @@ export default function Desktop() {
           </p>
         </div>
         <div className="mt-5 flex flex-col">
-          <h3 className="text-base font-semibold lg:text-lg">
+          <h2 className="text-base font-semibold lg:text-lg">
             Why Convert JPG to PDF?
-          </h3>
+          </h2>
           <p className="text-base lg:text-lg">
             JPG (Joint Photographic Experts Group) is a widely-used image format
             known for its efficient compression, perfect for online sharing.
@@ -163,7 +163,7 @@ export default function Desktop() {
           </p>
         </div>
         <div className="mt-5 flex flex-col">
-          <h3 className="text-base font-semibold lg:text-lg">Conclusion</h3>
+          <h2 className="text-base font-semibold lg:text-lg">Conclusion</h2>
           <p className="text-base lg:text-lg">
             Our JPG to PDF Converter for Windows is the perfect solution for
             anyone looking to convert images to PDF with speed, security, and
@@ -175,9 +175,9 @@ export default function Desktop() {
           </p>
         </div>
         <div className="mt-5 flex flex-col">
-          <h3 className="mb-3 text-base font-semibold lg:mb-0 lg:text-lg">
+          <h2 className="mb-3 text-base font-semibold lg:mb-0 lg:text-lg">
             Helpful Links for Desktop App
-          </h3>
+          </h2>
           <Link href={"/help"} className="text-base lg:text-lg">
             <Button variant={"link"} className="h-auto lg:px-0 lg:py-0">
               JPG to PDF Converter software user guide
