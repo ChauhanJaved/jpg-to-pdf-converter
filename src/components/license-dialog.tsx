@@ -1,3 +1,7 @@
+//External Imports
+import { ShoppingCart, Wrench } from "lucide-react";
+import Link from "next/link";
+//Internal Imports
 import {
   AlertDialog,
   AlertDialogCancel,
@@ -9,9 +13,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { HeaderNavItems } from "@/data/website-data";
-import Link from "next/link";
-import { ShoppingCart, Wrench } from "lucide-react";
-import LicenseRegisterDialog from "./license-register-dialog";
+import LicenseRegisterDialog from "@/components/license-register-dialog";
 
 interface LicenseDialogProps {
   showLicenseDialog: boolean;
