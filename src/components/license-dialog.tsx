@@ -1,21 +1,13 @@
 import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-} from "@/components/ui/dialog";
+  AlertDialog,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
-// import {
-//   FacebookShareButton,
-//   FacebookIcon,
-//   TwitterShareButton,
-//   XIcon,
-//   LinkedinShareButton,
-//   LinkedinIcon,
-//   WhatsappShareButton,
-//   WhatsappIcon,
-// } from "react-share";
 import { HeaderNavItems } from "@/data/website-data";
 import Link from "next/link";
 import { ShoppingCart, Wrench } from "lucide-react";
@@ -34,19 +26,17 @@ const LicenseDialog: React.FC<LicenseDialogProps> = ({
   showRegisterLicenseDialog,
   setShowRegisterLicenseDialog,
 }) => {
-  // const shareUrl = productData.productWebsite;
-  // const shareMessage = `Try this amazing ${productData.title}!`;
   return (
     <>
-      <Dialog open={showLicenseDialog} onOpenChange={setShowLicenseDialog}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Free Trial Conversions Finished</DialogTitle>
-            <DialogDescription>
+      <AlertDialog open={showLicenseDialog}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Free Trial Conversions Finished</AlertDialogTitle>
+            <AlertDialogDescription>
               Your free trial conversions have been completed. Please purchase a
               license and register it to continue using the tool.
-            </DialogDescription>
-          </DialogHeader>
+            </AlertDialogDescription>
+          </AlertDialogHeader>
           <div className="mt-1 flex flex-wrap items-center justify-center gap-4 text-center sm:items-start sm:justify-start sm:text-left">
             <Link href={`/#${HeaderNavItems.Pricing}`}>
               <Button
@@ -58,39 +48,22 @@ const LicenseDialog: React.FC<LicenseDialogProps> = ({
               </Button>
             </Link>
             <Button
-              className="flex items-center justify-center"
               onClick={() => {
                 setShowRegisterLicenseDialog(true);
               }}
             >
               <Wrench className="mr-2" />
-              <span>Register License</span>
+              Register License
             </Button>
-            {/* <p>
-              Or please share our tool on social media to continue using it for
-              free:
-            </p> */}
-            {/* <div className="flex gap-3">
-              <FacebookShareButton url={shareUrl} hashtag={shareMessage}>
-                <FacebookIcon size={32} round />
-              </FacebookShareButton>
-              <TwitterShareButton url={shareUrl} title={shareMessage}>
-                <XIcon size={32} round />
-              </TwitterShareButton>
-              <LinkedinShareButton url={shareUrl} summary={shareMessage}>
-                <LinkedinIcon size={32} round />
-              </LinkedinShareButton>
-              <WhatsappShareButton
-                url={shareUrl}
-                title={shareMessage}
-                separator=":: "
-              >
-                <WhatsappIcon size={32} round />
-              </WhatsappShareButton>
-            </div> */}
           </div>
-        </DialogContent>
-      </Dialog>
+          <AlertDialogFooter>
+            <AlertDialogCancel onClick={() => setShowLicenseDialog(false)}>
+              Cancel
+            </AlertDialogCancel>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
       <LicenseRegisterDialog
         showLicenseDialog={showLicenseDialog}
         setShowLicenseDialog={setShowLicenseDialog}
