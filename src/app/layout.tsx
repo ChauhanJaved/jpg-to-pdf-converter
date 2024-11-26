@@ -32,13 +32,14 @@ export default function RootLayout({
           >
             <ActiveSectionProvider>
               <FileProvider>
+                <ScrollTop />
                 <Header />
                 {children}
                 <Footer
                   companyName={companyName}
                   copyrightYear={copyrightYear}
                 />
-                <ScrollTop />
+
                 <Toaster />
               </FileProvider>
             </ActiveSectionProvider>

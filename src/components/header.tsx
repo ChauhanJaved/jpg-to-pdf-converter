@@ -7,7 +7,6 @@ import Link from "next/link";
 import { poppins, raleway } from "@/lib/font";
 import { HeaderModeToggle } from "@/components/header-mode-toggle";
 import { HeaderNavItems, headerNavItems } from "@/data/website-data";
-import useIntersectionObserver from "@/hooks/use-intersection-observer";
 import HeaderSheetMainManu from "@/components/header-sheet-main-manu";
 import { useUser } from "@/context/user-context";
 import HeaderTrialUser from "@/components/header-trial-user";
@@ -25,7 +24,7 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
   useEffect(() => {
     const hash = window.location.hash;
     const pathName = window.location.pathname;
-    console.log(window.location.pathname);
+    //console.log(window.location.pathname);
     if (hash) {
       const section = hash.substring(1); // Remove the "#" from the hash
       if (headerNavItems.includes(section)) {
@@ -34,13 +33,13 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
     } else {
       if (pathName === `/${HeaderNavItems.Desktop.toLocaleLowerCase()}`) {
         setActiveSection(HeaderNavItems.Desktop);
-      } else {
-        setActiveSection(defaultActiveSection);
+      } else if (pathName === `/`) {
+        setActiveSection(HeaderNavItems.Home);
       }
     }
   }, [defaultActiveSection, setActiveSection]);
 
-  useIntersectionObserver(setActiveSection);
+  //useIntersectionObserver();
   return (
     <header>
       {/* z-index 10 */}

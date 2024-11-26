@@ -3,15 +3,22 @@
 //External Imports
 import { useEffect, useRef, useState } from "react";
 import { ArrowUp } from "lucide-react";
+import { useActiveSection } from "@/context/active-section-context";
 
 //Internal imports
 import { Button } from "@/components/ui/button";
+import { HeaderNavItems } from "@/data/website-data";
 
 export default function ScrollTop() {
+  const { setActiveSection } = useActiveSection();
   const [isVisible, setIsVisible] = useState(false);
   const observerRef = useRef<IntersectionObserver | null>(null);
 
   const scrollToTop = () => {
+    const home = document.getElementById(HeaderNavItems.Home);
+    if (home) {
+      setActiveSection(HeaderNavItems.Home);
+    }
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 

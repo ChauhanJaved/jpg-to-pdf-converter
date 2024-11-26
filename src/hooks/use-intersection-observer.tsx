@@ -1,11 +1,12 @@
 import { HeaderNavItems } from "@/data/website-data";
 import { useEffect } from "react";
+import { useActiveSection } from "@/context/active-section-context";
 
-function useIntersectionObserver(setActiveSection: (section: string) => void) {
+function useIntersectionObserver() {
+  const { activeSection, setActiveSection } = useActiveSection();
   useEffect(() => {
     const home = document.getElementById(HeaderNavItems.Home);
-    if (!home) return; // Ensure the "home" element exists
-    // Function to create the intersection observer
+    if (!home) return;
     const createIntersectionObserver = () => {
       const observer = new IntersectionObserver(
         (entries) => {
@@ -31,6 +32,6 @@ function useIntersectionObserver(setActiveSection: (section: string) => void) {
     return () => {
       intersectionObserver.disconnect();
     };
-  }, [setActiveSection]);
+  }, [setActiveSection, activeSection]);
 }
 export default useIntersectionObserver;
