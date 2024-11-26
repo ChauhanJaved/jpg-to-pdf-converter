@@ -14,6 +14,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { HeaderNavItems } from "@/data/website-data";
 import LicenseRegisterDialog from "@/components/license-register-dialog";
+import { useActiveSection } from "@/context/active-section-context";
 
 interface LicenseDialogProps {
   showLicenseDialog: boolean;
@@ -28,6 +29,7 @@ const LicenseDialog: React.FC<LicenseDialogProps> = ({
   showRegisterLicenseDialog,
   setShowRegisterLicenseDialog,
 }) => {
+  const { setActiveSection } = useActiveSection();
   return (
     <>
       <AlertDialog open={showLicenseDialog}>
@@ -40,7 +42,10 @@ const LicenseDialog: React.FC<LicenseDialogProps> = ({
             </AlertDialogDescription>
           </AlertDialogHeader>
           <div className="mt-1 flex flex-wrap items-center justify-center gap-4 text-center sm:items-start sm:justify-start sm:text-left">
-            <Link href={`/#${HeaderNavItems.Pricing}`}>
+            <Link
+              href={`/#${HeaderNavItems.Pricing}`}
+              onClick={() => setActiveSection(HeaderNavItems.Pricing)}
+            >
               <Button
                 className="flex items-center justify-center"
                 onClick={() => setShowLicenseDialog(false)}

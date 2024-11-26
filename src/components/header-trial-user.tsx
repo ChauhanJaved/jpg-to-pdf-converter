@@ -13,12 +13,13 @@ import Link from "next/link";
 
 import { HeaderNavItems } from "@/data/website-data";
 import LicenseRegisterDialog from "./license-register-dialog";
+import { useActiveSection } from "@/context/active-section-context";
 
 export default function HeaderTrialUser() {
   const [showDialog, setShowDialog] = useState(false);
 
   const handleRegisterClick = () => setShowDialog(true);
-
+  const { setActiveSection } = useActiveSection();
   return (
     <>
       <DropdownMenu>
@@ -30,7 +31,10 @@ export default function HeaderTrialUser() {
         <DropdownMenuContent>
           <DropdownMenuLabel>Trail User</DropdownMenuLabel>
           <DropdownMenuSeparator />
-          <Link href={`/#${HeaderNavItems.Pricing}`}>
+          <Link
+            href={`/#${HeaderNavItems.Pricing}`}
+            onClick={() => setActiveSection(HeaderNavItems.Pricing)}
+          >
             <DropdownMenuItem>
               <ShoppingCart />
               <span>Buy License</span>

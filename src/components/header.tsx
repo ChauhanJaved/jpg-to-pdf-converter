@@ -46,7 +46,10 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
       {/* z-index 10 */}
       <div className="fixed left-0 right-0 top-0 z-[10] flex h-20 w-full items-center justify-between border-b bg-background px-3 text-gray-900 shadow-sm dark:text-gray-100">
         {/* Company name/logo */}
-        <Link href={`/#${HeaderNavItems.Home}`}>
+        <Link
+          href={`/#${HeaderNavItems.Home}`}
+          onClick={() => setActiveSection(HeaderNavItems.Home)}
+        >
           <div
             className={`${raleway.className} flex flex-col items-start justify-center border-l-[5px] border-l-primary py-1 pl-3 text-lg font-extrabold leading-tight tracking-wider`}
           >
