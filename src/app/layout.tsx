@@ -3,7 +3,7 @@ import "./globals.css";
 import { companyName, copyrightYear } from "@/data/website-data";
 import { Toaster } from "@/components/ui/toaster";
 import Footer from "@/components/footer";
-import ScrollTop from "@/components/ui/scroll-top";
+import ScrollTop from "@/components/scroll-top";
 import { ThemeProvider } from "@/components/theme-provider";
 import { roboto } from "@/lib/font";
 import { FileProvider } from "@/context/file-context";
