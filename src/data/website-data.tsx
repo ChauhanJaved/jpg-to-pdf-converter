@@ -109,6 +109,9 @@ export const metadataIndex: Metadata = {
   title: title,
   description: description,
   keywords: keywords,
+  alternates: {
+    canonical: productData.productWebsite,
+  },
   openGraph: {
     title: title,
     description: description,
@@ -134,6 +137,9 @@ export const metadataDesktop: Metadata = {
   title: titleDesktop,
   description: descriptionDesktop,
   keywords: keywordsDesktop,
+  alternates: {
+    canonical: productData.productWebsiteDesktop,
+  },
   openGraph: {
     title: titleDesktop,
     description: descriptionDesktop,
