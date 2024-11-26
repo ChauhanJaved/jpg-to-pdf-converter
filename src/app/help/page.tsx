@@ -13,10 +13,13 @@ import {
 } from "@/components/ui/breadcrumb";
 import {
   HeaderNavItems,
+  metadataDesktop,
   productData,
   productImages,
 } from "@/data/website-data";
 import BreadcrumbNextLink from "@/components/breadcrumb-next-link";
+import { Metadata } from "next";
+export const metadata: Metadata = metadataDesktop;
 export default function Page() {
   return (
     <>

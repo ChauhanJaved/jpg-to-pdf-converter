@@ -1,8 +1,22 @@
+import cloudinaryLoader from "@/lib/cloudinary-loader";
+import { Metadata } from "next";
+
 export const headerCompanyName: string = "FrameworkTeam";
 export const companyName: string = "FrameworkTeam Softwares";
 export const email: string = "support@frameworkteam.com";
 export const copyrightYear: string = new Date().getFullYear().toString();
-
+const title: string =
+  "Free Online JPG to PDF Converter - Secure, Fast, and High-Quality";
+const description: string =
+  "Easily convert JPG to PDF with our free online tool. Enjoy secure, fast, and high-quality conversions directly on your device. No file uploads, ensuring privacy and safety. Perfect for personal or professional use with a free trial included!";
+const keywords: string =
+  "JPG to PDF, free JPG to PDF converter, online JPG to PDF tool, secure JPG to PDF conversion, local JPG to PDF conversion, no file upload JPG to PDF, privacy-first PDF converter, high-quality PDF conversion, fast JPG to PDF, image to PDF converter, photo to PDF converter, JPG to PDF free trial, best JPG to PDF tool, easy JPG to PDF conversion";
+const titleDesktop: string =
+  "Free JPG to PDF Converter Desktop App - Powerful Offline Software";
+const descriptionDesktop: string =
+  "Download our feature-rich desktop app to convert JPG to PDF offline. Enjoy batch processing, high-quality output, secure local conversions, and customizable PDF settings. Ideal for professional and personal use.";
+const keywordsDesktop: string =
+  "JPG to PDF desktop app, offline JPG to PDF converter, JPG to PDF software, batch JPG to PDF, secure PDF converter, high-quality PDF conversion, customizable PDF settings, image to PDF software, photo to PDF app, JPG to PDF offline tool";
 export enum HeaderNavItems {
   Home = "Home",
   Desktop = "Desktop",
@@ -47,6 +61,7 @@ export const productData = {
   id: "jpg-to-pdf-converter",
   title: "JPG to PDF Converter",
   productWebsite: "https://www.jpg-to-pdf-converter.com/",
+  productWebsiteDesktop: "https://www.jpg-to-pdf-converter.com/desktop",
   downloadLink:
     "https://jpg-to-pdf-converter.com/downloads/jpg-to-pdf-converter-setup.exe",
 };
@@ -89,3 +104,53 @@ export const licenseOptions = [
       "https://frameworkteam.onfastspring.com/jpg-to-pdf-converter-unlimited-computers-license",
   },
 ];
+
+export const metadataIndex: Metadata = {
+  title: title,
+  description: description,
+  keywords: keywords,
+  openGraph: {
+    title: title,
+    description: description,
+    url: productData.productWebsite,
+    siteName: productData.title,
+    images: [
+      {
+        url: cloudinaryLoader({
+          src: productImages.JPGtoPDFConverterWeb.imgName,
+          width: productImages.JPGtoPDFConverterWeb.width,
+        }),
+        width: productImages.JPGtoPDFConverterWeb.width,
+        height: productImages.JPGtoPDFConverterWeb.height,
+        alt: productData.title,
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+};
+
+export const metadataDesktop: Metadata = {
+  title: titleDesktop,
+  description: descriptionDesktop,
+  keywords: keywordsDesktop,
+  openGraph: {
+    title: titleDesktop,
+    description: descriptionDesktop,
+    url: productData.productWebsiteDesktop,
+    siteName: productData.title,
+    images: [
+      {
+        url: cloudinaryLoader({
+          src: productImages.JPGtoPDFConverter.imgName,
+          width: productImages.JPGtoPDFConverter.width,
+        }),
+        width: productImages.JPGtoPDFConverter.width,
+        height: productImages.JPGtoPDFConverter.height,
+        alt: productData.title,
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+};
