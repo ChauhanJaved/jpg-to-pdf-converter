@@ -1,6 +1,6 @@
 "use client";
 //External  imports
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 
 //Internal imports
@@ -12,17 +12,19 @@ import HeaderSheetMainManu from "@/components/header-sheet-main-manu";
 import { useUser } from "@/context/user-context";
 import HeaderTrialUser from "@/components/header-trial-user";
 import HeaderPaidUser from "@/components/header-paid-user";
+import { useActiveSection } from "@/context/active-section-context";
 
 interface HeaderProps {
   defaultActiveSection?: string;
 }
 export default function Header({ defaultActiveSection = "" }: HeaderProps) {
-  const [activeSection, setActiveSection] = useState<string>("");
+  const { activeSection, setActiveSection } = useActiveSection();
   const { userStatus } = useUser();
 
   // Handle direct navigation with hash
   useEffect(() => {
     const hash = window.location.hash;
+    const pathName = window.location.pathname;
     console.log(window.location.pathname);
     if (hash) {
       const section = hash.substring(1); // Remove the "#" from the hash
@@ -30,9 +32,13 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
         setActiveSection(section);
       }
     } else {
-      setActiveSection(defaultActiveSection);
+      if (pathName === `/${HeaderNavItems.Desktop.toLocaleLowerCase()}`) {
+        setActiveSection(HeaderNavItems.Desktop);
+      } else {
+        setActiveSection(defaultActiveSection);
+      }
     }
-  }, [defaultActiveSection]);
+  }, [defaultActiveSection, setActiveSection]);
 
   useIntersectionObserver(setActiveSection);
   return (

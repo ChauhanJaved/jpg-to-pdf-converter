@@ -1,3 +1,4 @@
+"use client";
 //External Imports
 import { MonitorDown } from "lucide-react";
 import Link from "next/link";
@@ -10,8 +11,10 @@ import {
   productImages,
 } from "@/data/website-data";
 import { Button } from "@/components/ui/button";
+import { useActiveSection } from "@/context/active-section-context";
 
 export default function Desktop() {
+  const { setActiveSection } = useActiveSection();
   return (
     <section
       id={HeaderNavItems.Desktop}
@@ -178,7 +181,11 @@ export default function Desktop() {
           <h2 className="mb-3 text-base font-semibold lg:mb-0 lg:text-lg">
             Helpful Links for Desktop App
           </h2>
-          <Link href={"/help"} className="text-base lg:text-lg">
+          <Link
+            href={"/help"}
+            className="text-base lg:text-lg"
+            onClick={() => setActiveSection("")}
+          >
             <Button variant={"link"} className="h-auto lg:px-0 lg:py-0">
               JPG to PDF Converter software user guide
             </Button>
@@ -186,6 +193,7 @@ export default function Desktop() {
           <Link
             href={"/how-batch-convert-jpg-pdf"}
             className="text-base lg:text-lg"
+            onClick={() => setActiveSection("")}
           >
             <Button variant={"link"} className="h-auto lg:px-0 lg:py-0">
               How to convert JPG to PDF in batch?
@@ -194,6 +202,7 @@ export default function Desktop() {
           <Link
             href={"/how-to-merge-jpg-to-pdf"}
             className="text-base lg:text-lg"
+            onClick={() => setActiveSection("")}
           >
             <Button variant={"link"} className="h-auto lg:px-0 lg:py-0">
               How to combine multiple JPG to PDF in Windows?
@@ -202,12 +211,17 @@ export default function Desktop() {
           <Link
             href={"how-to-export-scanned-jpg-to-pdf"}
             className="text-base lg:text-lg"
+            onClick={() => setActiveSection("")}
           >
             <Button variant={"link"} className="h-auto lg:px-0 lg:py-0">
               How do I change a scanned JPGs to a PDF file?
             </Button>
           </Link>
-          <Link href={"/jpg-vs-pdf"} className="text-base lg:text-lg">
+          <Link
+            href={"/jpg-vs-pdf"}
+            className="text-base lg:text-lg"
+            onClick={() => setActiveSection("")}
+          >
             <Button variant={"link"} className="h-auto lg:px-0 lg:py-0">
               Which file format should you use JPG or PDF?
             </Button>

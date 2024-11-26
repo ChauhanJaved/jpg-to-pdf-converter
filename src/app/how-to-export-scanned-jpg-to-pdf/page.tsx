@@ -16,6 +16,7 @@ import {
   productData,
   productImages,
 } from "@/data/website-data";
+import BreadcrumbNextLink from "@/components/breadcrumb-next-link";
 export default function Page() {
   return (
     <>
@@ -23,23 +24,21 @@ export default function Page() {
         <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem>
-              <Link
-                className="transition-colors hover:text-foreground"
-                href={`/#${HeaderNavItems.Home}`}
-              >
-                Home
-              </Link>
+              <BreadcrumbNextLink
+                linkName={HeaderNavItems.Home}
+                hrefActiveSection={`/#${HeaderNavItems.Home}`}
+                headerActiveSection={HeaderNavItems.Home}
+              />
             </BreadcrumbItem>
             <BreadcrumbSeparator>
               <Slash />
             </BreadcrumbSeparator>
             <BreadcrumbItem>
-              <Link
-                className="transition-colors hover:text-foreground"
-                href={`/${HeaderNavItems.Desktop.toLocaleLowerCase()}`}
-              >
-                Desktop
-              </Link>
+              <BreadcrumbNextLink
+                linkName={HeaderNavItems.Desktop}
+                hrefActiveSection={`/${HeaderNavItems.Desktop.toLocaleLowerCase()}`}
+                headerActiveSection={HeaderNavItems.Desktop}
+              />
             </BreadcrumbItem>
             <BreadcrumbSeparator>
               <Slash />

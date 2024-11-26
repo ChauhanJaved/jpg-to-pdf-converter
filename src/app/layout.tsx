@@ -9,6 +9,7 @@ import { roboto } from "@/lib/font";
 import { FileProvider } from "@/context/file-context";
 import Header from "@/components/header";
 import { UserProvider } from "@/context/user-context";
+import { ActiveSectionProvider } from "@/context/active-section-context";
 
 export default function RootLayout({
   children,
@@ -29,13 +30,18 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <FileProvider>
-              <Header />
-              {children}
-              <Footer companyName={companyName} copyrightYear={copyrightYear} />
-              <ScrollTop />
-              <Toaster />
-            </FileProvider>
+            <ActiveSectionProvider>
+              <FileProvider>
+                <Header />
+                {children}
+                <Footer
+                  companyName={companyName}
+                  copyrightYear={copyrightYear}
+                />
+                <ScrollTop />
+                <Toaster />
+              </FileProvider>
+            </ActiveSectionProvider>
           </ThemeProvider>
         </UserProvider>
       </body>

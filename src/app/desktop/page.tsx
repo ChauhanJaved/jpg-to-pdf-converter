@@ -1,6 +1,7 @@
 //External Imports
 import { Metadata } from "next";
 import { Slash } from "lucide-react";
+
 //Internal Imports
 import {
   HeaderNavItems,
@@ -16,7 +17,7 @@ import {
 } from "@/components/ui/breadcrumb";
 import Desktop from "@/components/desktop";
 import cloudinaryLoader from "@/lib/cloudinary-loader";
-import Link from "next/link";
+import BreadcrumbNextLink from "@/components/breadcrumb-next-link";
 
 export const metadata: Metadata = {
   title: "JPG to PDF Converter Desktop App - Powerful Offline Software",
@@ -52,12 +53,11 @@ export default function Page() {
         <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem>
-              <Link
-                className="transition-colors hover:text-foreground"
-                href={`/#${HeaderNavItems.Home}`}
-              >
-                Home
-              </Link>
+              <BreadcrumbNextLink
+                linkName={HeaderNavItems.Home}
+                hrefActiveSection={`/#${HeaderNavItems.Home}`}
+                headerActiveSection={HeaderNavItems.Home}
+              />
             </BreadcrumbItem>
             <BreadcrumbSeparator>
               <Slash />
