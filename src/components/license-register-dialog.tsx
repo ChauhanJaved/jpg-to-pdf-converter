@@ -15,10 +15,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Input } from "@/components/ui/input";
 import { useUser } from "@/context/user-context";
-
-const validateLicenseKey = async (key: string): Promise<boolean> => {
-  return key === "VALID_KEY";
-};
+import { validateKey } from "@/lib/license-key-validation";
 
 interface LicenseRegisterDialogProps {
   showLicenseDialog?: boolean;
@@ -36,7 +33,7 @@ export default function LicenseRegisterDialog({
   const [error, setError] = useState("");
   const handleLicenseValidation = async () => {
     try {
-      const isValid = await validateLicenseKey(licenseKey);
+      const isValid = validateKey(licenseKey);
       if (isValid) {
         registerAsPaid();
         setShowRegisterLicenseDialog(false);
