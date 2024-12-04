@@ -1,8 +1,7 @@
+import { VALID_CHARS } from "@/data/website-data";
 import { createHash } from "crypto";
 
-const VALID_CHARS =
-  process.env.NEXT_PUBLIC_VALID_CHARS || "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
-const LET_ME_IN_STRING = process.env.NEXT_PUBLIC_LET_ME_IN_STRING || ""; // Defaults to an empty string if not defined
+const LICENSE_STRING = process.env.NEXT_PUBLIC_LICENSE_STRING || "";
 
 function encryptStringMD5(input: string): string {
   try {
@@ -20,9 +19,9 @@ function validateKey(pKey: string): boolean {
     const initialChars = pKey.substring(0, 9); // First 9 characters of pKey
 
     // Step 2: Generate MD5 hash
-    const sMD5 = encryptStringMD5(initialChars + LET_ME_IN_STRING);
+    const sMD5 = encryptStringMD5(initialChars + LICENSE_STRING);
 
-    console.log(`${sMD5} ----- ${initialChars} ----- ${LET_ME_IN_STRING}`);
+    console.log(`${sMD5} ----- ${initialChars} ----- ${LICENSE_STRING}`);
     // Step 3: Build the test key
     let testKey = initialChars;
     for (let count = 1; count <= 16; count++) {

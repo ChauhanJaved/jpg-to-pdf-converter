@@ -1,6 +1,7 @@
 import cloudinaryLoader from "@/lib/cloudinary-loader";
 import { Metadata } from "next";
 
+export const VALID_CHARS: string = "0123456789ABCDEFGHJKLMNPQRTUVWXY";
 export const headerCompanyName: string = "FrameworkTeam";
 export const companyName: string = "FrameworkTeam Softwares";
 export const email: string = "support@frameworkteam.com";

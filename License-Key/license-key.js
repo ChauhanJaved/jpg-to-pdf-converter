@@ -2,9 +2,9 @@ import { createHash } from "crypto";
 
 // Constants
 const VALID_CHARS = "0123456789ABCDEFGHJKLMNPQRTUVWXY";
+const LICENSE_STRING = "4D1XGNAX468BDWKWUWX37KQM5";
 const RANDOM_LOWER = 0;
 const RANDOM_UPPER = 31;
-const LET_ME_IN_STRING = "mzlapq01";
 
 function getRandomInt() {
   return (
@@ -22,7 +22,7 @@ function generateKey() {
     initialChars += VALID_CHARS[randomIndex];
   }
 
-  const md5Hash = encryptStringMD5(initialChars + LET_ME_IN_STRING);
+  const md5Hash = encryptStringMD5(initialChars + LICENSE_STRING);
 
   let key = initialChars;
   for (let i = 0; i < 16; i++) {

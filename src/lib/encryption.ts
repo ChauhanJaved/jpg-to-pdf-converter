@@ -1,6 +1,6 @@
 import CryptoJS from "crypto-js";
 
-const secretKey = process.env.NEXT_PUBLIC_SECRET_KEY;
+const secretKey = process.env.NEXT_PUBLIC_USER_STRING;
 
 if (!secretKey) {
   throw new Error("Missing encryption secret key");
