@@ -2,7 +2,6 @@
 //External Imports
 import React, { useState } from "react";
 //Internal Imports
-import { useToast } from "@/hooks/use-toast";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -16,6 +15,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { useUser } from "@/context/user-context";
 import { validateKey } from "@/lib/license-key-validation";
+import { useToast } from "@/hooks/use-toast";
 
 interface LicenseRegisterDialogProps {
   showLicenseDialog?: boolean;
@@ -31,6 +31,7 @@ export default function LicenseRegisterDialog({
   const { registerAsPaid } = useUser();
   const [licenseKey, setLicenseKey] = useState("");
   const [error, setError] = useState("");
+  const { toast } = useToast();
   const handleLicenseValidation = async () => {
     try {
       const isValid = validateKey(licenseKey);
@@ -49,7 +50,7 @@ export default function LicenseRegisterDialog({
       setError(`An error occurred. Please try again later. ${error}`);
     }
   };
-  const { toast } = useToast();
+
   return (
     <AlertDialog open={showRegisterLicenseDialog}>
       <AlertDialogContent>
