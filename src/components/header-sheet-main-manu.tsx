@@ -15,7 +15,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { HeaderNavItems, headerNavItems } from "@/data/website-data";
+import {  headerNavItems, hrefValue } from "@/data/website-data";
 import { poppins } from "@/lib/font";
 import { HeaderModeToggle } from "./header-mode-toggle";
 import { Separator } from "./ui/separator";
@@ -33,6 +33,7 @@ export default function HeaderSheetMainManu({
   const openSheet = () => {
     setOpen(true);
   };
+
 
   return (
     <Fragment>
@@ -60,13 +61,9 @@ export default function HeaderSheetMainManu({
                       onClick={() => {
                         setActiveSection(item);
                       }}
-                      href={
-                        item === HeaderNavItems.Desktop
-                          ? `/${item.toLocaleLowerCase()}`
-                          : `/#${item}`
-                      }
+                      href={hrefValue (item)}                        
                     >
-                      <Button variant={"ghost"}>{item}</Button>
+                      <Button variant={"ghost"}>{item && item[0].toUpperCase() + item.slice(1)}</Button>
                     </Link>
                   </SheetClose>
                 </li>

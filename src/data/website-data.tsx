@@ -19,10 +19,10 @@ const descriptionDesktop: string =
 const keywordsDesktop: string =
   "JPG to PDF desktop app, offline JPG to PDF converter, JPG to PDF software, batch JPG to PDF, secure PDF converter, high-quality PDF conversion, customizable PDF settings, image to PDF software, photo to PDF app, JPG to PDF offline tool";
 export enum HeaderNavItems {
-  Home = "Home",
-  Desktop = "Desktop",
-  Pricing = "Purchase",
-  Contact = "Contact",
+  Home = "home",
+  Desktop = "desktop",
+  Pricing = "purchase",
+  Contact = "contact",
 }
 export const headerNavItems: string[] = [
   HeaderNavItems.Home,
@@ -30,7 +30,13 @@ export const headerNavItems: string[] = [
   HeaderNavItems.Pricing,
   HeaderNavItems.Contact,
 ];
-
+export function hrefValue(item:string):string{
+  if(item===HeaderNavItems.Desktop){
+    return `/${HeaderNavItems.Desktop.toLocaleLowerCase()}`
+  }else {
+    return `/#${item}`
+  }
+}
 export const productImages = {
   JPGtoPDFConverterWeb: {
     title: "JPG to PDF Converter Online",

@@ -6,7 +6,7 @@ import Link from "next/link";
 //Internal imports
 import { poppins, raleway } from "@/lib/font";
 import { HeaderModeToggle } from "@/components/header-mode-toggle";
-import { HeaderNavItems, headerNavItems } from "@/data/website-data";
+import { HeaderNavItems, headerNavItems, hrefValue } from "@/data/website-data";
 import HeaderSheetMainManu from "@/components/header-sheet-main-manu";
 import { useUser } from "@/context/user-context";
 import HeaderTrialUser from "@/components/header-trial-user";
@@ -70,13 +70,9 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
                     setActiveSection(item);
                   }}
                   className={`relative px-2 py-2 text-base font-semibold before:absolute before:bottom-0 before:left-0 before:h-0.5 before:w-full before:scale-0 before:bg-primary before:transition-transform before:duration-300 hover:before:scale-100 ${activeSection === item && "before:scale-100"}`}
-                  href={
-                    item === HeaderNavItems.Desktop
-                      ? `/${item.toLocaleLowerCase()}`
-                      : `/#${item}`
-                  }
+                  href={hrefValue(item)}
                 >
-                  {item}
+                  {item && item[0].toUpperCase() + item.slice(1)}
                 </Link>
               </li>
             ))}
