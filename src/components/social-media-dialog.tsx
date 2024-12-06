@@ -38,8 +38,7 @@ export default function SocialMediaDialog({
     src: productImages.JPGtoPDFConverterWeb.imgName,
     width: productImages.JPGtoPDFConverterWeb.width,
   });
-  return (
-    <>
+  return (    
       <AlertDialog open={showSocialMediaDialog}>
         <AlertDialogContent>
           <AlertDialogHeader>
@@ -80,7 +79,6 @@ export default function SocialMediaDialog({
             </AlertDialogCancel>
           </AlertDialogFooter>
         </AlertDialogContent>
-      </AlertDialog>
-    </>
+      </AlertDialog>    
   );
 }
