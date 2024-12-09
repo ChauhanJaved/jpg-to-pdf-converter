@@ -31,7 +31,7 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
         setActiveSection(section);
       }
     } else {
-      if (pathName === `/${HeaderNavItems.Desktop.toLocaleLowerCase()}.html`) {
+      if (pathName === `/${HeaderNavItems.Desktop.toLocaleLowerCase()}.html` || pathName === `/${HeaderNavItems.Desktop.toLocaleLowerCase()}`) {
         setActiveSection(HeaderNavItems.Desktop);
       } else if (pathName === `/`) {
         setActiveSection(HeaderNavItems.Home);
