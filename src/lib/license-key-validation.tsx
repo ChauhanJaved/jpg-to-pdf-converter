@@ -20,8 +20,7 @@ function validateKey(pKey: string): boolean {
 
     // Step 2: Generate MD5 hash
     const sMD5 = encryptStringMD5(initialChars + LICENSE_STRING);
-
-    console.log(`${sMD5} ----- ${initialChars} ----- ${LICENSE_STRING}`);
+    
     // Step 3: Build the test key
     let testKey = initialChars;
     for (let count = 1; count <= 16; count++) {

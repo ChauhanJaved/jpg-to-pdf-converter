@@ -21,7 +21,7 @@ interface UserProviderProps {
   children: ReactNode;
 }
 
-const totalConversionCount: number = 1;
+const totalConversionCount: number = 15;
 const localStorageName: string = "_sys_data";
 const UserContext = createContext<UserContextType | undefined>(undefined);
 

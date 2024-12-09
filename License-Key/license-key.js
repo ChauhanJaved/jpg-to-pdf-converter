@@ -42,7 +42,7 @@ function generateKeysBatch(count) {
   return keys;
 }
 
-const keys = generateKeysBatch(10);
+const keys = generateKeysBatch(2000);
 console.log("Generated Keys:", keys);
 
 import { writeFileSync } from "fs";
