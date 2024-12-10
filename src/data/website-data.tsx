@@ -75,40 +75,40 @@ export const productData = {
 
 export const licenseOptions = [
   {
-    licenseType: "One Device License",
+    licenseType: "One-Device License",
     price: "$24.95 USD",
     paymentLink:
-      "https://frameworkteam.onfastspring.com/jpg-to-pdf-converter-one-computer-license",
+      "https://frameworkteam.onfastspring.com/jpg-to-pdf-converter-one-device-license",
   },
   {
-    licenseType: "Two Devices License",
+    licenseType: "Two-Device License",
     price: "$39.95 USD",
     paymentLink:
-      "https://frameworkteam.onfastspring.com/jpg-to-pdf-converter-two-computers-license",
+      "https://frameworkteam.onfastspring.com/jpg-to-pdf-converter-two-device-license",
   },
   {
-    licenseType: "Three Devices License",
+    licenseType: "Three-Device License",
     price: "$44.95 USD",
     paymentLink:
-      "https://frameworkteam.onfastspring.com/jpg-to-pdf-converter-three-computers-license",
+      "https://frameworkteam.onfastspring.com/jpg-to-pdf-converter-three-device-license",
   },
   {
-    licenseType: "Five Devices License",
+    licenseType: "Five-Device License",
     price: "$64.95 USD",
     paymentLink:
-      "https://frameworkteam.onfastspring.com/jpg-to-pdf-converter-five-computers-license",
+      "https://frameworkteam.onfastspring.com/jpg-to-pdf-converter-five-device-license",
   },
   {
-    licenseType: "Ten Devices License",
+    licenseType: "Ten-Device License",
     price: "$109.95 USD",
     paymentLink:
-      "https://frameworkteam.onfastspring.com/jpg-to-pdf-converter-ten-computers-license",
+      "https://frameworkteam.onfastspring.com/jpg-to-pdf-converter-ten-device-license",
   },
   {
-    licenseType: "Unlimited Devices License",
+    licenseType: "Unlimited-Device License",
     price: "$224.95 USD",
     paymentLink:
-      "https://frameworkteam.onfastspring.com/jpg-to-pdf-converter-unlimited-computers-license",
+      "https://frameworkteam.onfastspring.com/jpg-to-pdf-converter-unlimited-device-license",
   },
 ];
 
