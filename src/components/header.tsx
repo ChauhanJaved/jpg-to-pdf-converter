@@ -23,8 +23,7 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
   // Handle direct navigation with hash
   useEffect(() => {
     const hash = window.location.hash;
-    const pathName = window.location.pathname;
-    //console.log(window.location.pathname);
+    const pathName = window.location.pathname;    
     if (hash) {
       const section = hash.substring(1); // Remove the "#" from the hash
       if (headerNavItems.includes(section)) {

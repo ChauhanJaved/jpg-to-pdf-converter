@@ -109,7 +109,7 @@ const HeroSortableImageCard = React.memo(function SortableImageCard({
           </div>
         )}
         <div
-          className={`${!isPreviewVisible && "mt-2"} flex h-[75px] w-[250px] items-center border-t p-2`}
+          className={`${!isPreviewVisible && "mt-2"} flex h-[75px] w-[250px] items-center border-t p-2 overflow-hidden`}
         >
           <Badge variant={"secondary"}>{index + 1}</Badge>
           <div className="ml-2 flex flex-col items-start gap-1 text-left">
