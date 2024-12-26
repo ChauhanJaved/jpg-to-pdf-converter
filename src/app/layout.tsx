@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${roboto.className} scroll-smooth`}
+      className={`${roboto.className}`}
       suppressHydrationWarning
     >
       <body>

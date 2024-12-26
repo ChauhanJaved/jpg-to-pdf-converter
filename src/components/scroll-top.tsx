@@ -19,7 +19,7 @@ export default function ScrollTop() {
     if (home) {
       setActiveSection(HeaderNavItems.Home);
     }
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: "instant" });
   };
 
   useEffect(() => {
