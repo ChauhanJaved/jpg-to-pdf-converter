@@ -93,6 +93,14 @@ const config: Config = {
         sm: "calc(var(--radius) - 4px)",
       },
     },
+    screens: {
+      xs: "375px", // Example size for extra small screens
+      sm: "640px",
+      md: "768px",
+      lg: "1024px",
+      xl: "1280px",
+      xxl: "1536px",
+    },
   },
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   plugins: [require("tailwindcss-animate")],

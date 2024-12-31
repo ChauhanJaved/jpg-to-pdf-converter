@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/breadcrumb";
 import Desktop from "@/components/desktop";
 import BreadcrumbNextLink from "@/components/breadcrumb-next-link";
+import { capitalizeWords } from "@/lib/utils";
 
 export const metadata: Metadata = metadataDesktop;
 export default function Page() {
@@ -23,7 +24,7 @@ export default function Page() {
           <BreadcrumbList>
             <BreadcrumbItem>
               <BreadcrumbNextLink
-                linkName={HeaderNavItems.Home}
+                linkName={capitalizeWords(HeaderNavItems.Home)}
                 hrefActiveSection={`/#${HeaderNavItems.Home}`}
                 headerActiveSection={HeaderNavItems.Home}
               />

@@ -30,11 +30,11 @@ export const headerNavItems: string[] = [
   HeaderNavItems.Pricing,
   HeaderNavItems.Contact,
 ];
-export function hrefValue(item:string):string{
-  if(item===HeaderNavItems.Desktop){
-    return `/${HeaderNavItems.Desktop.toLocaleLowerCase()}`
-  }else {
-    return `/#${item}`
+export function hrefValue(item: string): string {
+  if (item === HeaderNavItems.Desktop) {
+    return `/${HeaderNavItems.Desktop.toLocaleLowerCase()}`;
+  } else {
+    return `/#${item}`;
   }
 }
 export const productImages = {
