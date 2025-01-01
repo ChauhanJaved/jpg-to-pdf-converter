@@ -58,7 +58,7 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
         <nav className="fixed left-0 right-0 top-0 flex h-20 w-full items-center justify-between border-b bg-background px-3 text-gray-900 shadow-sm dark:text-gray-100">
           {/* Box-1 for company name/logo */}
           <Link
-            className={`${raleway.className} xs:text-lg flex flex-col items-start justify-center border-l-[5px] border-l-primary py-1 pl-3 text-sm font-extrabold leading-tight tracking-wider`}
+            className={`${raleway.className} flex flex-col items-start justify-center border-l-[5px] border-l-primary py-1 pl-3 text-sm font-extrabold leading-tight tracking-wider xs:text-lg`}
             href={`/#${HeaderNavItems.Home}`}
             onClick={() => setActiveSection(HeaderNavItems.Home)}
           >
@@ -92,7 +92,7 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
                       <MenubarTrigger
                         className={`cursor-pointer hover:bg-accent hover:text-accent-foreground focus:bg-background`}
                       >
-                        <UserCheck className="h-[1.2rem] w-[1.2rem]" />
+                        <UserCheck />
                       </MenubarTrigger>
                       <MenubarContent>
                         <MenubarItem>Licensed User</MenubarItem>
@@ -104,7 +104,7 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
                       <MenubarTrigger
                         className={`cursor-pointer hover:bg-accent hover:text-accent-foreground focus:bg-background`}
                       >
-                        <User className="h-[1.2rem] w-[1.2rem]" />
+                        <User />
                       </MenubarTrigger>
                       <MenubarContent className="border">
                         <Link
@@ -128,8 +128,8 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
                     <MenubarTrigger
                       className={`cursor-pointer hover:bg-accent hover:text-accent-foreground focus:bg-background`}
                     >
-                      <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                      <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                      <Sun className="rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                      <Moon className="absolute rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
                     </MenubarTrigger>
                     <MenubarContent>
                       <MenubarItem
@@ -164,9 +164,9 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
                 <li className="md:hidden">
                   <MenubarMenu>
                     <MenubarTrigger
-                      className={`cursor-pointer hover:bg-accent hover:text-accent-foreground focus:bg-background`}
+                      className={`cursor-pointer rounded-full transition-all duration-300 hover:bg-accent hover:text-accent-foreground focus:bg-background active:bg-accent active:text-accent-foreground`}
                     >
-                      <EllipsisVertical className="h-[1.2rem] w-[1.2rem]" />
+                      <EllipsisVertical />
                     </MenubarTrigger>
                     <MenubarContent>
                       {headerNavItems.map((item) => (
@@ -177,7 +177,7 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
                           }}
                           href={hrefValue(item)}
                         >
-                          <MenubarItem className="cursor-pointer">
+                          <MenubarItem className="my-1 cursor-pointer transition-all duration-300 active:bg-accent active:text-accent-foreground">
                             {capitalizeWords(item)}
                           </MenubarItem>
                         </Link>
