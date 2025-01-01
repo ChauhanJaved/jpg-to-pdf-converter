@@ -113,9 +113,14 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
                             setActiveSection(HeaderNavItems.Pricing)
                           }
                         >
-                          <MenubarItem>Buy License</MenubarItem>
+                          <MenubarItem className="my-1 cursor-pointer">
+                            Buy License
+                          </MenubarItem>
                         </Link>
-                        <MenubarItem onClick={handleRegisterClick}>
+                        <MenubarItem
+                          className="my-1 cursor-pointer"
+                          onClick={handleRegisterClick}
+                        >
                           Register License...
                         </MenubarItem>
                       </MenubarContent>
@@ -131,29 +136,29 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
                       <Sun className="rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
                       <Moon className="absolute rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
                     </MenubarTrigger>
-                    <MenubarContent>
+                    <MenubarContent className="font-medium">
                       <MenubarItem
                         onClick={() => setTheme("light")}
-                        className="cursor-pointer"
+                        className="my-1 cursor-pointer"
                       >
-                        <Sun className="mr-1 h-[1.2rem] w-[1.2rem]" />
+                        <Sun className="mr-2 h-[1.2rem] w-[1.2rem]" />
                         Light Theme
                       </MenubarItem>
                       <MenubarItem
                         onClick={() => setTheme("dark")}
-                        className="cursor-pointer"
+                        className="my-1 cursor-pointer"
                       >
-                        <Moon className="mr-1 h-[1.2rem] w-[1.2rem]" />
+                        <Moon className="mr-2 h-[1.2rem] w-[1.2rem]" />
                         Dark Theme
                       </MenubarItem>
                       <MenubarItem
                         onClick={() => setTheme("system")}
-                        className="cursor-pointer"
+                        className="my-1 cursor-pointer"
                       >
                         {systemTheme === "dark" ? (
-                          <Moon className="mr-1 h-[1.2rem] w-[1.2rem]" />
+                          <Moon className="mr-2 h-[1.2rem] w-[1.2rem]" />
                         ) : (
-                          <Sun className="mr-1 h-[1.2rem] w-[1.2rem]" />
+                          <Sun className="mr-2 h-[1.2rem] w-[1.2rem]" />
                         )}
                         Device Default
                       </MenubarItem>
@@ -168,7 +173,7 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
                     >
                       <EllipsisVertical />
                     </MenubarTrigger>
-                    <MenubarContent>
+                    <MenubarContent className="font-medium">
                       {headerNavItems.map((item) => (
                         <Link
                           key={item}
