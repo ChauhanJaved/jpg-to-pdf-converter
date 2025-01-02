@@ -51,7 +51,15 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
     }
   }, [defaultActiveSection, setActiveSection]);
 
-  //useIntersectionObserver();
+  function getManuItem(item: string) {
+    if (item === HeaderNavItems.Home) {
+      return "Web App";
+    } else if (item === HeaderNavItems.Desktop) {
+      return "Desktop App";
+    } else {
+      return capitalizeWords(item);
+    }
+  }
   return (
     <Fragment>
       <header>
@@ -78,7 +86,7 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
                     className={`relative px-2 py-2 text-base font-semibold before:absolute before:bottom-0 before:left-0 before:h-0.5 before:w-full before:scale-0 before:bg-primary before:transition-transform before:duration-300 hover:before:scale-100 ${activeSection === item && "before:scale-100"}`}
                     href={hrefValue(item)}
                   >
-                    {capitalizeWords(item)}
+                    {getManuItem(item)}
                   </Link>
                 </li>
               ))}
@@ -176,7 +184,7 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
                           }}
                           href={hrefValue(item)}
                         >
-                          <MenubarItem>{capitalizeWords(item)}</MenubarItem>
+                          <MenubarItem>{getManuItem(item)}</MenubarItem>
                         </Link>
                       ))}
                     </MenubarContent>
