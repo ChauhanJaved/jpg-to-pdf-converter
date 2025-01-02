@@ -19,6 +19,7 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import BreadcrumbNextLink from "@/components/breadcrumb-next-link";
 import { Metadata } from "next";
+import { capitalizeWords } from "@/lib/utils";
 export const metadata: Metadata = metadataDesktop;
 export default function Page() {
   return (
@@ -28,7 +29,7 @@ export default function Page() {
           <BreadcrumbList>
             <BreadcrumbItem>
               <BreadcrumbNextLink
-                linkName={HeaderNavItems.Home}
+                linkName={capitalizeWords(HeaderNavItems.Home)}
                 hrefActiveSection={`/#${HeaderNavItems.Home}`}
                 headerActiveSection={HeaderNavItems.Home}
               />
@@ -38,11 +39,12 @@ export default function Page() {
             </BreadcrumbSeparator>
             <BreadcrumbItem>
               <BreadcrumbNextLink
-                linkName={HeaderNavItems.Desktop}
+                linkName={`${capitalizeWords(HeaderNavItems.Desktop)} App`}
                 hrefActiveSection={`/${HeaderNavItems.Desktop.toLocaleLowerCase()}`}
                 headerActiveSection={HeaderNavItems.Desktop}
               />
             </BreadcrumbItem>
+
             <BreadcrumbSeparator>
               <Slash />
             </BreadcrumbSeparator>

@@ -52,9 +52,7 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
   }, [defaultActiveSection, setActiveSection]);
 
   function getManuItem(item: string) {
-    if (item === HeaderNavItems.Home) {
-      return "Web App";
-    } else if (item === HeaderNavItems.Desktop) {
+    if (item === HeaderNavItems.Desktop) {
       return "Desktop App";
     } else {
       return capitalizeWords(item);
@@ -63,7 +61,7 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
   return (
     <Fragment>
       <header>
-        <nav className="fixed left-0 right-0 top-0 flex h-20 w-full items-center justify-between border-b bg-background px-3 text-gray-900 shadow-sm dark:text-gray-100">
+        <nav className="fixed left-0 right-0 top-0 z-50 flex h-20 w-full items-center justify-between border-b bg-background px-3 text-gray-900 shadow-sm dark:text-gray-100">
           {/* Box-1 for company name/logo */}
           <Link
             className={`${raleway.className} flex flex-col items-start justify-center border-l-[5px] border-l-primary py-1 pl-3 text-sm font-extrabold leading-tight tracking-wider xs:text-lg`}

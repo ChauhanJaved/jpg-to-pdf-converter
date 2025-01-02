@@ -33,7 +33,7 @@ export default function Page() {
               <Slash />
             </BreadcrumbSeparator>
             <BreadcrumbItem>
-              <BreadcrumbPage>Desktop</BreadcrumbPage>
+              <BreadcrumbPage>Desktop App</BreadcrumbPage>
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
