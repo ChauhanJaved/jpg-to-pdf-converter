@@ -84,14 +84,12 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
               ))}
             </div>
             <div className="">
-              <Menubar className={`m-0 border-0 p-0 shadow-none`}>
+              <Menubar>
                 {/* User status---------------------- */}
                 <li>
                   {userStatus === "paid" ? (
                     <MenubarMenu>
-                      <MenubarTrigger
-                        className={`cursor-pointer hover:bg-accent hover:text-accent-foreground focus:bg-background`}
-                      >
+                      <MenubarTrigger>
                         <UserCheck />
                       </MenubarTrigger>
                       <MenubarContent>
@@ -101,26 +99,19 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
                   ) : (
                     // Trial User
                     <MenubarMenu>
-                      <MenubarTrigger
-                        className={`cursor-pointer hover:bg-accent hover:text-accent-foreground focus:bg-background`}
-                      >
+                      <MenubarTrigger>
                         <User />
                       </MenubarTrigger>
-                      <MenubarContent className="border">
+                      <MenubarContent>
                         <Link
                           href={`/#${HeaderNavItems.Pricing}`}
                           onClick={() =>
                             setActiveSection(HeaderNavItems.Pricing)
                           }
                         >
-                          <MenubarItem className="my-1 cursor-pointer">
-                            Buy License
-                          </MenubarItem>
+                          <MenubarItem>Buy License</MenubarItem>
                         </Link>
-                        <MenubarItem
-                          className="my-1 cursor-pointer"
-                          onClick={handleRegisterClick}
-                        >
+                        <MenubarItem onClick={handleRegisterClick}>
                           Register License...
                         </MenubarItem>
                       </MenubarContent>
@@ -130,35 +121,40 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
                 {/* Theam toggle---------------------- */}
                 <li className={``}>
                   <MenubarMenu>
-                    <MenubarTrigger
-                      className={`cursor-pointer hover:bg-accent hover:text-accent-foreground focus:bg-background`}
-                    >
+                    <MenubarTrigger>
                       <Sun className="rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
                       <Moon className="absolute rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
                     </MenubarTrigger>
-                    <MenubarContent className="font-medium">
-                      <MenubarItem
-                        onClick={() => setTheme("light")}
-                        className="my-1 cursor-pointer"
-                      >
-                        <Sun className="mr-2 h-[1.2rem] w-[1.2rem]" />
+                    <MenubarContent>
+                      <MenubarItem onClick={() => setTheme("light")}>
+                        <Sun
+                          strokeWidth={1.5}
+                          size={20}
+                          className="mr-2 text-popover-foreground"
+                        />
                         Light Theme
                       </MenubarItem>
-                      <MenubarItem
-                        onClick={() => setTheme("dark")}
-                        className="my-1 cursor-pointer"
-                      >
-                        <Moon className="mr-2 h-[1.2rem] w-[1.2rem]" />
+                      <MenubarItem onClick={() => setTheme("dark")}>
+                        <Moon
+                          strokeWidth={1.5}
+                          size={20}
+                          className="mr-2 text-popover-foreground"
+                        />
                         Dark Theme
                       </MenubarItem>
-                      <MenubarItem
-                        onClick={() => setTheme("system")}
-                        className="my-1 cursor-pointer"
-                      >
+                      <MenubarItem onClick={() => setTheme("system")}>
                         {systemTheme === "dark" ? (
-                          <Moon className="mr-2 h-[1.2rem] w-[1.2rem]" />
+                          <Moon
+                            strokeWidth={1.5}
+                            size={20}
+                            className="mr-2 text-popover-foreground"
+                          />
                         ) : (
-                          <Sun className="mr-2 h-[1.2rem] w-[1.2rem]" />
+                          <Sun
+                            strokeWidth={1.5}
+                            size={20}
+                            className="mr-2 text-popover-foreground"
+                          />
                         )}
                         Device Default
                       </MenubarItem>
@@ -168,12 +164,10 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
                 {/* Mobile manu */}
                 <li className="md:hidden">
                   <MenubarMenu>
-                    <MenubarTrigger
-                      className={`cursor-pointer rounded-full transition-all duration-300 hover:bg-accent hover:text-accent-foreground focus:bg-background active:bg-accent active:text-accent-foreground`}
-                    >
+                    <MenubarTrigger className={``}>
                       <EllipsisVertical />
                     </MenubarTrigger>
-                    <MenubarContent className="font-medium">
+                    <MenubarContent>
                       {headerNavItems.map((item) => (
                         <Link
                           key={item}
@@ -182,9 +176,7 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
                           }}
                           href={hrefValue(item)}
                         >
-                          <MenubarItem className="my-1 cursor-pointer transition-all duration-300 active:bg-accent active:text-accent-foreground">
-                            {capitalizeWords(item)}
-                          </MenubarItem>
+                          <MenubarItem>{capitalizeWords(item)}</MenubarItem>
                         </Link>
                       ))}
                     </MenubarContent>
