@@ -9,7 +9,7 @@ export default function Pricing() {
   return (
     <section
       id={HeaderNavItems.Pricing}
-      className="container scroll-m-20 px-5 pt-10 text-gray-700 dark:text-gray-300 lg:px-10 lg:pt-20 xl:max-w-screen-xl"
+      className="container scroll-m-20 px-5 pt-10 lg:px-10 lg:pt-20 xl:max-w-screen-xl"
     >
       <div className="flex flex-col items-center">
         <SectionHeader
@@ -20,7 +20,7 @@ export default function Pricing() {
           }
         />
 
-        <div className="mt-10 grid max-w-[750px] grid-cols-1 gap-5 text-gray-700 dark:text-gray-300 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid max-w-[750px] grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {licenseOptions.map((license, index) => (
             <div key={index} className="flex items-center justify-center">
               <Link target="_blank" href={license.paymentLink}>

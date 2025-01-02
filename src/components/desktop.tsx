@@ -18,7 +18,7 @@ export default function Desktop() {
   return (
     <section
       id={HeaderNavItems.Desktop}
-      className="container scroll-m-20 px-5 pt-10 text-gray-700 dark:text-gray-300 lg:px-10 lg:pt-20 xl:max-w-screen-xl"
+      className="container scroll-m-20 px-5 pt-10 lg:px-10 lg:pt-20 xl:max-w-screen-xl"
     >
       <SectionHeader
         caption="Free JPG to PDF Converter"

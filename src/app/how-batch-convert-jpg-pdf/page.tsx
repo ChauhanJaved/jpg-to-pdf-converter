@@ -53,7 +53,7 @@ export default function Page() {
           </BreadcrumbList>
         </Breadcrumb>
       </div>
-      <section className="container px-5 text-gray-700 dark:text-gray-300 lg:px-10 xl:max-w-screen-xl">
+      <section className="container px-5 lg:px-10 xl:max-w-screen-xl">
         <SectionHeader
           className="mb-5 mt-10 lg:mb-10 lg:mt-16"
           caption="Batch Convert JPG to PDF"

@@ -61,7 +61,7 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
   return (
     <Fragment>
       <header>
-        <nav className="fixed left-0 right-0 top-0 z-50 flex h-20 w-full items-center justify-between border-b bg-background px-3 text-gray-900 shadow-sm dark:text-gray-100">
+        <nav className="fixed left-0 right-0 top-0 z-50 flex h-20 w-full items-center justify-between border-b bg-background px-3 shadow-sm">
           {/* Box-1 for company name/logo */}
           <Link
             className={`${raleway.className} flex flex-col items-start justify-center border-l-[5px] border-l-primary py-1 pl-3 text-sm font-extrabold leading-tight tracking-wider xs:text-lg`}
@@ -133,34 +133,18 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
                     </MenubarTrigger>
                     <MenubarContent>
                       <MenubarItem onClick={() => setTheme("light")}>
-                        <Sun
-                          strokeWidth={1.5}
-                          size={20}
-                          className="mr-2 text-popover-foreground"
-                        />
+                        <Sun strokeWidth={1.5} size={20} className="mr-2" />
                         Light Theme
                       </MenubarItem>
                       <MenubarItem onClick={() => setTheme("dark")}>
-                        <Moon
-                          strokeWidth={1.5}
-                          size={20}
-                          className="mr-2 text-popover-foreground"
-                        />
+                        <Moon strokeWidth={1.5} size={20} className="mr-2" />
                         Dark Theme
                       </MenubarItem>
                       <MenubarItem onClick={() => setTheme("system")}>
                         {systemTheme === "dark" ? (
-                          <Moon
-                            strokeWidth={1.5}
-                            size={20}
-                            className="mr-2 text-popover-foreground"
-                          />
+                          <Moon strokeWidth={1.5} size={20} className="mr-2" />
                         ) : (
-                          <Sun
-                            strokeWidth={1.5}
-                            size={20}
-                            className="mr-2 text-popover-foreground"
-                          />
+                          <Sun strokeWidth={1.5} size={20} className="mr-2" />
                         )}
                         Device Default
                       </MenubarItem>

@@ -29,18 +29,6 @@ const config: Config = {
         "up-down": "up-down 2s ease-in-out infinite alternate-reverse both",
       },
       colors: {
-        "blue-dark-imperial": "#012970",
-        "blue-ultramarine": "#4154F1",
-        "white-snow": "#f7f7f7",
-        "black-900": "#1a1a1a",
-        "black-800": "#333333",
-        "black-700": "#4d4d4d",
-        "black-600": "#666666",
-        "black-500": "#808080",
-        "black-400": "#999999",
-        "black-300": "#b3b3b3",
-        "black-200": "#cccccc",
-        "black-100": "#e6e6e6",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {

@@ -8,7 +8,7 @@ const Hero = () => {
   return (
     <section
       id={HeaderNavItems.Home}
-      className="container px-5 pt-20 text-gray-700 dark:text-gray-300 lg:px-10 xl:max-w-screen-xl"
+      className="container px-5 pt-20 lg:px-10 xl:max-w-screen-xl"
     >
       <HeroWithFileProvider />
       {/* Product description */}
@@ -28,7 +28,7 @@ const Hero = () => {
           your control.
         </p>
       </div>
-      <div className="mt-5 flex flex-col text-gray-700 dark:text-gray-300">
+      <div className="mt-5 flex flex-col">
         <h2 className="text-base font-semibold lg:text-lg">
           Flexible PDF Creation Options
         </h2>
@@ -41,7 +41,7 @@ const Hero = () => {
           solution for managing and organizing images as PDFs.
         </p>
       </div>
-      <div className="mt-5 flex flex-col text-gray-700 dark:text-gray-300">
+      <div className="mt-5 flex flex-col">
         <h2 className="text-base font-semibold lg:text-lg">
           Easily Customizable Orientation, Page Size, and Margins
         </h2>
@@ -62,7 +62,7 @@ const Hero = () => {
           exactly how you envision them.
         </p>
       </div>
-      <div className="mt-5 flex flex-col text-gray-700 dark:text-gray-300">
+      <div className="mt-5 flex flex-col">
         <h2 className="text-base font-semibold lg:text-lg">
           Simple Drag-and-Drop with Easy Image Rearrangement
         </h2>

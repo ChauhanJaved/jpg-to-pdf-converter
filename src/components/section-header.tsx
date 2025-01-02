@@ -15,7 +15,7 @@ export default function SectionHeader(props: PropsSectionHeader) {
       {React.createElement(
         Element,
         {
-          className: `${Element === "h1" ? "text-4xl font-bold tracking-tight lg:text-5xl" : "text-3xl font-semibold tracking-tight"} flex flex-col items-center text-center text-gray-900 dark:text-gray-100`,
+          className: `${Element === "h1" ? "text-4xl font-bold tracking-tight lg:text-5xl" : "text-3xl font-semibold tracking-tight"} flex flex-col items-center text-center`,
         },
         <>
           {props.caption}
@@ -27,9 +27,7 @@ export default function SectionHeader(props: PropsSectionHeader) {
         </>,
       )}
       {props.desc && (
-        <p
-          className={`mt-3 text-center text-lg font-medium text-gray-700 dark:text-gray-300 lg:mx-40`}
-        >
+        <p className={`mt-3 text-center text-lg font-medium lg:mx-40`}>
           {props.desc}
         </p>
       )}
