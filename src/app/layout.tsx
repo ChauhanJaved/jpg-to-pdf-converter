@@ -17,11 +17,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${roboto.className}`}
-      suppressHydrationWarning
-    >
+    <html lang="en" className={`${roboto.className}`} suppressHydrationWarning>
       <body>
         <UserProvider>
           <ThemeProvider

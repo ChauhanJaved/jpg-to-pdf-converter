@@ -68,7 +68,7 @@ export default function LicenseRegisterDialog({
             setError("");
           }}
         />
-        {error && <p className="text-destructive">{error}</p>}
+        {error && <p className="text-destructive-foreground">{error}</p>}
         <AlertDialogFooter>
           <AlertDialogCancel
             onClick={() => setShowRegisterLicenseDialog(false)}
