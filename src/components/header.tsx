@@ -1,4 +1,5 @@
 "use client";
+
 //External  imports
 import React, { Fragment, useEffect, useState } from "react";
 import Link from "next/link";
@@ -18,7 +19,8 @@ import { raleway } from "@/lib/font";
 import { HeaderNavItems, headerNavItems, hrefValue } from "@/data/website-data";
 import { useUser } from "@/context/user-context";
 import { useActiveSection } from "@/context/active-section-context";
-import LicenseRegisterDialog from "./license-register-dialog";
+import LicenseRegisterDialog from "@/components/license-register-dialog";
+import { useToast } from "@/hooks/use-toast";
 
 interface HeaderProps {
   defaultActiveSection?: string;
@@ -28,7 +30,8 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
   const { userStatus } = useUser();
   const [showDialog, setShowDialog] = useState(false);
   const handleRegisterClick = () => setShowDialog(true);
-  const { setTheme, systemTheme } = useTheme();
+  const { setTheme, systemTheme, theme } = useTheme();
+  const { toast } = useToast();
 
   // Handle direct navigation with hash
   useEffect(() => {
@@ -53,9 +56,16 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
 
   function getManuItem(item: string) {
     if (item === HeaderNavItems.Desktop) {
-      return "Desktop App";
+      return `${capitalizeWords(HeaderNavItems.Desktop)} App`;
     } else {
       return capitalizeWords(item);
+    }
+  }
+  function getCurrentTheme() {
+    if (theme === "system") {
+      return systemTheme;
+    } else {
+      return theme;
     }
   }
   return (
@@ -89,91 +99,84 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
                 </li>
               ))}
             </div>
-            <div className="">
-              <Menubar>
-                {/* User status---------------------- */}
-                <li>
-                  {userStatus === "paid" ? (
-                    <MenubarMenu>
-                      <MenubarTrigger>
-                        <UserCheck />
-                      </MenubarTrigger>
-                      <MenubarContent>
-                        <MenubarItem>Licensed User</MenubarItem>
-                      </MenubarContent>
-                    </MenubarMenu>
-                  ) : (
-                    // Trial User
-                    <MenubarMenu>
-                      <MenubarTrigger>
-                        <User />
-                      </MenubarTrigger>
-                      <MenubarContent>
-                        <Link
-                          href={`/#${HeaderNavItems.Pricing}`}
-                          onClick={() =>
-                            setActiveSection(HeaderNavItems.Pricing)
-                          }
-                        >
-                          <MenubarItem>Buy License</MenubarItem>
-                        </Link>
-                        <MenubarItem onClick={handleRegisterClick}>
-                          Register License...
-                        </MenubarItem>
-                      </MenubarContent>
-                    </MenubarMenu>
-                  )}
-                </li>
-                {/* Theam toggle---------------------- */}
-                <li className={``}>
+            <Menubar>
+              {/* User status---------------------- */}
+              <li>
+                {userStatus === "paid" ? (
+                  <MenubarMenu>
+                    <MenubarTrigger
+                      onClick={() => {
+                        toast({
+                          title: "You are a Licensed User",
+                          description:
+                            "Thank you for purchasing a license! You have full access to all features.",
+                        });
+                      }}
+                    >
+                      <UserCheck />
+                    </MenubarTrigger>
+                  </MenubarMenu>
+                ) : (
+                  // Trial User
                   <MenubarMenu>
                     <MenubarTrigger>
-                      <Sun className="rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                      <Moon className="absolute rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                      <User />
                     </MenubarTrigger>
                     <MenubarContent>
-                      <MenubarItem onClick={() => setTheme("light")}>
-                        <Sun strokeWidth={1.5} size={20} className="mr-2" />
-                        Light Theme
-                      </MenubarItem>
-                      <MenubarItem onClick={() => setTheme("dark")}>
-                        <Moon strokeWidth={1.5} size={20} className="mr-2" />
-                        Dark Theme
-                      </MenubarItem>
-                      <MenubarItem onClick={() => setTheme("system")}>
-                        {systemTheme === "dark" ? (
-                          <Moon strokeWidth={1.5} size={20} className="mr-2" />
-                        ) : (
-                          <Sun strokeWidth={1.5} size={20} className="mr-2" />
-                        )}
-                        Device Default
+                      <Link
+                        href={`/#${HeaderNavItems.Pricing}`}
+                        onClick={() => setActiveSection(HeaderNavItems.Pricing)}
+                      >
+                        <MenubarItem>Buy License</MenubarItem>
+                      </Link>
+                      <MenubarItem onClick={handleRegisterClick}>
+                        Register License...
                       </MenubarItem>
                     </MenubarContent>
                   </MenubarMenu>
-                </li>
-                {/* Mobile manu */}
-                <li className="md:hidden">
-                  <MenubarMenu>
-                    <MenubarTrigger className={``}>
-                      <EllipsisVertical />
-                    </MenubarTrigger>
-                    <MenubarContent>
-                      {headerNavItems.map((item) => (
-                        <Link
-                          key={item}
-                          onClick={() => {
-                            setActiveSection(item);
-                          }}
-                          href={hrefValue(item)}
-                        >
-                          <MenubarItem>{getManuItem(item)}</MenubarItem>
-                        </Link>
-                      ))}
-                    </MenubarContent>
-                  </MenubarMenu>
-                </li>
-              </Menubar>
-            </div>
+                )}
+              </li>
+              {/* Theam toggle---------------------- */}
+              <li className={``}>
+                <MenubarMenu>
+                  <MenubarTrigger>
+                    {getCurrentTheme() === "dark" ? <Moon /> : <Sun />}
+                  </MenubarTrigger>
+                  <MenubarContent>
+                    <MenubarItem onClick={() => setTheme("light")}>
+                      Light Theme
+                    </MenubarItem>
+                    <MenubarItem onClick={() => setTheme("dark")}>
+                      Dark Theme
+                    </MenubarItem>
+                    <MenubarItem onClick={() => setTheme("system")}>
+                      Device Default
+                    </MenubarItem>
+                  </MenubarContent>
+                </MenubarMenu>
+              </li>
+              {/* Mobile manu */}
+              <li className="md:hidden">
+                <MenubarMenu>
+                  <MenubarTrigger className={``}>
+                    <EllipsisVertical />
+                  </MenubarTrigger>
+                  <MenubarContent>
+                    {headerNavItems.map((item) => (
+                      <Link
+                        key={item}
+                        onClick={() => {
+                          setActiveSection(item);
+                        }}
+                        href={hrefValue(item)}
+                      >
+                        <MenubarItem>{getManuItem(item)}</MenubarItem>
+                      </Link>
+                    ))}
+                  </MenubarContent>
+                </MenubarMenu>
+              </li>
+            </Menubar>
           </ul>
         </nav>
       </header>
