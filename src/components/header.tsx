@@ -73,23 +73,29 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
   return (
     <Fragment>
       <header>
-        <nav className="fixed left-0 right-0 top-0 z-50 flex h-20 w-full items-center justify-between border-b bg-background px-3 shadow-sm">
+        <nav
+          className="fixed left-0 right-0 top-0 z-50 flex h-20 w-full items-center justify-between border-b bg-background px-3 shadow-sm"
+          aria-label="Main navigation"
+        >
           {/* Box-1 for company name/logo */}
           <Link
             className={`${raleway.className} flex flex-col items-start justify-center border-l-[5px] border-l-primary py-1 pl-3 text-sm font-extrabold leading-tight tracking-wider xs:text-lg`}
             href={`/#${HeaderNavItems.Home}`}
             onClick={() => setActiveSection(HeaderNavItems.Home)}
+            aria-label="Go to home page"
           >
             <p>FrameworkTeam</p>
             <p>Softwares</p>
           </Link>
           {/* Box-2 for menu */}
-          <ul className="flex items-center justify-center">
+          <ul className="flex items-center justify-center" role="menubar">
             {/* Desktop menu */}
             <div className="mr-3 hidden items-center justify-center gap-3 md:flex">
               {headerNavItems.map((item) => (
-                <li key={item}>
+                <li key={item} role="none">
                   <Link
+                    role="menuitem"
+                    aria-label={`Go to ${getManuItem(item)} section`}
                     onClick={() => {
                       setActiveSection(item);
                     }}
@@ -103,10 +109,11 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
             </div>
             <Menubar>
               {/* User status---------------------- */}
-              <li>
+              <li role="none">
                 {userStatus === "paid" ? (
                   <MenubarMenu>
                     <MenubarTrigger
+                      aria-label="Licensed User"
                       onClick={() => {
                         toast({
                           title: "You are a Licensed User",
@@ -121,17 +128,20 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
                 ) : (
                   // Trial User
                   <MenubarMenu>
-                    <MenubarTrigger>
+                    <MenubarTrigger aria-label="Trial User">
                       <User />
                     </MenubarTrigger>
-                    <MenubarContent>
+                    <MenubarContent role="menu">
                       <Link
                         href={`/#${HeaderNavItems.Pricing}`}
                         onClick={() => setActiveSection(HeaderNavItems.Pricing)}
                       >
-                        <MenubarItem>Buy License</MenubarItem>
+                        <MenubarItem role="menuitem">Buy License</MenubarItem>
                       </Link>
-                      <MenubarItem onClick={handleRegisterClick}>
+                      <MenubarItem
+                        role="menuitem"
+                        onClick={handleRegisterClick}
+                      >
                         Register License...
                       </MenubarItem>
                     </MenubarContent>
@@ -139,27 +149,33 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
                 )}
               </li>
               {/* Theam toggle---------------------- */}
-              <li className={``}>
+              <li role="none">
                 <MenubarMenu>
-                  <MenubarTrigger>
+                  <MenubarTrigger
+                    aria-pressed={theme === "dark"}
+                    aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
+                  >
                     {getCurrentTheme() === "dark" ? <Moon /> : <Sun />}
                   </MenubarTrigger>
 
-                  <MenubarContent>
+                  <MenubarContent role="menu">
                     <MenubarRadioGroup value={theme}>
                       <MenubarRadioItem
+                        role="menuitemradio"
                         onClick={() => setTheme("light")}
                         value="light"
                       >
                         Light Theme
                       </MenubarRadioItem>
                       <MenubarRadioItem
+                        role="menuitemradio"
                         onClick={() => setTheme("dark")}
                         value="dark"
                       >
                         Dark Theme
                       </MenubarRadioItem>
                       <MenubarRadioItem
+                        role="menuitemradio"
                         onClick={() => setTheme("system")}
                         value="system"
                       >
@@ -170,9 +186,9 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
                 </MenubarMenu>
               </li>
               {/* Mobile manu */}
-              <li className="md:hidden">
+              <li className="md:hidden" role="none">
                 <MenubarMenu>
-                  <MenubarTrigger className={``}>
+                  <MenubarTrigger aria-label="Open menu" aria-haspopup="true">
                     <EllipsisVertical />
                   </MenubarTrigger>
                   <MenubarContent>
