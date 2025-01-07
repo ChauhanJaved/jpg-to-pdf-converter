@@ -102,7 +102,7 @@ const HeroWithFileProvider = () => {
           />
         ) : (
           // Main toolbar with convert and add file buttons
-          <div className="mt-5 flex w-full flex-wrap items-center justify-end gap-3 py-3 lg:mt-16">
+          <div className="mt-5 flex w-full flex-wrap items-center justify-end gap-3 py-3">
             {/* Add file button */}
             <HeroFileInputButton
               buttonType="toolbar"

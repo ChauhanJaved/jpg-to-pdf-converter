@@ -13,6 +13,8 @@ import {
   MenubarItem,
   MenubarMenu,
   MenubarTrigger,
+  MenubarRadioGroup,
+  MenubarRadioItem,
 } from "@/components/ui/menubar";
 import { capitalizeWords } from "@/lib/utils";
 import { raleway } from "@/lib/font";
@@ -142,16 +144,28 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
                   <MenubarTrigger>
                     {getCurrentTheme() === "dark" ? <Moon /> : <Sun />}
                   </MenubarTrigger>
+
                   <MenubarContent>
-                    <MenubarItem onClick={() => setTheme("light")}>
-                      Light Theme
-                    </MenubarItem>
-                    <MenubarItem onClick={() => setTheme("dark")}>
-                      Dark Theme
-                    </MenubarItem>
-                    <MenubarItem onClick={() => setTheme("system")}>
-                      Device Default
-                    </MenubarItem>
+                    <MenubarRadioGroup value={theme}>
+                      <MenubarRadioItem
+                        onClick={() => setTheme("light")}
+                        value="light"
+                      >
+                        Light Theme
+                      </MenubarRadioItem>
+                      <MenubarRadioItem
+                        onClick={() => setTheme("dark")}
+                        value="dark"
+                      >
+                        Dark Theme
+                      </MenubarRadioItem>
+                      <MenubarRadioItem
+                        onClick={() => setTheme("system")}
+                        value="system"
+                      >
+                        Device Default
+                      </MenubarRadioItem>
+                    </MenubarRadioGroup>
                   </MenubarContent>
                 </MenubarMenu>
               </li>

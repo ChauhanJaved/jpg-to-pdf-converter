@@ -177,7 +177,7 @@ export default function HeroDropZoneBox({
       {/* Dropzone Area ---------- */}
       <div
         {...getRootProps()}
-        className={`flex w-full flex-wrap items-center justify-center gap-5 p-5 text-center transition ${isDragActive && "bg-secondary"} border-2 border-dashed lg:min-h-72`}
+        className={`flex w-full flex-wrap items-center justify-center gap-5 p-5 text-center transition ${isDragActive && "bg-secondary"} border-2 border-dashed`}
       >
         <input {...getInputProps()} />
         {fileList.length > 0 ? (
