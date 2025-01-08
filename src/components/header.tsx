@@ -33,8 +33,11 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
   const [showDialog, setShowDialog] = useState(false);
   const handleRegisterClick = () => setShowDialog(true);
   const { setTheme, systemTheme, theme } = useTheme();
+
   const { toast } = useToast();
 
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
   // Handle direct navigation with hash
   useEffect(() => {
     const hash = window.location.hash;
@@ -70,6 +73,7 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
       return theme;
     }
   }
+
   return (
     <Fragment>
       <header>
@@ -151,12 +155,17 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
               {/* Theam toggle---------------------- */}
               <li role="none">
                 <MenubarMenu>
-                  <MenubarTrigger
-                    aria-pressed={theme === "dark"}
-                    aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
-                  >
-                    {getCurrentTheme() === "dark" ? <Moon /> : <Sun />}
-                  </MenubarTrigger>
+                  {mounted ? (
+                    <MenubarTrigger
+                      aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
+                    >
+                      {getCurrentTheme() === "dark" ? <Moon /> : <Sun />}
+                    </MenubarTrigger>
+                  ) : (
+                    <MenubarTrigger aria-label={`change theme`}>
+                      <Sun />
+                    </MenubarTrigger>
+                  )}
 
                   <MenubarContent role="menu">
                     <MenubarRadioGroup value={theme}>

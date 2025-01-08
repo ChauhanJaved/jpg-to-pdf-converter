@@ -19,13 +19,13 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${roboto.className}`} suppressHydrationWarning>
       <body>
-        <UserProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <UserProvider>
             <ActiveSectionProvider>
               <FileProvider>
                 <ScrollTop />
@@ -39,8 +39,8 @@ export default function RootLayout({
                 <Toaster />
               </FileProvider>
             </ActiveSectionProvider>
-          </ThemeProvider>
-        </UserProvider>
+          </UserProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
