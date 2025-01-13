@@ -92,7 +92,7 @@ const HeroWithFileProvider = () => {
   return (
     <>
       <div className="flex flex-col">
-        {fileList.length === 0 ? (
+        {fileList.length === 0 && (
           <SectionHeader
             className="mb-5 mt-10 lg:mb-10 lg:mt-16"
             caption={`${userStatus === "trial" ? "Free " : ""}JPG to PDF Converter`}
@@ -100,61 +100,58 @@ const HeroWithFileProvider = () => {
               "Combine All JPGs into a Single PDF | Convert Each JPG to a Separate PDF | Easily Adjust Orientation, Page Size, and Margins"
             }
           />
-        ) : (
-          // Main toolbar with convert and add file buttons
-          <div className="mt-5 flex w-full flex-wrap items-center justify-end gap-3 py-3">
-            {/* Add file button */}
-            <HeroFileInputButton
-              buttonType="toolbar"
-              isDisabled={isConvertingFiles || isLoadingFiles}
-              setIsLoadingFiles={setIsLoadingFiles}
-            />
-            {/* Remove all button */}
-            <HeroButtonToolbar
-              disabled={
-                fileList.length === 0 || isConvertingFiles || isLoadingFiles
-              }
-              caption="Remove All"
-              handleOnClick={handleClearList}
-              icon={Trash2}
-            ></HeroButtonToolbar>
-            {/* Setting button */}
-            <HeroSettingsSheet
-              disabled={isConvertingFiles || isLoadingFiles}
-              orientation={orientation}
-              pageSize={pageSize}
-              margin={margin}
-              mergeAllImages={mergeAllImages}
-              onOrientationChange={handleOrientationChange}
-              onPageSizeChange={handlePageSizeChange}
-              onMarginChange={handleMarginChange}
-              onMergeAllImagesChange={handleMergeAllImagesChange}
-            />
-            {/* Convert button */}
-            <HeroButtonToolbar
-              disabled={
-                fileList.length === 0 || isConvertingFiles || isLoadingFiles
-              }
-              caption="Convert"
-              handleOnClick={handleConversion}
-              icon={Download}
-            ></HeroButtonToolbar>
-          </div>
         )}
+        {/* Main toolbar with convert and add file buttons */}
+        <div className="mt-5 flex w-full flex-wrap items-center justify-end gap-3 py-3">
+          {/* Add file button */}
+          <HeroFileInputButton
+            buttonType="toolbar"
+            isDisabled={isConvertingFiles || isLoadingFiles}
+            setIsLoadingFiles={setIsLoadingFiles}
+          />
+          {/* Remove all button */}
+          <HeroButtonToolbar
+            disabled={
+              fileList.length === 0 || isConvertingFiles || isLoadingFiles
+            }
+            caption="Remove All"
+            handleOnClick={handleClearList}
+            icon={Trash2}
+          ></HeroButtonToolbar>
+          {/* Setting button */}
+          <HeroSettingsSheet
+            disabled={isConvertingFiles || isLoadingFiles}
+            orientation={orientation}
+            pageSize={pageSize}
+            margin={margin}
+            mergeAllImages={mergeAllImages}
+            onOrientationChange={handleOrientationChange}
+            onPageSizeChange={handlePageSizeChange}
+            onMarginChange={handleMarginChange}
+            onMergeAllImagesChange={handleMergeAllImagesChange}
+          />
+          {/* Convert button */}
+          <HeroButtonToolbar
+            disabled={
+              fileList.length === 0 || isConvertingFiles || isLoadingFiles
+            }
+            caption="Convert"
+            handleOnClick={handleConversion}
+            icon={Download}
+          ></HeroButtonToolbar>
+        </div>
         {/* Dropzone with file count and preview on/off*/}
         <HeroDropZoneBox
           isDisabled={isConvertingFiles || isLoadingFiles}
           setIsLoadingFiles={setIsLoadingFiles}
         />
       </div>
-
       <LicenseDialog
         showLicenseDialog={showLicenseDialog}
         setShowLicenseDialog={setShowLicenseDialog}
         showRegisterLicenseDialog={showRegisterLicenseDialog}
         setShowRegisterLicenseDialog={setShowRegisterLicenseDialog}
       />
-
       <SocialMediaDialog
         showSocialMediaDialog={showSocialMediaDialog}
         setShowSocialMediaDialog={setShowSocialMediaDialog}

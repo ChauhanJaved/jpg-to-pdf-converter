@@ -189,8 +189,8 @@ export default function HeroDropZoneBox({
           <div className="flex flex-col items-start justify-start gap-1 text-left">
             <div className="flex flex-col items-center gap-1">
               {/* Box 1 ---------- Local & Secure File Conversion */}
-              <div className="mb-3 flex items-center gap-1 text-lg">
-                <div className="">
+              <div className="mb-3 flex items-center justify-center gap-1 text-lg">
+                <div>
                   <ShieldCheck className="h-6 w-6" />
                 </div>
                 <span>Local & Secure File Conversion</span>
@@ -202,7 +202,7 @@ export default function HeroDropZoneBox({
                 setIsLoadingFiles={setIsLoadingFiles}
               />
               {/* Box 3 ---------- Drop files here */}
-              <p className="text-lg">or drop files here</p>
+              <p className="text-center">or drop it here and click convert</p>
             </div>
           </div>
         )}

@@ -136,11 +136,12 @@ export default function HeroFileInputButton(props: HeroFileInputButtonProps) {
         />
       ) : (
         <Button
-          className={"py-6 text-xl"}
+          className="text-lg"
           disabled={props.isDisabled}
           onClick={handleButtonClick}
+          variant={"outline"}
         >
-          <Plus className="mr-3 h-8 w-8" /> Add JPG Files
+          Add JPG Files
         </Button>
       )}
     </div>
