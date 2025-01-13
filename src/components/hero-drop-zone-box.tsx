@@ -8,7 +8,7 @@ import { ShieldCheck } from "lucide-react";
 //Internal Imports----------
 import { useFileContext } from "@/context/file-context";
 import HeroSortableImageList from "@/components/hero-sortable-image-list";
-import HeroFileInputButton from "@/components/hero-file-input-button";
+// import HeroFileInputButton from "@/components/hero-file-input-button";
 import { useToast } from "@/hooks/use-toast";
 import { Checkbox } from "@/components/ui/check-box";
 import { Label } from "@/components/ui/label";
@@ -189,20 +189,26 @@ export default function HeroDropZoneBox({
           <div className="flex flex-col items-start justify-start gap-1 text-left">
             <div className="flex flex-col items-center gap-1">
               {/* Box 1 ---------- Local & Secure File Conversion */}
-              <div className="mb-3 flex items-center justify-center gap-1 text-lg">
+              <div className="mb-3 flex items-center justify-center gap-1">
                 <div>
                   <ShieldCheck className="h-6 w-6" />
                 </div>
-                <span>Local & Secure File Conversion</span>
+                <strong className="text-base lg:text-lg">
+                  Local & Secure File Conversion
+                </strong>
               </div>
               {/* Box 2 ---------- Add JPG Files */}
-              <HeroFileInputButton
+              {/* <HeroFileInputButton
                 buttonType="main"
                 isDisabled={false}
                 setIsLoadingFiles={setIsLoadingFiles}
-              />
+              /> */}
               {/* Box 3 ---------- Drop files here */}
-              <p className="text-center">or drop it here and click convert</p>
+              <p className="text-center text-base md:w-1/2 lg:text-lg">
+                Click <strong>Add Files</strong> or <strong>Drop</strong> your
+                JPGs here. Adjust your <strong>Settings</strong> as needed, then
+                click <strong>Convert</strong> to generate your PDF.
+              </p>
             </div>
           </div>
         )}
