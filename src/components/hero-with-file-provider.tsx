@@ -154,10 +154,16 @@ const HeroWithFileProvider = () => {
             ></HeroButtonToolbar>
           </div>
           <div className="flex items-center justify-end gap-5 p-3 text-sm sm:text-base">
-            <div className={`flex items-center justify-center gap-1`}>
-              <Badge className="">{`${fileList.length}`}</Badge>
-              <Label>Total Files</Label>
-            </div>
+            {fileList.length > 0 && (
+              <div className={`flex items-center justify-center gap-2`}>
+                <Label>Files Selected</Label>
+                <Badge
+                  variant={"secondary"}
+                  className=""
+                >{`${fileList.length}`}</Badge>
+              </div>
+            )}
+
             <div className="flex items-center justify-center gap-1">
               <Checkbox
                 id="preview"

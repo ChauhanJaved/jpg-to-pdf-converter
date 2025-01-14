@@ -208,8 +208,8 @@ export default function HeroDropZoneBox({
               {/* Box 3 ---------- Drop files here */}
               <p className="text-center text-base md:w-1/2 lg:text-lg">
                 Click <strong>Add Files</strong> or <strong>Drop</strong> your
-                JPGs here. Adjust your <strong>Settings</strong> as needed, then
-                click <strong>Convert</strong> to generate your PDF.
+                files here. Adjust your <strong>Settings</strong> as needed,
+                then click <strong>Convert</strong> to generate your PDF.
               </p>
             </div>
           </div>
