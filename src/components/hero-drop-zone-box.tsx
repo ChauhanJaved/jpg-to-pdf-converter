@@ -195,7 +195,7 @@ export default function HeroDropZoneBox({
                 <div>
                   <ShieldCheck className="h-6 w-6" />
                 </div>
-                <strong className="text-base lg:text-lg">
+                <strong className="text-base font-semibold lg:text-lg">
                   Local & Secure File Conversion
                 </strong>
               </div>
@@ -207,9 +207,12 @@ export default function HeroDropZoneBox({
               /> */}
               {/* Box 3 ---------- Drop files here */}
               <p className="text-center text-base md:w-1/2 lg:text-lg">
-                Click <strong>Add Files</strong> or <strong>Drop</strong> your
-                files here. Adjust your <strong>Settings</strong> as needed,
-                then click <strong>Convert</strong> to generate your PDF.
+                Click <span className="font-semibold">Add Files</span> or{" "}
+                <span className="font-semibold">Drop</span> your files here.
+                Adjust your <span className="font-semibold">Settings</span> as
+                needed, then click{" "}
+                <span className="font-semibold">Convert</span> to generate your
+                PDF.
               </p>
             </div>
           </div>
