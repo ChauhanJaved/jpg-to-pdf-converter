@@ -78,7 +78,7 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
     <Fragment>
       <header>
         <nav
-          className="fixed left-0 right-0 top-0 z-50 flex h-20 w-full items-center justify-between border-b bg-background px-3 shadow-sm"
+          className="fixed left-0 right-0 top-0 z-40 flex h-20 w-full items-center justify-between border-b bg-background px-3 shadow-sm"
           aria-label="Main navigation"
         >
           {/* Box-1 for company name/logo */}
