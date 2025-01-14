@@ -111,7 +111,7 @@ const HeroWithFileProvider = () => {
         )}
         {/* Main toolbar with convert and add file buttons */}
         <div
-          className={`${fileList.length > 0 && "sticky top-[80px] z-40"} flex flex-col border-b-2 border-dashed bg-background`}
+          className={`${fileList.length > 0 && "sticky top-[80px] z-30"} flex flex-col border-b-2 border-dashed bg-background`}
         >
           <div
             className={`flex w-full flex-wrap items-center justify-end gap-3 py-3 pt-5`}

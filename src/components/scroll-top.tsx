@@ -45,7 +45,7 @@ export default function ScrollTop() {
       <Button
         size={"icon"}
         onClick={scrollToTop}
-        className={`${isVisible ? "visible opacity-100" : "invisible opacity-0"} fixed bottom-4 right-4`}
+        className={`${isVisible ? "visible opacity-100" : "invisible opacity-0"} fixed bottom-4 right-4 z-40`}
       >
         <ArrowUp />
       </Button>
