@@ -53,7 +53,7 @@ const HeroSortableImageCard = React.memo(function SortableImageCard({
   }, [file]);
 
   return (
-    <div ref={setNodeRef} style={style} className="">
+    <div ref={setNodeRef} style={style} className="bg-background">
       <div className="flex flex-col items-center justify-center rounded border shadow-sm">
         {/* Box-1 Toolbar--------- */}
 

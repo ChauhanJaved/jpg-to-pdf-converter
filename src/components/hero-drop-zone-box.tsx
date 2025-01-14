@@ -1,7 +1,7 @@
 "use client";
 
 //External Imports----------
-import { useState } from "react";
+// import { useState } from "react";
 import { useDropzone, FileRejection } from "react-dropzone";
 import { ShieldCheck } from "lucide-react";
 
@@ -10,24 +10,26 @@ import { useFileContext } from "@/context/file-context";
 import HeroSortableImageList from "@/components/hero-sortable-image-list";
 // import HeroFileInputButton from "@/components/hero-file-input-button";
 import { useToast } from "@/hooks/use-toast";
-import { Checkbox } from "@/components/ui/check-box";
-import { Label } from "@/components/ui/label";
-import { Badge } from "@/components/ui/badge";
+// import { Checkbox } from "@/components/ui/check-box";
+// import { Label } from "@/components/ui/label";
+// import { Badge } from "@/components/ui/badge";
 
 interface HeroDropZoneBoxProps {
   isDisabled: boolean;
   setIsLoadingFiles: (isDisabled: boolean) => void;
+  isPreviewVisible: boolean;
 }
 
 export default function HeroDropZoneBox({
   isDisabled = false,
   setIsLoadingFiles,
+  isPreviewVisible,
 }: HeroDropZoneBoxProps) {
   //Preview On/off
-  const [isPreviewVisible, setIsPreviewVisible] = useState<boolean>(true);
-  const togglePreview = () => {
-    setIsPreviewVisible((prevState) => !prevState);
-  };
+  // const [isPreviewVisible, setIsPreviewVisible] = useState<boolean>(true);
+  // const togglePreview = () => {
+  //   setIsPreviewVisible((prevState) => !prevState);
+  // };
 
   //User message----------
   const { toast } = useToast();
@@ -149,10 +151,10 @@ export default function HeroDropZoneBox({
   });
 
   return (
-    <div className="w-full">
+    <div className={`relative w-full`}>
       {/* Toolbar for file preview and count ---------- */}
-      {fileList.length > 0 && (
-        <div className="flex items-center justify-end gap-5 p-3 text-sm sm:text-base">
+      {/* {fileList.length > 0 && (
+        <div className="sticky top-[152px] z-40 flex items-center justify-end gap-5 bg-background p-3 text-sm sm:text-base">
           <div
             className={`${fileList.length === 0 && "hidden"} flex items-center justify-center gap-1`}
           >
@@ -173,11 +175,11 @@ export default function HeroDropZoneBox({
             </div>
           )}
         </div>
-      )}
+      )} */}
       {/* Dropzone Area ---------- */}
       <div
         {...getRootProps()}
-        className={`flex w-full flex-wrap items-center justify-center gap-5 p-5 text-center transition ${isDragActive && "bg-secondary"} border-2 border-dashed`}
+        className={`flex w-full flex-wrap items-center justify-center gap-5 p-5 text-center transition ${isDragActive && "bg-secondary"} border-b-2 border-l-2 border-r-2 border-dashed bg-background`}
       >
         <input {...getInputProps()} />
         {fileList.length > 0 ? (

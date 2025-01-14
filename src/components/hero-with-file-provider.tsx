@@ -21,8 +21,16 @@ import { useUser } from "@/context/user-context";
 import LicenseDialog from "@/components/license-dialog";
 import SocialMediaDialog from "@/components/social-media-dialog";
 import DialogProcessing from "@/components/dialog-processing";
+import { Checkbox } from "./ui/check-box";
+import { Label } from "./ui/label";
+import { Badge } from "./ui/badge";
 
 const HeroWithFileProvider = () => {
+  //Preview On/off
+  const [isPreviewVisible, setIsPreviewVisible] = useState<boolean>(true);
+  const togglePreview = () => {
+    setIsPreviewVisible((prevState) => !prevState);
+  };
   //User status
   const { userStatus, conversionCount, decrementConversion } = useUser();
   const [showLicenseDialog, setShowLicenseDialog] = useState(false);
@@ -91,10 +99,10 @@ const HeroWithFileProvider = () => {
 
   return (
     <>
-      <div className="flex flex-col">
+      <div className="relative flex flex-col">
         {fileList.length === 0 && (
           <SectionHeader
-            className="mb-5 mt-10 lg:mb-10 lg:mt-16"
+            className="mt-10 md:mb-5 lg:mb-10 lg:mt-16"
             caption={`${userStatus === "trial" ? "Free " : ""}JPG to PDF Converter`}
             desc={
               "Combine All JPGs into a Single PDF | Convert Each JPG to a Separate PDF | Easily Adjust Orientation, Page Size, and Margins"
@@ -102,48 +110,72 @@ const HeroWithFileProvider = () => {
           />
         )}
         {/* Main toolbar with convert and add file buttons */}
-        <div className="mt-5 flex w-full flex-wrap items-center justify-end gap-3 py-3">
-          {/* Add file button */}
-          <HeroFileInputButton
-            buttonType="toolbar"
-            isDisabled={isConvertingFiles || isLoadingFiles}
-            setIsLoadingFiles={setIsLoadingFiles}
-          />
-          {/* Remove all button */}
-          <HeroButtonToolbar
-            disabled={
-              fileList.length === 0 || isConvertingFiles || isLoadingFiles
-            }
-            caption="Remove All"
-            handleOnClick={handleClearList}
-            icon={Trash2}
-          ></HeroButtonToolbar>
-          {/* Setting button */}
-          <HeroSettingsSheet
-            disabled={isConvertingFiles || isLoadingFiles}
-            orientation={orientation}
-            pageSize={pageSize}
-            margin={margin}
-            mergeAllImages={mergeAllImages}
-            onOrientationChange={handleOrientationChange}
-            onPageSizeChange={handlePageSizeChange}
-            onMarginChange={handleMarginChange}
-            onMergeAllImagesChange={handleMergeAllImagesChange}
-          />
-          {/* Convert button */}
-          <HeroButtonToolbar
-            disabled={
-              fileList.length === 0 || isConvertingFiles || isLoadingFiles
-            }
-            caption="Convert"
-            handleOnClick={handleConversion}
-            icon={Download}
-          ></HeroButtonToolbar>
+        <div
+          className={`${fileList.length > 0 && "sticky top-[80px] z-40"} flex flex-col border-b-2 border-dashed bg-background`}
+        >
+          <div
+            className={`flex w-full flex-wrap items-center justify-end gap-3 py-3 pt-5`}
+          >
+            {/* Add file button */}
+            <HeroFileInputButton
+              buttonType="toolbar"
+              isDisabled={isConvertingFiles || isLoadingFiles}
+              setIsLoadingFiles={setIsLoadingFiles}
+            />
+            {/* Remove all button */}
+            <HeroButtonToolbar
+              disabled={
+                fileList.length === 0 || isConvertingFiles || isLoadingFiles
+              }
+              caption="Remove All"
+              handleOnClick={handleClearList}
+              icon={Trash2}
+            ></HeroButtonToolbar>
+            {/* Setting button */}
+            <HeroSettingsSheet
+              disabled={isConvertingFiles || isLoadingFiles}
+              orientation={orientation}
+              pageSize={pageSize}
+              margin={margin}
+              mergeAllImages={mergeAllImages}
+              onOrientationChange={handleOrientationChange}
+              onPageSizeChange={handlePageSizeChange}
+              onMarginChange={handleMarginChange}
+              onMergeAllImagesChange={handleMergeAllImagesChange}
+            />
+            {/* Convert button */}
+            <HeroButtonToolbar
+              disabled={
+                fileList.length === 0 || isConvertingFiles || isLoadingFiles
+              }
+              caption="Convert"
+              handleOnClick={handleConversion}
+              icon={Download}
+            ></HeroButtonToolbar>
+          </div>
+          <div className="flex items-center justify-end gap-5 p-3 text-sm sm:text-base">
+            <div className={`flex items-center justify-center gap-1`}>
+              <Badge className="">{`${fileList.length}`}</Badge>
+              <Label>Total Files</Label>
+            </div>
+            <div className="flex items-center justify-center gap-1">
+              <Checkbox
+                id="preview"
+                className="mr-1"
+                checked={isPreviewVisible}
+                onCheckedChange={togglePreview}
+              />
+              <Label htmlFor="preview" className="cursor-pointer">
+                File Preview
+              </Label>
+            </div>
+          </div>
         </div>
         {/* Dropzone with file count and preview on/off*/}
         <HeroDropZoneBox
           isDisabled={isConvertingFiles || isLoadingFiles}
           setIsLoadingFiles={setIsLoadingFiles}
+          isPreviewVisible={isPreviewVisible}
         />
       </div>
       <LicenseDialog
