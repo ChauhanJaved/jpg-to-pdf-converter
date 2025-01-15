@@ -1,18 +1,11 @@
-"use client";
-
 //External Imports----------
-// import { useState } from "react";
 import { useDropzone, FileRejection } from "react-dropzone";
 import { ShieldCheck } from "lucide-react";
 
 //Internal Imports----------
 import { useFileContext } from "@/context/file-context";
 import HeroSortableImageList from "@/components/hero-sortable-image-list";
-// import HeroFileInputButton from "@/components/hero-file-input-button";
 import { useToast } from "@/hooks/use-toast";
-// import { Checkbox } from "@/components/ui/check-box";
-// import { Label } from "@/components/ui/label";
-// import { Badge } from "@/components/ui/badge";
 
 interface HeroDropZoneBoxProps {
   isDisabled: boolean;
@@ -25,12 +18,6 @@ export default function HeroDropZoneBox({
   setIsLoadingFiles,
   isPreviewVisible,
 }: HeroDropZoneBoxProps) {
-  //Preview On/off
-  // const [isPreviewVisible, setIsPreviewVisible] = useState<boolean>(true);
-  // const togglePreview = () => {
-  //   setIsPreviewVisible((prevState) => !prevState);
-  // };
-
   //User message----------
   const { toast } = useToast();
 
@@ -151,31 +138,7 @@ export default function HeroDropZoneBox({
   });
 
   return (
-    <div className={`relative w-full`}>
-      {/* Toolbar for file preview and count ---------- */}
-      {/* {fileList.length > 0 && (
-        <div className="sticky top-[152px] z-40 flex items-center justify-end gap-5 bg-background p-3 text-sm sm:text-base">
-          <div
-            className={`${fileList.length === 0 && "hidden"} flex items-center justify-center gap-1`}
-          >
-            <Badge className="">{`${fileList.length}`}</Badge>
-            <Label>Total Files</Label>
-          </div>
-          {fileList.length > 0 && (
-            <div className="flex items-center justify-center gap-1">
-              <Checkbox
-                id="preview"
-                className="mr-1"
-                checked={isPreviewVisible}
-                onCheckedChange={togglePreview}
-              />
-              <Label htmlFor="preview" className="cursor-pointer">
-                File Preview
-              </Label>
-            </div>
-          )}
-        </div>
-      )} */}
+    <div className={`w-full`}>
       {/* Dropzone Area ---------- */}
       <div
         {...getRootProps()}
@@ -199,13 +162,7 @@ export default function HeroDropZoneBox({
                   Local & Secure File Conversion
                 </strong>
               </div>
-              {/* Box 2 ---------- Add JPG Files */}
-              {/* <HeroFileInputButton
-                buttonType="main"
-                isDisabled={false}
-                setIsLoadingFiles={setIsLoadingFiles}
-              /> */}
-              {/* Box 3 ---------- Drop files here */}
+              {/* Box 2 ---------- Drop files here */}
               <p className="text-center text-base md:w-1/2 lg:text-lg">
                 Click <span className="font-semibold">Add Files</span> or{" "}
                 <span className="font-semibold">Drop</span> your files here.

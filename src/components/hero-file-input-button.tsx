@@ -1,4 +1,3 @@
-"use client";
 // External Imports
 import { Plus } from "lucide-react";
 import { useRef } from "react";

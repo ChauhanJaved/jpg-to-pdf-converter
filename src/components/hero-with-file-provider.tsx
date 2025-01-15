@@ -21,9 +21,9 @@ import { useUser } from "@/context/user-context";
 import LicenseDialog from "@/components/license-dialog";
 import SocialMediaDialog from "@/components/social-media-dialog";
 import DialogProcessing from "@/components/dialog-processing";
-import { Checkbox } from "./ui/check-box";
-import { Label } from "./ui/label";
-import { Badge } from "./ui/badge";
+import { Checkbox } from "@/components/ui/check-box";
+import { Label } from "@/components/ui/label";
+import { Badge } from "@/components/ui/badge";
 
 const HeroWithFileProvider = () => {
   //Preview On/off
@@ -37,14 +37,12 @@ const HeroWithFileProvider = () => {
   const [showRegisterLicenseDialog, setShowRegisterLicenseDialog] =
     useState(false);
   const [showSocialMediaDialog, setShowSocialMediaDialog] = useState(false);
-
   //FileList----------
   const { fileList, setFileList } = useFileContext();
   const handleClearList = () => {
     setFileList([]);
     window.scrollTo({ top: 0 });
   };
-
   //Conversion--------
   const [isConvertingFiles, setIsConvertingFiles] = useState(false);
   const [orientation, setOrientation] = useState(PageOrientationEnum.portrait);
@@ -63,7 +61,6 @@ const HeroWithFileProvider = () => {
   const handleMergeAllImagesChange = (shouldMerge: boolean) => {
     setMergeAllImages(shouldMerge);
   };
-
   const handleConversion = async () => {
     if (userStatus === "trial") {
       if (conversionCount > 0) {
@@ -93,10 +90,8 @@ const HeroWithFileProvider = () => {
       }
     }
   };
-
   // Adding file
   const [isLoadingFiles, setIsLoadingFiles] = useState(false);
-
   return (
     <>
       <div className="relative flex flex-col">
@@ -154,13 +149,14 @@ const HeroWithFileProvider = () => {
             ></HeroButtonToolbar>
           </div>
           <div className="flex items-center justify-end gap-5 p-3 text-sm sm:text-base">
+            {/* Total files count */}
             {fileList.length > 0 && (
               <div className={`flex items-center justify-center gap-2`}>
                 <Badge className="">{`${fileList.length}`}</Badge>
                 <Label>Total Files</Label>
               </div>
             )}
-
+            {/* File preview on/off */}
             <div className="flex items-center justify-center gap-1">
               <Checkbox
                 id="preview"
@@ -174,7 +170,6 @@ const HeroWithFileProvider = () => {
             </div>
           </div>
         </div>
-        {/* Dropzone with file count and preview on/off*/}
         <HeroDropZoneBox
           isDisabled={isConvertingFiles || isLoadingFiles}
           setIsLoadingFiles={setIsLoadingFiles}
