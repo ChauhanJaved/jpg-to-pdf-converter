@@ -146,7 +146,7 @@ export default function HeroSettingsSheet({
           <SheetFooter className="mt-3">
             <Button>Restore Default</Button>
             <SheetClose asChild>
-              <Button>Save</Button>
+              <Button>OK</Button>
             </SheetClose>
           </SheetFooter>
         </SheetContent>
