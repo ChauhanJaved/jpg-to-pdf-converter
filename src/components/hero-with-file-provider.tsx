@@ -1,7 +1,7 @@
 "use client";
 
 //External Imports
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Download, Trash2 } from "lucide-react";
 
 //Internal Imports
@@ -10,6 +10,9 @@ import {
   MarginEnum,
   PageOrientationEnum,
   PageSizeEnum,
+  UserSettings,
+  saveSettingsToLocalStorage,
+  loadSettingsFromLocalStorage,
 } from "@/lib/pdf-lib";
 import SectionHeader from "@/components/section-header";
 import HeroButtonToolbar from "@/components/hero-button-toolbar";
@@ -45,29 +48,47 @@ const HeroWithFileProvider = () => {
   };
   //Conversion--------
   const [isConvertingFiles, setIsConvertingFiles] = useState(false);
-  const [orientation, setOrientation] = useState(PageOrientationEnum.portrait);
+  const [settings, setSettings] = useState<UserSettings>(
+    loadSettingsFromLocalStorage,
+  );
+  // Load settings on component mount
+  useEffect(() => {
+    const storedSettings = loadSettingsFromLocalStorage();
+    setSettings(storedSettings);
+  }, []);
+  // Update local storage whenever settings change
+  useEffect(() => {
+    saveSettingsToLocalStorage(settings);
+  }, [settings]);
+  // Handlers
   const handleOrientationChange = (value: PageOrientationEnum) => {
-    setOrientation(value);
+    setSettings((prev) => ({ ...prev, orientation: value }));
   };
-  const [pageSize, setPageSize] = useState(PageSizeEnum.A4);
-  const handlePageSizeChange = (newPageSize: PageSizeEnum) => {
-    setPageSize(newPageSize);
+
+  const handlePageSizeChange = (value: PageSizeEnum) => {
+    setSettings((prev) => ({ ...prev, pageSize: value }));
   };
-  const [margin, setMargin] = useState(MarginEnum.None);
-  const handleMarginChange = (newMargin: MarginEnum) => {
-    setMargin(newMargin);
+
+  const handleMarginChange = (value: MarginEnum) => {
+    setSettings((prev) => ({ ...prev, margin: value }));
   };
-  const [mergeAllImages, setMergeAllImages] = useState(true);
-  const handleMergeAllImagesChange = (shouldMerge: boolean) => {
-    setMergeAllImages(shouldMerge);
+
+  const handleMergeAllImagesChange = (value: boolean) => {
+    setSettings((prev) => ({ ...prev, mergeAllImages: value }));
   };
+  // Conversion function
   const handleConversion = async () => {
     if (userStatus === "trial") {
       if (conversionCount > 0) {
         // Proceed with conversion and decrement the count
         setIsConvertingFiles(true);
         try {
-          await handleConvertToPdf(fileList, orientation, pageSize, margin);
+          await handleConvertToPdf(
+            fileList,
+            settings.orientation,
+            settings.pageSize,
+            settings.margin,
+          );
           decrementConversion(); // Reduce the count
         } catch (error) {
           console.error("Conversion error:", error);
@@ -82,7 +103,12 @@ const HeroWithFileProvider = () => {
       // Proceed with conversion without decrementing
       setIsConvertingFiles(true);
       try {
-        await handleConvertToPdf(fileList, orientation, pageSize, margin);
+        await handleConvertToPdf(
+          fileList,
+          settings.orientation,
+          settings.pageSize,
+          settings.margin,
+        );
       } catch (error) {
         console.error("Conversion error:", error);
       } finally {
@@ -129,10 +155,10 @@ const HeroWithFileProvider = () => {
             {/* Setting button */}
             <HeroSettingsSheet
               disabled={isConvertingFiles || isLoadingFiles}
-              orientation={orientation}
-              pageSize={pageSize}
-              margin={margin}
-              mergeAllImages={mergeAllImages}
+              orientation={settings.orientation}
+              pageSize={settings.pageSize}
+              margin={settings.margin}
+              mergeAllImages={settings.mergeAllImages}
               onOrientationChange={handleOrientationChange}
               onPageSizeChange={handlePageSizeChange}
               onMarginChange={handleMarginChange}

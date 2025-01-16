@@ -35,6 +35,61 @@ export const marginSizes = {
   large: 50, // Large margin
 };
 
+export interface UserSettings {
+  orientation: PageOrientationEnum;
+  pageSize: PageSizeEnum;
+  margin: MarginEnum;
+  mergeAllImages: boolean;
+}
+
+// Default settings
+const defaultSettings: UserSettings = {
+  orientation: PageOrientationEnum.portrait,
+  pageSize: PageSizeEnum.A4,
+  margin: MarginEnum.Small,
+  mergeAllImages: true,
+};
+
+// Keys for local storage
+const STORAGE_KEYS = {
+  orientation: "orientation",
+  pageSize: "pageSize",
+  margin: "margin",
+  mergeAllImages: "mergeAllImages",
+};
+
+// Save settings to local storage
+export const saveSettingsToLocalStorage = (settings: UserSettings) => {
+  localStorage.setItem(STORAGE_KEYS.orientation, settings.orientation);
+  localStorage.setItem(STORAGE_KEYS.pageSize, settings.pageSize);
+  localStorage.setItem(STORAGE_KEYS.margin, settings.margin);
+  localStorage.setItem(
+    STORAGE_KEYS.mergeAllImages,
+    settings.mergeAllImages.toString(),
+  );
+};
+
+// Load settings from local storage
+export const loadSettingsFromLocalStorage = (): UserSettings => {
+  const orientation = localStorage.getItem(
+    STORAGE_KEYS.orientation,
+  ) as PageOrientationEnum | null;
+  const pageSize = localStorage.getItem(
+    STORAGE_KEYS.pageSize,
+  ) as PageSizeEnum | null;
+  const margin = localStorage.getItem(STORAGE_KEYS.margin) as MarginEnum | null;
+  const mergeAllImages = localStorage.getItem(STORAGE_KEYS.mergeAllImages);
+
+  return {
+    orientation: orientation || defaultSettings.orientation,
+    pageSize: pageSize || defaultSettings.pageSize,
+    margin: margin || defaultSettings.margin,
+    mergeAllImages: mergeAllImages
+      ? mergeAllImages === "true"
+      : defaultSettings.mergeAllImages,
+  };
+};
+
 // Convert the JPG files to PDF with customization options
 export const handleConvertToPdf = async (
   fileList: FileObject[],
