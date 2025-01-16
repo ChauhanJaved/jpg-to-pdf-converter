@@ -22,7 +22,7 @@ import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 
 const HeroWithFileProvider = () => {
-  //Preview On/off
+  //Preview On/off----------
   const [isPreviewVisible, setIsPreviewVisible] = useState<boolean>(true);
   const togglePreview = () => {
     setIsPreviewVisible((prevState) => !prevState);
@@ -42,8 +42,6 @@ const HeroWithFileProvider = () => {
   //Conversion--------
   const [isConvertingFiles, setIsConvertingFiles] = useState(false);
   const { settings } = useSettings();
-
-  // Conversion function
   const handleConversion = async () => {
     if (userStatus === "trial") {
       if (conversionCount > 0) {
@@ -83,7 +81,7 @@ const HeroWithFileProvider = () => {
       }
     }
   };
-  // Adding file
+  // Adding file----------
   const [isLoadingFiles, setIsLoadingFiles] = useState(false);
   return (
     <>

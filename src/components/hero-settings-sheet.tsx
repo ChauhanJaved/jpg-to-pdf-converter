@@ -9,6 +9,7 @@ import {
   Sheet,
   SheetClose,
   SheetContent,
+  SheetDescription,
   SheetFooter,
   SheetHeader,
   SheetTitle,
@@ -69,6 +70,9 @@ export default function HeroSettingsSheet() {
         <SheetContent>
           <SheetHeader>
             <SheetTitle>Settings</SheetTitle>
+            <SheetDescription className="sr-only">
+              Change conversion settings
+            </SheetDescription>
           </SheetHeader>
           <div className="mt-3 flex flex-col rounded border px-3 py-4 shadow-sm">
             <div className="flex flex-col space-y-2">

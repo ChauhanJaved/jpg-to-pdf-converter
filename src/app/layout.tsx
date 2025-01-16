@@ -10,6 +10,7 @@ import { FileProvider } from "@/context/file-context";
 import Header from "@/components/header";
 import { UserProvider } from "@/context/user-context";
 import { ActiveSectionProvider } from "@/context/active-section-context";
+import { SettingsProvider } from "@/context/settings-context";
 
 export default function RootLayout({
   children,
@@ -28,15 +29,17 @@ export default function RootLayout({
           <UserProvider>
             <ActiveSectionProvider>
               <FileProvider>
-                <ScrollTop />
-                <Header />
-                {children}
-                <Footer
-                  companyName={companyName}
-                  copyrightYear={copyrightYear}
-                />
+                <SettingsProvider>
+                  <ScrollTop />
+                  <Header />
+                  {children}
+                  <Footer
+                    companyName={companyName}
+                    copyrightYear={copyrightYear}
+                  />
 
-                <Toaster />
+                  <Toaster />
+                </SettingsProvider>
               </FileProvider>
             </ActiveSectionProvider>
           </UserProvider>

@@ -63,32 +63,33 @@ const SettingsContext = createContext<SettingsContextType | undefined>(
 export const SettingsProvider: React.FC<SettingsProviderProps> = ({
   children,
 }) => {
-  // Initialize state with settings from localStorage (or default)
   const [settings, setSettings] = useState<UserSettings>(defaultSettings);
 
-  // Load settings from localStorage on mount, or save default settings if it's the first time
+  // Single useEffect for initialization and synchronization
   useEffect(() => {
     const storedSettings = localStorage.getItem(localStorageKey);
+
     if (storedSettings) {
       try {
-        setSettings(JSON.parse(storedSettings)); // Load stored settings
+        // Load settings from localStorage
+        const parsedSettings = JSON.parse(storedSettings);
+        setSettings(parsedSettings);
       } catch (error) {
-        console.error("Error parsing settings from local storage", error);
+        console.error("Error parsing settings from localStorage:", error);
+        localStorage.setItem(localStorageKey, JSON.stringify(defaultSettings));
       }
     } else {
-      // If no settings in localStorage, save the default settings
+      // Save default settings if not present
       localStorage.setItem(localStorageKey, JSON.stringify(defaultSettings));
     }
   }, []);
 
-  // Save settings to local storage whenever they change
-  useEffect(() => {
-    localStorage.setItem(localStorageKey, JSON.stringify(settings));
-  }, [settings]);
-
-  // Update settings
   const updateSettings = (newSettings: Partial<UserSettings>) => {
-    setSettings((prev) => ({ ...prev, ...newSettings }));
+    setSettings((prev) => {
+      const updatedSettings = { ...prev, ...newSettings };
+      localStorage.setItem(localStorageKey, JSON.stringify(updatedSettings)); // Update localStorage here
+      return updatedSettings;
+    });
   };
 
   return (
