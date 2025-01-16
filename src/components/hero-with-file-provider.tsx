@@ -1,19 +1,12 @@
 "use client";
 
 //External Imports
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Download, Trash2 } from "lucide-react";
 
 //Internal Imports
-import {
-  handleConvertToPdf,
-  MarginEnum,
-  PageOrientationEnum,
-  PageSizeEnum,
-  UserSettings,
-  saveSettingsToLocalStorage,
-  loadSettingsFromLocalStorage,
-} from "@/lib/pdf-lib";
+import { handleConvertToPdf } from "@/lib/pdf-lib";
+import { useSettings } from "@/context/settings-context";
 import SectionHeader from "@/components/section-header";
 import HeroButtonToolbar from "@/components/hero-button-toolbar";
 import HeroFileInputButton from "@/components/hero-file-input-button";
@@ -48,34 +41,8 @@ const HeroWithFileProvider = () => {
   };
   //Conversion--------
   const [isConvertingFiles, setIsConvertingFiles] = useState(false);
-  const [settings, setSettings] = useState<UserSettings>(
-    loadSettingsFromLocalStorage,
-  );
-  // Load settings on component mount
-  useEffect(() => {
-    const storedSettings = loadSettingsFromLocalStorage();
-    setSettings(storedSettings);
-  }, []);
-  // Update local storage whenever settings change
-  useEffect(() => {
-    saveSettingsToLocalStorage(settings);
-  }, [settings]);
-  // Handlers
-  const handleOrientationChange = (value: PageOrientationEnum) => {
-    setSettings((prev) => ({ ...prev, orientation: value }));
-  };
+  const { settings } = useSettings();
 
-  const handlePageSizeChange = (value: PageSizeEnum) => {
-    setSettings((prev) => ({ ...prev, pageSize: value }));
-  };
-
-  const handleMarginChange = (value: MarginEnum) => {
-    setSettings((prev) => ({ ...prev, margin: value }));
-  };
-
-  const handleMergeAllImagesChange = (value: boolean) => {
-    setSettings((prev) => ({ ...prev, mergeAllImages: value }));
-  };
   // Conversion function
   const handleConversion = async () => {
     if (userStatus === "trial") {
@@ -153,17 +120,7 @@ const HeroWithFileProvider = () => {
               icon={Trash2}
             ></HeroButtonToolbar>
             {/* Setting button */}
-            <HeroSettingsSheet
-              disabled={isConvertingFiles || isLoadingFiles}
-              orientation={settings.orientation}
-              pageSize={settings.pageSize}
-              margin={settings.margin}
-              mergeAllImages={settings.mergeAllImages}
-              onOrientationChange={handleOrientationChange}
-              onPageSizeChange={handlePageSizeChange}
-              onMarginChange={handleMarginChange}
-              onMergeAllImagesChange={handleMergeAllImagesChange}
-            />
+            <HeroSettingsSheet />
             {/* Convert button */}
             <HeroButtonToolbar
               disabled={

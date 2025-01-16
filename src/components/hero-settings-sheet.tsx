@@ -23,36 +23,35 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { MarginEnum, PageOrientationEnum, PageSizeEnum } from "@/lib/pdf-lib";
+import {
+  useSettings,
+  PageOrientationEnum,
+  MarginEnum,
+  PageSizeEnum,
+} from "@/context/settings-context";
 import { Checkbox } from "@/components/ui/check-box";
 
 function capitalizeFirstLetter(word: string) {
   return word.charAt(0).toUpperCase() + word.slice(1);
 }
 
-interface HeroSettingsSheetProps {
-  disabled?: boolean;
-  orientation: PageOrientationEnum;
-  pageSize: PageSizeEnum;
-  margin: MarginEnum;
-  mergeAllImages: boolean;
-  onOrientationChange: (orientation: PageOrientationEnum) => void;
-  onPageSizeChange: (pageSize: PageSizeEnum) => void;
-  onMarginChange: (margin: MarginEnum) => void;
-  onMergeAllImagesChange: (shouldMerge: boolean) => void;
-}
+export default function HeroSettingsSheet() {
+  const { settings, updateSettings } = useSettings();
+  // Handlers
+  const handleOrientationChange = (value: PageOrientationEnum) => {
+    updateSettings({ orientation: value });
+  };
+  const handlePageSizeChange = (value: PageSizeEnum) => {
+    updateSettings({ pageSize: value });
+  };
 
-export default function HeroSettingsSheet({
-  disabled = false,
-  orientation,
-  pageSize,
-  margin,
-  mergeAllImages,
-  onOrientationChange,
-  onPageSizeChange,
-  onMarginChange,
-  onMergeAllImagesChange,
-}: HeroSettingsSheetProps) {
+  const handleMarginChange = (value: MarginEnum) => {
+    updateSettings({ margin: value });
+  };
+
+  const handleMergeAllImagesChange = (value: boolean) => {
+    updateSettings({ mergeAllImages: value });
+  };
   const [open, setOpen] = useState(false);
   const openSheet = () => {
     setOpen(true);
@@ -62,7 +61,6 @@ export default function HeroSettingsSheet({
     <Fragment>
       <HeroButtonToolbar
         handleOnClick={openSheet}
-        disabled={disabled}
         caption="Settings"
         icon={Settings}
       ></HeroButtonToolbar>
@@ -75,7 +73,10 @@ export default function HeroSettingsSheet({
           <div className="mt-3 flex flex-col rounded border px-3 py-4 shadow-sm">
             <div className="flex flex-col space-y-2">
               <Label htmlFor="orientation">Page Orientation</Label>
-              <Select value={orientation} onValueChange={onOrientationChange}>
+              <Select
+                value={settings.orientation}
+                onValueChange={handleOrientationChange}
+              >
                 <SelectTrigger className="w-[150px]">
                   <SelectValue placeholder="Select Page orientation" />
                 </SelectTrigger>
@@ -93,7 +94,10 @@ export default function HeroSettingsSheet({
             </div>
             <div className="mt-5 flex flex-col space-y-2">
               <Label htmlFor="size">Page Size</Label>
-              <Select value={pageSize} onValueChange={onPageSizeChange}>
+              <Select
+                value={settings.pageSize}
+                onValueChange={handlePageSizeChange}
+              >
                 <SelectTrigger className="w-[150px]">
                   <SelectValue placeholder="Select Page Size" />
                 </SelectTrigger>
@@ -114,7 +118,10 @@ export default function HeroSettingsSheet({
             </div>
             <div className="mt-5 flex flex-col space-y-2">
               <Label htmlFor="size">Margin</Label>
-              <Select value={margin} onValueChange={onMarginChange}>
+              <Select
+                value={settings.margin}
+                onValueChange={handleMarginChange}
+              >
                 <SelectTrigger className="w-[150px]">
                   <SelectValue placeholder="Select Margin" />
                 </SelectTrigger>
@@ -137,8 +144,8 @@ export default function HeroSettingsSheet({
               <Checkbox
                 id="imagepreview"
                 className="mr-1"
-                checked={mergeAllImages}
-                onCheckedChange={onMergeAllImagesChange}
+                checked={settings.mergeAllImages}
+                onCheckedChange={handleMergeAllImagesChange}
               />
               <Label htmlFor="imagepreview">Merge all JPG</Label>
             </div>
