@@ -6,11 +6,9 @@ import Footer from "@/components/footer";
 import ScrollTop from "@/components/scroll-top";
 import { ThemeProvider } from "@/components/theme-provider";
 import { roboto } from "@/lib/font";
-import { FileProvider } from "@/context/file-context";
 import Header from "@/components/header";
 import { UserProvider } from "@/context/user-context";
 import { ActiveSectionProvider } from "@/context/active-section-context";
-import { SettingsProvider } from "@/context/settings-context";
 
 export default function RootLayout({
   children,
@@ -28,19 +26,11 @@ export default function RootLayout({
         >
           <UserProvider>
             <ActiveSectionProvider>
-              <FileProvider>
-                <SettingsProvider>
-                  <ScrollTop />
-                  <Header />
-                  {children}
-                  <Footer
-                    companyName={companyName}
-                    copyrightYear={copyrightYear}
-                  />
-
-                  <Toaster />
-                </SettingsProvider>
-              </FileProvider>
+              <ScrollTop />
+              <Header />
+              {children}
+              <Footer companyName={companyName} copyrightYear={copyrightYear} />
+              <Toaster />
             </ActiveSectionProvider>
           </UserProvider>
         </ThemeProvider>

@@ -1,6 +1,8 @@
 //Internal Imports
 import { HeaderNavItems } from "@/data/website-data";
 import HeroWithFileProvider from "@/components/hero-with-file-provider";
+import { FileProvider } from "@/context/file-context";
+import { SettingsProvider } from "@/context/settings-context";
 
 const Hero = () => {
   return (
@@ -8,7 +10,11 @@ const Hero = () => {
       id={HeaderNavItems.Home}
       className="container px-5 pt-20 lg:px-10 xl:max-w-screen-xl"
     >
-      <HeroWithFileProvider />
+      <FileProvider>
+        <SettingsProvider>
+          <HeroWithFileProvider />
+        </SettingsProvider>
+      </FileProvider>
 
       {/* Product description */}
       <div className="mt-5 flex flex-col">
