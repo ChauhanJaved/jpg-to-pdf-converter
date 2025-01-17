@@ -156,7 +156,7 @@ export default function HeroSettingsSheet() {
           </div>
           <SheetFooter className="mt-3">
             <SheetClose asChild>
-              <Button>OK</Button>
+              <Button className="w-28">OK</Button>
             </SheetClose>
           </SheetFooter>
         </SheetContent>
