@@ -95,9 +95,14 @@ export const handleConvertToPdf = async (
 export const downloadPdf = (
   filePath: string,
   fileName: string = "converted.pdf",
-) => {
-  const a = document.createElement("a");
-  a.href = filePath;
-  a.download = fileName;
-  a.click();
+): Promise<void> => {
+  return new Promise((resolve) => {
+    const a = document.createElement("a");
+    a.href = filePath;
+    a.download = fileName;
+    document.body.appendChild(a); // Append to DOM for safety
+    a.click(); // Trigger download
+    document.body.removeChild(a); // Clean up
+    setTimeout(() => resolve(), 1000); // Simulate async completion
+  });
 };

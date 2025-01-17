@@ -50,20 +50,23 @@ const HeroWithFileProvider = () => {
         // Proceed with conversion and decrement the count
         setIsConvertingFiles(true);
         try {
-          setFilePath(
-            await handleConvertToPdf(
-              fileList,
-              settings.orientation,
-              settings.pageSize,
-              settings.margin,
-            ),
+          const newFilePath = await handleConvertToPdf(
+            fileList,
+            settings.orientation,
+            settings.pageSize,
+            settings.margin,
           );
-          decrementConversion(); // Reduce the count
+          setFilePath(newFilePath);
+          if (filePath) {
+            const fileName = `converted_${new Date().toISOString().replace(/[:.]/g, "-")}.pdf`;
+            await downloadPdf(filePath, fileName);
+          }
+          decrementConversion();
+          setShowSocialMediaDialog(true);
         } catch (error) {
           console.error("Conversion error:", error);
         } finally {
           setIsConvertingFiles(false);
-          setShowSocialMediaDialog(true);
         }
       } else {
         setShowLicenseDialog(true);
@@ -72,17 +75,16 @@ const HeroWithFileProvider = () => {
       // Proceed with conversion without decrementing
       setIsConvertingFiles(true);
       try {
-        setFilePath(
-          await handleConvertToPdf(
-            fileList,
-            settings.orientation,
-            settings.pageSize,
-            settings.margin,
-          ),
+        const newFilePath = await handleConvertToPdf(
+          fileList,
+          settings.orientation,
+          settings.pageSize,
+          settings.margin,
         );
+        setFilePath(newFilePath);
         if (filePath) {
           const fileName = `converted_${new Date().toISOString().replace(/[:.]/g, "-")}.pdf`;
-          downloadPdf(filePath, fileName);
+          await downloadPdf(filePath, fileName);
         }
       } catch (error) {
         console.error("Conversion error:", error);
@@ -174,7 +176,6 @@ const HeroWithFileProvider = () => {
         setShowRegisterLicenseDialog={setShowRegisterLicenseDialog}
       />
       <SocialMediaDialog
-        filePath={filePath}
         showSocialMediaDialog={showSocialMediaDialog}
         setShowSocialMediaDialog={setShowSocialMediaDialog}
       />
