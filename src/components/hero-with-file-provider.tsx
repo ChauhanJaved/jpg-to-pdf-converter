@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Download, Trash2 } from "lucide-react";
 
 //Internal Imports
-import { handleConvertToPdf } from "@/lib/pdf-lib";
+import { downloadPdf, handleConvertToPdf } from "@/lib/pdf-lib";
 import { useSettings } from "@/context/settings-context";
 import SectionHeader from "@/components/section-header";
 import HeroButtonToolbar from "@/components/hero-button-toolbar";
@@ -41,18 +41,22 @@ const HeroWithFileProvider = () => {
   };
   //Conversion--------
   const [isConvertingFiles, setIsConvertingFiles] = useState(false);
+  const [filePath, setFilePath] = useState<string | null>(null);
   const { settings } = useSettings();
   const handleConversion = async () => {
+    setFilePath(null);
     if (userStatus === "trial") {
       if (conversionCount > 0) {
         // Proceed with conversion and decrement the count
         setIsConvertingFiles(true);
         try {
-          await handleConvertToPdf(
-            fileList,
-            settings.orientation,
-            settings.pageSize,
-            settings.margin,
+          setFilePath(
+            await handleConvertToPdf(
+              fileList,
+              settings.orientation,
+              settings.pageSize,
+              settings.margin,
+            ),
           );
           decrementConversion(); // Reduce the count
         } catch (error) {
@@ -68,12 +72,18 @@ const HeroWithFileProvider = () => {
       // Proceed with conversion without decrementing
       setIsConvertingFiles(true);
       try {
-        await handleConvertToPdf(
-          fileList,
-          settings.orientation,
-          settings.pageSize,
-          settings.margin,
+        setFilePath(
+          await handleConvertToPdf(
+            fileList,
+            settings.orientation,
+            settings.pageSize,
+            settings.margin,
+          ),
         );
+        if (filePath) {
+          const fileName = `converted_${new Date().toISOString().replace(/[:.]/g, "-")}.pdf`;
+          downloadPdf(filePath, fileName);
+        }
       } catch (error) {
         console.error("Conversion error:", error);
       } finally {
@@ -164,6 +174,7 @@ const HeroWithFileProvider = () => {
         setShowRegisterLicenseDialog={setShowRegisterLicenseDialog}
       />
       <SocialMediaDialog
+        filePath={filePath}
         showSocialMediaDialog={showSocialMediaDialog}
         setShowSocialMediaDialog={setShowSocialMediaDialog}
       />

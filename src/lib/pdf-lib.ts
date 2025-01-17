@@ -28,7 +28,7 @@ export const handleConvertToPdf = async (
   pageOrientation: PageOrientation = "portrait",
   pageSize: PageSize = "fit",
   margin: Margin = "none",
-) => {
+): Promise<string> => {
   // Create a new PDF document
   const pdfDoc = await PDFDocument.create();
 
@@ -83,21 +83,21 @@ export const handleConvertToPdf = async (
     });
   }
 
-  // Save the PDF and download it
+  // Save the PDF and return the Blob URL
   const pdfBytes = await pdfDoc.save();
-  downloadPdf(pdfBytes);
-};
-
-// Helper function to download the PDF file with a unique name
-const downloadPdf = (pdfBytes: Uint8Array) => {
   const blob = new Blob([pdfBytes], { type: "application/pdf" });
 
-  // Generate a unique filename using a timestamp
-  const uniqueName = `converted_${new Date().toISOString().replace(/[:.]/g, "-")}.pdf`;
+  // Create and return a Blob URL
+  return URL.createObjectURL(blob);
+};
 
-  const url = URL.createObjectURL(blob);
+// Helper function to download the PDF file
+export const downloadPdf = (
+  filePath: string,
+  fileName: string = "converted.pdf",
+) => {
   const a = document.createElement("a");
-  a.href = url;
-  a.download = uniqueName;
+  a.href = filePath;
+  a.download = fileName;
   a.click();
 };
