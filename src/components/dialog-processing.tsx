@@ -19,15 +19,14 @@ export default function DialogProcessing({
     <AlertDialog open={isConvertingFiles}>
       <AlertDialogContent className="flex flex-col items-center justify-center gap-4 text-center">
         <AlertDialogHeader>
-          <AlertDialogTitle className="sr-only">Processing</AlertDialogTitle>
+          <AlertDialogTitle className="flex flex-row items-center justify-center gap-3">
+            <LoaderCircle className="animate-spin text-primary" />
+            <span>Processing...</span>
+          </AlertDialogTitle>
           <AlertDialogDescription className="sr-only">
             Processing your files
           </AlertDialogDescription>
         </AlertDialogHeader>
-        <div className="flex items-center justify-center gap-3">
-          <LoaderCircle className="animate-spin" />
-          <span>Processing...</span>
-        </div>
       </AlertDialogContent>
     </AlertDialog>
   );

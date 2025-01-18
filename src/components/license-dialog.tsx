@@ -1,5 +1,4 @@
 //External Imports
-import { ShoppingCart, Wrench } from "lucide-react";
 import Link from "next/link";
 //Internal Imports
 import {
@@ -15,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import { HeaderNavItems } from "@/data/website-data";
 import LicenseRegisterDialog from "@/components/license-register-dialog";
 import { useActiveSection } from "@/context/active-section-context";
+import { Separator } from "./ui/separator";
 
 interface LicenseDialogProps {
   showLicenseDialog: boolean;
@@ -50,7 +50,6 @@ const LicenseDialog: React.FC<LicenseDialogProps> = ({
                 className="flex items-center justify-center"
                 onClick={() => setShowLicenseDialog(false)}
               >
-                <ShoppingCart className="mr-2" />
                 <span>Buy License</span>
               </Button>
             </Link>
@@ -59,10 +58,10 @@ const LicenseDialog: React.FC<LicenseDialogProps> = ({
                 setShowRegisterLicenseDialog(true);
               }}
             >
-              <Wrench className="mr-2" />
               Register License
             </Button>
           </div>
+          <Separator />
           <AlertDialogFooter>
             <AlertDialogCancel onClick={() => setShowLicenseDialog(false)}>
               Cancel

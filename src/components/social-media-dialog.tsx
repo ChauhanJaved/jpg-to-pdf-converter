@@ -23,6 +23,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { productData, productImages } from "@/data/website-data";
 import cloudinaryLoader from "@/lib/cloudinary-loader";
+import { Separator } from "./ui/separator";
 
 interface SocialMediaDialogProps {
   showSocialMediaDialog: boolean;
@@ -44,16 +45,20 @@ export default function SocialMediaDialog({
         <AlertDialogHeader>
           <AlertDialogTitle>Your PDF is Ready!</AlertDialogTitle>
           <AlertDialogDescription>
-            Your JPG files have been successfully converted into a PDF and saved
-            in your browser&#39;s default download folder. You can also open the
-            file directly from there.
+            Your JPG files have been successfully converted into a PDF. The file
+            has been saved in your browser&#39;s default download folder. You
+            can access it from there or open it directly now.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <div className="mt-1 flex flex-wrap items-center justify-center gap-3 text-center sm:items-start sm:justify-start sm:text-left">
           <p className="text-base font-semibold">
-            Support us by sharing this handy tool!
+            Enjoying this tool? Share it with your friends and colleagues to
+            support us!
           </p>
-          <div className="flex gap-4">
+          <p className="text-sm">
+            Click below to share it on your favorite platform:
+          </p>
+          <div className="my-3 flex gap-4">
             <FacebookShareButton url={shareUrl} hashtag={shareMessage}>
               <FacebookIcon size={32} round />
             </FacebookShareButton>
@@ -75,6 +80,7 @@ export default function SocialMediaDialog({
             </PinterestShareButton>
           </div>
         </div>
+        <Separator />
         <AlertDialogFooter>
           <AlertDialogCancel onClick={() => setShowSocialMediaDialog(false)}>
             Close

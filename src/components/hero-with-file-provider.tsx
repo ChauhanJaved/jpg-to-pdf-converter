@@ -41,56 +41,29 @@ const HeroWithFileProvider = () => {
   };
   //Conversion--------
   const [isConvertingFiles, setIsConvertingFiles] = useState(false);
-  const [filePath, setFilePath] = useState<string | null>(null);
   const { settings } = useSettings();
   const handleConversion = async () => {
-    setFilePath(null);
-    if (userStatus === "trial") {
-      if (conversionCount > 0) {
-        // Proceed with conversion and decrement the count
-        setIsConvertingFiles(true);
-        try {
-          const newFilePath = await handleConvertToPdf(
-            fileList,
-            settings.orientation,
-            settings.pageSize,
-            settings.margin,
-          );
-          setFilePath(newFilePath);
-          if (filePath) {
-            const fileName = `converted_${new Date().toISOString().replace(/[:.]/g, "-")}.pdf`;
-            await downloadPdf(filePath, fileName);
-          }
-          decrementConversion();
-          setShowSocialMediaDialog(true);
-        } catch (error) {
-          console.error("Conversion error:", error);
-        } finally {
-          setIsConvertingFiles(false);
-        }
-      } else {
-        setShowLicenseDialog(true);
-      }
-    } else if (userStatus === "paid") {
-      // Proceed with conversion without decrementing
-      setIsConvertingFiles(true);
-      try {
-        const newFilePath = await handleConvertToPdf(
-          fileList,
-          settings.orientation,
-          settings.pageSize,
-          settings.margin,
-        );
-        setFilePath(newFilePath);
-        if (filePath) {
-          const fileName = `converted_${new Date().toISOString().replace(/[:.]/g, "-")}.pdf`;
-          await downloadPdf(filePath, fileName);
-        }
-      } catch (error) {
-        console.error("Conversion error:", error);
-      } finally {
-        setIsConvertingFiles(false);
-      }
+    if (userStatus === "trial" && conversionCount <= 0) {
+      setShowLicenseDialog(true);
+      return;
+    }
+    setIsConvertingFiles(true);
+    try {
+      const filePath = await handleConvertToPdf(
+        fileList,
+        settings.orientation,
+        settings.pageSize,
+        settings.margin,
+      );
+      if (!filePath) throw new Error("File conversion failed.");
+      const fileName = `converted_${new Date().toISOString().replace(/[:.]/g, "-")}.pdf`;
+      await downloadPdf(filePath, fileName);
+      if (userStatus === "trial") decrementConversion();
+      setShowSocialMediaDialog(true);
+    } catch (error) {
+      console.error("Conversion error:", error);
+    } finally {
+      setIsConvertingFiles(false);
     }
   };
   // Adding file----------

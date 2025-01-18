@@ -177,9 +177,9 @@ export default function Desktop() {
             conversion at its finest.
           </p>
         </div>
-        <div className="mt-5 flex flex-col">
+        <div className="mt-5 flex flex-col gap-3">
           <h2 className="mb-3 text-base font-semibold lg:mb-0 lg:text-lg">
-            Helpful Links for Desktop App
+            Helpful Links for Desktop App:
           </h2>
           <Link
             href={"/help"}
