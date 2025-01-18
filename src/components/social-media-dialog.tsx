@@ -50,7 +50,7 @@ export default function SocialMediaDialog({
             can access it from there or open it directly now.
           </AlertDialogDescription>
         </AlertDialogHeader>
-        <div className="mt-1 flex flex-wrap items-center justify-center gap-3 text-center sm:items-start sm:justify-start sm:text-left">
+        <div className="mt-1 flex flex-wrap items-center justify-start gap-3">
           <p className="text-base font-semibold">
             Enjoying this tool? Share it with your friends and colleagues to
             support us!
