@@ -58,25 +58,25 @@ export default function SocialMediaDialog({
           <p className="text-sm">
             Click below to share it on your favorite platform:
           </p>
-          <div className="my-3 flex gap-4">
+          <div className="my-3 flex flex-wrap gap-5">
             <FacebookShareButton url={shareUrl} hashtag={shareMessage}>
-              <FacebookIcon size={32} round />
+              <FacebookIcon size={40} round />
             </FacebookShareButton>
             <TwitterShareButton url={shareUrl} title={shareMessage}>
-              <XIcon size={32} round />
+              <XIcon size={40} round />
             </TwitterShareButton>
             <LinkedinShareButton url={shareUrl} summary={shareMessage}>
-              <LinkedinIcon size={32} round />
+              <LinkedinIcon size={40} round />
             </LinkedinShareButton>
             <WhatsappShareButton
               url={shareUrl}
               title={shareMessage}
               separator=":: "
             >
-              <WhatsappIcon size={32} round />
+              <WhatsappIcon size={40} round />
             </WhatsappShareButton>
             <PinterestShareButton url={shareUrl} media={shareMedia}>
-              <PinterestIcon size={32} round />
+              <PinterestIcon size={40} round />
             </PinterestShareButton>
           </div>
         </div>
