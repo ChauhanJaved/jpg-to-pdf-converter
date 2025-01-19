@@ -20,12 +20,8 @@ import HeroSortableImageCard from "@/components/hero-sortable-image-card";
 
 interface HeroSortableImageListProps {
   disabled: boolean;
-  isPreviewVisible: boolean;
 }
-const HeroSortableImageList = ({
-  disabled,
-  isPreviewVisible,
-}: HeroSortableImageListProps) => {
+const HeroSortableImageList = ({ disabled }: HeroSortableImageListProps) => {
   const { fileList, setFileList } = useFileContext();
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -53,11 +49,7 @@ const HeroSortableImageList = ({
     >
       <SortableContext items={fileList} disabled={disabled}>
         {fileList.map((fileObj) => (
-          <HeroSortableImageCard
-            key={fileObj.id}
-            isPreviewVisible={isPreviewVisible}
-            fileObject={fileObj}
-          />
+          <HeroSortableImageCard key={fileObj.id} fileObject={fileObj} />
         ))}
       </SortableContext>
     </DndContext>

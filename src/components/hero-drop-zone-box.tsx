@@ -10,13 +10,11 @@ import { useToast } from "@/hooks/use-toast";
 interface HeroDropZoneBoxProps {
   isDisabled: boolean;
   setIsLoadingFiles: (isDisabled: boolean) => void;
-  isPreviewVisible: boolean;
 }
 
 export default function HeroDropZoneBox({
   isDisabled = false,
   setIsLoadingFiles,
-  isPreviewVisible,
 }: HeroDropZoneBoxProps) {
   //User message----------
   const { toast } = useToast();
@@ -146,10 +144,7 @@ export default function HeroDropZoneBox({
       >
         <input {...getInputProps()} />
         {fileList.length > 0 ? (
-          <HeroSortableImageList
-            disabled={isDisabled}
-            isPreviewVisible={isPreviewVisible}
-          />
+          <HeroSortableImageList disabled={isDisabled} />
         ) : (
           <div className="flex flex-col items-start justify-start gap-1 text-left">
             <div className="flex flex-col items-center gap-1">

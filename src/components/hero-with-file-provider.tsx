@@ -22,10 +22,10 @@ import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 
 const HeroWithFileProvider = () => {
+  const { settings, updateSettings } = useSettings();
   //Preview On/off----------
-  const [isPreviewVisible, setIsPreviewVisible] = useState<boolean>(true);
-  const togglePreview = () => {
-    setIsPreviewVisible((prevState) => !prevState);
+  const togglePreview = (value: boolean) => {
+    updateSettings({ imagePreview: value });
   };
   //User status
   const { userStatus, conversionCount, decrementConversion } = useUser();
@@ -41,7 +41,6 @@ const HeroWithFileProvider = () => {
   };
   //Conversion--------
   const [isConvertingFiles, setIsConvertingFiles] = useState(false);
-  const { settings } = useSettings();
   const handleConversion = async () => {
     if (userStatus === "trial" && conversionCount <= 0) {
       setShowLicenseDialog(true);
@@ -127,8 +126,8 @@ const HeroWithFileProvider = () => {
               <Checkbox
                 id="preview"
                 className="mr-1"
-                checked={isPreviewVisible}
-                onCheckedChange={togglePreview}
+                checked={settings.imagePreview}
+                onCheckedChange={(checked) => togglePreview(!!checked)}
               />
               <Label htmlFor="preview" className="cursor-pointer">
                 File Preview
@@ -139,7 +138,6 @@ const HeroWithFileProvider = () => {
         <HeroDropZoneBox
           isDisabled={isConvertingFiles || isLoadingFiles}
           setIsLoadingFiles={setIsLoadingFiles}
-          isPreviewVisible={isPreviewVisible}
         />
       </div>
       <LicenseDialog

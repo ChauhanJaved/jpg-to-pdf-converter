@@ -9,6 +9,7 @@ import { CSS } from "@dnd-kit/utilities";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useFileContext } from "@/context/file-context";
+import { useSettings } from "@/context/settings-context";
 
 interface FileObject {
   file: File;
@@ -24,12 +25,11 @@ function formatFileSize(size: number): string {
 }
 interface HeroSortableImageCardProps {
   fileObject: FileObject;
-  isPreviewVisible: boolean;
 }
 const HeroSortableImageCard = React.memo(function SortableImageCard({
   fileObject,
-  isPreviewVisible,
 }: HeroSortableImageCardProps) {
+  const { settings } = useSettings();
   const { removeFile } = useFileContext();
   const { id, file } = fileObject;
 
@@ -95,7 +95,7 @@ const HeroSortableImageCard = React.memo(function SortableImageCard({
         </div>
 
         {/* Box-2---------- */}
-        {isPreviewVisible && (
+        {settings.imagePreview && (
           <div className="relative mt-2 flex h-[250px] w-[250px] items-center justify-center overflow-hidden border-t bg-secondary">
             {imageUrl ? (
               <img
@@ -109,7 +109,7 @@ const HeroSortableImageCard = React.memo(function SortableImageCard({
           </div>
         )}
         <div
-          className={`${!isPreviewVisible && "mt-2"} flex h-[75px] w-[250px] items-center overflow-hidden border-t p-2`}
+          className={`${!settings.imagePreview && "mt-2"} flex h-[75px] w-[250px] items-center overflow-hidden border-t p-2`}
         >
           <Badge variant={"secondary"}>{index + 1}</Badge>
           <div className="ml-2 flex flex-col items-start gap-1 text-left">

@@ -31,6 +31,7 @@ interface UserSettings {
   pageSize: PageSizeEnum;
   margin: MarginEnum;
   mergeAllImages: boolean;
+  imagePreview: boolean;
 }
 
 // Context interface
@@ -53,6 +54,7 @@ const defaultSettings: UserSettings = {
   pageSize: PageSizeEnum.A4,
   margin: MarginEnum.Small,
   mergeAllImages: true,
+  imagePreview: true,
 };
 
 // Create context
