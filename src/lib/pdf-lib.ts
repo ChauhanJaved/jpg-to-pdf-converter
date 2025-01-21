@@ -1,4 +1,5 @@
 import { PDFDocument } from "pdf-lib";
+import imageCompression from "browser-image-compression";
 
 export interface FileObject {
   file: File;
@@ -28,12 +29,22 @@ export const handleConvertToPdf = async (
   pageOrientation: PageOrientation = "portrait",
   pageSize: PageSize = "fit",
   margin: Margin = "none",
+  imageQuality: number = 70,
 ): Promise<string> => {
   // Create a new PDF document
   const pdfDoc = await PDFDocument.create();
-
   for (const file of fileList) {
-    const imageBytes = await file.file.arrayBuffer();
+    let imageBytes: ArrayBuffer;
+    if (imageQuality < 100) {
+      const compressedFile = await imageCompression(file.file, {
+        initialQuality: imageQuality / 100, // Set user-defined quality
+        useWebWorker: true, // Enable web workers for better performance
+      });
+      imageBytes = await compressedFile.arrayBuffer();
+    } else {
+      imageBytes = await file.file.arrayBuffer();
+    }
+
     const image = await pdfDoc.embedJpg(imageBytes);
 
     // Get the dimensions of the image

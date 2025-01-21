@@ -31,6 +31,8 @@ import {
   PageSizeEnum,
 } from "@/context/settings-context";
 import { Checkbox } from "@/components/ui/check-box";
+import { Slider } from "./ui/slider";
+import { Badge } from "./ui/badge";
 
 function capitalizeFirstLetter(word: string) {
   return word.charAt(0).toUpperCase() + word.slice(1);
@@ -38,6 +40,9 @@ function capitalizeFirstLetter(word: string) {
 
 export default function HeroSettingsSheet() {
   const { settings, updateSettings } = useSettings();
+  const handleSliderChange = (value: number[]) => {
+    updateSettings({ imageQuality: value[0] });
+  };
   // Handlers
   const handleOrientationChange = (value: PageOrientationEnum) => {
     updateSettings({ orientation: value });
@@ -143,6 +148,21 @@ export default function HeroSettingsSheet() {
                   </SelectGroup>
                 </SelectContent>
               </Select>
+            </div>
+            <div className="mt-5 flex flex-col space-y-2">
+              <Label htmlFor="size" className="mb-1">
+                Image Quality
+              </Label>
+              <div className="flex items-center justify-center gap-3">
+                <Slider
+                  onValueChange={handleSliderChange} // Update slider value
+                  defaultValue={[settings.imageQuality]}
+                  max={100}
+                  step={1}
+                  className="w-[150px]"
+                />
+                <Badge variant={"secondary"}>{settings.imageQuality}%</Badge>
+              </div>
             </div>
             <div className="mt-7 flex items-center">
               <Checkbox

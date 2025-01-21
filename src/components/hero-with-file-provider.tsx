@@ -53,6 +53,7 @@ const HeroWithFileProvider = () => {
         settings.orientation,
         settings.pageSize,
         settings.margin,
+        settings.imageQuality,
       );
       if (!filePath) throw new Error("File conversion failed.");
       const fileName = `converted_${new Date().toISOString().replace(/[:.]/g, "-")}.pdf`;

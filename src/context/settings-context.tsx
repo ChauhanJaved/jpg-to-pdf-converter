@@ -32,6 +32,7 @@ interface UserSettings {
   margin: MarginEnum;
   mergeAllImages: boolean;
   imagePreview: boolean;
+  imageQuality: number;
 }
 
 // Context interface
@@ -55,6 +56,7 @@ const defaultSettings: UserSettings = {
   margin: MarginEnum.Small,
   mergeAllImages: true,
   imagePreview: true,
+  imageQuality: 70,
 };
 
 // Create context
