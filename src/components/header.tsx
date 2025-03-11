@@ -83,7 +83,7 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
         >
           {/* Box-1 for company name/logo */}
           <Link
-            className={`${raleway.className} flex flex-col items-start justify-center border-l-[5px] border-l-primary py-1 pl-3 text-sm font-extrabold leading-tight tracking-wider xs:text-lg`}
+            className={`${raleway.className} text-blue-dark-imperial flex flex-col items-start justify-center border-l-[5px] border-l-primary py-1 pl-3 text-sm font-extrabold leading-tight tracking-wider dark:text-foreground xs:text-base`}
             href={`/#${HeaderNavItems.Home}`}
             onClick={() => setActiveSection(HeaderNavItems.Home)}
             aria-label="Go to home page"

@@ -3,7 +3,7 @@
 import React, { createContext, useContext, useState, ReactNode } from "react";
 
 // Define the type for a file object
-interface FileObject {
+export interface FileObject {
   file: File;
   id: string;
 }

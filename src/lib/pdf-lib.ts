@@ -1,14 +1,13 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { PDFDocument } from "pdf-lib";
+import {
+  UserSettings,
+  PageOrientationEnum,
+  PageSizeEnum,
+} from "@/context/settings-context";
+
 import imageCompression from "browser-image-compression";
-
-export interface FileObject {
-  file: File;
-  id: string;
-}
-
-type PageOrientation = "portrait" | "landscape";
-type PageSize = "a4" | "us-letter" | "fit";
-type Margin = "none" | "small" | "large";
+import { FileObject } from "@/context/file-context";
 
 // Define standard page sizes
 const pageSizes = {
@@ -24,20 +23,17 @@ export const marginSizes = {
 };
 
 // Convert the JPG files to PDF with customization options
+
 export const handleConvertToPdf = async (
   fileList: FileObject[],
-  pageOrientation: PageOrientation = "portrait",
-  pageSize: PageSize = "fit",
-  margin: Margin = "none",
-  imageQuality: number = 70,
+  settings: UserSettings,
 ): Promise<string> => {
-  // Create a new PDF document
   const pdfDoc = await PDFDocument.create();
   for (const file of fileList) {
     let imageBytes: ArrayBuffer;
-    if (imageQuality < 100) {
+    if (settings.imageQuality < 100) {
       const compressedFile = await imageCompression(file.file, {
-        initialQuality: imageQuality / 100, // Set user-defined quality
+        initialQuality: settings.imageQuality / 100, // Set user-defined quality
         useWebWorker: true, // Enable web workers for better performance
       });
       imageBytes = await compressedFile.arrayBuffer();
@@ -53,22 +49,22 @@ export const handleConvertToPdf = async (
 
     // Define the page dimensions based on the chosen size
     let pageWidth, pageHeight;
-    if (pageSize === "fit") {
+    if (settings.pageSize === PageSizeEnum.Fit) {
       pageWidth = imageWidth;
       pageHeight = imageHeight;
     } else {
-      const size = pageSizes[pageSize];
+      const size = pageSizes[settings.pageSize];
       pageWidth = size.width;
       pageHeight = size.height;
     }
 
     // Swap dimensions for landscape orientation
-    if (pageOrientation === "landscape") {
+    if (settings.orientation === PageOrientationEnum.landscape) {
       [pageWidth, pageHeight] = [pageHeight, pageWidth];
     }
 
     // Calculate margin
-    const marginSize = marginSizes[margin];
+    const marginSize = marginSizes[settings.margin];
     const availableWidth = pageWidth - marginSize * 2;
     const availableHeight = pageHeight - marginSize * 2;
 

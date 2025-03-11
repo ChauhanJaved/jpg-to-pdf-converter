@@ -48,13 +48,7 @@ const HeroWithFileProvider = () => {
     }
     setIsConvertingFiles(true);
     try {
-      const filePath = await handleConvertToPdf(
-        fileList,
-        settings.orientation,
-        settings.pageSize,
-        settings.margin,
-        settings.imageQuality,
-      );
+      const filePath = await handleConvertToPdf(fileList, settings);
       if (!filePath) throw new Error("File conversion failed.");
       const fileName = `converted_${new Date().toISOString().replace(/[:.]/g, "-")}.pdf`;
       await downloadPdf(filePath, fileName);

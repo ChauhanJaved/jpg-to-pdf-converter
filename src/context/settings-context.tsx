@@ -25,8 +25,7 @@ export enum MarginEnum {
   Large = "large",
 }
 
-// Define the shape of settings
-interface UserSettings {
+export interface UserSettings {
   orientation: PageOrientationEnum;
   pageSize: PageSizeEnum;
   margin: MarginEnum;
