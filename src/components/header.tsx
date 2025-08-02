@@ -3,7 +3,7 @@
 //External  imports
 import React, { Fragment, useEffect, useState } from "react";
 import Link from "next/link";
-import { EllipsisVertical, Sun, Moon, User, UserCheck } from "lucide-react";
+import { EllipsisVertical, Sun, Moon } from "lucide-react";
 import { useTheme } from "next-themes";
 
 //Internal imports
@@ -18,23 +18,15 @@ import {
 } from "@/components/ui/menubar";
 import { capitalizeWords } from "@/lib/utils";
 import { raleway } from "@/lib/font";
-import { HeaderNavItems, headerNavItems, hrefValue } from "@/data/website-data";
-import { useUser } from "@/context/user-context";
+import { HeaderNavItems, headerNavItems } from "@/data/website-data";
 import { useActiveSection } from "@/context/active-section-context";
-import LicenseRegisterDialog from "@/components/license-register-dialog";
-import { useToast } from "@/hooks/use-toast";
 
 interface HeaderProps {
   defaultActiveSection?: string;
 }
 export default function Header({ defaultActiveSection = "" }: HeaderProps) {
   const { activeSection, setActiveSection } = useActiveSection();
-  const { userStatus } = useUser();
-  const [showDialog, setShowDialog] = useState(false);
-  const handleRegisterClick = () => setShowDialog(true);
   const { setTheme, systemTheme, theme } = useTheme();
-
-  const { toast } = useToast();
 
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
@@ -47,24 +39,13 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
       if (headerNavItems.includes(section)) {
         setActiveSection(section);
       }
-    } else {
-      if (
-        pathName === `/${HeaderNavItems.Desktop.toLocaleLowerCase()}.html` ||
-        pathName === `/${HeaderNavItems.Desktop.toLocaleLowerCase()}`
-      ) {
-        setActiveSection(HeaderNavItems.Desktop);
-      } else if (pathName === `/`) {
-        setActiveSection(HeaderNavItems.Home);
-      }
+    } else if (pathName === `/`) {
+      setActiveSection(HeaderNavItems.Home);
     }
   }, [defaultActiveSection, setActiveSection]);
 
   function getManuItem(item: string) {
-    if (item === HeaderNavItems.Desktop) {
-      return `${capitalizeWords(HeaderNavItems.Desktop)} App`;
-    } else {
-      return capitalizeWords(item);
-    }
+    return capitalizeWords(item);
   }
   function getCurrentTheme() {
     if (theme === "system") {
@@ -78,21 +59,23 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
     <Fragment>
       <header>
         <nav
-          className="fixed left-0 right-0 top-0 z-40 flex h-20 w-full items-center justify-between border-b bg-background px-3 shadow-sm"
+          className={`bg-background fixed top-0 right-0 left-0 z-40 flex h-20 w-full items-center justify-between border-b px-3 shadow-sm`}
           aria-label="Main navigation"
         >
           {/* Box-1 for company name/logo */}
           <Link
-            className={`${raleway.className} text-blue-dark-imperial flex flex-col items-start justify-center border-l-[5px] border-l-primary py-1 pl-3 text-sm font-extrabold leading-tight tracking-wider dark:text-foreground xs:text-base`}
+            className={`${raleway.className} text-blue-dark-imperial border-l-primary dark:text-foreground flex flex-col items-start justify-center border-l-[5px] py-1 pl-3 text-base leading-tight font-extrabold tracking-wider`}
             href={`/#${HeaderNavItems.Home}`}
-            onClick={() => setActiveSection(HeaderNavItems.Home)}
+            onClick={() => {
+              setActiveSection(HeaderNavItems.Home);
+            }}
             aria-label="Go to home page"
           >
             <p>FrameworkTeam</p>
             <p>Softwares</p>
           </Link>
           {/* Box-2 for menu */}
-          <div className="flex items-center justify-center">
+          <div className="text-blue-dark-imperial dark:text-foreground flex items-center justify-center">
             {/* Desktop menu */}
             <ul
               role="menubar"
@@ -106,8 +89,8 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
                     onClick={() => {
                       setActiveSection(item);
                     }}
-                    className={`relative px-2 py-2 text-base font-semibold before:absolute before:bottom-0 before:left-0 before:h-0.5 before:w-full before:scale-0 before:bg-primary before:transition-transform before:duration-300 hover:before:scale-100 ${activeSection === item && "before:scale-100"}`}
-                    href={hrefValue(item)}
+                    className={`before:bg-primary relative px-2 py-2 text-base font-semibold before:absolute before:bottom-0 before:left-0 before:h-0.5 before:w-full before:scale-0 before:transition-transform before:duration-300 hover:before:scale-100 ${activeSection === item && "before:scale-100"}`}
+                    href={`/#${item}`}
                   >
                     {getManuItem(item)}
                   </Link>
@@ -115,43 +98,6 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
               ))}
             </ul>
             <Menubar>
-              {/* User status---------------------- */}
-              {userStatus === "paid" ? (
-                <MenubarMenu>
-                  <MenubarTrigger
-                    aria-label="Check license"
-                    onClick={() => {
-                      toast({
-                        title: "You are a Licensed User",
-                        description:
-                          "Thank you for purchasing a license! You have full access to all features.",
-                      });
-                    }}
-                  >
-                    <UserCheck />
-                  </MenubarTrigger>
-                </MenubarMenu>
-              ) : (
-                // Trial User
-                <MenubarMenu>
-                  <MenubarTrigger aria-label="Trial user menu">
-                    <User />
-                  </MenubarTrigger>
-                  <MenubarContent>
-                    <Link
-                      href={`/#${HeaderNavItems.Pricing}`}
-                      onClick={() => setActiveSection(HeaderNavItems.Pricing)}
-                    >
-                      <MenubarItem>Buy License</MenubarItem>
-                    </Link>
-
-                    <MenubarItem onClick={handleRegisterClick}>
-                      Register License...
-                    </MenubarItem>
-                  </MenubarContent>
-                </MenubarMenu>
-              )}
-
               {/* Theam toggle---------------------- */}
               <MenubarMenu>
                 {mounted ? (
@@ -201,7 +147,7 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
                       onClick={() => {
                         setActiveSection(item);
                       }}
-                      href={hrefValue(item)}
+                      href={`/#${item}`}
                     >
                       <MenubarItem>{getManuItem(item)}</MenubarItem>
                     </Link>
@@ -212,11 +158,6 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
           </div>
         </nav>
       </header>
-      {/* License Registration Modal */}
-      <LicenseRegisterDialog
-        showRegisterLicenseDialog={showDialog}
-        setShowRegisterLicenseDialog={setShowDialog}
-      ></LicenseRegisterDialog>
     </Fragment>
   );
 }

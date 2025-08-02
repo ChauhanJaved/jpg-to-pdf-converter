@@ -7,7 +7,6 @@ import ScrollTop from "@/components/scroll-top";
 import { ThemeProvider } from "@/components/theme-provider";
 import { roboto } from "@/lib/font";
 import Header from "@/components/header";
-import { UserProvider } from "@/context/user-context";
 import { ActiveSectionProvider } from "@/context/active-section-context";
 
 export default function RootLayout({
@@ -24,15 +23,13 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <UserProvider>
-            <ActiveSectionProvider>
-              <ScrollTop />
-              <Header />
-              {children}
-              <Footer companyName={companyName} copyrightYear={copyrightYear} />
-              <Toaster />
-            </ActiveSectionProvider>
-          </UserProvider>
+          <ActiveSectionProvider>
+            <ScrollTop />
+            <Header />
+            {children}
+            <Footer companyName={companyName} copyrightYear={copyrightYear} />
+            <Toaster />
+          </ActiveSectionProvider>
         </ThemeProvider>
       </body>
     </html>

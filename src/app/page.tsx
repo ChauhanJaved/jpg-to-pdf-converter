@@ -2,16 +2,21 @@
 import { Metadata } from "next";
 //Internal Imports
 import Contact from "@/components/contact";
-import Hero from "@/components/hero";
 import Pricing from "@/components/pricing";
-import { metadataIndex } from "@/data/website-data";
+import { portfolioItems } from "@/data/portfolio-items";
+import Desktop from "@/components/desktop";
+import { ProductIDs } from "@/data/website-data";
 
-export const metadata: Metadata = metadataIndex;
+const portfolioItem = portfolioItems.find(
+  (item) => item.id === ProductIDs.JPGtoPDFConverterDesktop,
+);
+
+export const metadata: Metadata = portfolioItem?.metaData ?? {};
 export default function Home() {
   return (
     <>
       <main id="main">
-        <Hero />
+        <Desktop />
         <Pricing />
         <Contact />
       </main>
