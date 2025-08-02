@@ -42,9 +42,9 @@ export default function Page() {
           </BreadcrumbList>
         </Breadcrumb>
       </div>
-      <section className="container px-5 lg:px-10 xl:max-w-screen-xl">
+      <section className="container mx-auto px-5 lg:px-10 xl:max-w-screen-xl">
         <SectionHeader
-          className="mb-5 mt-10 lg:mb-10 lg:mt-16"
+          className="mt-10 mb-5 lg:mt-16 lg:mb-10"
           caption="Batch Convert JPG to PDF"
           element="h1"
           desc="Windows 11/10/8/7 | Fully Functional - No Limits - 15 Days Free | Safe & Secure Download"
@@ -91,7 +91,7 @@ export default function Page() {
             <h2 className="mt-1 font-semibold">
               Step-by-Step Guide to Convert JPG to PDF in Batch
             </h2>
-            <div className="ml-3 mt-1">
+            <div className="mt-1 ml-3">
               <h3 className="font-semibold">
                 1. Download and Install the Software
               </h3>

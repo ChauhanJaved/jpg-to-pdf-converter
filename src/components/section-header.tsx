@@ -1,4 +1,5 @@
 //External imports
+import { poppins } from "@/lib/font";
 import React from "react";
 //Internal imports
 
@@ -15,16 +16,9 @@ export default function SectionHeader(props: PropsSectionHeader) {
       {React.createElement(
         Element,
         {
-          className: `${Element === "h1" ? "text-4xl font-bold tracking-tight lg:text-5xl" : "text-3xl font-semibold tracking-tight"} flex flex-col items-center text-center`,
+          className: `${Element === "h1" ? "text-4xl font-bold tracking-tight lg:text-5xl" : "text-3xl font-semibold tracking-tight"} flex flex-col items-center text-center  ${poppins.className}`,
         },
-        <>
-          {props.caption}
-
-          <span className="relative w-[120px] pt-[15px] text-center">
-            <span className="absolute bottom-[1px] block h-[1px] w-[120px] bg-muted-foreground"></span>
-            <span className="absolute bottom-0 left-[calc(50%-20px)] block h-[3px] w-[40px] bg-primary"></span>
-          </span>
-        </>,
+        <>{props.caption[0].toUpperCase() + props.caption.slice(1)}</>,
       )}
       {props.desc && (
         <p className={`mt-3 text-center text-lg font-medium lg:mx-40`}>

@@ -19,7 +19,7 @@ export default function Contact() {
   return (
     <section
       id={HeaderNavItems.Contact}
-      className="container scroll-m-20 px-5 pt-10 lg:px-10 lg:pt-20 xl:max-w-screen-xl"
+      className="container mx-auto scroll-m-20 px-5 pt-10 lg:px-10 lg:pt-20 xl:max-w-screen-xl"
     >
       <SectionHeader
         caption="Contact Us"

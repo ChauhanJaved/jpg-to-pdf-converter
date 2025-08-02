@@ -42,9 +42,9 @@ export default function Page() {
           </BreadcrumbList>
         </Breadcrumb>
       </div>
-      <section className="container px-5 lg:px-10 xl:max-w-screen-xl">
+      <section className="container mx-auto px-5 lg:px-10 xl:max-w-screen-xl">
         <SectionHeader
-          className="mb-5 mt-10 lg:mb-10 lg:mt-16"
+          className="mt-10 mb-5 lg:mt-16 lg:mb-10"
           caption="Software User Guide"
           element="h1"
           desc="Windows 11/10/8/7 | JPG to PDF Converter Version 1.5 | Updated On Jan 15, 2023"

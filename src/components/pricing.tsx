@@ -9,7 +9,7 @@ export default function Pricing() {
   return (
     <section
       id={HeaderNavItems.Pricing}
-      className="container scroll-m-20 px-5 pt-10 lg:px-10 lg:pt-20 xl:max-w-screen-xl"
+      className="container mx-auto scroll-m-20 px-5 pt-10 lg:px-10 lg:pt-20 xl:max-w-screen-xl"
     >
       <div className="flex flex-col items-center">
         <SectionHeader
