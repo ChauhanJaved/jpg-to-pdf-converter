@@ -1,10 +1,11 @@
 "use client";
 //External Imports
+import Image from "next/image";
 import { CircleCheck, Download, SquareArrowOutUpRight } from "lucide-react";
 import Link from "next/link";
 //Internal Imports
 import SectionHeader from "@/components/section-header";
-import { ProductIDs } from "@/data/website-data";
+import { HeaderNavItems, ProductIDs } from "@/data/website-data";
 import { Button } from "@/components/ui/button";
 import { useActiveSection } from "@/context/active-section-context";
 import { portfolioItems } from "@/data/portfolio-items";
@@ -15,13 +16,21 @@ const portfolioItem = portfolioItems.find(
 const portfolioItemWeb = portfolioItems.find(
   (item) => item.id === ProductIDs.JPGtoPDFConverterWeb,
 );
-export default function Desktop() {
+export default function Hero() {
   const { setActiveSection } = useActiveSection();
   return (
-    <main id="main">
-      {portfolioItem && (
-        <>
-          <div className="container mx-auto flex flex-col items-center justify-center px-5 pt-28 md:pt-32 xl:max-w-screen-xl">
+    <section id={HeaderNavItems.Home} className="relative flex w-full flex-col">
+      {/* Hero background image */}
+      <Image
+        className="object-cover dark:hidden"
+        src={"/frameworkteam/hero-bg"}
+        fill
+        alt="hero image"
+        priority
+      />
+      <div className="z-0 container m-auto px-5 pt-24 pb-12 md:px-10 md:pt-32 xl:max-w-screen-xl">
+        {portfolioItem && (
+          <>
             <SectionHeader
               caption={portfolioItem.title}
               desc={portfolioItem.subtitle}
@@ -66,7 +75,7 @@ export default function Desktop() {
                           <CircleCheck />
                         </div>
                         <div className="flex flex-grow flex-col pl-3 text-left">
-                          <h2 className={`text-base lg:text-lg`}>{item}</h2>
+                          <h2>{item}</h2>
                         </div>
                       </div>
                     </div>
@@ -74,60 +83,50 @@ export default function Desktop() {
                 </div>
               </div>
             </div>
+
             {portfolioItem.description}
-            <div className="mt-5 flex w-full flex-col gap-3">
-              <strong className="mb-3 text-base lg:mb-0">
-                Helpful Links for Desktop App:
+            <div className="mt-10 flex w-full flex-col gap-3">
+              <strong className="text-base">
+                Helpful Links for Desktop App
               </strong>
-              <Link
-                href={"/help"}
-                className="text-base lg:text-lg"
-                onClick={() => setActiveSection("")}
-              >
-                <Button variant={"link"} className="h-auto lg:px-0 lg:py-0">
+              <Link href={"/help"} onClick={() => setActiveSection("")}>
+                <Button variant={"link"} className="h-auto px-0 py-0">
                   JPG to PDF Converter software user guide
                 </Button>
               </Link>
               <Link
                 href={"/how-batch-convert-jpg-pdf"}
-                className="text-base lg:text-lg"
                 onClick={() => setActiveSection("")}
               >
-                <Button variant={"link"} className="h-auto lg:px-0 lg:py-0">
+                <Button variant={"link"} className="h-auto px-0 py-0">
                   How to convert JPG to PDF in batch?
                 </Button>
               </Link>
               <Link
                 href={"/how-to-merge-jpg-to-pdf"}
-                className="text-base lg:text-lg"
                 onClick={() => setActiveSection("")}
               >
-                <Button variant={"link"} className="h-auto lg:px-0 lg:py-0">
+                <Button variant={"link"} className="h-auto px-0 py-0">
                   How to combine multiple JPG to PDF in Windows?
                 </Button>
               </Link>
               <Link
                 href={"how-to-export-scanned-jpg-to-pdf"}
-                className="text-base lg:text-lg"
                 onClick={() => setActiveSection("")}
               >
-                <Button variant={"link"} className="h-auto lg:px-0 lg:py-0">
+                <Button variant={"link"} className="h-auto px-0 py-0">
                   How do I change a scanned JPGs to a PDF file?
                 </Button>
               </Link>
-              <Link
-                href={"/jpg-vs-pdf"}
-                className="text-base lg:text-lg"
-                onClick={() => setActiveSection("")}
-              >
-                <Button variant={"link"} className="h-auto lg:px-0 lg:py-0">
+              <Link href={"/jpg-vs-pdf"} onClick={() => setActiveSection("")}>
+                <Button variant={"link"} className="h-auto px-0 py-0">
                   Which file format should you use JPG or PDF?
                 </Button>
               </Link>
             </div>
-          </div>
-        </>
-      )}
-    </main>
+          </>
+        )}
+      </div>
+    </section>
   );
 }

@@ -4,7 +4,7 @@ import { Metadata } from "next";
 import Contact from "@/components/contact";
 import Pricing from "@/components/pricing";
 import { portfolioItems } from "@/data/portfolio-items";
-import Desktop from "@/components/desktop";
+import Hero from "@/components/hero";
 import { ProductIDs } from "@/data/website-data";
 
 const portfolioItem = portfolioItems.find(
@@ -16,7 +16,7 @@ export default function Home() {
   return (
     <>
       <main id="main">
-        <Desktop />
+        <Hero />
         <Pricing />
         <Contact />
       </main>

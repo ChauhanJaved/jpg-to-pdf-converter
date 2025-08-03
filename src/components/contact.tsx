@@ -28,7 +28,7 @@ export default function Contact() {
       />
       <div className="mt-10 flex flex-col items-center">
         <div className="m-2 flex flex-col items-center justify-center rounded border p-5 shadow">
-          <p className="text-lg font-medium">{email}</p>
+          <p className="font-medium">{email}</p>
           <Button
             className="mt-2"
             onClick={handleCopyEmail}
@@ -39,7 +39,7 @@ export default function Contact() {
             Copy Email
           </Button>
         </div>
-        <p className={`mt-5 text-lg`}>
+        <p className={`mt-5`}>
           Please feel free to contact us if you have encountered a problem with
           our product, you have a question about our product or purchase related
           question. If you are a licensed user, please include your order

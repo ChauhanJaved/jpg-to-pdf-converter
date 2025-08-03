@@ -1,5 +1,4 @@
 "use client";
-
 //External  imports
 import React, { Fragment, useEffect, useState } from "react";
 import Link from "next/link";
@@ -20,13 +19,19 @@ import { capitalizeWords } from "@/lib/utils";
 import { raleway } from "@/lib/font";
 import { HeaderNavItems, headerNavItems } from "@/data/website-data";
 import { useActiveSection } from "@/context/active-section-context";
+import { usePageOnTop } from "@/context/page-on-top-context";
 
 interface HeaderProps {
   defaultActiveSection?: string;
 }
 export default function Header({ defaultActiveSection = "" }: HeaderProps) {
   const { activeSection, setActiveSection } = useActiveSection();
+  const { pageOnTop } = usePageOnTop();
   const { setTheme, systemTheme, theme } = useTheme();
+
+  function getManuItem(item: string) {
+    return capitalizeWords(item);
+  }
 
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
@@ -39,14 +44,14 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
       if (headerNavItems.includes(section)) {
         setActiveSection(section);
       }
-    } else if (pathName === `/`) {
-      setActiveSection(HeaderNavItems.Home);
+    } else {
+      if (pathName === "/") {
+        setActiveSection(HeaderNavItems.Home);
+      } else {
+        setActiveSection("");
+      }
     }
   }, [defaultActiveSection, setActiveSection]);
-
-  function getManuItem(item: string) {
-    return capitalizeWords(item);
-  }
   function getCurrentTheme() {
     if (theme === "system") {
       return systemTheme;
@@ -54,28 +59,29 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
       return theme;
     }
   }
-
   return (
     <Fragment>
       <header>
         <nav
-          className={`bg-background fixed top-0 right-0 left-0 z-40 flex h-20 w-full items-center justify-between border-b px-3 shadow-sm`}
+          className={`${activeSection === HeaderNavItems.Home && pageOnTop ? "bg-transparent" : "bg-background border-b shadow-sm"} fixed top-0 right-0 left-0 z-40 flex h-20 w-full items-center justify-between px-3`}
           aria-label="Main navigation"
         >
           {/* Box-1 for company name/logo */}
           <Link
-            className={`${raleway.className} text-blue-dark-imperial border-l-primary dark:text-foreground flex flex-col items-start justify-center border-l-[5px] py-1 pl-3 text-base leading-tight font-extrabold tracking-wider`}
+            className={`${raleway.className} border-l-primary flex flex-col items-start justify-center border-l-[5px] py-1 pl-3 text-base leading-tight font-extrabold tracking-wider`}
             href={`/#${HeaderNavItems.Home}`}
             onClick={() => {
               setActiveSection(HeaderNavItems.Home);
             }}
             aria-label="Go to home page"
           >
-            <p>FrameworkTeam</p>
-            <p>Softwares</p>
+            <span className="flex flex-col">
+              <span>FrameworkTeam</span>
+              <span>Softwares</span>
+            </span>
           </Link>
           {/* Box-2 for menu */}
-          <div className="text-blue-dark-imperial dark:text-foreground flex items-center justify-center">
+          <div className="flex items-center justify-center">
             {/* Desktop menu */}
             <ul
               role="menubar"
@@ -142,15 +148,17 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
                 </MenubarTrigger>
                 <MenubarContent>
                   {headerNavItems.map((item) => (
-                    <Link
-                      key={item}
-                      onClick={() => {
-                        setActiveSection(item);
-                      }}
-                      href={`/#${item}`}
-                    >
-                      <MenubarItem>{getManuItem(item)}</MenubarItem>
-                    </Link>
+                    <MenubarItem key={item}>
+                      <Link
+                        key={item}
+                        onClick={() => {
+                          setActiveSection(item);
+                        }}
+                        href={`/#${item}`}
+                      >
+                        {getManuItem(item)}
+                      </Link>
+                    </MenubarItem>
                   ))}
                 </MenubarContent>
               </MenubarMenu>

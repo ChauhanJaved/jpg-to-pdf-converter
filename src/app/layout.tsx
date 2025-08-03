@@ -8,6 +8,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { roboto } from "@/lib/font";
 import Header from "@/components/header";
 import { ActiveSectionProvider } from "@/context/active-section-context";
+import { PageOnTopProvider } from "@/context/page-on-top-context";
 
 export default function RootLayout({
   children,
@@ -24,11 +25,13 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <ActiveSectionProvider>
-            <ScrollTop />
-            <Header />
-            {children}
-            <Footer companyName={companyName} copyrightYear={copyrightYear} />
-            <Toaster />
+            <PageOnTopProvider>
+              <ScrollTop />
+              <Header />
+              {children}
+              <Footer companyName={companyName} copyrightYear={copyrightYear} />
+              <Toaster />
+            </PageOnTopProvider>
           </ActiveSectionProvider>
         </ThemeProvider>
       </body>

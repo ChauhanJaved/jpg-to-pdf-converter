@@ -8,9 +8,11 @@ import { useActiveSection } from "@/context/active-section-context";
 //Internal imports
 import { Button } from "@/components/ui/button";
 import { HeaderNavItems } from "@/data/website-data";
+import { usePageOnTop } from "@/context/page-on-top-context";
 
 export default function ScrollTop() {
   const { setActiveSection } = useActiveSection();
+  const { setPageOnTop } = usePageOnTop();
   const [isVisible, setIsVisible] = useState(false);
   const observerRef = useRef<IntersectionObserver | null>(null);
 
@@ -19,13 +21,22 @@ export default function ScrollTop() {
     if (home) {
       setActiveSection(HeaderNavItems.Home);
     }
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: "instant" });
   };
 
   useEffect(() => {
     const handleIntersection = (entries: IntersectionObserverEntry[]) => {
       const entry = entries[0];
       setIsVisible(!entry.isIntersecting);
+      setPageOnTop(entry.isIntersecting);
+      if (entry.isIntersecting) {
+        const home = document.getElementById(HeaderNavItems.Home);
+        if (home) {
+          setActiveSection(HeaderNavItems.Home);
+        } else {
+          setActiveSection("");
+        }
+      }
     };
     observerRef.current = new IntersectionObserver(handleIntersection);
     const target = document.getElementById("page-top");
@@ -37,7 +48,7 @@ export default function ScrollTop() {
         observerRef.current.unobserve(target);
       }
     };
-  });
+  }, [setActiveSection, setPageOnTop]);
   return (
     <>
       <div id="page-top" style={{ position: "absolute", top: 0 }}></div>
@@ -45,7 +56,7 @@ export default function ScrollTop() {
       <Button
         size={"icon"}
         onClick={scrollToTop}
-        className={`${isVisible ? "visible opacity-100" : "invisible opacity-0"} fixed bottom-4 right-4 z-40`}
+        className={`${isVisible ? "visible opacity-100" : "invisible opacity-0"} fixed right-4 bottom-4 z-50`}
       >
         <ArrowUp />
       </Button>
