@@ -148,17 +148,15 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
                 </MenubarTrigger>
                 <MenubarContent>
                   {headerNavItems.map((item) => (
-                    <MenubarItem key={item}>
-                      <Link
-                        key={item}
-                        onClick={() => {
-                          setActiveSection(item);
-                        }}
-                        href={`/#${item}`}
-                      >
-                        {getManuItem(item)}
-                      </Link>
-                    </MenubarItem>
+                    <Link
+                      key={item}
+                      onClick={() => {
+                        setActiveSection(item);
+                      }}
+                      href={`/#${item}`}
+                    >
+                      <MenubarItem>{getManuItem(item)}</MenubarItem>
+                    </Link>
                   ))}
                 </MenubarContent>
               </MenubarMenu>

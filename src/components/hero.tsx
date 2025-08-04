@@ -35,29 +35,33 @@ export default function Hero() {
               caption={portfolioItem.title}
               desc={portfolioItem.subtitle}
             />
-            <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-              {portfolioItem.downloadLink && (
-                <a href={portfolioItem.downloadLink}>
-                  <Button className="py-5 text-base">
-                    <Download className="mr-2" />
-                    Download Now
-                  </Button>
-                </a>
-              )}
-            </div>
-            {portfolioItemWeb?.productWebsite && (
-              <div className="mt-3 text-center">
-                <Button variant={"link"}>
-                  <Link href={portfolioItemWeb.productWebsite} target="_blank">
-                    Try Our Online JPG to PDF Converter
-                  </Link>
-                </Button>
-              </div>
-            )}
 
-            <div className="mt-10 flex w-full flex-col justify-center md:flex-row">
+            <div className="mt-10 flex w-full flex-col items-center justify-center gap-3 rounded-md border p-10">
               {/* ----- Box-1 ----- */}
-
+              <div className="flex flex-wrap items-center justify-center gap-3">
+                {portfolioItem.downloadLink && (
+                  <a href={portfolioItem.downloadLink}>
+                    <Button className="py-5 text-base">
+                      <Download className="mr-2" />
+                      Download Now
+                    </Button>
+                  </a>
+                )}
+              </div>
+              {/* ----- Box-2 ----- */}
+              {portfolioItemWeb?.productWebsite && (
+                <div className="text-center">
+                  <Button variant={"link"}>
+                    <Link
+                      href={portfolioItemWeb.productWebsite}
+                      target="_blank"
+                    >
+                      Try Online JPG to PDF Converter
+                    </Link>
+                  </Button>
+                </div>
+              )}
+              {/* ----- Box-3 ----- */}
               <ProductImage
                 src={portfolioItem.src}
                 width={portfolioItem.width}
@@ -67,7 +71,7 @@ export default function Hero() {
               />
 
               {/* ----- Box-2 ----- */}
-              <div className="mt-5 flex flex-col gap-3 pt-2 text-center md:mt-0 md:ml-6 md:w-1/3">
+              {/* <div className="mt-5 flex flex-col gap-3 pt-2 text-center md:mt-0 md:ml-6 md:w-1/3">
                 {portfolioItem.features.map((item, index) => (
                   <div
                     key={index}
@@ -76,7 +80,7 @@ export default function Hero() {
                     <p>✔ {item}</p>
                   </div>
                 ))}
-              </div>
+              </div> */}
             </div>
 
             {portfolioItem.description}
