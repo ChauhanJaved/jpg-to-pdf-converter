@@ -67,21 +67,15 @@ export default function Hero() {
               />
 
               {/* ----- Box-2 ----- */}
-              <div className="mt-5 md:mt-0 md:ml-3 md:w-1/3">
-                <div className="flex flex-col text-center">
-                  {portfolioItem.features.map((item, index) => (
-                    <div key={index} className="mb-3 flex w-full flex-col">
-                      <div className="flex flex-row items-start">
-                        <div className="mt-1 size-6">
-                          <CircleCheck />
-                        </div>
-                        <div className="flex flex-grow flex-col pl-3 text-left">
-                          <h2>{item}</h2>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+              <div className="mt-5 flex flex-col gap-3 pt-2 text-center md:mt-0 md:ml-6 md:w-1/3">
+                {portfolioItem.features.map((item, index) => (
+                  <div
+                    key={index}
+                    className="flex w-full flex-col items-start text-left"
+                  >
+                    <p>✔ {item}</p>
+                  </div>
+                ))}
               </div>
             </div>
 
