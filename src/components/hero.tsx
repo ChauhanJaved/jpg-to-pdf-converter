@@ -44,15 +44,16 @@ export default function Hero() {
                   </Button>
                 </a>
               )}
-              {portfolioItemWeb?.productWebsite && (
-                <Link href={portfolioItemWeb.productWebsite} target="_blank">
-                  <Button className="py-5 text-base">
-                    <SquareArrowOutUpRight className="mr-2" />
-                    Try Online Converter
-                  </Button>
-                </Link>
-              )}
             </div>
+            {portfolioItemWeb?.productWebsite && (
+              <div className="mt-3 text-center">
+                <Button variant={"link"}>
+                  <Link href={portfolioItemWeb.productWebsite} target="_blank">
+                    Try Our Online JPG to PDF Converter
+                  </Link>
+                </Button>
+              </div>
+            )}
 
             <div className="mt-10 flex w-full flex-col justify-center md:flex-row">
               {/* ----- Box-1 ----- */}
@@ -85,44 +86,42 @@ export default function Hero() {
             </div>
 
             {portfolioItem.description}
-            <div className="mt-10 flex w-full flex-col gap-3">
-              <strong className="text-base">
-                Helpful Links for Desktop App
-              </strong>
-              <Link href={"/help"} onClick={() => setActiveSection("")}>
-                <Button variant={"link"} className="h-auto px-0 py-0">
+            <div className="mt-10 flex w-full flex-col items-start gap-3">
+              <strong>Helpful Links for Desktop App</strong>
+              <Button variant={"link"} className="h-auto px-0 py-0">
+                <Link href={"/help"} onClick={() => setActiveSection("")}>
                   JPG to PDF Converter software user guide
-                </Button>
-              </Link>
-              <Link
-                href={"/how-batch-convert-jpg-pdf"}
-                onClick={() => setActiveSection("")}
-              >
-                <Button variant={"link"} className="h-auto px-0 py-0">
+                </Link>
+              </Button>
+              <Button variant={"link"} className="h-auto px-0 py-0">
+                <Link
+                  href={"/how-batch-convert-jpg-pdf"}
+                  onClick={() => setActiveSection("")}
+                >
                   How to convert JPG to PDF in batch?
-                </Button>
-              </Link>
-              <Link
-                href={"/how-to-merge-jpg-to-pdf"}
-                onClick={() => setActiveSection("")}
-              >
-                <Button variant={"link"} className="h-auto px-0 py-0">
+                </Link>
+              </Button>
+              <Button variant={"link"} className="h-auto px-0 py-0">
+                <Link
+                  href={"/how-to-merge-jpg-to-pdf"}
+                  onClick={() => setActiveSection("")}
+                >
                   How to combine multiple JPG to PDF in Windows?
-                </Button>
-              </Link>
-              <Link
-                href={"how-to-export-scanned-jpg-to-pdf"}
-                onClick={() => setActiveSection("")}
-              >
-                <Button variant={"link"} className="h-auto px-0 py-0">
+                </Link>
+              </Button>
+              <Button variant={"link"} className="h-auto px-0 py-0">
+                <Link
+                  href={"how-to-export-scanned-jpg-to-pdf"}
+                  onClick={() => setActiveSection("")}
+                >
                   How do I change a scanned JPGs to a PDF file?
-                </Button>
-              </Link>
-              <Link href={"/jpg-vs-pdf"} onClick={() => setActiveSection("")}>
-                <Button variant={"link"} className="h-auto px-0 py-0">
+                </Link>
+              </Button>
+              <Button variant={"link"} className="h-auto px-0 py-0">
+                <Link href={"/jpg-vs-pdf"} onClick={() => setActiveSection("")}>
                   Which file format should you use JPG or PDF?
-                </Button>
-              </Link>
+                </Link>
+              </Button>
             </div>
           </>
         )}

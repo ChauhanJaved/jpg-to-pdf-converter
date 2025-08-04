@@ -35,9 +35,9 @@ export default function Pricing() {
             </div>
           ))}
         </div>
-        <div className="mt-10 flex flex-col">
-          <p className="mt-3 font-semibold">Secure Payments via FastSpring</p>
-          <p>
+        <div className="flex flex-col">
+          <strong className="mt-10">Secure Payments via FastSpring</strong>
+          <p className="mt-2">
             We partner with Bright Market, LLC, dba FastSpring, located at 801
             Garden St., Santa Barbara, CA 93101, USA, for secure and efficient
             payment processing. Once your order is complete, FastSpring will
@@ -48,10 +48,10 @@ export default function Pricing() {
             transaction is completely secure.
           </p>
 
-          <p className="mt-3 font-semibold">
+          <strong className="mt-10">
             One-Time Purchase with Lifetime License
-          </p>
-          <p>
+          </strong>
+          <p className="mt-2">
             Enjoy a lifetime of access with just a one-time purchase of our JPG
             to PDF converter. Once you’ve acquired the license, there are no
             recurring fees or subscriptions. This lifetime license provides you
@@ -60,8 +60,8 @@ export default function Pricing() {
             image to PDF conversions.
           </p>
 
-          <p className="mt-3 font-semibold">Free Lifetime Upgrades</p>
-          <p>
+          <strong className="mt-10">Free Lifetime Upgrades</strong>
+          <p className="mt-2">
             Stay up-to-date with all the latest features and enhancements, free
             of charge. Our lifetime license includes complimentary upgrades,
             ensuring you always have access to the most optimized and advanced
@@ -70,8 +70,8 @@ export default function Pricing() {
             additional cost.
           </p>
 
-          <p className="mt-3 font-semibold">15-Day Money-Back Guarantee</p>
-          <p>
+          <strong className="mt-10">15-Day Money-Back Guarantee</strong>
+          <p className="mt-2">
             We’re confident you’ll find our converter indispensable, but we
             understand that every user’s needs are different. That’s why we
             offer a 15-day money-back guarantee with your purchase. Try the

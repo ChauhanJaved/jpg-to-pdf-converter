@@ -61,40 +61,40 @@ export const categoryList: string[] = [
 ];
 export const licenseOptions = [
   {
-    licenseType: "One-Device License",
+    licenseType: "ONE Computer License",
     price: "$24.95 USD",
     paymentLink:
-      "https://frameworkteam.onfastspring.com/jpg-to-pdf-converter-one-device-license",
+      "https://frameworkteam.onfastspring.com/jpg-to-pdf-converter-one-computer-license",
   },
   {
-    licenseType: "Two-Device License",
+    licenseType: "TWO Computers License",
     price: "$39.95 USD",
     paymentLink:
-      "https://frameworkteam.onfastspring.com/jpg-to-pdf-converter-two-device-license",
+      "https://frameworkteam.onfastspring.com/jpg-to-pdf-converter-two-computers-license",
   },
   {
-    licenseType: "Three-Device License",
+    licenseType: "THREE Computers License",
     price: "$44.95 USD",
     paymentLink:
-      "https://frameworkteam.onfastspring.com/jpg-to-pdf-converter-three-device-license",
+      "https://frameworkteam.onfastspring.com/jpg-to-pdf-converter-three-computers-license",
   },
   {
-    licenseType: "Five-Device License",
+    licenseType: "FIVE Computers License",
     price: "$64.95 USD",
     paymentLink:
-      "https://frameworkteam.onfastspring.com/jpg-to-pdf-converter-five-device-license",
+      "https://frameworkteam.onfastspring.com/jpg-to-pdf-converter-five-computers-license",
   },
   {
-    licenseType: "Ten-Device License",
+    licenseType: "TEN Computers License",
     price: "$109.95 USD",
     paymentLink:
-      "https://frameworkteam.onfastspring.com/jpg-to-pdf-converter-ten-device-license",
+      "https://frameworkteam.onfastspring.com/jpg-to-pdf-converter-ten-computers-license",
   },
   {
-    licenseType: "Unlimited-Device License",
+    licenseType: "UNLIMITED Computers License",
     price: "$224.95 USD",
     paymentLink:
-      "https://frameworkteam.onfastspring.com/jpg-to-pdf-converter-unlimited-device-license",
+      "https://frameworkteam.onfastspring.com/jpg-to-pdf-converter-unlimited-computers-license",
   },
 ];
 export enum ProductIDs {

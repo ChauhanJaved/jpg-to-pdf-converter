@@ -68,7 +68,7 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
         >
           {/* Box-1 for company name/logo */}
           <Link
-            className={`${raleway.className} border-l-primary flex flex-col items-start justify-center border-l-[5px] py-1 pl-3 text-base leading-tight font-extrabold tracking-wider`}
+            className={`${raleway.className} border-l-primary flex flex-col items-start justify-center border-l-[5px] py-1 pl-3 leading-tight font-extrabold tracking-wider`}
             href={`/#${HeaderNavItems.Home}`}
             onClick={() => {
               setActiveSection(HeaderNavItems.Home);
@@ -95,7 +95,7 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
                     onClick={() => {
                       setActiveSection(item);
                     }}
-                    className={`before:bg-primary relative px-2 py-2 text-base font-semibold before:absolute before:bottom-0 before:left-0 before:h-0.5 before:w-full before:scale-0 before:transition-transform before:duration-300 hover:before:scale-100 ${activeSection === item && "before:scale-100"}`}
+                    className={`before:bg-primary relative px-2 py-2 font-semibold before:absolute before:bottom-0 before:left-0 before:h-0.5 before:w-full before:scale-0 before:transition-transform before:duration-300 hover:before:scale-100 ${activeSection === item && "before:scale-100"}`}
                     href={`/#${item}`}
                   >
                     {getManuItem(item)}
