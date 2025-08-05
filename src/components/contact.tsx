@@ -1,4 +1,7 @@
+// src/components/contact.tsx
+
 "use client";
+
 //External Imports
 import { Copy } from "lucide-react";
 
