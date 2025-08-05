@@ -59,7 +59,7 @@ export default function Page() {
                 </Button>
               </Link>
             ) : null}
-            <div className="mt-10 flex w-full flex-col items-center md:w-2/3">
+            <div className="mt-10 flex w-full flex-col items-center">
               {/* <Image
                 src={productImages.JPGtoPDFConverterDesktop.imgName}
                 width={productImages.JPGtoPDFConverterDesktop.width}

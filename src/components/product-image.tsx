@@ -59,7 +59,7 @@ export default function ProductImage(props: ProductImageProps) {
   });
   return (
     <div id={props.galleryID} className="flex w-full flex-col items-center">
-      <div className="relative flex w-full items-center justify-center overflow-hidden">
+      <div className="relative flex w-full max-w-[500px] items-center justify-center overflow-hidden">
         <Link
           id={"image-1"}
           href={cloudinaryLoader({
