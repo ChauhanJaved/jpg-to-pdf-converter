@@ -1,15 +1,20 @@
+// src/components/hero.tsx
+
 "use client";
+
 //External Imports
 import Image from "next/image";
-import { CircleCheck, Download, SquareArrowOutUpRight } from "lucide-react";
+import { Download } from "lucide-react";
 import Link from "next/link";
+
 //Internal Imports
 import SectionHeader from "@/components/section-header";
 import { HeaderNavItems, ProductIDs } from "@/data/website-data";
 import { Button } from "@/components/ui/button";
 import { useActiveSection } from "@/context/active-section-context";
 import { portfolioItems } from "@/data/portfolio-items";
-import ProductImage from "./product-image";
+import ProductImage from "@/components/product-image";
+
 const portfolioItem = portfolioItems.find(
   (item) => item.id === ProductIDs.JPGtoPDFConverterDesktop,
 );
@@ -38,60 +43,47 @@ export default function Hero() {
 
             <div className="mt-10 flex w-full flex-col items-center justify-center gap-3 rounded-md border p-10">
               {/* ----- Box-1 ----- */}
-              <div className="flex flex-wrap items-center justify-center gap-3">
-                {portfolioItem.downloadLink && (
-                  <a href={portfolioItem.downloadLink}>
-                    <Button className="py-5 text-base">
-                      <Download className="mr-2" />
-                      Download Now
-                    </Button>
-                  </a>
-                )}
-              </div>
+              {portfolioItem.downloadLink && (
+                <Button asChild className="text-base">
+                  <Link
+                    className="flex flex-row items-center justify-center gap-3"
+                    href={portfolioItem.downloadLink}
+                  >
+                    <Download />
+                    <span> Download Now</span>
+                  </Link>
+                </Button>
+              )}
               {/* ----- Box-2 ----- */}
               {portfolioItemWeb?.productWebsite && (
-                <div className="text-center">
-                  <Button variant={"link"}>
-                    <Link
-                      href={portfolioItemWeb.productWebsite}
-                      target="_blank"
-                    >
-                      Try Online JPG to PDF Converter
-                    </Link>
-                  </Button>
-                </div>
+                <Button asChild variant={"link"}>
+                  <Link
+                    href={portfolioItemWeb.productWebsite}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Try Online JPG to PDF Converter
+                  </Link>
+                </Button>
               )}
               {/* ----- Box-3 ----- */}
               <ProductImage
                 src={portfolioItem.src}
                 width={portfolioItem.width}
                 height={portfolioItem.height}
-                alt={portfolioItem.title}
+                alt={`Screenshot of ${portfolioItem.title} interface`}
                 galleryID="product-image"
               />
-
-              {/* ----- Box-2 ----- */}
-              {/* <div className="mt-5 flex flex-col gap-3 pt-2 text-center md:mt-0 md:ml-6 md:w-1/3">
-                {portfolioItem.features.map((item, index) => (
-                  <div
-                    key={index}
-                    className="flex w-full flex-col items-start text-left"
-                  >
-                    <p>✔ {item}</p>
-                  </div>
-                ))}
-              </div> */}
             </div>
-
             {portfolioItem.description}
             <div className="mt-10 flex w-full flex-col items-start gap-3">
               <strong>Helpful Links for Desktop App</strong>
-              <Button variant={"link"} className="h-auto px-0 py-0">
+              <Button asChild variant={"link"} className="h-auto px-0 py-0">
                 <Link href={"/help"} onClick={() => setActiveSection("")}>
                   JPG to PDF Converter software user guide
                 </Link>
               </Button>
-              <Button variant={"link"} className="h-auto px-0 py-0">
+              <Button asChild variant={"link"} className="h-auto px-0 py-0">
                 <Link
                   href={"/how-batch-convert-jpg-pdf"}
                   onClick={() => setActiveSection("")}
@@ -99,7 +91,7 @@ export default function Hero() {
                   How to convert JPG to PDF in batch?
                 </Link>
               </Button>
-              <Button variant={"link"} className="h-auto px-0 py-0">
+              <Button asChild variant={"link"} className="h-auto px-0 py-0">
                 <Link
                   href={"/how-to-merge-jpg-to-pdf"}
                   onClick={() => setActiveSection("")}
@@ -107,7 +99,7 @@ export default function Hero() {
                   How to combine multiple JPG to PDF in Windows?
                 </Link>
               </Button>
-              <Button variant={"link"} className="h-auto px-0 py-0">
+              <Button asChild variant={"link"} className="h-auto px-0 py-0">
                 <Link
                   href={"how-to-export-scanned-jpg-to-pdf"}
                   onClick={() => setActiveSection("")}
@@ -115,7 +107,7 @@ export default function Hero() {
                   How do I change a scanned JPGs to a PDF file?
                 </Link>
               </Button>
-              <Button variant={"link"} className="h-auto px-0 py-0">
+              <Button asChild variant={"link"} className="h-auto px-0 py-0">
                 <Link href={"/jpg-vs-pdf"} onClick={() => setActiveSection("")}>
                   Which file format should you use JPG or PDF?
                 </Link>

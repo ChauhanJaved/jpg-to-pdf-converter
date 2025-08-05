@@ -1,5 +1,5 @@
 import SectionHeader from "@/components/section-header";
-import { MonitorDown, Slash } from "lucide-react";
+import { Download, Slash } from "lucide-react";
 
 import {
   Breadcrumb,
@@ -11,13 +11,16 @@ import {
 import { HeaderNavItems, ProductIDs, productImages } from "@/data/website-data";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
 import BreadcrumbNextLink from "@/components/breadcrumb-next-link";
 import { Metadata } from "next";
 import { capitalizeWords } from "@/lib/utils";
 import { portfolioItems } from "@/data/portfolio-items";
+import ProductImage from "@/components/product-image";
 const portfolioItem = portfolioItems.find(
   (item) => item.id === ProductIDs.JPGtoPDFConverterDesktop,
+);
+const portfolioItemWeb = portfolioItems.find(
+  (item) => item.id === ProductIDs.JPGtoPDFConverterWeb,
 );
 export const metadata: Metadata = portfolioItem?.metaData ?? {};
 export default function Page() {
@@ -52,27 +55,42 @@ export default function Page() {
         <div className="mt-10 flex flex-col">
           <div className="flex flex-col items-center">
             <div className="flex w-full flex-col items-center rounded border p-10 shadow">
-              <Link href={portfolioItem?.downloadLink ?? "#"}>
-                <Button className={"py-6 text-xl"}>
-                  <MonitorDown className="mr-3 h-8 w-8" /> Download Now
-                </Button>
-              </Link>
+              <div className="flex flex-col flex-wrap items-center justify-center gap-3">
+                {portfolioItem?.downloadLink && (
+                  <Button className="py-5 text-base">
+                    <Download className="mr-2" />
+                    <Link href={portfolioItem.downloadLink}>Download Now</Link>
+                  </Button>
+                )}
+                {portfolioItemWeb?.productWebsite && (
+                  <div className="text-center">
+                    <Button variant={"link"}>
+                      <Link
+                        href={portfolioItemWeb.productWebsite}
+                        target="_blank"
+                      >
+                        Try Online JPG to PDF Converter
+                      </Link>
+                    </Button>
+                  </div>
+                )}
+              </div>
               <div className="mt-10 flex w-full flex-col items-center md:w-2/3">
-                <Image
+                <ProductImage
                   src={productImages.JPGtoPDFConverterDesktop.imgName}
                   width={productImages.JPGtoPDFConverterDesktop.width}
                   height={productImages.JPGtoPDFConverterDesktop.height}
                   alt={productImages.JPGtoPDFConverterDesktop.title}
-                  className="relative"
+                  galleryID="batch-convert-jpg-to-pdf"
                 />
               </div>
             </div>
           </div>
-          <div className="mt-5 flex flex-col lg:text-lg">
-            <h2 className="font-semibold">
+          <div className="mt-5 flex flex-col">
+            <strong className="mt-10">
               How to Convert JPG to PDF in Batch
-            </h2>
-            <p>
+            </strong>
+            <p className="mt-2">
               JPG is one of the most widely used image formats on the web.
               However, it has limitations when it comes to image quality,
               especially for viewing, printing, or sharing in professional
@@ -88,13 +106,11 @@ export default function Page() {
               process.
             </p>
 
-            <h2 className="mt-1 font-semibold">
+            <strong className="mt-10">
               Step-by-Step Guide to Convert JPG to PDF in Batch
-            </h2>
-            <div className="mt-1 ml-3">
-              <h3 className="font-semibold">
-                1. Download and Install the Software
-              </h3>
+            </strong>
+            <div className="mt-5 ml-3 flex flex-col gap-3">
+              <strong>1. Download and Install the Software</strong>
               <p>
                 To get started, download the free JPG to PDF Converter software
                 and install it on your computer. The installation is
@@ -102,9 +118,7 @@ export default function Page() {
                 for download. Once installed, launch the application to access
                 its user-friendly interface.
               </p>
-              <h3 className="mt-1 font-semibold">
-                2. Add JPG Files for Conversion
-              </h3>
+              <strong>2. Add JPG Files for Conversion</strong>
               <p>
                 Click on the <strong>“Add Files”</strong> button to open a file
                 browser window. From there, navigate to the folder containing
@@ -115,16 +129,15 @@ export default function Page() {
                 large batches of images.
               </p>
               <div className="my-10 flex justify-center">
-                <Image
+                <ProductImage
                   src={productImages.JPGtoPDFConverterFilesSelected.imgName}
                   width={productImages.JPGtoPDFConverterFilesSelected.width}
                   height={productImages.JPGtoPDFConverterFilesSelected.height}
                   alt={productImages.JPGtoPDFConverterFilesSelected.title}
+                  galleryID="batch-convert-jpg-to-pdf-files-selected"
                 />
               </div>
-              <h3 className="mt-1 font-semibold">
-                3. Configure Conversion Settings
-              </h3>
+              <strong>3. Configure Conversion Settings</strong>
               <p>
                 Before starting the conversion, you can customize the output
                 settings to suit your needs:
@@ -161,16 +174,15 @@ export default function Page() {
                 </li>
               </ul>
               <div className="my-10 flex justify-center">
-                <Image
+                <ProductImage
                   src={productImages.JPGtoPDFConverterSettings.imgName}
                   width={productImages.JPGtoPDFConverterSettings.width}
                   height={productImages.JPGtoPDFConverterSettings.height}
                   alt={productImages.JPGtoPDFConverterSettings.title}
+                  galleryID="batch-convert-jpg-to-pdf-settings"
                 />
               </div>
-              <h3 className="mt-1 font-semibold">
-                4. Start the Conversion Process
-              </h3>
+              <strong>4. Start the Conversion Process</strong>
               <p>
                 Once your files are added and settings are configured, click on
                 the <strong>“Convert”</strong> button to begin the batch
@@ -185,9 +197,7 @@ export default function Page() {
                 moments to complete.
               </p>
 
-              <h3 className="mt-1 font-semibold">
-                5. Access Your Converted PDFs
-              </h3>
+              <strong>5. Access Your Converted PDFs</strong>
               <p>
                 After the conversion is complete, navigate to the output folder
                 to access your new PDF files. If you enabled the option{" "}
@@ -201,9 +211,9 @@ export default function Page() {
                 for use in just a few clicks.
               </p>
             </div>
-            <h2 className="mt-1 font-semibold">
+            <strong className="mt-10">
               Why Choose Our JPG to PDF Converter?
-            </h2>
+            </strong>
             <p>
               Our software offers a seamless and efficient way to convert
               multiple JPG images to PDF format, with advanced options for
