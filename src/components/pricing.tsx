@@ -1,9 +1,13 @@
-import { HeaderNavItems, licenseOptions } from "@/data/website-data";
-import React from "react";
-import SectionHeader from "./section-header";
+// src/components/pricing.tsx
+
+// External Imports
 import { ShoppingCart } from "lucide-react";
 import Link from "next/link";
-import { Button } from "./ui/button";
+
+// Internal Imports
+import { HeaderNavItems, licenseOptions } from "@/data/website-data";
+import SectionHeader from "@/components/section-header";
+import { Button } from "@/components/ui/button";
 
 export default function Pricing() {
   return (
@@ -16,27 +20,35 @@ export default function Pricing() {
           element="h2"
           caption={`License Pricing`}
           desc={
-            "One-Time Purchase with Lifetime License | Free Lifetime Upgrades | 15-Day Money-Back Guarantee | Secure Payments via FastSpring"
+            "Lifetime license with one-time purchase | Free upgrades | 15-day money-back guarantee | Secure payments via FastSpring"
           }
         />
 
-        <div className="mt-10 grid max-w-[750px] grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {licenseOptions.map((license, index) => (
             <div key={index} className="flex items-center justify-center">
-              <Link target="_blank" href={license.paymentLink}>
-                <Button variant={"outline"} className="h-14 w-[235px]">
-                  <ShoppingCart className="mr-3" />
+              <Button asChild variant={"outline"} className="h-16 w-[275px]">
+                <Link
+                  aria-label={`Buy ${license.licenseType} for ${license.price}`}
+                  className="flex gap-3"
+                  target="_blank"
+                  href={license.paymentLink}
+                  rel="noopener noreferrer"
+                >
+                  <ShoppingCart />
                   <div className="flex flex-col items-start">
                     <span>{license.licenseType}</span>
                     <span>{license.price}</span>
                   </div>
-                </Button>
-              </Link>
+                </Link>
+              </Button>
             </div>
           ))}
         </div>
         <div className="flex flex-col">
-          <strong className="mt-10">Secure Payments via FastSpring</strong>
+          <h3 className="mt-10 font-semibold">
+            Secure Payments via FastSpring
+          </h3>
           <p className="mt-2">
             We partner with Bright Market, LLC, dba FastSpring, located at 801
             Garden St., Santa Barbara, CA 93101, USA, for secure and efficient
@@ -48,9 +60,9 @@ export default function Pricing() {
             transaction is completely secure.
           </p>
 
-          <strong className="mt-10">
+          <h3 className="mt-10 font-semibold">
             One-Time Purchase with Lifetime License
-          </strong>
+          </h3>
           <p className="mt-2">
             Enjoy a lifetime of access with just a one-time purchase of our JPG
             to PDF converter. Once you’ve acquired the license, there are no
@@ -60,7 +72,7 @@ export default function Pricing() {
             image to PDF conversions.
           </p>
 
-          <strong className="mt-10">Free Lifetime Upgrades</strong>
+          <h3 className="mt-10 font-semibold">Free Lifetime Upgrades</h3>
           <p className="mt-2">
             Stay up-to-date with all the latest features and enhancements, free
             of charge. Our lifetime license includes complimentary upgrades,
@@ -70,14 +82,14 @@ export default function Pricing() {
             additional cost.
           </p>
 
-          <strong className="mt-10">15-Day Money-Back Guarantee</strong>
+          <h3 className="mt-10 font-semibold">15-Day Money-Back Guarantee</h3>
           <p className="mt-2">
-            We’re confident you’ll find our converter indispensable, but we
-            understand that every user’s needs are different. That’s why we
-            offer a 15-day money-back guarantee with your purchase. Try the
-            software, explore its features, and if you’re not fully satisfied,
-            we’ll gladly refund your payment within this period – no questions
-            asked.
+            We&apos;re confident you&apos;ll find our converter indispensable,
+            but we understand that every user&apos;s needs are different.
+            That&apos;s why we offer a 15-day money-back guarantee with your
+            purchase. Try the software, explore its features, and if you&apos;re
+            not fully satisfied, we&apos;ll gladly refund your payment within
+            this period — no questions asked.
           </p>
         </div>
       </div>
