@@ -1,9 +1,13 @@
-import SectionHeader from "@/components/section-header";
-import { Download, MonitorDown, Slash } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import Image from "next/image";
-import Link from "next/link";
+//src/app/help/page.tsx
 
+// External imports
+import { Download, Slash } from "lucide-react";
+import Link from "next/link";
+import { Metadata } from "next";
+
+// Internal imports
+import { Button } from "@/components/ui/button";
+import SectionHeader from "@/components/section-header";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -13,14 +17,15 @@ import {
 } from "@/components/ui/breadcrumb";
 import { HeaderNavItems, ProductIDs, productImages } from "@/data/website-data";
 import BreadcrumbNextLink from "@/components/breadcrumb-next-link";
-import { Metadata } from "next";
 import { capitalizeWords } from "@/lib/utils";
 import { portfolioItems } from "@/data/portfolio-items";
 import ProductImage from "@/components/product-image";
+
 const portfolioItem = portfolioItems.find(
   (item) => item.id === ProductIDs.JPGtoPDFConverterDesktop,
 );
 export const metadata: Metadata = portfolioItem?.metaData ?? {};
+
 export default function Page() {
   return (
     <>
@@ -60,12 +65,6 @@ export default function Page() {
               </Link>
             ) : null}
             <div className="mt-10 flex w-full flex-col items-center">
-              {/* <Image
-                src={productImages.JPGtoPDFConverterDesktop.imgName}
-                width={productImages.JPGtoPDFConverterDesktop.width}
-                height={productImages.JPGtoPDFConverterDesktop.height}
-                alt={productImages.JPGtoPDFConverterDesktop.title}
-              /> */}
               <ProductImage
                 src={productImages.JPGtoPDFConverterDesktop.imgName}
                 width={productImages.JPGtoPDFConverterDesktop.width}
@@ -77,18 +76,18 @@ export default function Page() {
           </div>
 
           <div className="mt-5 flex flex-col">
-            <strong className="mt-10">
+            <h2 className="mt-10 font-semibold">
               Adding Files to JPG to PDF Converter
-            </strong>
+            </h2>
             <p className="mt-2">
               The JPG to PDF Converter software for Windows makes it easy to add
               files for conversion. Follow the steps below to quickly add and
               organize your JPG files for seamless PDF creation.
             </p>
 
-            <strong className="mt-10">
+            <h2 className="mt-10 font-semibold">
               Adding Files Using the &#34;Add Files&#34; Button
-            </strong>
+            </h2>
             <p className="mt-2">
               To start adding files, click the <strong>“Add Files”</strong>{" "}
               button in the software interface. This action will open the
@@ -98,7 +97,9 @@ export default function Page() {
               the conversion process.
             </p>
 
-            <strong className="mt-10">Drag and Drop for Convenience</strong>
+            <h2 className="mt-10 font-semibold">
+              Drag and Drop for Convenience
+            </h2>
             <p className="mt-2">
               If you prefer a faster method, the software allows you to drag and
               drop files directly into the file list. Open Windows Explorer,
@@ -107,7 +108,9 @@ export default function Page() {
               for users who like to work efficiently.
             </p>
 
-            <strong className="mt-10">Adding All Files in a Folder</strong>
+            <h2 className="mt-10 font-semibold">
+              Adding All Files in a Folder
+            </h2>
             <p className="mt-2">
               To include all the files in a specific directory, click the{" "}
               <strong>“Add Folder”</strong> button. This feature not only adds
@@ -117,7 +120,7 @@ export default function Page() {
               organized directories.
             </p>
 
-            <strong className="mt-10">Organizing Your Files</strong>
+            <h2 className="mt-10 font-semibold">Organizing Your Files</h2>
             <p className="mt-2">
               Once your files are added, the software provides tools for easy
               organization. You can use the <strong>“Move Up”</strong> and{" "}
@@ -127,7 +130,7 @@ export default function Page() {
               sequence.
             </p>
 
-            <strong className="mt-10">Removing Files</strong>
+            <h2 className="mt-10 font-semibold">Removing Files</h2>
             <p className="mt-2">
               If you need to adjust your selection, the software allows you to
               remove individual files by selecting them and clicking the{" "}
@@ -137,12 +140,6 @@ export default function Page() {
               the conversion process.
             </p>
             <div className="my-10 flex justify-center">
-              {/* <Image
-                src={productImages.JPGtoPDFConverterFilesSelected.imgName}
-                width={productImages.JPGtoPDFConverterFilesSelected.width}
-                height={productImages.JPGtoPDFConverterFilesSelected.height}
-                alt={productImages.JPGtoPDFConverterFilesSelected.title}
-              /> */}
               <ProductImage
                 src={productImages.JPGtoPDFConverterFilesSelected.imgName}
                 width={productImages.JPGtoPDFConverterFilesSelected.width}
@@ -151,9 +148,9 @@ export default function Page() {
                 galleryID="software-user-guide-files-selected"
               />
             </div>
-            <strong className="mt-10">
+            <h2 className="mt-10 font-semibold">
               Modify Settings in JPG to PDF Converter
-            </strong>
+            </h2>
             <p className="mt-2">
               Customizing your conversion settings is easy with the JPG to PDF
               Converter. This guide provides step-by-step instructions for
@@ -161,7 +158,7 @@ export default function Page() {
               JPEG quality to achieve the desired results for your PDF files.
             </p>
 
-            <strong className="mt-10">Output Folder</strong>
+            <h2 className="mt-10 font-semibold">Output Folder</h2>
             <p className="mt-2">
               The software allows you to choose where your converted PDF files
               will be saved. By default, the output files are stored in the
@@ -191,7 +188,7 @@ export default function Page() {
               conversion is finished.
             </p>
 
-            <strong className="mt-10">Output Mode</strong>
+            <h2 className="mt-10 font-semibold">Output Mode</h2>
             <p className="mt-2">
               The JPG to PDF Converter offers two output modes, allowing you to
               customize how your JPG files are converted:
@@ -210,7 +207,7 @@ export default function Page() {
                 PDFs for each image.
               </li>
             </ul>
-            <strong className="mt-10">JPEG Quality</strong>
+            <h2 className="mt-10 font-semibold">JPEG Quality</h2>
             <p className="mt-2">
               The software allows you to control the quality of your JPG files
               before conversion. Adjusting the JPEG quality affects both the
@@ -249,12 +246,6 @@ export default function Page() {
               every time.
             </p>
             <div className="my-10 flex justify-center">
-              {/* <Image
-                src={productImages.JPGtoPDFConverterSettings.imgName}
-                width={productImages.JPGtoPDFConverterSettings.width}
-                height={productImages.JPGtoPDFConverterSettings.height}
-                alt={productImages.JPGtoPDFConverterSettings.title}
-              /> */}
               <ProductImage
                 src={productImages.JPGtoPDFConverterSettings.imgName}
                 width={productImages.JPGtoPDFConverterSettings.width}
@@ -264,7 +255,9 @@ export default function Page() {
               />
             </div>
 
-            <strong className="mt-10">Start the Conversion Process</strong>
+            <h2 className="mt-10 font-semibold">
+              Start the Conversion Process
+            </h2>
             <p className="mt-2">
               Once you have added all your JPG files and configured the
               necessary settings, you are ready to start the conversion process
@@ -272,7 +265,7 @@ export default function Page() {
               execute the conversion and retrieve your output files.
             </p>
 
-            <strong className="mt-10">Step-by-Step Instructions</strong>
+            <h2 className="mt-10 font-semibold">Step-by-Step Instructions</h2>
             <p className="mt-2">
               Begin the conversion by clicking the <strong>“Convert”</strong>{" "}
               button located at the bottom of the application window. This
@@ -286,7 +279,9 @@ export default function Page() {
               list.
             </p>
 
-            <strong className="mt-10">Retrieving Your Output Files</strong>
+            <h2 className="mt-10 font-semibold">
+              Retrieving Your Output Files
+            </h2>
             <p className="mt-2">
               After the conversion is complete, the software will save your
               newly created PDF files in the location you specified in the{" "}
@@ -311,7 +306,7 @@ export default function Page() {
               </li>
             </ul>
 
-            <strong className="mt-10">Conclusion</strong>
+            <h2 className="mt-10 font-semibold">Conclusion</h2>
             <p className="mt-2">
               With just a few clicks, the JPG to PDF Converter simplifies the
               process of transforming images into professional-quality PDF
