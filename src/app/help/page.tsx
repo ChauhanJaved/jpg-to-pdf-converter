@@ -21,10 +21,13 @@ import { capitalizeWords } from "@/lib/utils";
 import { portfolioItems } from "@/data/portfolio-items";
 import ProductImage from "@/components/product-image";
 
-const portfolioItem = portfolioItems.find(
+const portfolioItemDesktop = portfolioItems.find(
   (item) => item.id === ProductIDs.JPGtoPDFConverterDesktop,
 );
-export const metadata: Metadata = portfolioItem?.metaData ?? {};
+const portfolioItemWeb = portfolioItems.find(
+  (item) => item.id === ProductIDs.JPGtoPDFConverterWeb,
+);
+export const metadata: Metadata = portfolioItemDesktop?.metaData ?? {};
 
 export default function Page() {
   return (
@@ -50,20 +53,38 @@ export default function Page() {
       </div>
       <section className="container mx-auto px-5 lg:px-10 xl:max-w-screen-xl">
         <SectionHeader
-          className="mt-10 mb-5 lg:mt-16 lg:mb-10"
+          className="mt-10 lg:mt-16"
           caption="Software User Guide"
           element="h1"
           desc="Windows 11/10/8/7 | JPG to PDF Converter Version 1.5"
         />
         <div className="flex flex-col items-center">
-          <div className="flex w-full flex-col items-center rounded-md border p-10">
-            {portfolioItem?.downloadLink ? (
-              <Link href={portfolioItem.downloadLink}>
-                <Button className={"text-base"}>
-                  <Download className="mr-3" /> Download Now
-                </Button>
-              </Link>
-            ) : null}
+          <div className="mt-10 flex w-full flex-col items-center justify-center gap-3 rounded-md border p-10">
+            {/* ----- Box-1 ----- */}
+            {portfolioItemDesktop?.downloadLink && (
+              <Button asChild className="text-base">
+                <Link
+                  className="flex flex-row items-center justify-center gap-3"
+                  href={portfolioItemDesktop.downloadLink}
+                >
+                  <Download />
+                  <span> Download Now</span>
+                </Link>
+              </Button>
+            )}
+            {/* ----- Box-2 ----- */}
+            {portfolioItemWeb?.productWebsite && (
+              <Button asChild variant={"link"}>
+                <Link
+                  href={portfolioItemWeb.productWebsite}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Try Online JPG to PDF Converter
+                </Link>
+              </Button>
+            )}
+            {/* ----- Box-3 ----- */}
             <div className="mt-10 flex w-full flex-col items-center">
               <ProductImage
                 src={productImages.JPGtoPDFConverterDesktop.imgName}

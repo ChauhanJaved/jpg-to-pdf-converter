@@ -15,7 +15,7 @@ import { useActiveSection } from "@/context/active-section-context";
 import { portfolioItems } from "@/data/portfolio-items";
 import ProductImage from "@/components/product-image";
 
-const portfolioItem = portfolioItems.find(
+const portfolioItemDesktop = portfolioItems.find(
   (item) => item.id === ProductIDs.JPGtoPDFConverterDesktop,
 );
 const portfolioItemWeb = portfolioItems.find(
@@ -34,20 +34,20 @@ export default function Hero() {
         priority
       />
       <div className="z-0 container m-auto px-5 pt-24 pb-12 md:px-10 md:pt-32 xl:max-w-screen-xl">
-        {portfolioItem && (
+        {portfolioItemDesktop && (
           <>
             <SectionHeader
-              caption={portfolioItem.title}
-              desc={portfolioItem.subtitle}
+              caption={portfolioItemDesktop.title}
+              desc={portfolioItemDesktop.subtitle}
             />
 
             <div className="mt-10 flex w-full flex-col items-center justify-center gap-3 rounded-md border p-10">
               {/* ----- Box-1 ----- */}
-              {portfolioItem.downloadLink && (
+              {portfolioItemDesktop.downloadLink && (
                 <Button asChild className="text-base">
                   <Link
                     className="flex flex-row items-center justify-center gap-3"
-                    href={portfolioItem.downloadLink}
+                    href={portfolioItemDesktop.downloadLink}
                   >
                     <Download />
                     <span> Download Now</span>
@@ -68,14 +68,14 @@ export default function Hero() {
               )}
               {/* ----- Box-3 ----- */}
               <ProductImage
-                src={portfolioItem.src}
-                width={portfolioItem.width}
-                height={portfolioItem.height}
-                alt={`Screenshot of ${portfolioItem.title} interface`}
+                src={portfolioItemDesktop.src}
+                width={portfolioItemDesktop.width}
+                height={portfolioItemDesktop.height}
+                alt={`Screenshot of ${portfolioItemDesktop.title} interface`}
                 galleryID="product-image"
               />
             </div>
-            {portfolioItem.description}
+            {portfolioItemDesktop.description}
             <div className="mt-10 flex w-full flex-col items-start gap-3">
               <strong>Helpful Links for Desktop App</strong>
               <Button asChild variant={"link"} className="h-auto px-0 py-0">
