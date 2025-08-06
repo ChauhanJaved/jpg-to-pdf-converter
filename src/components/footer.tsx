@@ -16,27 +16,44 @@ export default function Footer(props: PropsFooter) {
             variant={"link"}
             className="h-auto px-0 py-0"
             aria-label="Go to company website"
+            asChild
           >
-            <Link href={"https://www.frameworkteam.com/"} target="_blank">
+            <Link
+              href={"https://www.frameworkteam.com/"}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               © {props.copyrightYear} {props.companyName}
             </Link>
           </Button>
         </div>
 
         <div className="flex flex-row">
-          <Button variant={"link"} className="h-auto px-0 py-0">
+          <Button
+            asChild
+            variant={"link"}
+            className="h-auto px-0 py-0"
+            aria-label="Go to company website for terms of use"
+          >
             <Link
               href="https://www.frameworkteam.com/terms-of-use.html"
               target="_blank"
+              rel="noopener noreferrer"
             >
               Terms of Use
             </Link>
           </Button>
           <span className="mx-2">|</span>
-          <Button variant={"link"} className="h-auto px-0 py-0">
+          <Button
+            variant={"link"}
+            className="h-auto px-0 py-0"
+            aria-label="Go to company website for privacy policy"
+            asChild
+          >
             <Link
               href="https://www.frameworkteam.com/privacy-policy.html"
               target="_blank"
+              rel="noopener noreferrer"
             >
               Privacy Policy
             </Link>
