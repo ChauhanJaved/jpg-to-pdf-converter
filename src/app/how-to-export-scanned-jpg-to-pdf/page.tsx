@@ -1,8 +1,7 @@
 // src/app/how-to-export-scanned-jpg-to-pdf/page.tsx
 
 // External imports
-import { Download, MonitorDown, Slash } from "lucide-react";
-import Image from "next/image";
+import { Download, Slash } from "lucide-react";
 import Link from "next/link";
 import { Metadata } from "next";
 
