@@ -95,7 +95,6 @@ export default function Page() {
               />
             </div>
           </div>
-
           <div className="mt-5 flex flex-col">
             <h2 className="mt-10 font-semibold">
               How to Convert JPG to PDF in Batch
