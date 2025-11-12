@@ -1,39 +1,35 @@
+import { websiteURL } from "@/data/website-data";
 import type { MetadataRoute } from "next";
 export const dynamic = "force-static";
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: "https://jpg-to-pdf-converter.com/",
+      url: `${websiteURL}/`,
       lastModified: new Date(),
       priority: 1,
     },
     {
-      url: "https://jpg-to-pdf-converter.com/index.html",
-      lastModified: new Date(),
-      priority: 0.9,
-    },
-    {
-      url: "https://jpg-to-pdf-converter.com/help.html",
+      url: `${websiteURL}/help`,
       lastModified: new Date(),
       priority: 0.8,
     },
     {
-      url: "https://jpg-to-pdf-converter.com/how-batch-convert-jpg-pdf.html",
+      url: `${websiteURL}/how-batch-convert-jpg-pdf`,
       lastModified: new Date(),
       priority: 0.8,
     },
     {
-      url: "https://jpg-to-pdf-converter.com/how-to-merge-jpg-to-pdf.html",
+      url: `${websiteURL}/how-to-merge-jpg-to-pdf`,
       lastModified: new Date(),
       priority: 0.8,
     },
     {
-      url: "https://jpg-to-pdf-converter.com/how-to-export-scanned-jpg-to-pdf.html",
+      url: `${websiteURL}/how-to-export-scanned-jpg-to-pdf`,
       lastModified: new Date(),
       priority: 0.8,
     },
     {
-      url: "https://jpg-to-pdf-converter.com/jpg-vs-pdf.html",
+      url: `${websiteURL}/jpg-vs-pdf`,
       lastModified: new Date(),
       priority: 0.8,
     },

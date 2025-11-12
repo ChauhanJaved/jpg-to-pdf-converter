@@ -1,3 +1,4 @@
+import { websiteURL } from "@/data/website-data";
 import type { MetadataRoute } from "next";
 export const dynamic = "force-static";
 export default function robots(): MetadataRoute.Robots {
@@ -7,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: "/private/",
     },
-    sitemap: "https://jpg-to-pdf-converter.com/sitemap.xml",
+    sitemap: `${websiteURL}/sitemap.xml`,
   };
 }

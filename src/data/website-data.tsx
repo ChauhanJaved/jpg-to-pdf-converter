@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { ReactNode } from "react";
 
+export const websiteURL: string = "https://www.jpg-to-pdf-converter.com";
 export const headerCompanyName: string = "FrameworkTeam";
 export const companyName: string = "FrameworkTeam Softwares";
 export const email: string = "support@frameworkteam.com";
@@ -116,13 +117,14 @@ export type ProductSubTitles =
   (typeof productSubTitles)[keyof typeof productSubTitles];
 export const productWebsites = {
   JPGtoPDFConverterWeb: "https://www.pdf-tiff-tools.com/jpg-to-pdf-converter",
-  JPGtoPDFConverterDesktop: "http://www.jpg-to-pdf-converter.com",
+  JPGtoPDFConverterDesktop:
+    "https://www.pdf-tiff-tools.com/jpg-to-pdf-converter-desktop",
 } as const;
 export type ProductWebsite =
   (typeof productWebsites)[keyof typeof productWebsites];
 export const productDownloadLinks = {
   JPGtoPDFConverter:
-    "https://jpg-to-pdf-converter.com/downloads/jpg-to-pdf-converter-setup.exe",
+    "https://www.jpg-to-pdf-converter.com/downloads/jpg-to-pdf-converter-setup.exe",
 } as const;
 export type ProductDownloadLinks =
   (typeof productDownloadLinks)[keyof typeof productDownloadLinks];

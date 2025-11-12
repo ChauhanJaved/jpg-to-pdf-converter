@@ -137,7 +137,7 @@ export const JPGtoPDFConverterDesktop: portfolioItem = {
       title: `Free ${productTitles.JPGtoPDFConverterDesktop} for Windows |  Fast & Secure JPG to PDF Tool`,
       description:
         "Easily convert JPEG files to PDF with our fast and free Windows software. Enjoy a user-friendly interface, batch processing, and customizable settings to ensure top-quality PDF output.",
-      url: `https://www.frameworkteam.com/${ProductIDs.JPGtoPDFConverterDesktop}.html`,
+      url: productWebsites.JPGtoPDFConverterDesktop,
       siteName: `${productTitles.JPGtoPDFConverterDesktop} for Windows`,
       images: [
         {
