@@ -64,13 +64,16 @@ export default function Page() {
           {/* ----- Box-1 ----- */}
           {portfolioItemDesktop?.downloadLink && (
             <Button asChild className="text-base">
-              <Link
-                className="flex flex-row items-center justify-center gap-3"
+              <a
                 href={portfolioItemDesktop.downloadLink}
+                download
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex flex-row items-center justify-center gap-3"
               >
                 <Download />
-                <span> Download Now</span>
-              </Link>
+                <span>Download Now</span>
+              </a>
             </Button>
           )}
           {/* ----- Box-2 ----- */}
