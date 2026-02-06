@@ -271,10 +271,9 @@ export default function Page() {
             seamless.
           </p>
           <p>
-            Don&#39;t wait!{" "}
-            <a href="download-link">Download the JPG to PDF Converter</a> today
-            and experience the convenience of creating high-quality PDFs from
-            your images.
+            Don&#39;t wait! Download the JPG to PDF Converter today and
+            experience the convenience of creating high-quality PDFs from your
+            images.
           </p>
         </div>
       </section>

@@ -104,7 +104,7 @@ export default function Hero() {
               </Button>
               <Button asChild variant={"link"} className="h-auto px-0 py-0">
                 <Link
-                  href={"how-to-export-scanned-jpg-to-pdf"}
+                  href={"/how-to-export-scanned-jpg-to-pdf"}
                   onClick={() => setActiveSection("")}
                 >
                   How do I change a scanned JPGs to a PDF file?
