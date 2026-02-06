@@ -38,7 +38,7 @@ export default function Footer(props: PropsFooter) {
             aria-label="Go to company website for terms of use"
           >
             <Link
-              href={`https://www.${headerCompanyName.toLowerCase()}.com/terms-of-use`}
+              href={`https://www.${headerCompanyName.toLowerCase()}.com/terms-of-use/`}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -53,7 +53,7 @@ export default function Footer(props: PropsFooter) {
             asChild
           >
             <Link
-              href={`https://www.${headerCompanyName.toLowerCase()}.com/privacy-policy`}
+              href={`https://www.${headerCompanyName.toLowerCase()}.com/privacy-policy/`}
               target="_blank"
               rel="noopener noreferrer"
             >

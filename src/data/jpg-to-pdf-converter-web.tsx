@@ -150,17 +150,5 @@ export const JPGtoPDFConverterWeb: portfolioItem = {
       locale: "en_US",
       type: "website",
     },
-    twitter: {
-      card: "summary_large_image", // large image preview
-      title: `Free ${productTitles.JPGtoPDFConverterWeb} Online | Fast & Secure JPG to PDF Tool`,
-      description:
-        "Convert JPG to PDF instantly, securely, and for free — right in your browser. No uploads, no sign-up required.",
-      images: [
-        cloudinaryLoader({
-          src: productImages.JPGtoPDFConverterWeb.imgName,
-          width: productImages.JPGtoPDFConverterWeb.width,
-        }),
-      ],
-    },
   },
 };

@@ -2,8 +2,7 @@
 
 // External imports
 
-import { Download, MonitorDown, Slash } from "lucide-react";
-import Image from "next/image";
+import { Download, Slash } from "lucide-react";
 import Link from "next/link";
 
 // Internal imports

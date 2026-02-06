@@ -116,9 +116,9 @@ export const productSubTitles = {
 export type ProductSubTitles =
   (typeof productSubTitles)[keyof typeof productSubTitles];
 export const productWebsites = {
-  JPGtoPDFConverterWeb: "https://www.pdf-tiff-tools.com/jpg-to-pdf-converter",
+  JPGtoPDFConverterWeb: "https://www.pdf-tiff-tools.com/jpg-to-pdf-converter/",
   JPGtoPDFConverterDesktop:
-    "https://www.pdf-tiff-tools.com/jpg-to-pdf-converter-desktop",
+    "https://www.pdf-tiff-tools.com/jpg-to-pdf-converter-desktop/",
 } as const;
 export type ProductWebsite =
   (typeof productWebsites)[keyof typeof productWebsites];
