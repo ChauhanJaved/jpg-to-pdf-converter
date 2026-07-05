@@ -34,6 +34,7 @@ export default function Header({ defaultActiveSection = "" }: HeaderProps) {
   }
 
   const [mounted, setMounted] = useState(false);
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => setMounted(true), []);
   // Handle direct navigation with hash
   useEffect(() => {
